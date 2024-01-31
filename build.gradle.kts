@@ -43,6 +43,10 @@ dependencies {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
         }
     }
+    
+    // JGraphT import
+    val jGraphTVersion = "1.5.2"
+    implementation("org.jgrapht:jgrapht-core:$jGraphTVersion")
 
     val jUnitVersion = "5.10.1"
     // JUnit API and testing engine
