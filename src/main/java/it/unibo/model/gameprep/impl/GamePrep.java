@@ -1,36 +1,44 @@
 package it.unibo.model.gameprep.impl;
 
 import it.unibo.model.city.api.City;
+import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
+import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
-import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.controller.readercontroller.api.ReaderController;
 
 import java.awt.Color;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-import org.jgrapht.graph.DefaultDirectedWeightedGraph;
+import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
 public class GamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
-    private void prepPlayers(final MainController mainController, final Set<Pair<String, Color>> playerData) {
+    public List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
+        final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
-            mainController.addNewPlayer(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
+            players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
         }
+        return players;
     }
 
-    private void prepGraph(final MainController mainController) {
-        final ReaderController readerController = mainController.getReaderController();
-        final DefaultDirectedWeightedGraph<City, Route> graph = new DefaultDirectedWeightedGraph<>(
+    public SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
+
+        final SimpleDirectedWeightedGraph<City, Route> graph = new SimpleDirectedWeightedGraph<>(
                 RouteImpl.class);
+        for (final EdgeData edge : routeData) {
+            graph.addVertex(edge.city1());
+            graph.addVertex(edge.city2());
+            graph.addEdge(edge.city1(), edge.city2(), new RouteImpl(edge));
+            graph.setEdgeWeight(edge.city1(), edge.city2(), edge.weight());
+        }
+
+        return graph;
     }
 
-    public void prep(final MainController mainController, final Set<Pair<String, Color>> playerData) {
-        prepPlayers(mainController, playerData);
-        prepGraph(mainController);
-    }
 }
