@@ -69,7 +69,7 @@ public class PlayerImpl implements Player {
     }
 
     public void setObjectiveScore(final int number) {
-        this.objectiveScore = number;
+        this.objectiveScore += number;
     }
 
     public int getRouteScore() {
@@ -77,6 +77,6 @@ public class PlayerImpl implements Player {
     }
 
     public void setRouteScore(final int number) {
-        this.routeScore = number;
+        this.routeScore += number;
     }
 }
