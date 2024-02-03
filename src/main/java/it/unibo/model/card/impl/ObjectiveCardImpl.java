@@ -16,4 +16,8 @@ public class ObjectiveCardImpl extends CardImpl {
         this.completed = false;
     }
 
+    public int getScore() {
+        return this.scoreValue;
+    }
+
 }
