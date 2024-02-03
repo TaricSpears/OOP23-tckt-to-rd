@@ -10,4 +10,6 @@ public interface Route {
     boolean isCompleted();
 
     void setFilled();
+
+    int getScore();
 }
