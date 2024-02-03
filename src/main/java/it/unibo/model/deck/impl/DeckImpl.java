@@ -7,7 +7,7 @@ import it.unibo.model.card.api.Card;
 import it.unibo.model.card.impl.*;
 import it.unibo.model.deck.api.Deck;
 
-public class TrainDeckImpl implements Deck {
+public class DeckImpl implements Deck {
 
     @Override
     public Card drawCard(CardType type) {
