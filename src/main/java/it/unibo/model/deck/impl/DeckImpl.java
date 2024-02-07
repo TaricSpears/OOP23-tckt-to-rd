@@ -9,21 +9,28 @@ import it.unibo.model.deck.api.Deck;
 
 public class DeckImpl implements Deck {
 
+    /**
+     * @param type the type of the card to draw
+     * @return the drawn card
+     */
     @Override
     public Card drawCard(CardType type) {
-        if (type == CardType.TRAIN) {
-            return drawTrainCard(type);
-        } else {
-            return drawObjectiveCard(type);
-        }
-
+        return type == CardType.TRAIN ? drawTrainCard() : drawObjectiveCard();
     }
 
-    private Card drawObjectiveCard(CardType type) {
-        return new ObjectiveCardImpl(type, null, 0);
+    /**
+     * @param type the type of the card to draw
+     * @return the drawn objectiveCard
+     */
+    private Card drawObjectiveCard() {
+        return new ObjectiveCardImpl(null, 0);
     }
 
-    private Card drawTrainCard(CardType type) {
+    /**
+     * @param type the type of the card to draw
+     * @return the drawn trainCard
+     */
+    private Card drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.PINK, Color.BLUE,
@@ -43,6 +50,6 @@ public class DeckImpl implements Deck {
             }
         }
 
-        return new TrainCardImpl(type, colors[index]);
+        return new TrainCardImpl(colors[index]);
     }
 }

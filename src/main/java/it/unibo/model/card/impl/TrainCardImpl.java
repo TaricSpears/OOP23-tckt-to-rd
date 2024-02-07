@@ -6,8 +6,8 @@ public class TrainCardImpl extends CardImpl {
 
     private final Color color;
 
-    public TrainCardImpl(final CardType type, final Color color) {
-        super(type);
+    public TrainCardImpl(final Color color) {
+        super(CardType.TRAIN);
         this.color = color;
     }
 

@@ -9,8 +9,8 @@ public class ObjectiveCardImpl extends CardImpl {
     private final int scoreValue;
     private boolean completed;
 
-    public ObjectiveCardImpl(final CardType type, final Pair<City, City> objective, final int scoreValue) {
-        super(type);
+    public ObjectiveCardImpl(final Pair<City, City> objective, final int scoreValue) {
+        super(CardType.OBJECTIVE);
         this.objective = objective;
         this.scoreValue = scoreValue;
         this.completed = false;
