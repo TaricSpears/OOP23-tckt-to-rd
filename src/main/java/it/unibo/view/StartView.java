@@ -35,7 +35,9 @@ public final class StartView extends Application {
 
         primaryStage.setTitle("Ticket To Ride");
 
-        final TextField nameField = new TextField("Insert the player name");
+        final TextField nameField = new TextField();
+        nameField.setPromptText("Insert the player name");
+
         final ColorPicker colorPicker = new ColorPicker();
         final ListView<Pair<String, Color>> playersList = new ListView<>();
         playersList.setMaxSize(350, 200);
@@ -59,6 +61,7 @@ public final class StartView extends Application {
                 if (!players.stream().anyMatch(
                         x -> x.first().equals(nameField.getText()) || x.second().equals(colorPicker.getValue()))) {
                     players.add(new Pair<String, Color>(nameField.getText(), colorPicker.getValue()));
+                    nameField.clear();
                 }
                 if (players.size() >= 6) {
                     submitButton.setDisable(true);
