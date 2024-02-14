@@ -49,8 +49,8 @@ public class PlayerImpl implements Player {
     }
 
     public List<TrainCard> getTrainCards() {
-        List<TrainCard> trainCardSet = new LinkedList<>(trainCards);
-        return Collections.unmodifiableList(trainCardSet);
+        List<TrainCard> trainCardList = new LinkedList<>(trainCards);
+        return Collections.unmodifiableList(trainCardList);
     }
 
     public Set<ObjectiveCard> getObjectiveCards() {
