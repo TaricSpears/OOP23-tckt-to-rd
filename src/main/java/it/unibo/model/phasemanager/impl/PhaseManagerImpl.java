@@ -3,7 +3,7 @@ package it.unibo.model.phasemanager.impl;
 import it.unibo.model.phasemanager.api.PhaseManager;
 
 /*
- * Implementation of {@link phaseManager}.
+ * Implementation of {@link PhaseManager}.
  * Manages the phases of the single turn.
  */
 public class PhaseManagerImpl implements PhaseManager {
