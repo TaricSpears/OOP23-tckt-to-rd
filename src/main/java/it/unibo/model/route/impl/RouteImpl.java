@@ -1,5 +1,7 @@
 package it.unibo.model.route.impl;
 
+import java.awt.Color;
+
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 import it.unibo.commons.EdgeData;
@@ -11,10 +13,12 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
 
     private final EdgeData connectedCity;
     private boolean filled;
+    private Color color;
 
-    public RouteImpl(final EdgeData connectedCity) {
+    public RouteImpl(final EdgeData connectedCity, final Color color) {
         this.connectedCity = connectedCity;
         this.filled = false;
+        this.color = color;
     }
 
     public Pair<City, City> getConnectedCity() {
@@ -31,5 +35,16 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
 
     public int getScore() {
         return this.connectedCity.weight();
+    }
+
+    @Override
+    public int getLength() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLength'");
+    }
+
+    @Override
+    public Color getColor() {
+        return this.color;
     }
 }
