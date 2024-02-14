@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.commons.EdgeData;
@@ -26,16 +27,31 @@ class TestGamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
+    final Set<Pair<String, Color>> playerData = Set.of(new Pair<String, Color>("Player1", Color.RED),
+            new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
+            new Pair<String, Color>("Player4", Color.YELLOW), new Pair<String, Color>("Player5", Color.BLACK),
+            new Pair<String, Color>("Player6", Color.ORANGE));
+
+    final City city1 = new CityImpl("Rome");
+    final City city2 = new CityImpl("Milan");
+    final City city3 = new CityImpl("Naples");
+
+    final Set<EdgeData> routeData = Set.of(
+            new EdgeData(city1, city2, 5),
+            new EdgeData(city1, city3, 3),
+            new EdgeData(city2, city3, 7));
+
     final GamePrep gamePrep = new GamePrep();
+
+    @BeforeEach
+    void setUp() {
+        gamePrep.prepGame(playerData, routeData);
+    }
 
     @Test
     void testPrepPlayers() {
-        final Set<Pair<String, Color>> playerData = Set.of(new Pair<String, Color>("Player1", Color.RED),
-                new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
-                new Pair<String, Color>("Player4", Color.YELLOW), new Pair<String, Color>("Player5", Color.BLACK),
-                new Pair<String, Color>("Player6", Color.ORANGE));
 
-        final List<Player> players = gamePrep.prepPlayers(playerData);
+        final List<Player> players = gamePrep.getPlayers();
         players.sort((x, y) -> x.getName().compareTo(y.getName()));
 
         assertEquals(players.size(), 6);
@@ -46,16 +62,8 @@ class TestGamePrep {
 
     @Test
     void testPrepGraph() {
-        final City city1 = new CityImpl("Rome");
-        final City city2 = new CityImpl("Milan");
-        final City city3 = new CityImpl("Naples");
 
-        final Set<EdgeData> routeData = Set.of(
-                new EdgeData(city1, city2, 5),
-                new EdgeData(city1, city3, 3),
-                new EdgeData(city2, city3, 7));
-
-        final SimpleDirectedWeightedGraph<City, Route> graph = gamePrep.prepGraph(routeData);
+        final SimpleDirectedWeightedGraph<City, Route> graph = gamePrep.getGraph();
 
         assertNotNull(city1.getRoutes());
         assertNotNull(city2.getRoutes());
