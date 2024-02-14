@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.Collections;
 
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
@@ -19,7 +20,10 @@ public class GamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
-    public List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
+    private List<Player> players = new LinkedList<>();
+    private SimpleDirectedWeightedGraph<City, Route> graph;
+
+    private List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
             players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
@@ -27,7 +31,7 @@ public class GamePrep {
         return players;
     }
 
-    public SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
+    private SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
 
         final SimpleDirectedWeightedGraph<City, Route> graph = new SimpleDirectedWeightedGraph<>(
                 RouteImpl.class);
@@ -44,4 +48,16 @@ public class GamePrep {
         return graph;
     }
 
+    public void prepGame(final Set<Pair<String, Color>> playerData, final Set<EdgeData> routeData) {
+        players = prepPlayers(null);
+        graph = prepGraph(null);
+    }
+
+    public List<Player> getPlayers() {
+        return Collections.unmodifiableList(players);
+    }
+
+    public SimpleDirectedWeightedGraph<City, Route> getGraph() {
+        return graph;
+    }
 }
