@@ -15,7 +15,7 @@ import it.unibo.model.deck.api.Deck;
 public class DeckImpl implements Deck {
 
     /**
-     * @param train the type of the card to draw
+     * @param type the type of the card to draw
      * @return the drawn card
      */
     @Override
@@ -24,7 +24,6 @@ public class DeckImpl implements Deck {
     }
 
     /**
-     * @param type the type of the card to draw
      * @return the drawn objectiveCard
      */
     private ObjectiveCardImpl drawObjectiveCard() {
@@ -32,7 +31,6 @@ public class DeckImpl implements Deck {
     }
 
     /**
-     * @param type the type of the card to draw
      * @return the drawn trainCard
      */
     private TrainCardImpl drawTrainCard() {
