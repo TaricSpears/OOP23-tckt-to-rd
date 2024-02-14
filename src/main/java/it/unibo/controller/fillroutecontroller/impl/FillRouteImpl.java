@@ -3,6 +3,7 @@ package it.unibo.controller.fillroutecontroller.impl;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import javafx.scene.paint.Color;
 
 //this class is used to fill the routes with the color of the player
 
@@ -13,7 +14,9 @@ public class FillRouteImpl implements FillRoute {
 
     @Override
     public boolean isRouteValid(Player player, Route route) {
-        final long totCards = player.getTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
+        // controll jolly cards
+        final long totCards = player.getTrainCards().stream()
+                .filter(card -> card.getColor().equals(route.getColor() || Color.DARKGRAY))
                 .count();
 
         if (route.isCompleted() || totCards < route.getLength()) {
@@ -27,15 +30,34 @@ public class FillRouteImpl implements FillRoute {
 
     @Override
     public void openPopUp() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'openPopUp'");
+
     }
 
     // this function sets the color of the button of the chosen route with the
     // player color
     @Override
     public void setColor(Player player, Route route) {
+        route.setPlayer(player);
+        route.setFilled();
 
     }
 
+    // the main method of this class, it is called when the player clicks on a route
+    @Override
+    public void clickRoute(Player player, Route route) {
+        if (isRouteValid(player, route)) {
+            for (int i = 0; i < route.getLength(); i++) {
+                if (player.getTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
+                        .count() > 0) {
+                    player.removeTrainCard(route.getColor());
+                } else {
+                    player.removeTrainCard(Color.DARKGRAY);
+                }
+            }
+
+            setColor(player, route);
+        } else {
+            openPopUp();
+        }
+    }
 }

@@ -5,6 +5,8 @@ import it.unibo.model.route.api.Route;
 
 public interface FillRoute {
 
+    void clickRoute(Player player, Route route);
+
     /*
      * this function returns true if the player has enough train cards with the
      * color of the chosen route
