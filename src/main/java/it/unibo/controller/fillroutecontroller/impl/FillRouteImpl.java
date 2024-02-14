@@ -3,7 +3,7 @@ package it.unibo.controller.fillroutecontroller.impl;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 
 //this class is used to fill the routes with the color of the player
 
@@ -16,7 +16,7 @@ public class FillRouteImpl implements FillRoute {
     public boolean isRouteValid(Player player, Route route) {
         // controll jolly cards
         final long totCards = player.getTrainCards().stream()
-                .filter(card -> card.getColor().equals(route.getColor() || Color.DARKGRAY))
+                .filter(card -> card.getColor().equals(route.getColor() || Color.DARK_GRAY))
                 .count();
 
         if (route.isCompleted() || totCards < route.getLength()) {
@@ -51,7 +51,7 @@ public class FillRouteImpl implements FillRoute {
                         .count() > 0) {
                     player.removeTrainCard(route.getColor());
                 } else {
-                    player.removeTrainCard(Color.DARKGRAY);
+                    player.removeTrainCard(Color.DARK_GRAY);
                 }
             }
 
