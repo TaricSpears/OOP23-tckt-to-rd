@@ -1,10 +1,8 @@
 package it.unibo.model.route.impl;
 
-<<<<<<< HEAD
 import java.util.Set;
-=======
+
 import java.awt.Color;
->>>>>>> f9773e118587a7e343e7d61e8402ef1ecbaaa727
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
@@ -18,23 +16,16 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
 
     private final EdgeData connectedCity;
     private boolean filled;
-<<<<<<< HEAD
     private final int id;
     private final Set<Shape> railUnits;
-
-    public RouteImpl(final EdgeData connectedCity, final int id, final Set<Shape> railUnits) {
-        this.connectedCity = connectedCity;
-        this.filled = false;
-        this.id = id;
-        this.railUnits = railUnits;
-=======
     private Color color;
 
-    public RouteImpl(final EdgeData connectedCity, final Color color) {
+    public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Shape> railUnits) {
         this.connectedCity = connectedCity;
         this.filled = false;
         this.color = color;
->>>>>>> f9773e118587a7e343e7d61e8402ef1ecbaaa727
+        this.id = id;
+        this.railUnits = railUnits;
     }
 
     public Pair<City, City> getConnectedCity() {
