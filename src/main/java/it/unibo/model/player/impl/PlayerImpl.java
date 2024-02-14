@@ -87,6 +87,6 @@ public class PlayerImpl implements Player {
 
     @Override
     public void removeTrainCard(Color color) {
-
+        trainCards.removeIf(card -> card.getColor().equals(color));
     }
 }
