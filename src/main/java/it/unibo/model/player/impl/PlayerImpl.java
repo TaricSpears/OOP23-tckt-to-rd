@@ -1,11 +1,15 @@
 package it.unibo.model.player.impl;
 
 import it.unibo.model.player.api.Player;
-import it.unibo.model.card.api.Card;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.card.api.toBeRemovedCard;
 import it.unibo.model.route.api.Route;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import java.awt.Color;
@@ -14,8 +18,8 @@ public class PlayerImpl implements Player {
 
     private final String name;
     private final Color color;
-    private final Set<Card> trainCards;
-    private final Set<Card> objectiveCards;
+    private final List<TrainCard> trainCards;
+    private final Set<ObjectiveCard> objectiveCards;
     private final Set<Route> completedRoutes;
     private int carriageNum;
     private int objectiveScore;
@@ -24,7 +28,7 @@ public class PlayerImpl implements Player {
     public PlayerImpl(final String name, final Color color, final int carriageNum) {
         this.name = name;
         this.color = color;
-        this.trainCards = new LinkedHashSet<>();
+        this.trainCards = new LinkedList<>();
         this.objectiveCards = new LinkedHashSet<>();
         this.completedRoutes = new LinkedHashSet<>();
         this.carriageNum = carriageNum;
@@ -44,11 +48,12 @@ public class PlayerImpl implements Player {
         return this.color;
     }
 
-    public Set<Card> getTrainCards() {
-        return Collections.unmodifiableSet(trainCards);
+    public List<TrainCard> getTrainCards() {
+        List<TrainCard> trainCardSet = new LinkedList<>(trainCards);
+        return Collections.unmodifiableList(trainCardSet);
     }
 
-    public Set<Card> getObjectiveCards() {
+    public Set<ObjectiveCard> getObjectiveCards() {
         return Collections.unmodifiableSet(objectiveCards);
     }
 
@@ -78,5 +83,10 @@ public class PlayerImpl implements Player {
 
     public void setRouteScore(final int number) {
         this.routeScore += number;
+    }
+
+    @Override
+    public void removeTrainCard(Color color) {
+
     }
 }

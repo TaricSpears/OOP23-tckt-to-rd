@@ -1,13 +1,13 @@
 package it.unibo.model.card.impl;
 
-public enum CardType {
+public enum toBeRemovedCardType {
 
     TRAIN("train"),
     OBJECTIVE("objective");
 
     private final String name;
 
-    private CardType(final String name) {
+    private toBeRemovedCardType(final String name) {
         this.name = name;
     }
 
