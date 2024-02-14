@@ -28,4 +28,8 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     public void setFilled() {
         this.filled = true;
     }
+
+    public int getScore() {
+        return this.connectedCity.weight();
+    }
 }

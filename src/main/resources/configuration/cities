@@ -1,0 +1,414 @@
+[
+	{
+		"name": "EDINBURGH",
+		"id": 0,
+		"x": 881,
+		"y": 308,
+		"outGoingRoutes": [
+			0,1
+		]
+	},
+	{
+		"name": "LONDON",
+		"id": 1,
+		"x": 1214,
+		"y": 1074,
+		"outGoingRoutes": [
+			0,1,19,2,3
+		]
+	},
+	{
+		"name": "BREST",
+		"id": 2,
+		"x": 687,
+		"y": 1696,
+		"outGoingRoutes": [
+			4,5,6
+		]
+	},
+	{
+		"name": "MADRID",
+		"id": 3,
+		"x": 558,
+		"y": 3011,
+		"outGoingRoutes": [
+			7,8,9,11
+		]
+	},
+	{
+		"name": "LISBOA",
+		"id": 4,
+		"x": 198,
+		"y": 3131,
+		"outGoingRoutes": [
+			9,10
+		]
+	},
+	{
+		"name": "CADIZ",
+		"id": 5,
+		"x": 537,
+		"y": 3401,
+		"outGoingRoutes": [
+			10,11
+		]
+	},
+	{
+		"name": "BARCELONA",
+		"id": 6,
+		"x": 1128,
+		"y": 3066,
+		"outGoingRoutes": [
+			12,13,22
+		]
+	},
+	{
+		"name": "PAMPLONA",
+		"id": 7,
+		"x": 1073,
+		"y": 2581,
+		"outGoingRoutes": [
+			7,8,13,23,14,15,6
+		]
+	},
+	{
+		"name": "PARIS",
+		"id": 8,
+		"x": 1407,
+		"y": 1776,
+		"outGoingRoutes": [
+			5,14,15,24,26,27,28,20,21,16
+		]
+	},
+	{
+		"name": "DIEPPE",
+		"id": 9,
+		"x": 1153,
+		"y": 1541,
+		"outGoingRoutes": [
+			4,16,17,2,3
+		]
+	},
+	{
+		"name": "AMSTERDAM",
+		"id": 10,
+		"x": 1712,
+		"y": 1091,
+		"outGoingRoutes": [
+			19,18,30,31
+		]
+	},
+	{
+		"name": "BRUXELLES",
+		"id": 11,
+		"x": 1592,
+		"y": 1336,
+		"outGoingRoutes": [
+			18,17,20,21,29
+		]
+	},
+	{
+		"name": "ESSEN",
+		"id": 12,
+		"x": 2132,
+		"y": 1136,
+		"outGoingRoutes": [
+			31,32,44,45,46
+		]
+	},
+	{
+		"name": "ZURICH",
+		"id": 13,
+		"x": 2007,
+		"y": 2071,
+		"outGoingRoutes": [
+			26,25,37,36
+		]
+	},
+	{
+		"name": "MARSEILLE",
+		"id": 14,
+		"x": 1862,
+		"y": 2556,
+		"outGoingRoutes": [
+			22,23,24,25,38
+		]
+	},
+	{
+		"name": "PALERMO",
+		"id": 15,
+		"x": 2683,
+		"y": 3406,
+		"outGoingRoutes": [
+			39,40,58
+		]
+	},
+	{
+		"name": "ROMA",
+		"id": 16,
+		"x": 2483,
+		"y": 2711,
+		"outGoingRoutes": [
+			38,42,41,39
+		]
+	},
+	{
+		"name": "VENEZIA",
+		"id": 17,
+		"x": 2448,
+		"y": 2241,
+		"outGoingRoutes": [
+			42,37,43,55
+		]
+	},
+	{
+		"name": "MUNCHEN",
+		"id": 18,
+		"x": 2443,
+		"y": 2241,
+		"outGoingRoutes": [
+			35,36,43,53
+		]
+	},
+	{
+		"name": "FRANKFURT",
+		"id": 19,
+		"x": 2058,
+		"y": 1506,
+		"outGoingRoutes": [
+			32,30,29,27,28,35,33,34
+		]
+	},
+	{
+		"name": "BERLIN",
+		"id": 20,
+		"x": 2658,
+		"y": 1216,
+		"outGoingRoutes": [
+			44,33,34,52,50,51,49
+		]
+	},
+	{
+		"name": "KOBENHAVN",
+		"id": 21,
+		"x": 2508,
+		"y": 594,
+		"outGoingRoutes": [
+			45,46,47,48
+		]
+	},
+	{
+		"name": "STOCKHOLM",
+		"id": 22,
+		"x": 3094,
+		"y": 198,
+		"outGoingRoutes": [
+			47,48,68
+		]
+	},
+	{
+		"name": "DANZIC",
+		"id": 23,
+		"x": 3251,
+		"y": 814,
+		"outGoingRoutes": [
+			49,66,67
+		]
+	},
+	{
+		"name": "WIEN",
+		"id": 24,
+		"x": 2954,
+		"y": 1825,
+		"outGoingRoutes": [
+			52,53,54,62,63,65
+		]
+	},
+	{
+		"name": "ZAGRAB",
+		"id": 25,
+		"x": 2891,
+		"y": 2308,
+		"outGoingRoutes": [
+			54,55,64,56
+		]
+	},
+	{
+		"name": "BUDAPEST",
+		"id": 26,
+		"x": 3211,
+		"y": 1955,
+		"outGoingRoutes": [
+			62,63,64,56,75,74
+		]
+	},
+	{
+		"name": "SARAJEVO",
+		"id": 27,
+		"x": 3334,
+		"y": 2609,
+		"outGoingRoutes": [
+			56,60,77,56
+		]
+	},
+	{
+		"name": "BRINDISI",
+		"id": 28,
+		"x": 2937,
+		"y": 2852,
+		"outGoingRoutes": [
+			41,40,57
+		]
+	},
+	{
+		"name": "ATHINA",
+		"id": 29,
+		"x": 3588,
+		"y": 3262,
+		"outGoingRoutes": [
+			57,60,79,59
+		]
+	},
+	{
+		"name": "SOFIA",
+		"id": 30,
+		"x": 3684,
+		"y": 2659,
+		"outGoingRoutes": [
+			79,81,78,77
+		]
+	},
+	{
+		"name": "WARSZAWA",
+		"id": 31,
+		"x": 3508,
+		"y": 1174,
+		"outGoingRoutes": [
+			65,73,71,66,50,51
+		]
+	},
+	{
+		"name": "RIGA",
+		"id": 32,
+		"x": 3674,
+		"y": 348,
+		"outGoingRoutes": [
+			67,70,69
+		]
+	},
+	{
+		"name": "WILNO",
+		"id": 33,
+		"x": 4085,
+		"y": 1044,
+		"outGoingRoutes": [
+			70,71,72,98,99
+		]
+	},
+	{
+		"name": "BUCURESTI",
+		"id": 34,
+		"x": 4002,
+		"y": 2322,
+		"outGoingRoutes": [
+			75,78,80,90,76
+		]
+	},
+	{
+		"name": "SMYRNA",
+		"id": 35,
+		"x": 4042,
+		"y": 3399,
+		"outGoingRoutes": [
+			58,59,82,83
+		]
+	},{
+		"name": "ANCORA",
+		"id": 36,
+		"x": 4675,
+		"y": 3266,
+		"outGoingRoutes": [
+			83,85,84
+		]
+	},{
+		"name": "CONSTANTINOPLE",
+		"id": 37,
+		"x": 4268,
+		"y": 2976,
+		"outGoingRoutes": [
+			82,85,86,80,81
+		]
+	},{
+		"name": "SEVASTOPOL",
+		"id": 38,
+		"x": 4722,
+		"y": 2399,
+		"outGoingRoutes": [
+			86,88,89,91,90
+		]
+	},{
+		"name": "KYIV",
+		"id": 39,
+		"x": 4295,
+		"y": 1454,
+		"outGoingRoutes": [
+			76,94,96,72,73,74
+		]
+	},{
+		"name": "SMOLENSK",
+		"id": 40,
+		"x": 4615,
+		"y": 1071,
+		"outGoingRoutes": [
+			98,96,97
+		]
+	},{
+		"name": "PETROGRAD",
+		"id": 41,
+		"x": 4548,
+		"y": 324,
+		"outGoingRoutes": [
+			68,69,99,100
+		]
+	},{
+		"name": "MOSKVA",
+		"id": 42,
+		"x": 5055,
+		"y": 948,
+		"outGoingRoutes": [
+			100,97,95
+		]
+	},{
+		"name": "KHARKOV",
+		"id": 43,
+		"x": 4995,
+		"y": 1729,
+		"outGoingRoutes": [
+			95,94,93
+		]
+	},{
+		"name": "ROSTOV",
+		"id": 44,
+		"x": 5208,
+		"y": 2006,
+		"outGoingRoutes": [
+			91,92,93
+		]
+	},{
+		"name": "SOCHI",
+		"id": 45,
+		"x": 5185,
+		"y": 2479,
+		"outGoingRoutes": [
+			92,89,87
+		]
+	},{
+		"name": "ERZURUM",
+		"id": 46,
+		"x": 5099,
+		"y": 3142,
+		"outGoingRoutes": [
+			84,88,87
+		]
+	}
+]

@@ -2,12 +2,13 @@ package it.unibo.model.card.impl;
 
 import java.awt.Color;
 
-public class TrainCardImpl extends CardImpl {
+import it.unibo.model.card.api.TrainCard;
+
+public class TrainCardImpl implements TrainCard {
 
     private final Color color;
 
-    public TrainCardImpl(final CardType type, final Color color) {
-        super(type);
+    public TrainCardImpl(final Color color) {
         this.color = color;
     }
 
