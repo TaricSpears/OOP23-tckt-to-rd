@@ -3,6 +3,8 @@ package it.unibo.model.card.impl;
 import it.unibo.commons.Pair;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.city.api.City;
+import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
+import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
 
 /*
  * Implementation of {@link ObjectiveCard}.
@@ -11,7 +13,7 @@ import it.unibo.model.city.api.City;
 public class ObjectiveCardImpl implements ObjectiveCard {
 
     private final Pair<City, City> objective;
-    private final int scoreValue;
+    private final double scoreValue;
     private boolean completed;
 
     /*
@@ -21,10 +23,11 @@ public class ObjectiveCardImpl implements ObjectiveCard {
      * 
      * @param scoreValue the score value of the objective card.
      */
-    public ObjectiveCardImpl(final Pair<City, City> objective, final int scoreValue) {
+    public ObjectiveCardImpl() {
+        final ObjectiveGenerator objectiveGenerator = new ObjectiveGeneratorImpl();
 
-        this.objective = objective;
-        this.scoreValue = scoreValue;
+        this.objective = objectiveGenerator.generateObjective();
+        this.scoreValue = objectiveGenerator.calculateScore(this.objective);
         this.completed = false;
     }
 
@@ -32,7 +35,7 @@ public class ObjectiveCardImpl implements ObjectiveCard {
      * @return the score value of the objective card;
      */
     @Override
-    public int getScore() {
+    public double getScore() {
         return this.scoreValue;
     }
 

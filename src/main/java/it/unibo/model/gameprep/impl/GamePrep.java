@@ -1,5 +1,6 @@
 package it.unibo.model.gameprep.impl;
 
+import it.unibo.model.board.impl.BoardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
@@ -20,8 +21,7 @@ public class GamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
-    private List<Player> players = new LinkedList<>();
-    private SimpleDirectedWeightedGraph<City, Route> graph;
+    private BoardImpl board = null;
 
     private List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
@@ -49,15 +49,14 @@ public class GamePrep {
     }
 
     public void prepGame(final Set<Pair<String, Color>> playerData, final Set<EdgeData> routeData) {
-        players = prepPlayers(null);
-        graph = prepGraph(null);
+        board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
     }
 
     public List<Player> getPlayers() {
-        return Collections.unmodifiableList(players);
+        return board.getPlayers();
     }
 
     public SimpleDirectedWeightedGraph<City, Route> getGraph() {
-        return graph;
+        return board.getGraph();
     }
 }

@@ -8,5 +8,5 @@ public interface ObjectiveCard extends Card {
     /*
      * @return the score value of the objective card;
      */
-    int getScore();
+    double getScore();
 }
