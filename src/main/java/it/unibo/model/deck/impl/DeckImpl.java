@@ -3,10 +3,15 @@ package it.unibo.model.deck.impl;
 import java.awt.Color;
 import java.util.Random;
 
-import it.unibo.model.card.api.toBeRemovedCard;
+import it.unibo.model.card.api.Card;
+import it.unibo.model.card.api.Card.Type;
 import it.unibo.model.card.impl.*;
 import it.unibo.model.deck.api.Deck;
 
+/*
+ * Implementation of {@link Deck}.
+ * Regulates the functioning of the decks.
+ */
 public class DeckImpl implements Deck {
 
     /**
@@ -14,15 +19,15 @@ public class DeckImpl implements Deck {
      * @return the drawn card
      */
     @Override
-    public toBeRemovedCard drawCard(toBeRemovedCardType type) {
-        return type == toBeRemovedCardType.TRAIN ? drawTrainCard() : drawObjectiveCard();
+    public Card drawCard(Card type) {
+        return type.getType() == Type.TRAIN ? drawTrainCard() : drawObjectiveCard();
     }
 
     /**
      * @param type the type of the card to draw
      * @return the drawn objectiveCard
      */
-    private toBeRemovedCard drawObjectiveCard() {
+    private ObjectiveCardImpl drawObjectiveCard() {
         return new ObjectiveCardImpl(null, 0);
     }
 
@@ -30,7 +35,7 @@ public class DeckImpl implements Deck {
      * @param type the type of the card to draw
      * @return the drawn trainCard
      */
-    private toBeRemovedCard drawTrainCard() {
+    private TrainCardImpl drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.PINK, Color.BLUE,
@@ -52,4 +57,5 @@ public class DeckImpl implements Deck {
 
         return new TrainCardImpl(colors[index]);
     }
+
 }
