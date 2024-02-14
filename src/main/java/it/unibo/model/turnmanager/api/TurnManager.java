@@ -4,6 +4,9 @@ import java.util.List;
 
 import it.unibo.model.player.api.Player;
 
+/*
+* Manages the order of player turns.
+*/
 public interface TurnManager {
 
     /**
@@ -25,10 +28,5 @@ public interface TurnManager {
      * Passes control to the next player
      */
     void switchToNextPlayer();
-
-    /**
-     * Restart the turn cycle
-     */
-    void resetTurns();
 
 }

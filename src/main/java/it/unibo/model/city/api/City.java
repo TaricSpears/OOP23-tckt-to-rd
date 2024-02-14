@@ -8,4 +8,6 @@ public interface City {
     String getName();
 
     Set<Route> getRoutes();
+
+    void addOutGoingRoutes(Route newRoute);
 }
