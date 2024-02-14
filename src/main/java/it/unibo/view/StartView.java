@@ -4,8 +4,6 @@ import it.unibo.commons.Pair;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,48 +35,45 @@ public final class StartView extends Application {
         primaryStage.setTitle("Ticket To Ride");
 
         final TextField nameField = new TextField();
-        nameField.setPromptText("Insert the player name");
-
+        final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();
         final ListView<Pair<String, Color>> playersList = new ListView<>();
+
+        nameField.setPromptText("Insert the player name");
+        nameField.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                submitButton.fire();
+            }
+        });
+
         playersList.setMaxSize(350, 200);
 
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
-        startButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-
-            }
+        startButton.setOnAction(event -> {
 
         });
 
-        final Button submitButton = new Button("Submit");
-        submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                if (!players.stream().anyMatch(
-                        x -> x.first().equals(nameField.getText()) || x.second().equals(colorPicker.getValue()))) {
-                    players.add(new Pair<String, Color>(nameField.getText(), colorPicker.getValue()));
-                    nameField.clear();
-                }
-                if (players.size() >= 6) {
-                    submitButton.setDisable(true);
-                }
-                if (players.size() >= 2) {
-                    startButton.setDisable(false);
-                }
-                playersList.setItems(FXCollections.observableArrayList(players));
-                playersList
-                        .setCellFactory(new Callback<ListView<Pair<String, Color>>, ListCell<Pair<String, Color>>>() {
-                            @Override
-                            public ListCell<Pair<String, Color>> call(ListView<Pair<String, Color>> param) {
-                                return new ColorRectCell();
-                            }
-                        });
+        submitButton.setOnAction(event -> {
+            if (!players.stream().anyMatch(
+                    x -> x.first().equals(nameField.getText()) || x.second().equals(colorPicker.getValue()))) {
+                players.add(new Pair<String, Color>(nameField.getText(), colorPicker.getValue()));
+                nameField.clear();
             }
+            if (players.size() >= 6) {
+                submitButton.setDisable(true);
+            }
+            if (players.size() >= 2) {
+                startButton.setDisable(false);
+            }
+            playersList.setItems(FXCollections.observableArrayList(players));
+            playersList
+                    .setCellFactory(new Callback<ListView<Pair<String, Color>>, ListCell<Pair<String, Color>>>() {
+                        @Override
+                        public ListCell<Pair<String, Color>> call(ListView<Pair<String, Color>> param) {
+                            return new ColorRectCell();
+                        }
+                    });
         });
 
         final BorderPane root = new BorderPane();
