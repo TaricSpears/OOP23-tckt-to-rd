@@ -66,7 +66,7 @@ public interface Player {
     /*
      * @param number the score of the objective cards.
      */
-    void setObjectiveScore(int number);
+    void setObjectiveScore(double number);
 
     /*
      * @return the score of the routes.
