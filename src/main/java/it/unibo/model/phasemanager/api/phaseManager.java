@@ -3,7 +3,7 @@ package it.unibo.model.phasemanager.api;
 /*
  * Manages the phases of the single turn.
  */
-public interface phaseManager {
+public interface PhaseManager {
 
     /*
      * Enumerates the possible phases of the game.
