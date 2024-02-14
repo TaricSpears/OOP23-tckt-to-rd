@@ -7,6 +7,10 @@ import java.util.List;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.turnmanager.api.TurnManager;
 
+/*
+* Implementation of {@link TurnManager}.
+* Manages the order of player turns.
+*/
 public class TurnManagerImpl implements TurnManager {
 
     private final List<Player> players;
@@ -15,6 +19,11 @@ public class TurnManagerImpl implements TurnManager {
     private Player currentPlayer;
     private int currentTurn;
 
+    /*
+     * Initializes the player order and creates the iterator.
+     * 
+     * @param players the list of players.
+     */
     public TurnManagerImpl(final List<Player> players) {
         this.players = players;
         Collections.shuffle(this.players);
@@ -53,8 +62,10 @@ public class TurnManagerImpl implements TurnManager {
      */
     @Override
     public void switchToNextPlayer() {
-        if (!this.playersIterator.hasNext())
+        if (!this.playersIterator.hasNext()) {
+            this.currentTurn++;
             resetTurns();
+        }
 
         this.currentPlayer = this.playersIterator.next();
     }
@@ -62,8 +73,7 @@ public class TurnManagerImpl implements TurnManager {
     /**
      * Restart the turn cycle
      */
-    @Override
-    public void resetTurns() {
+    private void resetTurns() {
         this.playersIterator = this.players.iterator();
     }
 

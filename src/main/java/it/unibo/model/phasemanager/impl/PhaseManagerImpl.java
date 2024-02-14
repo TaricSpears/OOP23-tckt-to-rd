@@ -1,19 +1,19 @@
 package it.unibo.model.phasemanager.impl;
 
-import it.unibo.model.phasemanager.api.phaseManager;
+import it.unibo.model.phasemanager.api.PhaseManager;
 
 /*
- * Implementation of {@link phaseManager}.
+ * Implementation of {@link PhaseManager}.
  * Manages the phases of the single turn.
  */
-public class phaseManagerImpl implements phaseManager {
+public class PhaseManagerImpl implements PhaseManager {
 
     private Phase currentPhase;
 
     /*
      * Initializes the phase manager with the start phase.
      */
-    public phaseManagerImpl() {
+    public PhaseManagerImpl() {
         this.currentPhase = Phase.START;
     }
 
