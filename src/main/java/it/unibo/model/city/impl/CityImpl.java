@@ -8,7 +8,6 @@ import java.util.LinkedHashSet;
 import java.util.Collections;
 
 public class CityImpl implements City {
-
     private final String name;
     private final Set<Route> outgoingRoutes = new LinkedHashSet<>();
 
