@@ -1,5 +1,7 @@
 package it.unibo.controller.readercontroller.api;
 
-public interface ReaderController {
+public interface ReaderController<T> {
+    T read();
 
+    String getFilePath();
 }
