@@ -2,16 +2,16 @@ package it.unibo.controller.turncontroller.impl;
 
 import java.util.List;
 
-import it.unibo.controller.turncontroller.api.turnController;
+import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.turnmanager.api.TurnManager;
 import it.unibo.model.turnmanager.impl.TurnManagerImpl;
 
 /**
- * Implementation of {@link turnController}
+ * Implementation of {@link TurnController}
  * Class to control the turn of the game.
  */
-public class turnControllerImpl implements turnController {
+public class TurnControllerImpl implements TurnController {
 
     private final TurnManager turnManager;
 
