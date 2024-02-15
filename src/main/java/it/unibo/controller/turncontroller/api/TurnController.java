@@ -8,7 +8,7 @@ import it.unibo.model.turnmanager.api.TurnManager;
 /**
  * Interface to control the turn of the game.
  */
-public interface turnController {
+public interface TurnController {
 
     /*
      * @return the turn manager.
