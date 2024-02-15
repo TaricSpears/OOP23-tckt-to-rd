@@ -55,4 +55,14 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
+    @Override
+    public Set<Carriage> getRailUnits() {
+        return Set.copyOf(this.railUnits);
+    }
 }

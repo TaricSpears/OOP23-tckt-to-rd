@@ -40,8 +40,8 @@ public class GamePrep {
             graph.addVertex(edge.city2());
             var newRoute = new RouteImpl(edge, null, 0, null);
             graph.addEdge(edge.city1(), edge.city2(), newRoute);
-            edge.city1().addOutGoingRoutes(newRoute);
-            edge.city2().addOutGoingRoutes(newRoute);
+            //edge.city1().addOutGoingRoutes(newRoute);
+            //edge.city2().addOutGoingRoutes(newRoute);
             graph.setEdgeWeight(edge.city1(), edge.city2(), edge.weight());
         }
 
