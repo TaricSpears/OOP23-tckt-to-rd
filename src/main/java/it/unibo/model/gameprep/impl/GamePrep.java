@@ -21,7 +21,7 @@ public class GamePrep {
 
     private BoardImpl board = null;
 
-    private List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
+    private List<Player> prepPlayers(final List<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
             players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
@@ -46,7 +46,7 @@ public class GamePrep {
         return graph;
     }
 
-    public void prepGame(final Set<Pair<String, Color>> playerData, final Set<Route> routeData) {
+    public void prepGame(final List<Pair<String, Color>> playerData, final Set<Route> routeData) {
         board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
     }
 

@@ -3,14 +3,14 @@ package it.unibo.controller.gamecontroller.api;
 import it.unibo.commons.Pair;
 
 import java.awt.Color;
-import java.util.Set;
+import java.util.List;
 
 public interface StartController {
     void startView();
 
     void closeView();
 
-    void startGame(Set<Pair<String, Color>> players);
+    void startGame(List<Pair<String, Color>> players);
 
     MainController getMainController();
 }
