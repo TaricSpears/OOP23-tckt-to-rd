@@ -16,7 +16,7 @@ public class FillRouteImpl implements FillRoute {
     public boolean isRouteValid(Player player, Route route) {
         // controll jolly cards
         final long totCards = player.getTrainCards().stream()
-                .filter(card -> card.getColor().equals(route.getColor() || Color.DARK_GRAY))
+                .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
                 .count();
 
         if (route.isCompleted() || totCards < route.getLength()) {
