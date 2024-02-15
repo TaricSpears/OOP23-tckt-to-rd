@@ -9,6 +9,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import it.unibo.view.Shape;
 import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
+import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
@@ -18,11 +19,11 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     private final EdgeData connectedCity;
     private boolean filled;
     private final int id;
-    private final Set<Shape> railUnits;
+    private final Set<Carriage> railUnits;
     private Color color;
     private Player player;
 
-    public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Shape> railUnits) {
+    public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Carriage> railUnits) {
         this.connectedCity = connectedCity;
         this.filled = false;
         this.color = color;

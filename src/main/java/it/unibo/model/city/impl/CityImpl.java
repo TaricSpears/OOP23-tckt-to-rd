@@ -1,31 +1,39 @@
 package it.unibo.model.city.impl;
 
+import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
-import it.unibo.model.route.api.Route;
-
-import java.util.Set;
-import java.util.LinkedHashSet;
-import java.util.Collections;
 
 public class CityImpl implements City {
+    private final double radius;
     private final String name;
-    private final Set<Route> outgoingRoutes = new LinkedHashSet<>();
+    private final int id;
+    private final Pair<Double, Double> coordinates;
 
-    public CityImpl(final String name) {
+    public CityImpl(final String name, final int id, final Pair<Double, Double> coords, final double radius) {
         this.name = name;
+        this.id = id;
+        this.coordinates = coords;
+        this.radius = radius;
     }
-
+    
+    @Override
     public String getName() {
         return this.name;
     }
 
-    public Set<Route> getRoutes() {
-        return Collections.unmodifiableSet(this.outgoingRoutes);
+    @Override
+    public int getId() {
+        return this.id;
     }
 
     @Override
-    public void addOutGoingRoutes(Route newRoute) {
-        this.outgoingRoutes.add(newRoute);
+    public Pair<Double, Double> getCoordinates() {
+        return this.coordinates;
+    }
+
+    @Override
+    public Double getRadius() {
+        return this.radius;
     }
 
 }

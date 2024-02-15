@@ -1,0 +1,67 @@
+package it.unibo.controller.readercontroller.impl;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
+import java.util.List;
+import java.util.LinkedList;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class MapReaderController extends AbstractReaderController<List<Integer>> {
+
+    private static final String MAP_FILE_PATH = "/configuration/MapData.json";
+    private final List<Integer> mapData;
+
+    public MapReaderController() {
+        super(MAP_FILE_PATH);
+        this.mapData = this.read();
+    }
+
+    @Override
+    public List<Integer> read() {
+        final JSONParser parser = new JSONParser();
+        final List<Integer> retList = new LinkedList<>();
+        try {
+            final InputStreamReader inputStreamReader = new InputStreamReader(
+                    this.getClass().getResourceAsStream(MAP_FILE_PATH), 
+                    StandardCharsets.UTF_8);
+            final JSONObject obj = (JSONObject) parser.parse(inputStreamReader);
+            retList.add(Integer.parseInt(obj.get("mapWidth").toString()));
+            retList.add(Integer.parseInt(obj.get("mapHeight").toString()));
+            retList.add(Integer.parseInt(obj.get("cityRadius").toString()));
+            retList.add(Integer.parseInt(obj.get("railWidth").toString()));
+            retList.add(Integer.parseInt(obj.get("railLength").toString()));
+            inputStreamReader.close();
+        } catch (IOException e) {
+            System.out.println("Exception in file path operations");
+        } catch (ParseException e1) {
+            System.out.println("Exception in file parsing operations");
+        }
+        return retList;
+    }
+
+    public int getMapWidth(){
+        return this.mapData.get(0);
+    }
+
+    public int getMapHeight(){
+        return this.mapData.get(1);
+    }
+
+    public int getCityRadius(){
+        return this.mapData.get(2);
+    }
+
+    public int getRailWidth(){
+        return this.mapData.get(3);
+    }
+    
+    public int getRailLength(){
+        return this.mapData.get(4);
+    }
+    
+}
