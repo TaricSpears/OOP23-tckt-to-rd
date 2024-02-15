@@ -14,7 +14,5 @@ public interface Route {
 
     int getScore();
 
-    int getLength();
-
     Color getColor();
 }

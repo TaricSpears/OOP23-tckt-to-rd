@@ -45,12 +45,6 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     }
 
     @Override
-    public int getLength() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLength'");
-    }
-
-    @Override
     public Color getColor() {
         return this.color;
     }
