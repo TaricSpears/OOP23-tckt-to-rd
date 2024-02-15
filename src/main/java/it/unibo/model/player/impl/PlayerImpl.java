@@ -131,7 +131,7 @@ public class PlayerImpl implements Player {
      * @param number the score of the objective cards.
      */
     @Override
-    public void setObjectiveScore(final int number) {
+    public void setObjectiveScore(final double number) {
         this.objectiveScore += number;
     }
 

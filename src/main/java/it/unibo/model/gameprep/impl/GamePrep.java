@@ -1,5 +1,6 @@
 package it.unibo.model.gameprep.impl;
 
+import it.unibo.model.board.impl.BoardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
@@ -12,6 +13,7 @@ import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.Collections;
 
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
@@ -19,7 +21,9 @@ public class GamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
-    public List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
+    private BoardImpl board = null;
+
+    private List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
             players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
@@ -27,7 +31,7 @@ public class GamePrep {
         return players;
     }
 
-    public SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
+    private SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
 
         final SimpleDirectedWeightedGraph<City, Route> graph = new SimpleDirectedWeightedGraph<>(
                 RouteImpl.class);
@@ -44,4 +48,15 @@ public class GamePrep {
         return graph;
     }
 
+    public void prepGame(final Set<Pair<String, Color>> playerData, final Set<EdgeData> routeData) {
+        board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
+    }
+
+    public List<Player> getPlayers() {
+        return board.getPlayers();
+    }
+
+    public SimpleDirectedWeightedGraph<City, Route> getGraph() {
+        return board.getGraph();
+    }
 }

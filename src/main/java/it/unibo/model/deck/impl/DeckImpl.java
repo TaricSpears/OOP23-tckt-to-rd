@@ -19,20 +19,18 @@ public class DeckImpl implements Deck {
      * @return the drawn card
      */
     @Override
-    public Card drawCard(Card type) {
-        return type.getType() == Type.TRAIN ? drawTrainCard() : drawObjectiveCard();
+    public Card drawCard(Type type) {
+        return type == Type.TRAIN ? drawTrainCard() : drawObjectiveCard();
     }
 
     /**
-     * @param type the type of the card to draw
      * @return the drawn objectiveCard
      */
     private ObjectiveCardImpl drawObjectiveCard() {
-        return new ObjectiveCardImpl(null, 0);
+        return new ObjectiveCardImpl();
     }
 
     /**
-     * @param type the type of the card to draw
      * @return the drawn trainCard
      */
     private TrainCardImpl drawTrainCard() {

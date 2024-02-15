@@ -52,6 +52,10 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
+
+    // org.json import
+    val JSONSimpleVersion = "1.1.1"
+    implementation("com.googlecode.json-simple:json-simple:$JSONSimpleVersion")
 }
 
 tasks.withType<Test> {
