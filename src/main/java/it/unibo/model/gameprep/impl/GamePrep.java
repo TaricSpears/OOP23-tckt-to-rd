@@ -38,7 +38,7 @@ public class GamePrep {
         for (final EdgeData edge : routeData) {
             graph.addVertex(edge.city1());
             graph.addVertex(edge.city2());
-            var newRoute = new RouteImpl(edge);
+            var newRoute = new RouteImpl(edge, null, 0, null);
             graph.addEdge(edge.city1(), edge.city2(), newRoute);
             edge.city1().addOutGoingRoutes(newRoute);
             edge.city2().addOutGoingRoutes(newRoute);
