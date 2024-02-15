@@ -2,8 +2,11 @@ package it.unibo.controller.fillroutecontroller.api;
 
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import java.awt.Color;
 
 public interface FillRoute {
+    void removeCards(Player player, Color color, int quantity);
+    boolean isColorEnough(Player player, Color color, Route route);
 
     void clickRoute(Player player, Route route);
 

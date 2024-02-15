@@ -4,6 +4,8 @@ package it.unibo.controller.fillroutecontroller.impl;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
+
 import java.awt.Color;
 
 /**
@@ -16,17 +18,39 @@ import java.awt.Color;
 
 public class FillRouteImpl implements FillRoute {
 
+    private FillRouteViewImpl popUp;
+
     // this function returns true if the player has enough train cards with the
     // color of the chosen route
 
     @Override
     public boolean isRouteValid(Player player, Route route) {
         // controll jolly cards
-        final long totCards = player.getTrainCards().stream()
-                .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
-                .count();
+        if (route.getColor().equals(Color.GRAY) != true) {
+            final long totCards = player.getTrainCards().stream()
+                    .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
+                    .count();
 
-        if (totCards >= route.getScore() && !route.isCompleted()) {
+            if (totCards >= route.getScore() && !route.isCompleted()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (isColorEnough(player, Color.RED, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.BLUE, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.WHITE, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.GREEN, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.YELLOW, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.BLACK, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.ORANGE, route) && !route.isCompleted()) {
+            return true;
+        } else if (isColorEnough(player, Color.PINK, route) && !route.isCompleted()) {
             return true;
         } else {
             return false;
@@ -36,7 +60,7 @@ public class FillRouteImpl implements FillRoute {
     // or joily train cards and let the player decide
 
     private void openPopUp() {
-
+        this.popUp = new FillRouteViewImpl(this);
     }
 
     // this function sets the color of the button of the chosen route with the
@@ -62,13 +86,28 @@ public class FillRouteImpl implements FillRoute {
                         player.removeTrainCard(Color.DARK_GRAY);
                     }
                 }
-            }else {
+                setColor(player, route);
+            } else if (route.getColor().equals(Color.GRAY) && isRouteValid(player, route)) {
                 openPopUp();
+
             }
 
-            setColor(player, route);
         } else {
             openPopUp();
         }
+    }
+
+    @Override
+    public void removeCards(Player player, Color color, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            player.removeTrainCard(color);
+        }
+    }
+
+    @Override
+    public boolean isColorEnough(Player player, Color color, Route route) {
+        return player.getTrainCards().stream()
+                .filter(card -> card.getColor().equals(color) || card.getColor().equals(Color.DARK_GRAY))
+                .count() >= route.getScore();
     }
 }
