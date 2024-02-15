@@ -1,7 +1,7 @@
 package it.unibo.view;
 
 import it.unibo.commons.Pair;
-import it.unibo.controller.gamecontroller.impl.StartControllerImpl;
+import it.unibo.controller.gamecontroller.api.StartController;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -31,7 +31,7 @@ public final class StartView extends Stage {
     final private Set<Pair<String, Color>> players = new HashSet<>();
     private boolean gameReady = false;
 
-    public StartView() {
+    public StartView(final StartController controller) {
         final TextField nameField = new TextField();
         final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();
@@ -49,12 +49,12 @@ public final class StartView extends Stage {
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
         startButton.setOnAction(event -> {
-            new StartControllerImpl().startGame(
+            controller.startGame(
                     players.stream()
                             .map(x -> new Pair<String, java.awt.Color>(x.first(),
                                     new java.awt.Color((float) x.second().getRed(), (float) x.second().getGreen(),
                                             (float) x.second().getBlue())))
-                            .collect(Collectors.toSet()));
+                            .toList());
             this.gameReady = true;
             this.close();
         });
