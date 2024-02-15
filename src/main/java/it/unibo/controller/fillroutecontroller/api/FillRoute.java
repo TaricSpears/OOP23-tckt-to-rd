@@ -14,12 +14,6 @@ public interface FillRoute {
     boolean isRouteValid(Player player, Route route);
 
     /*
-     * this function opens a pop up if the player can fill a route with both color
-     * tarin cards or jolly train cards and let the player decide
-     */
-    void openPopUp();
-
-    /*
      * this function sets the color of the button of the chosen route with the
      * player color
      */

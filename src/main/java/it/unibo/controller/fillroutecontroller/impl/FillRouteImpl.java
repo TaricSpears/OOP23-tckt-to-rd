@@ -1,3 +1,4 @@
+
 package it.unibo.controller.fillroutecontroller.impl;
 
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
@@ -5,7 +6,13 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import java.awt.Color;
 
-//this class is used to fill the routes with the color of the player
+/**
+ * This class is used to fill the routes with the color of the player.
+ * It provides methods to check if a route can be filled by a player, open a
+ * pop-up for player's decision,
+ * set the color of a route with the player's color, and handle the click event
+ * on a route.
+ */
 
 public class FillRouteImpl implements FillRoute {
 
@@ -19,17 +26,16 @@ public class FillRouteImpl implements FillRoute {
                 .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
                 .count();
 
-        if (route.isCompleted() || totCards < route.getScore()) {
-            return false;
-        } else if (totCards >= route.getScore() && !route.isCompleted()) {
+        if (totCards >= route.getScore() && !route.isCompleted()) {
             return true;
+        } else {
+            return false;
         }
     }
     // this function opens a pop up if the player can fill a route with both color
     // or joily train cards and let the player decide
 
-    @Override
-    public void openPopUp() {
+    private void openPopUp() {
 
     }
 
@@ -46,13 +52,18 @@ public class FillRouteImpl implements FillRoute {
     @Override
     public void clickRoute(Player player, Route route) {
         if (isRouteValid(player, route)) {
-            for (int i = 0; i < route.getScore(); i++) {
-                if (player.getTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
-                        .count() > 0) {
-                    player.removeTrainCard(route.getColor());
-                } else {
-                    player.removeTrainCard(Color.DARK_GRAY);
+            if (route.getScore() < player.getTrainCards().stream()
+                    .filter(card -> card.getColor().equals(route.getColor())).count()) {
+                for (int i = 0; i < route.getScore(); i++) {
+                    if (player.getTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
+                            .count() > 0) {
+                        player.removeTrainCard(route.getColor());
+                    } else {
+                        player.removeTrainCard(Color.DARK_GRAY);
+                    }
                 }
+            }else {
+                openPopUp();
             }
 
             setColor(player, route);
