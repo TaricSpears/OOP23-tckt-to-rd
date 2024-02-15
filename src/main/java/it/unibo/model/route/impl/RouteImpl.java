@@ -6,7 +6,6 @@ import java.awt.Color;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-import it.unibo.view.Shape;
 import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
 import it.unibo.model.carriage.impl.Carriage;
