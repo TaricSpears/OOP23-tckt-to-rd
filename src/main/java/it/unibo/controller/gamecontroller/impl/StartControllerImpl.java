@@ -3,7 +3,7 @@ package it.unibo.controller.gamecontroller.impl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.gamecontroller.api.StartController;
 import it.unibo.model.gameprep.impl.GamePrep;
-import it.unibo.view.StartView;
+import it.unibo.view.MainView;
 import it.unibo.commons.Pair;
 
 import javafx.application.Application;
@@ -15,7 +15,7 @@ public class StartControllerImpl implements StartController {
 
     @Override
     public void startView() {
-        Application.launch(StartView.class);
+        Application.launch(MainView.class);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class StartControllerImpl implements StartController {
     @Override
     public void startGame(final Set<Pair<String, Color>> players) {
         final GamePrep gamePrep = new GamePrep();
-        gamePrep.prepGame(players, null);
+        // gamePrep.prepGame(players, null);
     }
 
     @Override
