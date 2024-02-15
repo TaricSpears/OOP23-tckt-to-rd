@@ -1,11 +1,23 @@
 package it.unibo.controller.gamecontroller.impl;
 
+import java.util.List;
+
+import it.unibo.commons.Pair;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.gamecontroller.api.StartController;
 import it.unibo.model.card.impl.ObjectiveCardImpl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import it.unibo.model.scorecalculator.api.ScoreCalculator;
+import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 
 public class MainControllerImpl implements MainController {
+
+    final private StartController startController;
+
+    public MainControllerImpl(final StartController startController) {
+        this.startController = startController;
+    }
 
     @Override
     public void endTurn() {
@@ -52,4 +64,11 @@ public class MainControllerImpl implements MainController {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleDrawCard'");
     }
+
+    @Override
+    public List<Pair<String, Integer>> getScore() {
+        final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
+        return scoreCalculator.getScoreBoard(startController.getGameInstance().getPlayers());
+    }
+
 }

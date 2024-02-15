@@ -15,9 +15,10 @@ import javafx.application.Application;
 public class StartControllerImpl implements StartController {
 
     final private MainController mainController;
+    final private GamePrep gamePrep = new GamePrep();
 
     public StartControllerImpl() {
-        this.mainController = new MainControllerImpl();
+        this.mainController = new MainControllerImpl(this);
     }
 
     @Override
@@ -32,13 +33,17 @@ public class StartControllerImpl implements StartController {
 
     @Override
     public void startGame(final List<Pair<String, Color>> players) {
-        final GamePrep gamePrep = new GamePrep();
         gamePrep.prepGame(players, new RouteReaderController().read());
     }
 
     @Override
     public MainController getMainController() {
         return this.mainController;
+    }
+
+    @Override
+    public GamePrep getGameInstance() {
+        return this.gamePrep;
     }
 
 }

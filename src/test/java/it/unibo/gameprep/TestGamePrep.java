@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
+import org.jgrapht.graph.WeightedPseudograph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +37,7 @@ class TestGamePrep {
     final City city2 = new CityImpl("Milan");
     final City city3 = new CityImpl("Naples");
 
-    final Set<Route> routeData = Set.of(
+    final List<Route> routeData = List.of(
             new RouteImpl(new EdgeData(city1, city2, 5), Color.RED, 0, null),
             new RouteImpl(new EdgeData(city1, city3, 3), Color.BLACK, 1, null),
             new RouteImpl(new EdgeData(city2, city3, 7), Color.GREEN, 2, null));
@@ -62,7 +63,7 @@ class TestGamePrep {
     @Test
     void testPrepGraph() {
 
-        final SimpleDirectedWeightedGraph<City, Route> graph = gamePrep.getGraph();
+        final WeightedPseudograph<City, Route> graph = gamePrep.getGraph();
         assertEquals(graph.vertexSet().size(), 3);
         assertEquals(graph.edgeSet().size(), 3);
         assertEquals(graph.getEdgeWeight(graph.getEdge(city1, city2)), 5);

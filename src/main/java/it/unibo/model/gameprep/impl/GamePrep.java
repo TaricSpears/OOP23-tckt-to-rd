@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.jgrapht.graph.SimpleDirectedWeightedGraph;
+import org.jgrapht.graph.WeightedPseudograph;
 
 public class GamePrep {
 
@@ -29,9 +29,9 @@ public class GamePrep {
         return players;
     }
 
-    private SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<Route> routeData) {
+    private WeightedPseudograph<City, Route> prepGraph(List<Route> routeData) {
 
-        final SimpleDirectedWeightedGraph<City, Route> graph = new SimpleDirectedWeightedGraph<>(
+        final WeightedPseudograph<City, Route> graph = new WeightedPseudograph<>(
                 RouteImpl.class);
         for (final Route route : routeData) {
             final City city1 = route.getConnectedCity().first();
@@ -46,15 +46,16 @@ public class GamePrep {
         return graph;
     }
 
-    public void prepGame(final List<Pair<String, Color>> playerData, final Set<Route> routeData) {
+    public void prepGame(final List<Pair<String, Color>> playerData, final List<Route> routeData) {
         board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
+        System.out.println(board);
     }
 
     public List<Player> getPlayers() {
         return board.getPlayers();
     }
 
-    public SimpleDirectedWeightedGraph<City, Route> getGraph() {
+    public WeightedPseudograph<City, Route> getGraph() {
         return board.getGraph();
     }
 }

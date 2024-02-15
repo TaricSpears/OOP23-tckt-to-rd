@@ -1,7 +1,7 @@
 package it.unibo.model.objectivegeneration.impl;
 
 import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
-import org.jgrapht.graph.SimpleDirectedWeightedGraph;
+import org.jgrapht.graph.WeightedPseudograph;
 
 import java.util.List;
 import java.util.Random;
@@ -17,7 +17,7 @@ import it.unibo.model.route.api.Route;
 public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
     GamePrep gamePrep = new GamePrep();
-    final SimpleDirectedWeightedGraph<City, Route> graph = gamePrep.getGraph();
+    final WeightedPseudograph<City, Route> graph = gamePrep.getGraph();
 
     @Override
     public Pair<City, City> generateObjective() {

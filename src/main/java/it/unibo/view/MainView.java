@@ -13,12 +13,11 @@ public class MainView extends Application {
     public void start(Stage primaryStage) throws Exception {
         final StartView startStage = new StartView(controller);
         final MainStage mainStage = new MainStage(controller);
-        final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
+
         startStage.setTitle("Ticket to Ride");
         startStage.showAndWait();
         if (startStage.isReady()) {
             mainStage.showAndWait();
-            scoreBoardView.show();
         }
     }
 }
