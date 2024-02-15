@@ -1,13 +1,13 @@
 package it.unibo.model.city.api;
 
-import it.unibo.model.route.api.Route;
-
-import java.util.Set;
+import it.unibo.commons.Pair;
 
 public interface City {
     String getName();
 
-    Set<Route> getRoutes();
+    int getId();
 
-    void addOutGoingRoutes(Route newRoute);
+    Pair<Double, Double> getCoordinates();
+
+    Double getRadius();
 }

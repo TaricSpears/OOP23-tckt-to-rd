@@ -3,33 +3,38 @@ package it.unibo.controller.readercontroller.impl;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
-import it.unibo.model.route.api.Route;
+import it.unibo.model.city.impl.CityImpl;
 
-public class CityReaderController extends AbstractReaderController<Set<City>> {
+public class CityReaderController extends AbstractReaderController<List<City>> {
 
     private static final String CITY_FILE_PATH = "/configuration/City.json";
 
-    private final Set<City> cities;
+    private final int cityRadius;
+    private final int mapHeight;
+    private final int mapWidth;
+    private final List<City> cities;
 
     public CityReaderController(){
         super(CITY_FILE_PATH);
-        this.cities = new LinkedHashSet<>();
+        this.cities = new LinkedList<>();
+        var controller = new MapReaderController();
+        this.cityRadius = controller.getCityRadius();
+        this.mapHeight = controller.getMapHeight();
+        this.mapWidth = controller.getMapWidth();
     }
 
     @Override
-    public Set<City> read() {
+    public List<City> read() {
         final JSONParser parser = new JSONParser();
         JSONObject obj;
         try {
@@ -40,14 +45,10 @@ public class CityReaderController extends AbstractReaderController<Set<City>> {
             for (final Object elem : array) {
                 obj = (JSONObject) elem;
                 final int id = Integer.parseInt(obj.get("id").toString());
-                final int x = Integer.parseInt(obj.get("x").toString());
-                final int y = Integer.parseInt(obj.get("y").toString());
-                final JSONArray outGoingRoutes = (JSONArray)obj.get("outGoingRoutes");
-                final List<Integer> extremes = new ArrayList<>();
-                final Iterator<String> it = connectedCities.iterator(); 
-                while(it.hasNext()){
-                    extremes.add(Integer.parseInt(it.next()));
-                }
+                final double x = (double)Integer.parseInt(obj.get("x").toString())/this.mapWidth;
+                final double y = (double)Integer.parseInt(obj.get("y").toString())/this.mapHeight;
+                final String name = obj.get("name").toString();
+                cities.add(new CityImpl(name, id, new Pair<Double,Double>(x, y), (double)this.cityRadius/this.mapWidth));
             }
             inputStreamReader.close();
         } catch (IOException e) {
@@ -55,7 +56,7 @@ public class CityReaderController extends AbstractReaderController<Set<City>> {
         } catch (ParseException e1) {
             System.out.println("Exception in file parsing operations");
         }
-        return Set.copyOf(this.cities);
+        return List.copyOf(this.cities);
     }
     
 }

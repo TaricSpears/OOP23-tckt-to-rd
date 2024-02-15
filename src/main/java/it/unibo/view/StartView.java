@@ -1,8 +1,8 @@
 package it.unibo.view;
 
 import it.unibo.commons.Pair;
+import it.unibo.controller.gamecontroller.api.StartController;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,22 +17,21 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.scene.paint.Color;
+
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
-public final class StartView extends Application {
+public final class StartView extends Stage {
 
-    final Set<Pair<String, Color>> players = new HashSet<>();
+    final private Set<Pair<String, Color>> players = new HashSet<>();
+    private boolean gameReady = false;
 
-    @Override
-    public void start(final Stage primaryStage) throws Exception {
-
-        primaryStage.setTitle("Ticket To Ride");
-
+    public StartView(final StartController controller) {
         final TextField nameField = new TextField();
         final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();
@@ -50,7 +49,14 @@ public final class StartView extends Application {
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
         startButton.setOnAction(event -> {
-
+            controller.startGame(
+                    players.stream()
+                            .map(x -> new Pair<String, java.awt.Color>(x.first(),
+                                    new java.awt.Color((float) x.second().getRed(), (float) x.second().getGreen(),
+                                            (float) x.second().getBlue())))
+                            .toList());
+            this.gameReady = true;
+            this.close();
         });
 
         submitButton.setOnAction(event -> {
@@ -96,12 +102,7 @@ public final class StartView extends Application {
 
         root.setBottom(startBox);
 
-        primaryStage.setScene(new Scene(root, 600, 500));
-        primaryStage.show();
-    }
-
-    public static void run(final String... args) {
-        launch(args);
+        this.setScene(new Scene(root, 600, 500));
     }
 
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
@@ -120,5 +121,9 @@ public final class StartView extends Application {
                 setGraphic(null);
             }
         }
+    }
+
+    public boolean isReady() {
+        return this.gameReady;
     }
 }

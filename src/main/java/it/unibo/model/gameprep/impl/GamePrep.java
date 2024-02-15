@@ -6,14 +6,12 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
-import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
 
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.Collections;
 
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
@@ -23,7 +21,7 @@ public class GamePrep {
 
     private BoardImpl board = null;
 
-    private List<Player> prepPlayers(final Set<Pair<String, Color>> playerData) {
+    private List<Player> prepPlayers(final List<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
             players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
@@ -31,24 +29,24 @@ public class GamePrep {
         return players;
     }
 
-    private SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<EdgeData> routeData) {
+    private SimpleDirectedWeightedGraph<City, Route> prepGraph(Set<Route> routeData) {
 
         final SimpleDirectedWeightedGraph<City, Route> graph = new SimpleDirectedWeightedGraph<>(
                 RouteImpl.class);
-        for (final EdgeData edge : routeData) {
-            graph.addVertex(edge.city1());
-            graph.addVertex(edge.city2());
-            var newRoute = new RouteImpl(edge);
-            graph.addEdge(edge.city1(), edge.city2(), newRoute);
-            edge.city1().addOutGoingRoutes(newRoute);
-            edge.city2().addOutGoingRoutes(newRoute);
-            graph.setEdgeWeight(edge.city1(), edge.city2(), edge.weight());
+        for (final Route route : routeData) {
+            final City city1 = route.getConnectedCity().first();
+            final City city2 = route.getConnectedCity().second();
+
+            graph.addVertex(city1);
+            graph.addVertex(city2);
+            graph.addEdge(city1, city2, route);
+            graph.setEdgeWeight(city1, city2, route.getScore());
         }
 
         return graph;
     }
 
-    public void prepGame(final Set<Pair<String, Color>> playerData, final Set<EdgeData> routeData) {
+    public void prepGame(final List<Pair<String, Color>> playerData, final Set<Route> routeData) {
         board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
     }
 
