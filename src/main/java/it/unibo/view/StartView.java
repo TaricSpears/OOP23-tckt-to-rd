@@ -1,6 +1,7 @@
 package it.unibo.view;
 
 import it.unibo.commons.Pair;
+import it.unibo.controller.gamecontroller.impl.StartControllerImpl;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -17,13 +18,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
+import javafx.scene.paint.Color;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public final class StartView extends Application {
 
@@ -51,7 +53,12 @@ public final class StartView extends Application {
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
         startButton.setOnAction(event -> {
-
+            new StartControllerImpl().startGame(
+                    players.stream()
+                            .map(x -> new Pair<String, java.awt.Color>(x.first(),
+                                    new java.awt.Color((float) x.second().getRed(), (float) x.second().getGreen(),
+                                            (float) x.second().getBlue())))
+                            .collect(Collectors.toSet()));
         });
 
         submitButton.setOnAction(event -> {
