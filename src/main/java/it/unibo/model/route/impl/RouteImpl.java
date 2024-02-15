@@ -10,6 +10,7 @@ import it.unibo.view.Shape;
 import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
+import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 
 public class RouteImpl extends DefaultWeightedEdge implements Route {
@@ -19,6 +20,7 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     private final int id;
     private final Set<Shape> railUnits;
     private Color color;
+    private Player player;
 
     public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Shape> railUnits) {
         this.connectedCity = connectedCity;
@@ -47,5 +49,10 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
     @Override
     public Color getColor() {
         return this.color;
+    }
+
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
