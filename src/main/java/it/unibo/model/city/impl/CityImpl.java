@@ -15,6 +15,10 @@ public class CityImpl implements City {
         this.coordinates = coords;
         this.radius = radius;
     }
+
+    public CityImpl(final String name){
+        this(name, 0, new Pair<>(0.0, 0.0), 0);
+    }
     
     @Override
     public String getName() {
