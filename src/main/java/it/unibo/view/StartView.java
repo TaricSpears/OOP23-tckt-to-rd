@@ -21,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
-
 import java.util.Set;
 import java.util.HashSet;
 
