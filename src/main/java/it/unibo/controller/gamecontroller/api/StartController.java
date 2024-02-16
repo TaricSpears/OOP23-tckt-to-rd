@@ -9,8 +9,6 @@ import java.util.List;
 public interface StartController {
     void startView();
 
-    void closeView();
-
     void startGame(List<Pair<String, Color>> players);
 
     MainController getMainController();

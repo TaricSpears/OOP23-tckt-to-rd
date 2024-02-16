@@ -11,13 +11,24 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        final StartView startStage = new StartView(controller);
+        final StartStage startStage = new StartStage(controller);
         final MainStage mainStage = new MainStage(controller);
 
         startStage.setTitle("Ticket to Ride");
         startStage.showAndWait();
         if (startStage.isReady()) {
             mainStage.showAndWait();
+            if (mainStage.isGameFinished()) {
+                final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
+                scoreBoardView.showAndWait();
+                if (scoreBoardView.isNewGame()) {
+                    restart();
+                }
+            }
         }
+    }
+
+    private void restart() throws Exception {
+        this.start(null);
     }
 }

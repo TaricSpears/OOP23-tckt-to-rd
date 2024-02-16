@@ -27,11 +27,6 @@ public class StartControllerImpl implements StartController {
     }
 
     @Override
-    public void closeView() {
-
-    }
-
-    @Override
     public void startGame(final List<Pair<String, Color>> players) {
         gamePrep.prepGame(players, new RouteReaderController().read());
     }

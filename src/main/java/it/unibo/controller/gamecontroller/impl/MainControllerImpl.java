@@ -70,5 +70,4 @@ public class MainControllerImpl implements MainController {
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
         return scoreCalculator.getScoreBoard(startController.getGameInstance().getPlayers());
     }
-
 }

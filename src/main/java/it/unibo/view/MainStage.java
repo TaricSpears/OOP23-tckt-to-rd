@@ -8,18 +8,23 @@ import javafx.stage.Stage;
 
 public class MainStage extends Stage {
 
+    private boolean gameFinished = false;
+
     public MainStage(final StartController controller) {
         final BorderPane root = new BorderPane();
 
         final Button endGame = new Button("End Game");
         endGame.setOnAction(event -> {
+            this.gameFinished = true;
             this.close();
-            final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
-            scoreBoardView.show();
         });
 
         root.setCenter(endGame);
 
         this.setScene(new Scene(root, 900, 500));
+    }
+
+    public boolean isGameFinished() {
+        return this.gameFinished;
     }
 }

@@ -24,14 +24,13 @@ import javafx.scene.paint.Color;
 
 import java.util.Set;
 import java.util.HashSet;
-import java.util.stream.Collectors;
 
-public final class StartView extends Stage {
+public final class StartStage extends Stage {
 
     final private Set<Pair<String, Color>> players = new HashSet<>();
     private boolean gameReady = false;
 
-    public StartView(final StartController controller) {
+    public StartStage(final StartController controller) {
         final TextField nameField = new TextField();
         final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();

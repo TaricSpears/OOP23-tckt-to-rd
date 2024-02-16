@@ -11,7 +11,6 @@ import it.unibo.commons.Pair;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.jgrapht.graph.WeightedPseudograph;
 
@@ -48,7 +47,6 @@ public class GamePrep {
 
     public void prepGame(final List<Pair<String, Color>> playerData, final List<Route> routeData) {
         board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
-        System.out.println(board);
     }
 
     public List<Player> getPlayers() {
