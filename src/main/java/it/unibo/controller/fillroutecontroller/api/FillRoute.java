@@ -2,23 +2,31 @@ package it.unibo.controller.fillroutecontroller.api;
 
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
+
 import java.awt.Color;
+import java.util.Set;
 
 public interface FillRoute {
-    void removeCards(Player player, Color color, int quantity);
-    boolean isColorEnough(Player player, Color color, Route route);
+    void removeCards(Color color, int quantity);
 
-    void clickRoute(Player player, Route route);
+    boolean isColorEnough(Color color);
+
+    void clickRoute();
 
     /*
      * this function returns true if the player has enough train cards with the
      * color of the chosen route
      */
-    boolean isRouteValid(Player player, Route route);
+    boolean isRouteValid();
 
     /*
      * this function sets the color of the button of the chosen route with the
      * player color
      */
-    void setColor(Player player, Route route);
+    void setColor();
+
+    ObservableList<String> getAvailableRoutes(FillRoute fillRoute);
+
 }
