@@ -3,9 +3,6 @@ package it.unibo.gameprep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import java.util.Set;
-
-import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 import org.jgrapht.graph.WeightedPseudograph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
