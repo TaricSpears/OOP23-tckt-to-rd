@@ -56,8 +56,8 @@ public class MainStage extends Stage {
 
         root.setRight(vBox);
 
-        pane.setMaxWidth(image.getWidth() * 0.2);
-        pane.setMaxHeight(image.getHeight() * 0.2);
+        pane.setMaxWidth(scene.getWidth() * 0.8);
+        pane.setMaxHeight(scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
         final List<Route> routeList = new RouteReaderController().read();
         Carriage carriage;
@@ -66,8 +66,9 @@ public class MainStage extends Stage {
             var iterator = route.getRailUnits().iterator();
             while (iterator.hasNext()) {
                 carriage = iterator.next();
-                final Shape shape = new Shape(carriage.xCoord() * pane.getMaxWidth() - (bounds.getWidth() * 20 / 2560),
-                        carriage.yCoord() * pane.getMaxHeight() - (bounds.getHeight() * 5 / 1400),
+                final Shape shape = new Shape(
+                        carriage.xCoord() * pane.getMaxWidth() - (27 * bounds.getWidth() / 2560),
+                        carriage.yCoord() * pane.getMaxHeight() - (8 * bounds.getHeight() / 1440),
                         carriage.width() * pane.getMaxWidth(),
                         carriage.length() * pane.getMaxWidth());
                 shape.setTilt(360.0 - Math.toDegrees(carriage.angle()));
