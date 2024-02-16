@@ -74,7 +74,7 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
                     int yCoord = Long.valueOf((Long)yArrayIterator.next()).intValue();
                     double angle = (Double)angleArrayIterator.next();
                     var carriage = new Carriage(((double)xCoord/this.mapWidth), ((double)yCoord/this.mapHeight),
-                    ((double)railLength/this.mapWidth), ((double)this.railWidth/this.mapWidth), angle);
+                        ((double)railLength/this.mapWidth), ((double)this.railWidth/this.mapWidth), angle);
                     railUnits.add(carriage);
                 }
 

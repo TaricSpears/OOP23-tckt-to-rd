@@ -1,6 +1,12 @@
 package it.unibo.view;
 
+import java.util.List;
+import java.util.Set;
+
 import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.readercontroller.impl.RouteReaderController;
+import it.unibo.model.carriage.impl.Carriage;
+import it.unibo.model.route.api.Route;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -17,8 +23,8 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -27,48 +33,50 @@ public class MainStage extends Stage {
 
     public MainStage(final StartController controller) {
 
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
         final BorderPane root = new BorderPane();
+        final Scene scene = new Scene(root, bounds.getWidth() * 0.9, bounds.getHeight() * 0.9);
+        final Pane pane = new Pane();
+        final Button endGame = new Button("End Game");
+        VBox vBox = new VBox(endGame);
 
         final Image image = new Image("/img/Maps/europeMapLabeled.jpg");
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-
-        final Pane pane = new Pane();
         root.setCenter(pane);
-        BorderPane.setMargin(pane, new Insets(10));
-
+        //BorderPane.setMargin(pane, new Insets(10));
+        
+        endGame.setOnAction(event -> {
+            controller.getMainController().endGame();
+        });
         pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
 
-        final Button endGame = new Button("End Game");
-        endGame.setOnAction(event -> {
-            controller.getMainController().endGame();
-        });
+        root.setRight(vBox);
 
-        HBox hBox = new HBox(endGame);
-        root.setRight(hBox);
+        pane.setMaxWidth(image.getWidth() * 0.2);
+        pane.setMaxHeight(image.getHeight() * 0.2);
 
-        pane.setMinWidth(bounds.getWidth() * 0.8);
-        pane.setMinHeight(bounds.getHeight() * 0.8);
+        final List<Route> routeList = new RouteReaderController().read();
+        Carriage carriage;
+        for(var route: routeList){
+            var iterator = route.getRailUnits().iterator();
+            while(iterator.hasNext()){
+                carriage = iterator.next();
+                final Shape shape = new Shape(carriage.xCoord()*pane.getMaxWidth() - 20,
+                    carriage.yCoord()*pane.getMaxHeight() - 5,
+                    carriage.width()*pane.getMaxWidth(),
+                    carriage.length()*pane.getMaxWidth());
+                shape.setTilt(360.0 - Math.toDegrees(carriage.angle()));
+                shape.setFill("red");
+                pane.getChildren().add(shape);
+            }
+        }
 
-        pane.setBorder(
-                new Border(
-                        new BorderStroke(Paint.valueOf("red"), BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
+        vBox.setMinSize(scene.getWidth() - pane.getMaxWidth(), scene.getHeight() - pane.getMaxWidth());
 
-        final Button cityButton = new Button("City");
-        pane.getChildren().add(cityButton);
-
-        cityButton.relocate(pane.getWidth() / 2, pane.getHeight() / 2);
-        cityButton.setDisable(false);
-
-        final GridPane gridPane = new GridPane();
-        hBox.getChildren().add(gridPane);
-
-        hBox.setMinSize(bounds.getWidth() * 0.3, bounds.getHeight() * 0.3);
-
-        this.setScene(new Scene(root, bounds.getWidth() * 0.9, bounds.getHeight() * 0.9));
+        this.setScene(scene);
         this.setResizable(false);
     }
 }
