@@ -27,8 +27,7 @@ import java.util.HashSet;
 
 public final class StartStage extends Stage {
 
-    final private Set<Pair<String, Color>> players = new HashSet<>();
-    private boolean gameReady = false;
+    private Set<Pair<String, Color>> players = new HashSet<>();
 
     public StartStage(final StartController controller) {
         final TextField nameField = new TextField();
@@ -48,27 +47,23 @@ public final class StartStage extends Stage {
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
         startButton.setOnAction(event -> {
-            controller.startGame(
-                    players.stream()
-                            .map(x -> new Pair<String, java.awt.Color>(x.first(),
-                                    new java.awt.Color((float) x.second().getRed(), (float) x.second().getGreen(),
-                                            (float) x.second().getBlue())))
-                            .toList());
-            this.gameReady = true;
+            controller.startGame();
             this.close();
         });
 
         submitButton.setOnAction(event -> {
-            if (!players.stream().anyMatch(
-                    x -> x.first().equals(nameField.getText()) || x.second().equals(colorPicker.getValue()))) {
+            if (controller.getMainController()
+                    .addPlayer(new Pair<String, java.awt.Color>(nameField.getText(),
+                            new java.awt.Color((float) colorPicker.getValue().getRed(),
+                                    (float) colorPicker.getValue().getGreen(),
+                                    (float) colorPicker.getValue().getBlue())))) {
                 players.add(new Pair<String, Color>(nameField.getText(), colorPicker.getValue()));
                 nameField.clear();
             }
-            if (players.size() >= 6) {
-                submitButton.setDisable(true);
-            }
-            if (players.size() >= 2) {
+            if (controller.getMainController().canStart()) {
                 startButton.setDisable(false);
+            } else {
+                startButton.setDisable(true);
             }
             playersList.setItems(FXCollections.observableArrayList(players));
             playersList
@@ -120,9 +115,5 @@ public final class StartStage extends Stage {
                 setGraphic(null);
             }
         }
-    }
-
-    public boolean isReady() {
-        return this.gameReady;
     }
 }

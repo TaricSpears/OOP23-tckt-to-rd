@@ -6,6 +6,7 @@ import it.unibo.commons.Pair;
 import it.unibo.model.card.impl.ObjectiveCardImpl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
+import it.unibo.view.MainView;
 
 public interface MainController {
 
@@ -22,4 +23,16 @@ public interface MainController {
     void handleDrawCard();
 
     List<Pair<String, Integer>> getScore();
+
+    void newGame();
+
+    boolean addPlayer(Pair<String, java.awt.Color> pair);
+
+    boolean canStart();
+
+    List<Pair<String, java.awt.Color>> getTempPlayers();
+
+    void endGame();
+
+    void addView(MainView view);
 }

@@ -21,8 +21,6 @@ import javafx.stage.Stage;
 
 public class FinalScoreBoardView extends Stage {
 
-    private boolean newGame = false;
-
     public FinalScoreBoardView(final StartController controller) {
         this.setTitle("Final Game Score Board");
 
@@ -33,7 +31,7 @@ public class FinalScoreBoardView extends Stage {
 
         final Button newGame = new Button("New Game");
         newGame.setOnAction(event -> {
-            this.newGame = true;
+            controller.getMainController().newGame();
             this.close();
         });
 
@@ -51,7 +49,6 @@ public class FinalScoreBoardView extends Stage {
         for (final Pair<String, Integer> player : players) {
             final Text playerEntry = new Text(player.first() + " - " + player.second());
 
-            // playerEntry.setFont(Font.font("Helvetica"));
             playerEntry.setTextAlignment(TextAlignment.CENTER);
             playerEntry.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 25));
 
@@ -67,9 +64,5 @@ public class FinalScoreBoardView extends Stage {
         this.setScene(new Scene(root, 300, 500));
         this.setMinWidth(300);
         this.setMinHeight(500);
-    }
-
-    public boolean isNewGame() {
-        return this.newGame;
     }
 }

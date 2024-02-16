@@ -5,21 +5,14 @@ import it.unibo.controller.gamecontroller.api.StartController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.model.gameprep.impl.GamePrep;
 import it.unibo.view.MainView;
-import it.unibo.commons.Pair;
-
-import java.awt.Color;
-import java.util.List;
 
 import javafx.application.Application;
 
 public class StartControllerImpl implements StartController {
 
-    final private MainController mainController;
     final private GamePrep gamePrep = new GamePrep();
-
-    public StartControllerImpl() {
-        this.mainController = new MainControllerImpl(this);
-    }
+    private MainView view;
+    final private MainController mainController = new MainControllerImpl(this);
 
     @Override
     public void startView() {
@@ -27,8 +20,9 @@ public class StartControllerImpl implements StartController {
     }
 
     @Override
-    public void startGame(final List<Pair<String, Color>> players) {
-        gamePrep.prepGame(players, new RouteReaderController().read());
+    public void startGame() {
+        gamePrep.prepGame(mainController.getTempPlayers(), new RouteReaderController().read());
+        view.launchMainView();
     }
 
     @Override
@@ -39,6 +33,12 @@ public class StartControllerImpl implements StartController {
     @Override
     public GamePrep getGameInstance() {
         return this.gamePrep;
+    }
+
+    @Override
+    public void setMainApp(final MainView app) {
+        this.view = app;
+        mainController.addView(app);
     }
 
 }
