@@ -17,7 +17,7 @@ import it.unibo.model.city.impl.CityImpl;
 
 public class CityReaderController extends AbstractReaderController<List<City>> {
 
-    private static final String CITY_FILE_PATH = "/configuration/Cities.json";
+    private static final String CITY_FILE_PATH = "/configuration/EuropeConfiguration/Cities.json";
 
     private final int cityRadius;
     private final int mapHeight;

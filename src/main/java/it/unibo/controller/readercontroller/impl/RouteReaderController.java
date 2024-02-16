@@ -26,7 +26,7 @@ import java.awt.Color;
 
 public class RouteReaderController extends AbstractReaderController<List<Route>>{
 
-    private static final String ROUTE_FILE_PATH = "/configuration/Routes.json";
+    private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
 
     private final int mapWidth;
     private final int mapHeight;
