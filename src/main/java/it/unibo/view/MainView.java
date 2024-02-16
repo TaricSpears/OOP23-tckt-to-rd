@@ -17,7 +17,8 @@ public class MainView extends Application {
     public void start(Stage primaryStage) throws Exception {
         controller.setMainApp(this);
 
-        launchPlayerSlect();
+        // launchPlayerSlect();
+        launchMainView();
     }
 
     public void launchPlayerSlect() {
@@ -27,7 +28,9 @@ public class MainView extends Application {
 
     public void launchMainView() {
         mainStage = new MainStage(controller);
+
         mainStage.show();
+
     }
 
     public void launchScoreBoard() {
