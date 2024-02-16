@@ -45,10 +45,11 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
             for (final Object elem : array) {
                 obj = (JSONObject) elem;
                 final int id = Integer.parseInt(obj.get("id").toString());
-                final double x = (double)(Integer.parseInt(obj.get("x").toString())/this.mapWidth);
-                final double y = (double)(Integer.parseInt(obj.get("y").toString())/this.mapHeight);
+                final double x = ((double)Integer.parseInt(obj.get("x").toString())/this.mapWidth);
+                final double y = ((double)Integer.parseInt(obj.get("y").toString())/this.mapHeight);
                 final String name = obj.get("name").toString();
-                cities.add(new CityImpl(name, id, new Pair<Double,Double>(x, y), (double)(this.cityRadius/this.mapWidth)));
+                final var city = new CityImpl(name, id, new Pair<Double,Double>(x, y), ((double)this.cityRadius/this.mapWidth));
+                cities.add(city);
             }
             inputStreamReader.close();
         } catch (IOException e) {

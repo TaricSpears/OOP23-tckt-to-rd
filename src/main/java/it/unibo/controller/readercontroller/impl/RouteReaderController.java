@@ -73,15 +73,15 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
                     int xCoord = Long.valueOf((Long)xArrayIterator.next()).intValue();
                     int yCoord = Long.valueOf((Long)yArrayIterator.next()).intValue();
                     double angle = (Double)angleArrayIterator.next();
-                    var carriage = new Carriage((double)(xCoord/this.mapWidth), (double)(yCoord/this.mapHeight),
-                    (double)(railLength/this.mapWidth), (double)(this.railWidth/this.mapWidth), angle);
+                    var carriage = new Carriage(((double)xCoord/this.mapWidth), ((double)yCoord/this.mapHeight),
+                    ((double)railLength/this.mapWidth), ((double)this.railWidth/this.mapWidth), angle);
                     railUnits.add(carriage);
                 }
 
                 final int weight = railUnits.size();
                 final JSONArray routeExtremes = (JSONArray)obj.get("connectedCities");
                 final var city1 = this.cities.get(Long.valueOf((Long)routeExtremes.get(0)).intValue());
-                final var city2 = this.cities.get(Long.valueOf((Long)routeExtremes.get(0)).intValue());
+                final var city2 = this.cities.get(Long.valueOf((Long)routeExtremes.get(1)).intValue());
                 final EdgeData connectedCity = new EdgeData(city1, city2, weight);
 
                 final Color color = new IntToColorConverter().apply(intColor);
