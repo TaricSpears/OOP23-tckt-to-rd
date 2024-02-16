@@ -35,6 +35,7 @@ public class MainStage extends Stage {
 
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
+        System.out.println(bounds.getWidth() + " " + bounds.getHeight());
         final BorderPane root = new BorderPane();
         final Scene scene = new Scene(root, bounds.getWidth() * 0.9, bounds.getHeight() * 0.9);
         final Pane pane = new Pane();
@@ -44,8 +45,8 @@ public class MainStage extends Stage {
         final Image image = new Image("/img/Maps/europeMapLabeled.jpg");
 
         root.setCenter(pane);
-        //BorderPane.setMargin(pane, new Insets(10));
-        
+        // BorderPane.setMargin(pane, new Insets(10));
+
         endGame.setOnAction(event -> {
             controller.getMainController().endGame();
         });
@@ -60,14 +61,15 @@ public class MainStage extends Stage {
 
         final List<Route> routeList = new RouteReaderController().read();
         Carriage carriage;
-        for(var route: routeList){
+
+        for (var route : routeList) {
             var iterator = route.getRailUnits().iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 carriage = iterator.next();
-                final Shape shape = new Shape(carriage.xCoord()*pane.getMaxWidth() - 20,
-                    carriage.yCoord()*pane.getMaxHeight() - 5,
-                    carriage.width()*pane.getMaxWidth(),
-                    carriage.length()*pane.getMaxWidth());
+                final Shape shape = new Shape(carriage.xCoord() * pane.getMaxWidth() - (bounds.getWidth() * 20 / 2560),
+                        carriage.yCoord() * pane.getMaxHeight() - (bounds.getHeight() * 5 / 1400),
+                        carriage.width() * pane.getMaxWidth(),
+                        carriage.length() * pane.getMaxWidth());
                 shape.setTilt(360.0 - Math.toDegrees(carriage.angle()));
                 shape.setFill("red");
                 pane.getChildren().add(shape);
