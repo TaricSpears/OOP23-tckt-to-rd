@@ -25,4 +25,5 @@ public interface TurnController {
      */
     List<Player> getOrderedPlayers();
 
+    Player getCurrentPlayer();
 }

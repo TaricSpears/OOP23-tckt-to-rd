@@ -17,8 +17,8 @@ public class MainView extends Application {
     public void start(Stage primaryStage) throws Exception {
         controller.setMainApp(this);
 
-        // launchPlayerSlect();
-        launchMainView();
+        launchPlayerSlect();
+        // launchMainView();
     }
 
     public void launchPlayerSlect() {

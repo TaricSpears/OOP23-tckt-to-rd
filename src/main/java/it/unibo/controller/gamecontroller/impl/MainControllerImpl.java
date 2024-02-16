@@ -8,6 +8,8 @@ import java.util.List;
 import it.unibo.commons.Pair;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.turncontroller.api.TurnController;
+import it.unibo.controller.turncontroller.impl.TurnControllerImpl;
 import it.unibo.model.card.impl.ObjectiveCardImpl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
@@ -19,6 +21,7 @@ public class MainControllerImpl implements MainController {
 
     final private StartController startController;
     final private List<Pair<String, Color>> tempPlayers = new ArrayList<>();
+
     private MainView view;
 
     public MainControllerImpl(final StartController startController) {
@@ -113,5 +116,10 @@ public class MainControllerImpl implements MainController {
     @Override
     public void addView(MainView view) {
         this.view = view;
+    }
+
+    public Player getCurrentPlayer() {
+        final TurnController turnController = new TurnControllerImpl(startController.getGameInstance().getPlayers());
+        return turnController.getCurrentPlayer();
     }
 }

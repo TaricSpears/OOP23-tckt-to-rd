@@ -47,4 +47,12 @@ public class ObjectiveCardImpl implements ObjectiveCard {
         return Type.OBJECTIVE;
     }
 
+    /**
+     * @return the pair of the cities to be connceted as objective
+     */
+    @Override
+    public Pair<City, City> getCities() {
+        return this.objective;
+    }
+
 }

@@ -8,7 +8,8 @@ import javafx.scene.shape.Polygon;
 public class Shape extends Polygon {
 
     public Shape(double x, double y, double width, double height) {
-        super(x, y, x + width, y, x + width, y + height, x, y + height);
+        super(x - (width / 2), y - (height / 2), x + (width / 2), y - (height / 2), x + (width / 2), y + (height / 2),
+                x - (width / 2), y + (height / 2));
     }
 
     public void setFill(String color) {

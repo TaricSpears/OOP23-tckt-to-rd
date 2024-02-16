@@ -1,7 +1,6 @@
 package it.unibo.view;
 
 import java.util.List;
-import java.util.Set;
 
 import it.unibo.controller.gamecontroller.api.StartController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
@@ -17,15 +16,10 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -41,6 +35,8 @@ public class MainStage extends Stage {
         final Pane pane = new Pane();
         final Button endGame = new Button("End Game");
         VBox vBox = new VBox(endGame);
+        vBox.setPadding(new Insets(20));
+        vBox.setSpacing(20);
 
         final Image image = new Image("/img/Maps/europeMapLabeled.jpg");
 
@@ -58,6 +54,8 @@ public class MainStage extends Stage {
 
         pane.setMaxWidth(scene.getWidth() * 0.8);
         pane.setMaxHeight(scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
+        pane.setMinWidth(scene.getWidth() * 0.8);
+        pane.setMinHeight(scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
         final List<Route> routeList = new RouteReaderController().read();
         Carriage carriage;
@@ -67,15 +65,27 @@ public class MainStage extends Stage {
             while (iterator.hasNext()) {
                 carriage = iterator.next();
                 final Shape shape = new Shape(
-                        carriage.xCoord() * pane.getMaxWidth() - (27 * bounds.getWidth() / 2560),
-                        carriage.yCoord() * pane.getMaxHeight() - (8 * bounds.getHeight() / 1440),
+                        carriage.xCoord() * pane.getMaxWidth(),
+                        carriage.yCoord() * pane.getMaxHeight(),
                         carriage.width() * pane.getMaxWidth(),
                         carriage.length() * pane.getMaxWidth());
                 shape.setTilt(360.0 - Math.toDegrees(carriage.angle()));
-                shape.setFill("red");
+                shape.setStrokeWidth(3.0);
+                shape.setFill(
+                        Color.rgb(route.getColor().getRed(), route.getColor().getGreen(), route.getColor().getBlue()));
+                java.awt.Color playerColor = controller.getMainController().getCurrentPlayer().getColor();
+                shape.setOnMouseClicked(event -> shape
+                        .setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue())));
                 pane.getChildren().add(shape);
             }
         }
+
+        final Button endTurn = new Button("End Turn");
+
+        final Button drawTrain = new Button("Draw Train Card");
+        final Button drawObjective = new Button("Draw new Objective");
+
+        vBox.getChildren().addAll(drawTrain, drawObjective, endTurn, new ObjectiveBox(null));
 
         vBox.setMinSize(scene.getWidth() - pane.getMaxWidth(), scene.getHeight() - pane.getMaxWidth());
 
