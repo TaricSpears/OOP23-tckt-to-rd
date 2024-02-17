@@ -35,10 +35,10 @@ public class FillRouteImpl implements FillRoute {
     private Player player;
     private Route route;
     private Color chosenColor;
-
     private MainController controller;
 
-    public FillRouteImpl(Player player, Region region) {
+    public FillRouteImpl(Player player, Region region, MainController controller) {
+        this.controller = controller;
         this.player = player;
 
         this.route = controller.getGameInstance().getRoutes().get(region.getId());

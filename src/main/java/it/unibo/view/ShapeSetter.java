@@ -25,7 +25,8 @@ public class ShapeSetter {
         for (var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
                     region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
-            final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region);
+            final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region,
+                    controller);
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
             shape.setStrokeWidth(3.0);
             shape.setFill(
