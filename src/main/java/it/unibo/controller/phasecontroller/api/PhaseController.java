@@ -8,7 +8,7 @@ import it.unibo.model.phasemanager.api.PhaseManager;
 public interface PhaseController {
 
     /*
-     * Returns the phase manager.
+     * @return the phase manager.
      */
     PhaseManager getPhaseManager();
 
