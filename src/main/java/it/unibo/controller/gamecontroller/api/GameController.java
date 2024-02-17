@@ -26,7 +26,7 @@ public interface GameController {
      * 
      * @return a list of the player name and his score
      */
-    List<Pair<String, Integer>> getScore();
+    List<Pair<String, Double>> getScore();
 
     /**
      * Starts a new game

@@ -50,9 +50,9 @@ public class FinalScoreBoardView extends Stage {
         gameControls.setSpacing(30);
         gameControls.setAlignment(Pos.CENTER);
 
-        final List<Pair<String, Integer>> players = controller.getGameController().getScore();
+        final List<Pair<String, Double>> players = controller.getGameController().getScore();
 
-        for (final Pair<String, Integer> player : players) {
+        for (final Pair<String, Double> player : players) {
             final Text playerEntry = new Text(player.first() + " - " + player.second());
 
             playerEntry.setTextAlignment(TextAlignment.CENTER);

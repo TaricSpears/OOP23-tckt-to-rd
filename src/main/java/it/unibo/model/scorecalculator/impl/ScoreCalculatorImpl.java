@@ -14,10 +14,10 @@ public class ScoreCalculatorImpl implements ScoreCalculator {
      *         ascending
      */
     @Override
-    public List<Pair<String, Integer>> getScoreBoard(final List<Player> players) {
+    public List<Pair<String, Double>> getScoreBoard(final List<Player> players) {
         return players.stream()
-                .map(p -> new Pair<String, Integer>(p.getName(), p.getObjectiveScore() + p.getRouteScore()))
-                .sorted((x, y) -> y.second() - x.second())
+                .map(p -> new Pair<String, Double>(p.getName(), p.getRouteScore() + p.getObjectiveScore()))
+                .sorted((x, y) -> Double.compare(y.second(), x.second()))
                 .toList();
     }
 }

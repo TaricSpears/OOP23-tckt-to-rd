@@ -96,7 +96,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public List<Pair<String, Integer>> getScore() {
+    public List<Pair<String, Double>> getScore() {
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
         return scoreCalculator.getScoreBoard(mainController.getGameInstance().getPlayers());
     }

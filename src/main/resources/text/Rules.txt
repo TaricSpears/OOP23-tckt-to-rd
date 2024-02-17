@@ -4,7 +4,6 @@ Obiettivo del gioco è essere il giocatore ad aver collezionato più punti a fin
 
 prendendo il controllo delle linee ferroviarie che connettono le varie città sul tabellone
 completando gli obiettivi delle carte Biglietti Destinazione (sapendo però che quelli non completati faranno perdere punti a fine partita)
-completando l’obiettivo bonus “Percorso più lungo”
 Per raggiungere questo obiettivo, ad ogni turno un giocatore può compiere una di queste tre azioni:
 
 Pescare due carte treno scegliendo tra le cinque a faccia in su oppure pescando alla cieca dalla cima del mazzo. Unico vincolo è che se si sceglie di pescare una locomotiva dalle carte visibili allora quella sarà l’unica carta che si potrà pescare in quel turno (se invece la locomotiva è stata pescata alla cieca dalla cima del mazzo si potrà pescare anche la seconda carta)

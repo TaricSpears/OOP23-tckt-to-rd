@@ -69,7 +69,7 @@ public interface Player {
     /**
      * @return the score of the objective cards.
      */
-    int getObjectiveScore();
+    double getObjectiveScore();
 
     /**
      * @return the score of the routes.

@@ -53,7 +53,7 @@ class TestScoreCalculator {
         players.get(1).addRoute(route2);
         players.get(2).addRoute(route3);
 
-        final List<Pair<String, Integer>> score = scoreCalculator.getScoreBoard(gamePrep.getPlayers());
+        final List<Pair<String, Double>> score = scoreCalculator.getScoreBoard(gamePrep.getPlayers());
 
         assertEquals(players.get(2).getName(), score.get(0).first());
         assertEquals(players.get(2).getRouteScore() + players.get(2).getObjectiveScore(), score.get(0).second());

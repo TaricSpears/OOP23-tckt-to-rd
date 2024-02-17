@@ -7,5 +7,5 @@ import it.unibo.commons.Pair;
 
 public interface ScoreCalculator {
 
-    List<Pair<String, Integer>> getScoreBoard(List<Player> players);
+    List<Pair<String, Double>> getScoreBoard(List<Player> players);
 }

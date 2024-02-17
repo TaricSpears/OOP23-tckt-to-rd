@@ -15,7 +15,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.graph.WeightedPseudograph;
 
 import java.awt.Color;
@@ -33,7 +37,6 @@ public class PlayerImpl implements Player {
     private final Set<ObjectiveCard> objectiveCards;
     private final Set<Route> completedRoutes;
     private int carriageNum;
-    private int objectiveScore;
     private int routeScore;
     private final List<TrainCard> listTrainCards;
 
@@ -54,7 +57,6 @@ public class PlayerImpl implements Player {
         this.objectiveCards = new LinkedHashSet<>();
         this.completedRoutes = new LinkedHashSet<>();
         this.carriageNum = carriageNum;
-        this.objectiveScore = 0;
         this.routeScore = 0;
         this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
         this.listTrainCards = new ArrayList<>();
@@ -145,15 +147,31 @@ public class PlayerImpl implements Player {
      * @return the score of the objective cards.
      */
     @Override
-    public int getObjectiveScore() {
-        return this.objectiveScore;
-    }
+    public double getObjectiveScore() {
 
-    /**
-     * @param number the score of the objective cards.
-     */
-    private void setObjectiveScore(final double number) {
-        this.objectiveScore += number;
+        // Set<City> startCities = objectiveCards.stream().map(x ->
+        // x.getCities().first()).collect(Collectors.toSet());
+        // Set<City> targetCities = objectiveCards.stream().map(x ->
+        // x.getCities().second()).collect(Collectors.toSet());
+
+        // AllDirectedPaths<City, Route> allDirectedPaths = new
+        // AllDirectedPaths<>(playerGraph);
+        // System.out.println(allDirectedPaths.getAllPaths(startCities, targetCities,
+        // false, null).stream()
+        // .map(x -> x.getLength()).reduce(Integer::max).get());
+
+        double objectiveScore = 0;
+
+        for (final ObjectiveCard objective : objectiveCards) {
+            if (objective.isCompleted()) {
+                objectiveScore += objective.getScore();
+            } else {
+                objectiveScore -= objective.getScore();
+            }
+        }
+
+        System.out.println("Punteggio giocatore: " + objectiveScore);
+        return objectiveScore;
     }
 
     /**
@@ -211,7 +229,6 @@ public class PlayerImpl implements Player {
             if (playersCities.contains(objective.getCities().first())
                     && playersCities.contains(objective.getCities().second())) {
                 objective.setCompleted();
-                this.setObjectiveScore(objective.getScore());
             }
         }
     }
