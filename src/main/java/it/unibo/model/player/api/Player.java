@@ -20,11 +20,6 @@ public interface Player {
      */
     String getName();
 
-    /*
-     * Adds a route to the list of completed routes of the player.
-     */
-    void addRoute(Route route);
-
     /**
      * @return the color of the player.
      */
@@ -97,5 +92,11 @@ public interface Player {
      */
     boolean addObjectiveCard(ObjectiveCard card);
 
-    void addRouteAncCheckObjective(Route route);
+    /**
+     * Adds the route to the current player (the list and the player's graph) and
+     * checks if the objective is been completed
+     * 
+     * @param route the route to be added to the player
+     */
+    void addRoute(Route route);
 }

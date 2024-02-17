@@ -171,19 +171,12 @@ public class PlayerImpl implements Player {
         this.routeScore += number;
     }
 
-    /*
-     * @param add route to the player's completed routes.
-     */
-    public void addRoute(final Route route) {
-        completedRoutes.add(route);
-    }
-
-    /*
+    /**
      * Removes a train card from the player's hand.
      * 
      * @param color the color of the card to remove.
      * 
-     * @param num the number of cards to remove.
+     * @param num   the number of cards to remove.
      */
     @Override
     public void removeTrainCard(Color color, int num) {
@@ -201,7 +194,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void addRouteAncCheckObjective(final Route route) {
+    public void addRoute(final Route route) {
         final City city1 = route.getConnectedCity().first();
         final City city2 = route.getConnectedCity().second();
 
