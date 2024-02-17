@@ -56,6 +56,8 @@ public class GameControllerImpl implements GameController {
         TrainCard card = drawController.drawTrainCard();
         this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
         this.phaseController.switchPhase();
+        view.refreshAll();
+
         return card;
     }
 
@@ -68,6 +70,7 @@ public class GameControllerImpl implements GameController {
         ObjectiveCard card;
 
         this.phaseController.switchPhase();
+        view.refreshAll();
 
         do {
             card = drawController.drawObjectiveCard();
@@ -83,8 +86,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endTurn() {
         mainController.getTurnController().endTurn();
-        view.refreshPlayerInterface();
+
         this.phaseController = new PhaseControllerImpl();
+        view.refreshAll();
     }
 
     /**

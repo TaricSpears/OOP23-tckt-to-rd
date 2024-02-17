@@ -17,6 +17,7 @@ public class ShapeSetter {
     public Set<Shape> getShapes(final double paneWidth, final double paneHeight) {
         final Set<Region> regionSet = controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
+        final boolean disabled = !(this.controller.getGameController().getPhaseController().isMidPhase());
 
         for (var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
@@ -29,6 +30,7 @@ public class ShapeSetter {
                 java.awt.Color playerColor = controller.getTurnController().getCurrentPlayer().getColor();
                 shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
             });
+            shape.setDisable(disabled);
             shapeSet.add(shape);
         }
 

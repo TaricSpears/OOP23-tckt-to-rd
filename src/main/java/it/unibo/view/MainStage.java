@@ -64,4 +64,14 @@ public class MainStage extends Stage {
                 this.scene.getHeight() - this.pane.getMaxWidth());
         this.root.setRight(this.playerInterface);
     }
+
+    public void refreshShapes(final MainController controller) {
+        final Set<Shape> shapeSet = new ShapeSetter(controller)
+                .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+        for (var shape : shapeSet) {
+            pane.getChildren().add(shape);
+        }
+
+        this.root.setCenter(this.pane);
+    }
 }
