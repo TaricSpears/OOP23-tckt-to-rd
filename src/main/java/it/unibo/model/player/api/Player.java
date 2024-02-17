@@ -20,6 +20,11 @@ public interface Player {
     String getName();
 
     /*
+     * Adds a route to the list of completed routes of the player.
+     */
+    void addRoute(Route route);
+
+    /*
      * @return the color of the player.
      */
     Color getColor();

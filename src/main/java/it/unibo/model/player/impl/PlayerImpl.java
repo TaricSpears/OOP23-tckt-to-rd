@@ -152,6 +152,13 @@ public class PlayerImpl implements Player {
     }
 
     /*
+     * @param add route to the player's completed routes.
+     */
+    public void addRoute(final Route route) {
+        completedRoutes.add(route);
+    }
+
+    /*
      * Removes a train card from the player's hand.
      * 
      * @param color the color of the card to remove.
