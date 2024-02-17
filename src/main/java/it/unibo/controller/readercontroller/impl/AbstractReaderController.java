@@ -12,8 +12,10 @@ public abstract class AbstractReaderController<T> implements ReaderController<T>
 
     /*
      * Initalizes the new AbstractReaderController
+     * 
+     * @param filePath the path of file to be read
      */
-    public AbstractReaderController (final String filePath){
+    protected AbstractReaderController (final String filePath){
         this.path = filePath;
     }
 

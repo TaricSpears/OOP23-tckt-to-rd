@@ -10,6 +10,10 @@ import it.unibo.view.MainView;
 
 import javafx.application.Application;
 
+/**
+ * Implementation of {@link MainController}.
+ * It models the main controller that allows access to other controllers
+ */
 public class MainControllerImpl implements MainController {
 
     final private GamePrep gamePrep = new GamePrep();
@@ -17,11 +21,17 @@ public class MainControllerImpl implements MainController {
     final private GameController gameController = new GameControllerImpl(this);
     private TurnController turnController;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void startView() {
         Application.launch(MainView.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void startGame() {
         gamePrep.prepGame(gameController.getTempPlayers(), new RouteReaderController().read());
@@ -29,22 +39,34 @@ public class MainControllerImpl implements MainController {
         view.launchMainView();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GameController getGameController() {
         return this.gameController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GamePrep getGameInstance() {
         return this.gamePrep;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMainApp(final MainView app) {
         this.view = app;
         gameController.addView(app);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TurnController getTurnController() {
         return this.turnController;

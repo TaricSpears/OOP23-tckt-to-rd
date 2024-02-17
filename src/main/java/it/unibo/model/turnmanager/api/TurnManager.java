@@ -4,9 +4,9 @@ import java.util.List;
 
 import it.unibo.model.player.api.Player;
 
-/*
-* Manages the order of player turns.
-*/
+/**
+ * Manages the order of player turns.
+ */
 public interface TurnManager {
 
     /**

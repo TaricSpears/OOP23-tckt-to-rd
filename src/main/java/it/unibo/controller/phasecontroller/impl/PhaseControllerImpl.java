@@ -4,7 +4,7 @@ import it.unibo.controller.phasecontroller.api.PhaseController;
 import it.unibo.model.phasemanager.api.PhaseManager;
 import it.unibo.model.phasemanager.impl.PhaseManagerImpl;
 
-/*
+/**
  * Implementation of {@link PhaseController}.
  * Controller of the phases of the single turn.
  */
@@ -12,22 +12,22 @@ public class PhaseControllerImpl implements PhaseController {
 
     private PhaseManager phaseManager;
 
-    /*
-     * Initializes the new phase Controller.
+    /**
+     * {@inheritDoc}
      */
     public PhaseControllerImpl() {
         this.phaseManager = new PhaseManagerImpl();
     }
 
-    /*
-     * @return the phase manager.
+    /**
+     * {@inheritDoc}
      */
     public PhaseManager getPhaseManager() {
         return this.phaseManager;
     }
 
-    /*
-     * @return the string instructions of the current phase.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -49,5 +49,28 @@ public class PhaseControllerImpl implements PhaseController {
     @Override
     public PhaseManager.Phase getCurrentPhase() {
         return this.phaseManager.getCurrentPhase();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void switchPhase() {
+        this.phaseManager.switchPhase();
+    }
+
+    @Override
+    public boolean isEndPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.END;
+    }
+
+    @Override
+    public boolean isMidPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.MID;
+    }
+
+    @Override
+    public boolean isStartPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.START;
     }
 }

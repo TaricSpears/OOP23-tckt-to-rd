@@ -42,7 +42,16 @@ public class MainView extends Application {
         }
     }
 
+    public void refreshAll() {
+        refreshPlayerInterface();
+        refreshShapes();
+    }
+
     public void refreshPlayerInterface() {
         mainStage.refreshPlayerInterface(controller);
+    }
+
+    public void refreshShapes() {
+        mainStage.refreshShapes(controller);
     }
 }

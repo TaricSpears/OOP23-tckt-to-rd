@@ -1,7 +1,6 @@
 package it.unibo.model.turnmanager.impl;
 
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -9,10 +8,10 @@ import java.util.List;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.turnmanager.api.TurnManager;
 
-/*
-* Implementation of {@link TurnManager}.
-* Manages the order of player turns.
-*/
+/**
+ * Implementation of {@link TurnManager}.
+ * Manages the order of player turns.
+ */
 public class TurnManagerImpl implements TurnManager {
 
     private final List<Player> players;
@@ -21,7 +20,7 @@ public class TurnManagerImpl implements TurnManager {
     private Player currentPlayer;
     private int currentTurn;
 
-    /*
+    /**
      * Initializes the player order and creates the iterator.
      * 
      * @param players the list of players.

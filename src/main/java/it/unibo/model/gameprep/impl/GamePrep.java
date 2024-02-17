@@ -46,7 +46,7 @@ public class GamePrep {
     }
 
     public void prepGame(final List<Pair<String, Color>> playerData, final List<Route> routeData) {
-        board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData));
+        board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData), routeData);
     }
 
     public List<Player> getPlayers() {
@@ -55,5 +55,9 @@ public class GamePrep {
 
     public WeightedPseudograph<City, Route> getGraph() {
         return board.getGraph();
+    }
+
+    public List<Route> getRoutes(){
+        return this.board.getRouteData();
     }
 }

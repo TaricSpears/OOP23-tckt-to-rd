@@ -3,18 +3,31 @@ package it.unibo.controller.gamecontroller.impl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import it.unibo.commons.Pair;
+import it.unibo.commons.Region;
+import it.unibo.controller.drawcontroller.api.DrawController;
+import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.model.card.impl.ObjectiveCardImpl;
-import it.unibo.model.player.api.Player;
+import it.unibo.controller.phasecontroller.api.PhaseController;
+import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
+import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.route.api.Route;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
 import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 import it.unibo.view.MainView;
 
+/**
+ * Implementation of {@link GameController}.
+ * It models the game controller that allows the view comunicate with the model
+ */
 public class GameControllerImpl implements GameController {
 
     final private MainController mainController;
@@ -22,68 +35,83 @@ public class GameControllerImpl implements GameController {
 
     private MainView view;
 
+    private DrawController drawController = new DrawControllerImpl();
+
+    private PhaseController phaseController = new PhaseControllerImpl();
+
+    /**
+     * Simple constructor of the controller of the game logic
+     * 
+     * @param mainController the main controller of the aplication
+     */
     public GameControllerImpl(final MainController mainController) {
         this.mainController = mainController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public TrainCard handleDrawTrainCard() {
+        TrainCard card = drawController.drawTrainCard();
+        this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
+        this.phaseController.switchPhase();
+        view.refreshAll();
+
+        return card;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectiveCard handleDrawObjectiveCard() {
+        Boolean drawn = false;
+        ObjectiveCard card;
+
+        this.phaseController.switchPhase();
+        view.refreshAll();
+
+        do {
+            card = drawController.drawObjectiveCard();
+            drawn = this.mainController.getTurnController().getCurrentPlayer().addObjectiveCard(card);
+        } while (!drawn);
+
+        return card;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void endTurn() {
         mainController.getTurnController().endTurn();
-        view.refreshPlayerInterface();
-    }
 
-    @Override
-    public void disableRoute(int idRoute) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'disableRoute'");
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sendMessage'");
+        this.phaseController = new PhaseControllerImpl();
+        view.refreshAll();
     }
 
     /**
-     * @param player the player that is filling the route
-     * @param route  the route to be handled
-     * @return void
+     * {@inheritDoc}
      */
-    @Override
-    public void handleClaimRoute(final Player player, final Route route) {
-        // fillo la route la setto a filled ecc.
-        player.setRouteScore(route.getScore());
-    }
-
-    /**
-     * @param player    the player that completed the objective
-     * @param objective the objective been completed by the player
-     * @return void
-     */
-    @Override
-    public void handleObjectiveCompleted(final Player player, final ObjectiveCardImpl objective) {
-        // imposto l'obiettivo a completato e poi aggiungo i punti
-        player.setObjectiveScore(objective.getScore());
-    }
-
-    @Override
-    public void handleDrawCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleDrawCard'");
-    }
-
     @Override
     public List<Pair<String, Integer>> getScore() {
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
         return scoreCalculator.getScoreBoard(mainController.getGameInstance().getPlayers());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void newGame() {
         view.launchPlayerSlect();
         tempPlayers.clear();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean addPlayer(Pair<String, Color> player) {
         if (tempPlayers.stream().anyMatch(
@@ -95,28 +123,61 @@ public class GameControllerImpl implements GameController {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean canStart() {
         return tempPlayers.size() >= 2;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Pair<String, Color>> getTempPlayers() {
         return Collections.unmodifiableList(this.tempPlayers);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void endGame() {
         view.closeMainView();
         view.launchScoreBoard();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addView(MainView view) {
         this.view = view;
     }
 
-    public Player getCurrentPlayer() {
-        return mainController.getTurnController().getCurrentPlayer();
+    @Override
+    public Set<Region> getRegions() {
+        final List<Route> routeSet = mainController.getGameInstance().getRoutes();
+        final Set<Region> regionSet = new LinkedHashSet<>();
+        Route route;
+        Iterator<Carriage> routeIterator;
+        Carriage carriage;
+        for (int i = 0; i < routeSet.size(); i++) {
+            route = routeSet.get(i);
+            routeIterator = route.getRailUnits().iterator();
+            while (routeIterator.hasNext()) {
+                carriage = routeIterator.next();
+                regionSet.add(new Region(carriage.xCoord(), carriage.yCoord(),
+                        carriage.width(), carriage.length(), carriage.angle(),
+                        route.getId(), route.getColor()));
+            }
+        }
+        return regionSet;
+    }
+
+    @Override
+    public PhaseController getPhaseController() {
+        return this.phaseController;
     }
 }

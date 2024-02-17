@@ -55,4 +55,13 @@ public class ObjectiveCardImpl implements ObjectiveCard {
         return this.objective;
     }
 
+    @Override
+    public void setCompleted() {
+        this.completed = true;
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return this.completed;
+    }
 }
