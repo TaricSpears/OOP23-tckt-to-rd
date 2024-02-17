@@ -1,5 +1,6 @@
 package it.unibo.model.turnmanager.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -25,7 +26,8 @@ public class TurnManagerImpl implements TurnManager {
      * @param players the list of players.
      */
     public TurnManagerImpl(final List<Player> players) {
-        this.players = players;
+
+        this.players = new ArrayList<>(players);
         Collections.shuffle(this.players);
 
         this.playersIterator = this.players.iterator();

@@ -11,4 +11,9 @@ public interface PhaseController {
      * Returns the phase manager.
      */
     PhaseManager getPhaseManager();
+
+    /*
+     * @return the current phase.
+     */
+    PhaseManager.Phase getCurrentPhase();
 }
