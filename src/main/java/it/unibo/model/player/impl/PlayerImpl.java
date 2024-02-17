@@ -189,18 +189,6 @@ public class PlayerImpl implements Player {
         this.trainCards.replace(card, this.trainCards.get(new TrainCardImpl(color)) + 1);
     }
 
-    /**
-     * Adds the drawn Objective card to the player's hand.
-     * 
-     * @param card the drawn card.
-     * 
-     * @return true if the card was added, false otherwise.
-     */
-    @Override
-    public void removeTrainCard(Color color) {
-        trainCards.removeIf(card -> card.getColor().equals(color));
-    }
-
     @Override
     public void addRouteAncCheckObjective(final Route route) {
         final City city1 = route.getConnectedCity().first();
@@ -222,5 +210,10 @@ public class PlayerImpl implements Player {
                 this.setObjectiveScore(objective.getScore());
             }
         }
+    }
+
+    @Override
+    public boolean addObjectiveCard(ObjectiveCard card) {
+        return this.objectiveCards.add(card);
     }
 }

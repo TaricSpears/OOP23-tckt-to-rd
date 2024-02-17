@@ -1,9 +1,6 @@
 package it.unibo.view;
 
-import java.awt.Color;
-
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.model.card.impl.TrainCardImpl;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;

@@ -66,19 +66,9 @@ public interface Player {
     int getObjectiveScore();
 
     /**
-     * @param number the score of the objective cards.
-     */
-    void setObjectiveScore(double number);
-
-    /**
      * @return the score of the routes.
      */
     int getRouteScore();
-
-    /**
-     * @param number the score of the routes.
-     */
-    void setRouteScore(int number);
 
     /**
      * Adds the drawn Train card to the player's hand.
