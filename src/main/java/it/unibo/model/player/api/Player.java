@@ -77,4 +77,6 @@ public interface Player {
      * @param number the score of the routes.
      */
     void setRouteScore(int number);
+
+    void addRouteAncCheckObjective(Route route);
 }

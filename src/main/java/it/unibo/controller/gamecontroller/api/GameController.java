@@ -35,6 +35,4 @@ public interface GameController {
     void endGame();
 
     void addView(MainView view);
-
-    Player getCurrentPlayer();
 }

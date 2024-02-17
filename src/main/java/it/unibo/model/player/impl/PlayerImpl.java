@@ -3,13 +3,17 @@ package it.unibo.model.player.impl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
+import it.unibo.model.route.impl.RouteImpl;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import org.jgrapht.graph.WeightedPseudograph;
 
 import java.awt.Color;
 
@@ -29,6 +33,8 @@ public class PlayerImpl implements Player {
     private int objectiveScore;
     private int routeScore;
 
+    private final WeightedPseudograph<City, Route> playerGraph;
+
     /*
      * Constructor for the player.
      * 
@@ -47,6 +53,7 @@ public class PlayerImpl implements Player {
         this.carriageNum = carriageNum;
         this.objectiveScore = 0;
         this.routeScore = 0;
+        this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
     }
 
     /*
@@ -159,5 +166,26 @@ public class PlayerImpl implements Player {
     @Override
     public void removeTrainCard(Color color) {
         trainCards.removeIf(card -> card.getColor().equals(color));
+    }
+
+    @Override
+    public void addRouteAncCheckObjective(final Route route) {
+        final City city1 = route.getConnectedCity().first();
+        final City city2 = route.getConnectedCity().second();
+
+        playerGraph.addVertex(city1);
+        playerGraph.addVertex(city2);
+        playerGraph.addEdge(city1, city2, route);
+        playerGraph.setEdgeWeight(city1, city2, route.getScore());
+
+        this.completedRoutes.add(route);
+
+        for (final ObjectiveCard objective : objectiveCards) {
+            final Set<City> playersCities = playerGraph.vertexSet();
+            if (playersCities.contains(objective.getCities().first())
+                    && playersCities.contains(objective.getCities().second())) {
+                objective.setCompleted();
+            }
+        }
     }
 }

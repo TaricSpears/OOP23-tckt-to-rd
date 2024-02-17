@@ -115,8 +115,4 @@ public class GameControllerImpl implements GameController {
     public void addView(MainView view) {
         this.view = view;
     }
-
-    public Player getCurrentPlayer() {
-        return mainController.getTurnController().getCurrentPlayer();
-    }
 }

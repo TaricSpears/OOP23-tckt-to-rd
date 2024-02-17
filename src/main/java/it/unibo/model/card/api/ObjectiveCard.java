@@ -14,4 +14,6 @@ public interface ObjectiveCard extends Card {
     double getScore();
 
     Pair<City, City> getCities();
+
+    void setCompleted();
 }
