@@ -21,12 +21,6 @@ public interface FillRoute {
      */
     boolean isRouteValid();
 
-    /*
-     * this function sets the color of the button of the chosen route with the
-     * player color
-     */
-    void setColor();
-
-    ObservableList<String> getAvailableRoutes(FillRoute fillRoute);
+    ObservableList<Color> getAvailableRoutes(FillRoute fillRoute);
 
 }

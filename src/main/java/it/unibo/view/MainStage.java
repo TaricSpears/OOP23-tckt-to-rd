@@ -2,10 +2,12 @@ package it.unibo.view;
 
 import java.util.List;
 
+import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.route.api.Route;
+import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -73,6 +75,9 @@ public class MainStage extends Stage {
                 shape.setOnMouseClicked(event -> {
                     java.awt.Color playerColor = controller.getGameController().getCurrentPlayer().getColor();
                     shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
+                    FillRouteImpl fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(),
+                            route);
+                    fillRoute.clickRoute();
                 });
                 pane.getChildren().add(shape);
             }

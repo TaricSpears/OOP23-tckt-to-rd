@@ -5,9 +5,12 @@ import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
+import it.unibo.view.FillRoute.impl.NotEnoughCardsAlert;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.util.converter.ShortStringConverter;
 
 import java.util.HashSet;
@@ -26,8 +29,10 @@ import java.awt.Color;
 public class FillRouteImpl implements FillRoute {
 
     private FillRouteViewImpl popUp;
+    private NotEnoughCardsAlert alert;
     private Player player;
     private Route route;
+    private Color chosenColor;
 
     public FillRouteImpl(Player player, Route route) {
         this.player = player;
@@ -40,7 +45,7 @@ public class FillRouteImpl implements FillRoute {
     @Override
     public boolean isRouteValid() {
         // controll jolly cards
-        if (route.getColor().equals(Color.GRAY) != true) {
+        if (route.getColor().equals(Color.GRAY) != true && route.getColor().equals(null) != true) {
             final long totCards = player.getTrainCards().stream()
                     .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
                     .count();
@@ -75,14 +80,13 @@ public class FillRouteImpl implements FillRoute {
 
     private void openPopUp() {
         this.popUp = new FillRouteViewImpl(this);
+        chosenColor = popUp.openPopUp();
+
     }
 
-    // this function sets the color of the button of the chosen route with the
-    // player color
-    @Override
-    public void setColor() {
-        route.setPlayer(player);
-        route.setFilled();
+    private void openAlert(String message) {
+        this.alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert.openAlert();
 
     }
 
@@ -100,14 +104,22 @@ public class FillRouteImpl implements FillRoute {
                         player.removeTrainCard(Color.DARK_GRAY);
                     }
                 }
-                setColor();
+                player.addRoute(route);
+                route.setFilled();
             } else if (route.getColor().equals(Color.GRAY) && isRouteValid()) {
                 openPopUp();
+                if (chosenColor != null) {
+                    removeCards(chosenColor, route.getScore());
+                    player.addRoute(route);
+                    route.setFilled();
+                } else {
+                    openAlert("You didn't choose a color.");
+                }
 
             }
 
         } else {
-            openPopUp();
+            openAlert("You don't have enough cards to fill this route.");
         }
     }
 
@@ -126,24 +138,24 @@ public class FillRouteImpl implements FillRoute {
     }
 
     @Override
-    public ObservableList<String> getAvailableRoutes(FillRoute fillRoute) {
-        final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
+    public ObservableList<Color> getAvailableRoutes(FillRoute fillRoute) {
+        final ObservableList<Color> availableRoutes = FXCollections.observableArrayList();
         if (isColorEnough(Color.BLACK)) {
-            availableRoutes.add(Color.BLACK.toString());
+            availableRoutes.add(Color.BLACK);
         } else if (isColorEnough(Color.BLUE)) {
-            availableRoutes.add(Color.BLUE.toString());
+            availableRoutes.add(Color.BLUE);
         } else if (isColorEnough(Color.GREEN)) {
-            availableRoutes.add(Color.GREEN.toString());
+            availableRoutes.add(Color.GREEN);
         } else if (isColorEnough(Color.ORANGE)) {
-            availableRoutes.add(Color.ORANGE.toString());
+            availableRoutes.add(Color.ORANGE);
         } else if (isColorEnough(Color.PINK)) {
-            availableRoutes.add(Color.PINK.toString());
+            availableRoutes.add(Color.PINK);
         } else if (isColorEnough(Color.RED)) {
-            availableRoutes.add(Color.RED.toString());
+            availableRoutes.add(Color.RED);
         } else if (isColorEnough(Color.WHITE)) {
-            availableRoutes.add(Color.WHITE.toString());
+            availableRoutes.add(Color.WHITE);
         } else if (isColorEnough(Color.YELLOW)) {
-            availableRoutes.add(Color.YELLOW.toString());
+            availableRoutes.add(Color.YELLOW);
         }
         return availableRoutes;
     }
