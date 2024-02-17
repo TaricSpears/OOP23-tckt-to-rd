@@ -10,14 +10,16 @@ import java.util.stream.Collectors;
 
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
-import it.unibo.model.gameprep.impl.GamePrep;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
 import it.unibo.model.route.api.Route;
 
 public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
-    GamePrep gamePrep = new GamePrep();
-    final WeightedPseudograph<City, Route> graph = gamePrep.getGraph();
+    final private WeightedPseudograph<City, Route> graph;
+
+    public ObjectiveGeneratorImpl(final WeightedPseudograph<City, Route> graph) {
+        this.graph = graph;
+    }
 
     @Override
     public Pair<City, City> generateObjective() {

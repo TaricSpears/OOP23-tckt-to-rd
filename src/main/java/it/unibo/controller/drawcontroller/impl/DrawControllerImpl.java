@@ -1,11 +1,15 @@
 package it.unibo.controller.drawcontroller.impl;
 
+import org.jgrapht.graph.WeightedPseudograph;
+
 import it.unibo.controller.drawcontroller.api.DrawController;
 
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.city.api.City;
 import it.unibo.model.deck.api.Deck;
 import it.unibo.model.deck.impl.DeckImpl;
+import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link DrawController}.
@@ -27,8 +31,8 @@ public class DrawControllerImpl implements DrawController {
      * @return an Objective card from the deck.
      */
     @Override
-    public ObjectiveCard drawObjectiveCard() {
-        return this.deck.drawObjectiveCard();
+    public ObjectiveCard drawObjectiveCard(final WeightedPseudograph<City, Route> graph) {
+        return this.deck.drawObjectiveCard(graph);
     }
 
 }

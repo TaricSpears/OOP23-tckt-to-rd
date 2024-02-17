@@ -57,7 +57,7 @@ public class GamePrep {
         return board.getGraph();
     }
 
-    public List<Route> getRoutes(){
+    public List<Route> getRoutes() {
         return this.board.getRouteData();
     }
 }

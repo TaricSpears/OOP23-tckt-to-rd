@@ -3,9 +3,13 @@ package it.unibo.model.deck.impl;
 import java.awt.Color;
 import java.util.Random;
 
+import org.jgrapht.graph.WeightedPseudograph;
+
 import it.unibo.model.card.api.*;
 import it.unibo.model.card.impl.*;
+import it.unibo.model.city.api.City;
 import it.unibo.model.deck.api.Deck;
+import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link Deck}.
@@ -16,8 +20,8 @@ public class DeckImpl implements Deck {
     /**
      * @return the drawn objectiveCard
      */
-    public ObjectiveCard drawObjectiveCard() {
-        return new ObjectiveCardImpl();
+    public ObjectiveCard drawObjectiveCard(final WeightedPseudograph<City, Route> graph) {
+        return new ObjectiveCardImpl(graph);
     }
 
     /**

@@ -73,7 +73,7 @@ public class GameControllerImpl implements GameController {
         view.refreshAll();
 
         do {
-            card = drawController.drawObjectiveCard();
+            card = drawController.drawObjectiveCard(mainController.getGameInstance().getGraph());
             drawn = this.mainController.getTurnController().getCurrentPlayer().addObjectiveCard(card);
         } while (!drawn);
 

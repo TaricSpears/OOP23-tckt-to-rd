@@ -1,10 +1,13 @@
 package it.unibo.model.card.impl;
 
+import org.jgrapht.graph.WeightedPseudograph;
+
 import it.unibo.commons.Pair;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.city.api.City;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
 import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
+import it.unibo.model.route.api.Route;
 
 /*
  * Implementation of {@link ObjectiveCard}.
@@ -23,8 +26,8 @@ public class ObjectiveCardImpl implements ObjectiveCard {
      * 
      * @param scoreValue the score value of the objective card.
      */
-    public ObjectiveCardImpl() {
-        final ObjectiveGenerator objectiveGenerator = new ObjectiveGeneratorImpl();
+    public ObjectiveCardImpl(final WeightedPseudograph<City, Route> graph) {
+        final ObjectiveGenerator objectiveGenerator = new ObjectiveGeneratorImpl(graph);
 
         this.objective = objectiveGenerator.generateObjective();
         this.scoreValue = objectiveGenerator.calculateScore(this.objective);
