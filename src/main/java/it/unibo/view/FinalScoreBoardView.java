@@ -7,6 +7,7 @@ import it.unibo.controller.gamecontroller.api.MainController;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -17,11 +18,16 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class FinalScoreBoardView extends Stage {
 
     public FinalScoreBoardView(final MainController controller) {
+
+        final Screen screen = Screen.getPrimary();
+        final Rectangle2D bounds = screen.getVisualBounds();
+
         this.setTitle("Final Game Score Board");
 
         final Button endButton = new Button("Close");
@@ -61,8 +67,8 @@ public class FinalScoreBoardView extends Stage {
         root.setCenter(playersList);
         root.setBottom(gameControls);
 
-        this.setScene(new Scene(root, 300, 500));
-        this.setMinWidth(300);
-        this.setMinHeight(500);
+        this.setScene(new Scene(root, bounds.getWidth() * 0.2, bounds.getHeight() * 0.5));
+        this.setMinWidth(bounds.getWidth() * 0.2);
+        this.setMinHeight(bounds.getHeight() * 0.5);
     }
 }

@@ -6,6 +6,7 @@ import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -18,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.paint.Color;
@@ -30,6 +32,12 @@ public final class StartStage extends Stage {
     private Set<Pair<String, Color>> players = new HashSet<>();
 
     public StartStage(final MainController controller) {
+
+        final Screen screen = Screen.getPrimary();
+        final Rectangle2D bounds = screen.getVisualBounds();
+
+        this.setTitle("Player Select");
+
         final TextField nameField = new TextField();
         final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();
@@ -41,8 +49,6 @@ public final class StartStage extends Stage {
                 submitButton.fire();
             }
         });
-
-        playersList.setMaxSize(350, 200);
 
         final Button startButton = new Button("Start Game");
         startButton.setDisable(true);
@@ -96,7 +102,12 @@ public final class StartStage extends Stage {
 
         root.setBottom(startBox);
 
-        this.setScene(new Scene(root, 600, 500));
+        final Scene scene = new Scene(root, bounds.getWidth() * 0.3, bounds.getHeight() * 0.5);
+        this.setScene(scene);
+
+        playersList.setMaxSize(scene.getWidth() * 0.5, scene.getHeight() * 0.5);
+        this.setMinWidth(bounds.getWidth() * 0.3);
+        this.setMinHeight(bounds.getHeight() * 0.5);
     }
 
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
