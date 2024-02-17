@@ -12,7 +12,7 @@ public class ObjectiveBox extends VBox {
         // .add(new Text(x.getCities().first() + " - " + x.getCities().second() + " ("
         // + player.getCarriageNum() + ")")));
 
-        this.getChildren().add(new Text(controller.getMainController().getCurrentPlayer().getName()));
+        this.getChildren().add(new Text(controller.getGameController().getCurrentPlayer().getName()));
     }
 
 }

@@ -28,9 +28,7 @@ public class MainView extends Application {
 
     public void launchMainView() {
         mainStage = new MainStage(controller);
-
         mainStage.show();
-
     }
 
     public void launchScoreBoard() {
@@ -42,5 +40,9 @@ public class MainView extends Application {
         if (!Objects.isNull(mainStage)) {
             mainStage.close();
         }
+    }
+
+    public void refreshPlayerInterface() {
+        mainStage.refreshPlayerInterface(controller);
     }
 }

@@ -29,6 +29,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endTurn() {
         mainController.getTurnController().endTurn();
+        view.refreshPlayerInterface();
     }
 
     @Override

@@ -52,7 +52,7 @@ public final class StartStage extends Stage {
         });
 
         submitButton.setOnAction(event -> {
-            if (controller.getMainController()
+            if (controller.getGameController()
                     .addPlayer(new Pair<String, java.awt.Color>(nameField.getText(),
                             new java.awt.Color((float) colorPicker.getValue().getRed(),
                                     (float) colorPicker.getValue().getGreen(),
@@ -60,7 +60,7 @@ public final class StartStage extends Stage {
                 players.add(new Pair<String, Color>(nameField.getText(), colorPicker.getValue()));
                 nameField.clear();
             }
-            if (controller.getMainController().canStart()) {
+            if (controller.getGameController().canStart()) {
                 startButton.setDisable(false);
             } else {
                 startButton.setDisable(true);

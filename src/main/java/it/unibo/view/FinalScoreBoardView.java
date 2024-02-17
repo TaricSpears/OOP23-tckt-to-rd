@@ -31,7 +31,7 @@ public class FinalScoreBoardView extends Stage {
 
         final Button newGame = new Button("New Game");
         newGame.setOnAction(event -> {
-            controller.getMainController().newGame();
+            controller.getGameController().newGame();
             this.close();
         });
 
@@ -44,7 +44,7 @@ public class FinalScoreBoardView extends Stage {
         gameControls.setSpacing(30);
         gameControls.setAlignment(Pos.CENTER);
 
-        final List<Pair<String, Integer>> players = controller.getMainController().getScore();
+        final List<Pair<String, Integer>> players = controller.getGameController().getScore();
 
         for (final Pair<String, Integer> player : players) {
             final Text playerEntry = new Text(player.first() + " - " + player.second());

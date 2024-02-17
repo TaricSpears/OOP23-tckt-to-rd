@@ -9,7 +9,7 @@ public interface MainController {
 
     void startGame();
 
-    GameController getMainController();
+    GameController getGameController();
 
     TurnController getTurnController();
 

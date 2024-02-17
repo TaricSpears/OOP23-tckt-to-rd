@@ -14,7 +14,7 @@ public class MainControllerImpl implements MainController {
 
     final private GamePrep gamePrep = new GamePrep();
     private MainView view;
-    final private GameController mainController = new GameControllerImpl(this);
+    final private GameController gameController = new GameControllerImpl(this);
     private TurnController turnController;
 
     @Override
@@ -24,14 +24,14 @@ public class MainControllerImpl implements MainController {
 
     @Override
     public void startGame() {
-        gamePrep.prepGame(mainController.getTempPlayers(), new RouteReaderController().read());
+        gamePrep.prepGame(gameController.getTempPlayers(), new RouteReaderController().read());
         turnController = new TurnControllerImpl(gamePrep.getPlayers());
         view.launchMainView();
     }
 
     @Override
-    public GameController getMainController() {
-        return this.mainController;
+    public GameController getGameController() {
+        return this.gameController;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MainControllerImpl implements MainController {
     @Override
     public void setMainApp(final MainView app) {
         this.view = app;
-        mainController.addView(app);
+        gameController.addView(app);
     }
 
     @Override
