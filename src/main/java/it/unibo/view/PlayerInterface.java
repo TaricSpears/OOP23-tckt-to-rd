@@ -23,6 +23,7 @@ public class PlayerInterface extends VBox {
         final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getGameController().getPhaseController().toString());
+        final ObjectiveBox objectiveBox = new ObjectiveBox(controller);
 
         this.getChildren().add(phase);
         this.getChildren().add(endGame);
@@ -72,7 +73,7 @@ public class PlayerInterface extends VBox {
         });
         drawObjective.setDisable(!controller.getGameController().getPhaseController().isMidPhase());
 
-        this.getChildren().addAll(drawTrain, drawObjective, endTurn, new ObjectiveBox(controller));
+        this.getChildren().addAll(drawTrain, drawObjective, endTurn, objectiveBox);
 
         this.setMinSize(width, height);
     }
