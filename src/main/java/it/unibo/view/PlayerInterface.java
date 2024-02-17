@@ -1,6 +1,9 @@
 package it.unibo.view;
 
+import java.awt.Color;
+
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.model.card.impl.TrainCardImpl;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
@@ -25,6 +28,9 @@ public class PlayerInterface extends VBox {
         });
 
         final Button drawTrain = new Button("Draw Train Card");
+        drawTrain.setOnAction(event -> {
+            new DrawTrainCardPopUp(new TrainCardImpl(Color.BLACK));
+        });
         final Button drawObjective = new Button("Draw new Objective");
 
         this.getChildren().addAll(drawTrain, drawObjective, endTurn, new ObjectiveBox(controller));
