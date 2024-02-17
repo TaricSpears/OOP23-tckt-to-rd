@@ -1,11 +1,15 @@
 package it.unibo.controller.gamecontroller.impl;
 
+import it.unibo.controller.drawcontroller.api.DrawController;
+import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.controller.turncontroller.impl.TurnControllerImpl;
 import it.unibo.model.gameprep.impl.GamePrep;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
 import it.unibo.view.MainView;
 
 import javafx.application.Application;
@@ -16,6 +20,26 @@ public class MainControllerImpl implements MainController {
     private MainView view;
     final private GameController gameController = new GameControllerImpl(this);
     private TurnController turnController;
+
+    private DrawController drawController = new DrawControllerImpl();
+
+    TrainCard handleDrawTrainCard() {
+        TrainCard card = drawController.drawTrainCard();
+        this.turnController.getCurrentPlayer().addTrainCard(card);
+        return card;
+    }
+
+    ObjectiveCard handleDrawObjectiveCard() {
+        Boolean drawn = false;
+        ObjectiveCard card;
+
+        do {
+            card = drawController.drawObjectiveCard();
+            drawn = this.turnController.getCurrentPlayer().addObjectiveCard(card);
+        } while (!drawn);
+
+        return card;
+    }
 
     @Override
     public void startView() {

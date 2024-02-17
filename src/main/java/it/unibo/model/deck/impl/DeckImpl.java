@@ -3,8 +3,7 @@ package it.unibo.model.deck.impl;
 import java.awt.Color;
 import java.util.Random;
 
-import it.unibo.model.card.api.Card;
-import it.unibo.model.card.api.Card.Type;
+import it.unibo.model.card.api.*;
 import it.unibo.model.card.impl.*;
 import it.unibo.model.deck.api.Deck;
 
@@ -15,25 +14,16 @@ import it.unibo.model.deck.api.Deck;
 public class DeckImpl implements Deck {
 
     /**
-     * @param type the type of the card to draw
-     * @return the drawn card
-     */
-    @Override
-    public Card drawCard(Type type) {
-        return type == Type.TRAIN ? drawTrainCard() : drawObjectiveCard();
-    }
-
-    /**
      * @return the drawn objectiveCard
      */
-    private ObjectiveCardImpl drawObjectiveCard() {
+    public ObjectiveCard drawObjectiveCard() {
         return new ObjectiveCardImpl();
     }
 
     /**
      * @return the drawn trainCard
      */
-    private TrainCardImpl drawTrainCard() {
+    public TrainCard drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.PINK, Color.BLUE,
