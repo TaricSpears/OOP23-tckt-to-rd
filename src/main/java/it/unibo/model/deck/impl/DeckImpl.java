@@ -7,7 +7,7 @@ import it.unibo.model.card.api.*;
 import it.unibo.model.card.impl.*;
 import it.unibo.model.deck.api.Deck;
 
-/*
+/**
  * Implementation of {@link Deck}.
  * Regulates the functioning of the decks.
  */
