@@ -1,8 +1,10 @@
 package it.unibo.controller.gamecontroller.api;
 
 import java.util.List;
+import java.util.Set;
 
 import it.unibo.commons.Pair;
+import it.unibo.commons.Region;
 import it.unibo.view.MainView;
 
 public interface GameController {
@@ -22,4 +24,6 @@ public interface GameController {
     void endGame();
 
     void addView(MainView view);
+
+    Set<Region> getRegions();
 }

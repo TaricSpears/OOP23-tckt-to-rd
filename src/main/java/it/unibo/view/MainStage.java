@@ -53,7 +53,8 @@ public class MainStage extends Stage {
         this.pane.setMinWidth(this.scene.getWidth() * 0.8);
         this.pane.setMinHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
-        final Set<Shape> shapeSet = new ShapeSetter().getShapes();
+        final Set<Shape> shapeSet = new ShapeSetter(controller)
+            .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for(var shape: shapeSet){
             pane.getChildren().add(shape);
         }

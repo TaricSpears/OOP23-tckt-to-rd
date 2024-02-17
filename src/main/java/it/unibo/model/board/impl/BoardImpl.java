@@ -13,10 +13,12 @@ public class BoardImpl {
 
     final private List<Player> players;
     private WeightedPseudograph<City, Route> graph;
+    final private List<Route> routeData;
 
-    public BoardImpl(List<Player> players, WeightedPseudograph<City, Route> graph) {
+    public BoardImpl(List<Player> players, WeightedPseudograph<City, Route> graph, List<Route> routeData) {
         this.players = players;
         this.graph = graph;
+        this.routeData = routeData;
     }
 
     public List<Player> getPlayers() {
@@ -25,5 +27,9 @@ public class BoardImpl {
 
     public WeightedPseudograph<City, Route> getGraph() {
         return graph;
+    }
+
+    public List<Route> getRouteData(){
+        return Collections.unmodifiableList(this.routeData);
     }
 }

@@ -6,10 +6,12 @@ import javafx.scene.shape.Polygon;
 //the shape is a polygon that can be filled with the color of the player, and tilted to the right direction
 
 public class Shape extends Polygon {
+    private final int id;
 
-    public Shape(double x, double y, double width, double height) {
+    public Shape(final double x, final double y, final double width, final double height, final int id) {
         super(x - (width / 2), y - (height / 2), x + (width / 2), y - (height / 2), x + (width / 2), y + (height / 2),
                 x - (width / 2), y + (height / 2));
+        this.id = id;
     }
 
     public void setFill(String color) {
@@ -18,5 +20,9 @@ public class Shape extends Polygon {
 
     public void setTilt(double angle) {
         super.setRotate(angle);
+    }
+
+    public int getShapeId(){
+        return this.id;
     }
 }
