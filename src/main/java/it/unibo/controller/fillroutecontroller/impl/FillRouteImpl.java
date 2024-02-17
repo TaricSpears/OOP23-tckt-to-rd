@@ -1,7 +1,9 @@
 
 package it.unibo.controller.fillroutecontroller.impl;
 
+import it.unibo.commons.Region;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
@@ -34,9 +36,13 @@ public class FillRouteImpl implements FillRoute {
     private Route route;
     private Color chosenColor;
 
-    public FillRouteImpl(Player player, Route route) {
+    private MainController controller;
+
+    public FillRouteImpl(Player player, Region region) {
         this.player = player;
-        this.route = route;
+
+        this.route = controller.getGameInstance().getRoutes().get(region.getId());
+
     }
 
     // this function returns true if the player has enough train cards with the
