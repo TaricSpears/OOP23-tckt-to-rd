@@ -4,13 +4,17 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.card.impl.TrainCardImpl;
+import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
+import it.unibo.model.route.impl.RouteImpl;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.jgrapht.graph.WeightedPseudograph;
 
 import java.awt.Color;
 
@@ -30,12 +34,14 @@ public class PlayerImpl implements Player {
     private int objectiveScore;
     private int routeScore;
 
-    /**
+    private final WeightedPseudograph<City, Route> playerGraph;
+
+    /*
      * Constructor for the player.
      * 
-     * @param name        the name of the player.
+     * @param name the name of the player.
      * 
-     * @param color       the color of the player.
+     * @param color the color of the player.
      * 
      * @param carriageNum the number of carriages of the player.
      */
@@ -47,6 +53,7 @@ public class PlayerImpl implements Player {
         this.carriageNum = carriageNum;
         this.objectiveScore = 0;
         this.routeScore = 0;
+        this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
 
         this.trainCards = new HashMap<>();
         this.trainCards.put(new TrainCardImpl(Color.BLACK), 1);
@@ -141,8 +148,7 @@ public class PlayerImpl implements Player {
     /**
      * @param number the score of the objective cards.
      */
-    @Override
-    public void setObjectiveScore(final double number) {
+    private void setObjectiveScore(final double number) {
         this.objectiveScore += number;
     }
 
@@ -157,8 +163,7 @@ public class PlayerImpl implements Player {
     /**
      * @param number the score of the routes.
      */
-    @Override
-    public void setRouteScore(final int number) {
+    private void setRouteScore(final int number) {
         this.routeScore += number;
     }
 
@@ -184,16 +189,31 @@ public class PlayerImpl implements Player {
         this.trainCards.replace(card, this.trainCards.get(new TrainCardImpl(color)) + 1);
     }
 
-    /**
-     * Adds the drawn Objective card to the player's hand.
-     * 
-     * @param card the drawn card.
-     * 
-     * @return true if the card was added, false otherwise.
-     */
+    @Override
+    public void addRouteAncCheckObjective(final Route route) {
+        final City city1 = route.getConnectedCity().first();
+        final City city2 = route.getConnectedCity().second();
+
+        playerGraph.addVertex(city1);
+        playerGraph.addVertex(city2);
+        playerGraph.addEdge(city1, city2, route);
+        playerGraph.setEdgeWeight(city1, city2, route.getScore());
+
+        this.completedRoutes.add(route);
+        this.setRouteScore(route.getScore());
+
+        for (final ObjectiveCard objective : objectiveCards) {
+            final Set<City> playersCities = playerGraph.vertexSet();
+            if (playersCities.contains(objective.getCities().first())
+                    && playersCities.contains(objective.getCities().second())) {
+                objective.setCompleted();
+                this.setObjectiveScore(objective.getScore());
+            }
+        }
+    }
+
     @Override
     public boolean addObjectiveCard(ObjectiveCard card) {
         return this.objectiveCards.add(card);
-
     }
 }
