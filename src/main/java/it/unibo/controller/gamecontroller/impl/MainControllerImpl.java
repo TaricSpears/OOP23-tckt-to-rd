@@ -1,55 +1,52 @@
 package it.unibo.controller.gamecontroller.impl;
 
+import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.model.card.impl.ObjectiveCardImpl;
-import it.unibo.model.player.api.Player;
-import it.unibo.model.route.api.Route;
+import it.unibo.controller.readercontroller.impl.RouteReaderController;
+import it.unibo.controller.turncontroller.api.TurnController;
+import it.unibo.controller.turncontroller.impl.TurnControllerImpl;
+import it.unibo.model.gameprep.impl.GamePrep;
+import it.unibo.view.MainView;
+
+import javafx.application.Application;
 
 public class MainControllerImpl implements MainController {
 
+    final private GamePrep gamePrep = new GamePrep();
+    private MainView view;
+    final private GameController gameController = new GameControllerImpl(this);
+    private TurnController turnController;
+
     @Override
-    public void endTurn() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'endTurn'");
+    public void startView() {
+        Application.launch(MainView.class);
     }
 
     @Override
-    public void disableRoute(int idRoute) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'disableRoute'");
+    public void startGame() {
+        gamePrep.prepGame(gameController.getTempPlayers(), new RouteReaderController().read());
+        turnController = new TurnControllerImpl(gamePrep.getPlayers());
+        view.launchMainView();
     }
 
     @Override
-    public void sendMessage(String message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sendMessage'");
-    }
-
-    /**
-     * @param player the player that is filling the route
-     * @param route  the route to be handled
-     * @return void
-     */
-    @Override
-    public void handleClaimRoute(final Player player, final Route route) {
-        // fillo la route la setto a filled ecc.
-        player.setRouteScore(route.getScore());
-    }
-
-    /**
-     * @param player    the player that completed the objective
-     * @param objective the objective been completed by the player
-     * @return void
-     */
-    @Override
-    public void handleObjectiveCompleted(final Player player, final ObjectiveCardImpl objective) {
-        // imposto l'obiettivo a completato e poi aggiungo i punti
-        player.setObjectiveScore(objective.getScore());
+    public GameController getGameController() {
+        return this.gameController;
     }
 
     @Override
-    public void handleDrawCard() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleDrawCard'");
+    public GamePrep getGameInstance() {
+        return this.gamePrep;
+    }
+
+    @Override
+    public void setMainApp(final MainView app) {
+        this.view = app;
+        gameController.addView(app);
+    }
+
+    @Override
+    public TurnController getTurnController() {
+        return this.turnController;
     }
 }

@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 
 public class MapReaderController extends AbstractReaderController<List<Integer>> {
 
-    private static final String MAP_FILE_PATH = "/configuration/MapData.json";
+    private static final String MAP_FILE_PATH = "/configuration/EuropeConfiguration/MapData.json";
     private final List<Integer> mapData;
 
     public MapReaderController() {

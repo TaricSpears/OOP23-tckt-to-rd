@@ -1,7 +1,6 @@
 package it.unibo.model.scorecalculator.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import it.unibo.model.player.api.Player;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
@@ -15,9 +14,9 @@ public class ScoreCalculatorImpl implements ScoreCalculator {
      *         ascending
      */
     @Override
-    public List<Pair<Player, Integer>> getScoreBoard(final Set<Player> players) {
+    public List<Pair<String, Integer>> getScoreBoard(final List<Player> players) {
         return players.stream()
-                .map(p -> new Pair<Player, Integer>(p, p.getObjectiveScore() + p.getRouteScore()))
+                .map(p -> new Pair<String, Integer>(p.getName(), p.getObjectiveScore() + p.getRouteScore()))
                 .sorted((x, y) -> x.second() - y.second())
                 .toList();
     }

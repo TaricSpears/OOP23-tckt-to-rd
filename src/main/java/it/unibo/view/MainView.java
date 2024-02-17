@@ -1,24 +1,48 @@
 package it.unibo.view;
 
-import it.unibo.controller.gamecontroller.api.StartController;
+import java.util.Objects;
+
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
 
-    public static StartController controller = GameStart.controller;
+    public static MainController controller = GameStart.controller;
+    private StartStage startStage;
+    private MainStage mainStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        final StartView startStage = new StartView(controller);
-        final MainStage mainStage = new MainStage(controller);
+        controller.setMainApp(this);
+
+        launchPlayerSlect();
+        // launchMainView();
+    }
+
+    public void launchPlayerSlect() {
+        startStage = new StartStage(controller);
+        startStage.show();
+    }
+
+    public void launchMainView() {
+        mainStage = new MainStage(controller);
+        mainStage.show();
+    }
+
+    public void launchScoreBoard() {
         final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
-        startStage.setTitle("Ticket to Ride");
-        startStage.showAndWait();
-        if (startStage.isReady()) {
-            mainStage.showAndWait();
-            scoreBoardView.show();
+        scoreBoardView.show();
+    }
+
+    public void closeMainView() {
+        if (!Objects.isNull(mainStage)) {
+            mainStage.close();
         }
+    }
+
+    public void refreshPlayerInterface() {
+        mainStage.refreshPlayerInterface(controller);
     }
 }

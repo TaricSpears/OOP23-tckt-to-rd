@@ -10,4 +10,8 @@ public interface City {
     Pair<Double, Double> getCoordinates();
 
     Double getRadius();
+
+    boolean equals(City toCheck);
+
+    String toString();
 }

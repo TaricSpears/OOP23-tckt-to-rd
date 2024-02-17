@@ -40,4 +40,20 @@ public class CityImpl implements City {
         return this.radius;
     }
 
+    @Override
+    public boolean equals(City toCheck) {
+        return (Double.compare(radius, toCheck.getRadius()) == 0) &&
+            (this.name.equals(toCheck.getName())) && 
+            (this.id == toCheck.getId()) &&
+            (Double.compare(this.coordinates.first(), toCheck.getCoordinates().first()) == 0) &&
+            (Double.compare(this.coordinates.second(), toCheck.getCoordinates().second()) == 0);
+    }
+
+    @Override
+    public String toString(){
+        return "ID = " + this.id + "\nNAME = " + this.name + 
+            "\nRADIUS = " + this.radius + 
+            "\nCOORD1 = " + this.coordinates.first() + "," + this.coordinates.second();
+    }
+    
 }

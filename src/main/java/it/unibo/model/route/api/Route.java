@@ -1,8 +1,10 @@
 package it.unibo.model.route.api;
 
+import java.util.Set;
+
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
-import it.unibo.model.player.api.Player;
+import it.unibo.model.carriage.impl.Carriage;
 
 import java.awt.Color;
 
@@ -18,5 +20,12 @@ public interface Route {
 
     Color getColor();
 
-    void setPlayer(Player player);
+    int getId();
+
+    Set<Carriage> getRailUnits();
+
+    boolean equals (Route toCheck);
+
+    String toString();
+
 }

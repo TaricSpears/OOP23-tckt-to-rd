@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 import java.util.Set;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.LinkedHashSet;
 import java.util.Iterator;
 
@@ -23,20 +24,20 @@ import org.json.simple.parser.ParseException;
 
 import java.awt.Color;
 
-public class RouteReaderController extends AbstractReaderController<Set<Route>>{
+public class RouteReaderController extends AbstractReaderController<List<Route>>{
 
-    private static final String ROUTE_FILE_PATH = "/configuration/Routes.json";
+    private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
 
     private final int mapWidth;
     private final int mapHeight;
     private final int railWidth;
     private final int railLength;
-    private final Set<Route> routes;
+    private final List<Route> routes;
     private final List<City> cities;
 
     public RouteReaderController() {
         super(ROUTE_FILE_PATH);
-        this.routes = new LinkedHashSet<>();
+        this.routes = new LinkedList<>();
         var mapReader = new MapReaderController();
         this.mapWidth = mapReader.getMapWidth();
         this.mapHeight = mapReader.getMapHeight();
@@ -47,7 +48,7 @@ public class RouteReaderController extends AbstractReaderController<Set<Route>>{
     }
 
     @Override
-    public Set<Route> read() {
+    public List<Route> read() {
         final JSONParser parser = new JSONParser();
         JSONObject obj;
         try {
@@ -63,24 +64,24 @@ public class RouteReaderController extends AbstractReaderController<Set<Route>>{
 
                 final Set<Carriage> railUnits = new LinkedHashSet<>();
                 final JSONArray xArray = (JSONArray)obj.get("x");
-                final Iterator<Integer> xArrayIterator = xArray.iterator();
+                final Iterator xArrayIterator = xArray.iterator();
                 final JSONArray yArray = (JSONArray)obj.get("y");
-                final Iterator<Integer> yArrayIterator = yArray.iterator();
+                final Iterator yArrayIterator = yArray.iterator();
                 final JSONArray angleArray = (JSONArray)obj.get("angle");
-                final Iterator<Integer> angleArrayIterator = angleArray.iterator();
+                final Iterator angleArrayIterator = angleArray.iterator();
                 while(xArrayIterator.hasNext()){
-                    int xCoord = (int)xArrayIterator.next();
-                    int yCoord = (int)yArrayIterator.next();
-                    double angle = (double)angleArrayIterator.next();
-                    var carriage = new Carriage((double)xCoord/this.mapWidth, (double)yCoord/this.mapHeight,
-                    (double)railLength/this.mapWidth, (double)this.railWidth/this.mapWidth, angle);
+                    int xCoord = Long.valueOf((Long)xArrayIterator.next()).intValue();
+                    int yCoord = Long.valueOf((Long)yArrayIterator.next()).intValue();
+                    double angle = (Double)angleArrayIterator.next();
+                    var carriage = new Carriage(((double)xCoord/this.mapWidth), ((double)yCoord/this.mapHeight),
+                        ((double)railLength/this.mapWidth), ((double)this.railWidth/this.mapWidth), angle);
                     railUnits.add(carriage);
                 }
 
                 final int weight = railUnits.size();
                 final JSONArray routeExtremes = (JSONArray)obj.get("connectedCities");
-                final var city1 = this.cities.get((Integer)routeExtremes.get(0));
-                final var city2 = this.cities.get((Integer)routeExtremes.get(1));
+                final var city1 = this.cities.get(Long.valueOf((Long)routeExtremes.get(0)).intValue());
+                final var city2 = this.cities.get(Long.valueOf((Long)routeExtremes.get(1)).intValue());
                 final EdgeData connectedCity = new EdgeData(city1, city2, weight);
 
                 final Color color = new IntToColorConverter().apply(intColor);
@@ -93,7 +94,7 @@ public class RouteReaderController extends AbstractReaderController<Set<Route>>{
         } catch (ParseException e1) {
             System.out.println("Exception in file parsing operations");
         }
-        return Set.copyOf(this.routes);
+        return List.copyOf(this.routes);
     }
 
 }

@@ -20,14 +20,14 @@ public class PhaseControllerImpl implements PhaseController {
     }
 
     /*
-     * Returns the phase manager.
+     * @return the phase manager.
      */
     public PhaseManager getPhaseManager() {
         return this.phaseManager;
     }
 
     /*
-     * Returns the string instructions of the current phase.
+     * @return the string instructions of the current phase.
      */
     @Override
     public String toString() {
@@ -41,5 +41,13 @@ public class PhaseControllerImpl implements PhaseController {
             default:
                 throw new IllegalStateException("Unknown phase");
         }
+    }
+
+    /*
+     * @return the current phase.
+     */
+    @Override
+    public PhaseManager.Phase getCurrentPhase() {
+        return this.phaseManager.getCurrentPhase();
     }
 }
