@@ -49,9 +49,9 @@ class TestScoreCalculator {
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
         final List<Player> players = gamePrep.getPlayers();
 
-        players.get(0).addRouteAncCheckObjective(route1);
-        players.get(1).addRouteAncCheckObjective(route2);
-        players.get(2).addRouteAncCheckObjective(route3);
+        players.get(0).addRoute(route1);
+        players.get(1).addRoute(route2);
+        players.get(2).addRoute(route3);
 
         final List<Pair<String, Integer>> score = scoreCalculator.getScoreBoard(gamePrep.getPlayers());
 
