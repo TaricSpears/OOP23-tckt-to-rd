@@ -1,7 +1,6 @@
 package it.unibo.model.turnmanager.impl;
 
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;

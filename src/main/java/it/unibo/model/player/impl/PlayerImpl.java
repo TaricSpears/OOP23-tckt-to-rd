@@ -137,8 +137,7 @@ public class PlayerImpl implements Player {
     /*
      * @param number the score of the objective cards.
      */
-    @Override
-    public void setObjectiveScore(final double number) {
+    private void setObjectiveScore(final double number) {
         this.objectiveScore += number;
     }
 
@@ -153,8 +152,7 @@ public class PlayerImpl implements Player {
     /*
      * @param number the score of the routes.
      */
-    @Override
-    public void setRouteScore(final int number) {
+    private void setRouteScore(final int number) {
         this.routeScore += number;
     }
 
@@ -179,12 +177,14 @@ public class PlayerImpl implements Player {
         playerGraph.setEdgeWeight(city1, city2, route.getScore());
 
         this.completedRoutes.add(route);
+        this.setRouteScore(route.getScore());
 
         for (final ObjectiveCard objective : objectiveCards) {
             final Set<City> playersCities = playerGraph.vertexSet();
             if (playersCities.contains(objective.getCities().first())
                     && playersCities.contains(objective.getCities().second())) {
                 objective.setCompleted();
+                this.setObjectiveScore(objective.getScore());
             }
         }
     }
