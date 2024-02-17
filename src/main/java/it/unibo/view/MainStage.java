@@ -1,12 +1,8 @@
 package it.unibo.view;
 
-import java.util.List;
 import java.util.Set;
 
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.controller.readercontroller.impl.RouteReaderController;
-import it.unibo.model.carriage.impl.Carriage;
-import it.unibo.model.route.api.Route;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -17,7 +13,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -54,11 +49,11 @@ public class MainStage extends Stage {
         this.pane.setMinHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
         final Set<Shape> shapeSet = new ShapeSetter(controller)
-            .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
-        for(var shape: shapeSet){
+                .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+        for (var shape : shapeSet) {
             pane.getChildren().add(shape);
         }
-        
+
         this.setScene(this.scene);
         this.setResizable(false);
     }

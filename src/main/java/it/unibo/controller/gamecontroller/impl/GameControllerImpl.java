@@ -171,4 +171,9 @@ public class GameControllerImpl implements GameController {
         }
         return regionSet;
     }
+
+    @Override
+    public PhaseController getPhaseController() {
+        return this.phaseController;
+    }
 }

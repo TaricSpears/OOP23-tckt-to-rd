@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class ShapeSetter {
     private final MainController controller;
 
-    public ShapeSetter(final MainController controller){
+    public ShapeSetter(final MainController controller) {
         this.controller = controller;
     }
 
@@ -18,9 +18,9 @@ public class ShapeSetter {
         final Set<Region> regionSet = controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
 
-        for(var region: regionSet){
-            final Shape shape = new Shape(region.getXCenter()*paneWidth, region.getYCenter()*paneHeight,
-                 region.getWidth()*paneWidth, region.getLength()*paneHeight, region.getId());
+        for (var region : regionSet) {
+            final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
+                    region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
             shape.setStrokeWidth(3.0);
             shape.setFill(

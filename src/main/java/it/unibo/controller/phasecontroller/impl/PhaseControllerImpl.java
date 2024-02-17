@@ -58,4 +58,19 @@ public class PhaseControllerImpl implements PhaseController {
     public void switchPhase() {
         this.phaseManager.switchPhase();
     }
+
+    @Override
+    public boolean isEndPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.END;
+    }
+
+    @Override
+    public boolean isMidPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.MID;
+    }
+
+    @Override
+    public boolean isStartPhase() {
+        return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.START;
+    }
 }

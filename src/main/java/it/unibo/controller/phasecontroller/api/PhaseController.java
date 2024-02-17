@@ -22,4 +22,19 @@ public interface PhaseController {
      */
     void switchPhase();
 
+    /**
+     * @return if the current phase is the end phase.
+     */
+    boolean isEndPhase();
+
+    /**
+     * @return if the current phase is the mid phase.
+     */
+    boolean isMidPhase();
+
+    /**
+     * @return if the current phase is the start phase.
+     */
+    boolean isStartPhase();
+
 }
