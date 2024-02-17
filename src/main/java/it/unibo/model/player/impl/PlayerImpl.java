@@ -3,13 +3,16 @@ package it.unibo.model.player.impl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.card.impl.TrainCardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,6 +35,7 @@ public class PlayerImpl implements Player {
     private int carriageNum;
     private int objectiveScore;
     private int routeScore;
+    private final List<TrainCard> listTrainCards;
 
     private final WeightedPseudograph<City, Route> playerGraph;
 
@@ -53,6 +57,7 @@ public class PlayerImpl implements Player {
         this.objectiveScore = 0;
         this.routeScore = 0;
         this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
+        this.listTrainCards = new ArrayList<>();
 
         this.trainCards = new HashMap<>();
         this.trainCards.put(Color.BLACK, 1);
@@ -178,7 +183,7 @@ public class PlayerImpl implements Player {
      * 
      * @param color the color of the card to remove.
      * 
-     * @param num   the number of cards to remove.
+     * @param num the number of cards to remove.
      */
     @Override
     public void removeTrainCard(Color color, int num) {
@@ -221,5 +226,15 @@ public class PlayerImpl implements Player {
     @Override
     public boolean addObjectiveCard(ObjectiveCard card) {
         return this.objectiveCards.add(card);
+    }
+
+    @Override
+    public List<TrainCard> getListTrainCards() {
+        for (final Color color : trainCards.keySet()) {
+            for (int i = 0; i < trainCards.get(color); i++) {
+                listTrainCards.add(new TrainCardImpl(color));
+            }
+        }
+        return listTrainCards;
     }
 }

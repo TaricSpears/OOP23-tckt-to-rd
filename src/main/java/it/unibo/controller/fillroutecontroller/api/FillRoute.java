@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.util.Set;
 
 public interface FillRoute {
-    void removeCards(Color color, int quantity);
 
     boolean isColorEnough(Color color);
 

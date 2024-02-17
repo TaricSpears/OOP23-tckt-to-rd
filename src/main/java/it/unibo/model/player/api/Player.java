@@ -6,6 +6,7 @@ import java.util.Map;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.route.api.Route;
+import java.util.List;
 
 import java.awt.Color;
 
@@ -33,6 +34,11 @@ public interface Player {
      * @return the map of train cards of the player.
      */
     Map<Color, Integer> getTrainCards();
+
+    /**
+     * @return the list of train cards of the player.
+     */
+    List<TrainCard> getListTrainCards();
 
     /**
      * Removes a train card from the player's hand.

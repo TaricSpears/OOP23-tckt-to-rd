@@ -46,7 +46,7 @@ public class FillRouteImpl implements FillRoute {
     public boolean isRouteValid() {
         // controll jolly cards
         if (route.getColor().equals(Color.GRAY) != true && route.getColor().equals(null) != true) {
-            final long totCards = player.getTrainCards().stream()
+            final long totCards = player.getListTrainCards().stream()
                     .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
                     .count();
 
@@ -94,14 +94,14 @@ public class FillRouteImpl implements FillRoute {
     @Override
     public void clickRoute() {
         if (isRouteValid()) {
-            if (route.getScore() < player.getTrainCards().stream()
+            if (route.getScore() < player.getListTrainCards().stream()
                     .filter(card -> card.getColor().equals(route.getColor())).count()) {
                 for (int i = 0; i < route.getScore(); i++) {
-                    if (player.getTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
+                    if (player.getListTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
                             .count() > 0) {
-                        player.removeTrainCard(route.getColor());
+                        player.removeTrainCard(route.getColor(), 1);
                     } else {
-                        player.removeTrainCard(Color.DARK_GRAY);
+                        player.removeTrainCard(Color.DARK_GRAY, 1);
                     }
                 }
                 player.addRoute(route);
@@ -109,7 +109,7 @@ public class FillRouteImpl implements FillRoute {
             } else if (route.getColor().equals(Color.GRAY) && isRouteValid()) {
                 openPopUp();
                 if (chosenColor != null) {
-                    removeCards(chosenColor, route.getScore());
+                    player.removeTrainCard(chosenColor, route.getScore());
                     player.addRoute(route);
                     route.setFilled();
                 } else {
@@ -124,15 +124,8 @@ public class FillRouteImpl implements FillRoute {
     }
 
     @Override
-    public void removeCards(Color color, int quantity) {
-        for (int i = 0; i < quantity; i++) {
-            player.removeTrainCard(color);
-        }
-    }
-
-    @Override
     public boolean isColorEnough(Color color) {
-        return player.getTrainCards().stream()
+        return player.getListTrainCards().stream()
                 .filter(card -> card.getColor().equals(color) || card.getColor().equals(Color.DARK_GRAY))
                 .count() >= route.getScore();
     }
