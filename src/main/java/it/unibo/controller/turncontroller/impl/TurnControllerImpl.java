@@ -57,4 +57,12 @@ public class TurnControllerImpl implements TurnController {
                 + this.turnManager.getCurrentPlayer().getName();
     }
 
+    /*
+     * @return the current player.
+     */
+    @Override
+    public Player getCurrentPlayer() {
+        return this.turnManager.getCurrentPlayer();
+    }
+
 }
