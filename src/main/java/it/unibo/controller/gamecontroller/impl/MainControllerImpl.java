@@ -23,13 +23,15 @@ public class MainControllerImpl implements MainController {
 
     private DrawController drawController = new DrawControllerImpl();
 
-    TrainCard handleDrawTrainCard() {
+    @Override
+    public TrainCard handleDrawTrainCard() {
         TrainCard card = drawController.drawTrainCard();
         this.turnController.getCurrentPlayer().addTrainCard(card);
         return card;
     }
 
-    ObjectiveCard handleDrawObjectiveCard() {
+    @Override
+    public ObjectiveCard handleDrawObjectiveCard() {
         Boolean drawn = false;
         ObjectiveCard card;
 
