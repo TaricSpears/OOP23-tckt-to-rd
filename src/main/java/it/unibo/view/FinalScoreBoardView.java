@@ -3,7 +3,7 @@ package it.unibo.view;
 import java.util.List;
 
 import it.unibo.commons.Pair;
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class FinalScoreBoardView extends Stage {
 
-    public FinalScoreBoardView(final StartController controller) {
+    public FinalScoreBoardView(final MainController controller) {
         this.setTitle("Final Game Score Board");
 
         final Button endButton = new Button("Close");
@@ -31,7 +31,7 @@ public class FinalScoreBoardView extends Stage {
 
         final Button newGame = new Button("New Game");
         newGame.setOnAction(event -> {
-            controller.getMainController().newGame();
+            controller.getGameController().newGame();
             this.close();
         });
 
@@ -44,7 +44,7 @@ public class FinalScoreBoardView extends Stage {
         gameControls.setSpacing(30);
         gameControls.setAlignment(Pos.CENTER);
 
-        final List<Pair<String, Integer>> players = controller.getMainController().getScore();
+        final List<Pair<String, Integer>> players = controller.getGameController().getScore();
 
         for (final Pair<String, Integer> player : players) {
             final Text playerEntry = new Text(player.first() + " - " + player.second());

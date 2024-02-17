@@ -1,11 +1,11 @@
 package it.unibo.start;
 
-import it.unibo.controller.gamecontroller.api.StartController;
-import it.unibo.controller.gamecontroller.impl.StartControllerImpl;
+import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.gamecontroller.impl.MainControllerImpl;
 
 public class GameStart {
 
-    public static StartController controller = new StartControllerImpl();
+    public static MainController controller = new MainControllerImpl();
 
     public static void main(String[] args) {
         controller.startView();

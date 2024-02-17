@@ -1,63 +1,57 @@
 package it.unibo.view;
 
 import java.util.List;
-import java.util.Set;
 
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.route.api.Route;
-import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainStage extends Stage {
 
-    public MainStage(final StartController controller) {
+    private PlayerInterface playerInterface;
+    final private Screen screen = Screen.getPrimary();
+    final private Rectangle2D bounds = screen.getVisualBounds();
+    final private BorderPane root;
+    final private Scene scene;
+    final private Pane pane;
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        System.out.println(bounds.getWidth() + " " + bounds.getHeight());
-        final BorderPane root = new BorderPane();
-        final Scene scene = new Scene(root, bounds.getWidth() * 0.9, bounds.getHeight() * 0.9);
-        final Pane pane = new Pane();
-        final Button endGame = new Button("End Game");
-        VBox vBox = new VBox(endGame);
+    public MainStage(final MainController controller) {
+        this.root = new BorderPane();
+        this.scene = new Scene(this.root, this.bounds.getWidth() * 0.9, this.bounds.getHeight() * 0.9);
+        this.pane = new Pane();
+        this.playerInterface = new PlayerInterface(controller,
+                this.scene.getWidth() - this.pane.getMaxWidth(),
+                this.scene.getHeight() - this.pane.getMaxWidth());
 
         final Image image = new Image("/img/Maps/europeMapLabeled.jpg");
 
-        root.setCenter(pane);
+        this.root.setCenter(this.pane);
         // BorderPane.setMargin(pane, new Insets(10));
 
-        endGame.setOnAction(event -> {
-            controller.getMainController().endGame();
-        });
-        pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        this.root.setRight(this.playerInterface);
+
+        this.pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
 
-        root.setRight(vBox);
-
-        pane.setMaxWidth(scene.getWidth() * 0.8);
-        pane.setMaxHeight(scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
+        this.pane.setMaxWidth(this.scene.getWidth() * 0.8);
+        this.pane.setMaxHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
+        this.pane.setMinWidth(this.scene.getWidth() * 0.8);
+        this.pane.setMinHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
         final List<Route> routeList = new RouteReaderController().read();
         Carriage carriage;
@@ -67,19 +61,31 @@ public class MainStage extends Stage {
             while (iterator.hasNext()) {
                 carriage = iterator.next();
                 final Shape shape = new Shape(
-                        carriage.xCoord() * pane.getMaxWidth() - (27 * bounds.getWidth() / 2560),
-                        carriage.yCoord() * pane.getMaxHeight() - (8 * bounds.getHeight() / 1440),
+                        carriage.xCoord() * pane.getMaxWidth(),
+                        carriage.yCoord() * pane.getMaxHeight(),
                         carriage.width() * pane.getMaxWidth(),
                         carriage.length() * pane.getMaxWidth());
                 shape.setTilt(360.0 - Math.toDegrees(carriage.angle()));
-                shape.setFill("red");
+                shape.setStrokeWidth(3.0);
+                shape.setFill(
+                        Color.rgb(route.getColor().getRed(), route.getColor().getGreen(), route.getColor().getBlue()));
+
+                shape.setOnMouseClicked(event -> {
+                    java.awt.Color playerColor = controller.getGameController().getCurrentPlayer().getColor();
+                    shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
+                });
                 pane.getChildren().add(shape);
             }
         }
 
-        vBox.setMinSize(scene.getWidth() - pane.getMaxWidth(), scene.getHeight() - pane.getMaxWidth());
-
-        this.setScene(scene);
+        this.setScene(this.scene);
         this.setResizable(false);
+    }
+
+    public void refreshPlayerInterface(final MainController controller) {
+        this.playerInterface = new PlayerInterface(controller,
+                this.scene.getWidth() - this.pane.getMaxWidth(),
+                this.scene.getHeight() - this.pane.getMaxWidth());
+        this.root.setRight(this.playerInterface);
     }
 }

@@ -35,7 +35,6 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
     @Override
     public double calculateScore(Pair<City, City> objective) {
-        // Cercare una migliore implementazione
         return new BellmanFordShortestPath<>(this.graph).getPathWeight(objective.first(), objective.second());
     }
 }

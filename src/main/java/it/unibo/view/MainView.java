@@ -2,14 +2,14 @@ package it.unibo.view;
 
 import java.util.Objects;
 
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
 
-    public static StartController controller = GameStart.controller;
+    public static MainController controller = GameStart.controller;
     private StartStage startStage;
     private MainStage mainStage;
 
@@ -17,8 +17,8 @@ public class MainView extends Application {
     public void start(Stage primaryStage) throws Exception {
         controller.setMainApp(this);
 
-        // launchPlayerSlect();
-        launchMainView();
+        launchPlayerSlect();
+        // launchMainView();
     }
 
     public void launchPlayerSlect() {
@@ -28,9 +28,7 @@ public class MainView extends Application {
 
     public void launchMainView() {
         mainStage = new MainStage(controller);
-
         mainStage.show();
-
     }
 
     public void launchScoreBoard() {
@@ -42,5 +40,9 @@ public class MainView extends Application {
         if (!Objects.isNull(mainStage)) {
             mainStage.close();
         }
+    }
+
+    public void refreshPlayerInterface() {
+        mainStage.refreshPlayerInterface(controller);
     }
 }
