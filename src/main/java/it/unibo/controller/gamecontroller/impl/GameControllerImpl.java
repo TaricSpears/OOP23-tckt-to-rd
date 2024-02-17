@@ -117,7 +117,7 @@ public class GameControllerImpl implements GameController {
     public boolean addPlayer(Pair<String, Color> player) {
         if (tempPlayers.stream().anyMatch(
                 x -> x.first().equals(player.first()) || x.second().equals(player.second()))
-                || tempPlayers.size() >= 6) {
+                || tempPlayers.size() >= 6 || player.first().isBlank()) {
             return false;
         }
         tempPlayers.add(player);
