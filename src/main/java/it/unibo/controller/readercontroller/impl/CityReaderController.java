@@ -15,6 +15,9 @@ import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
 import it.unibo.model.city.impl.CityImpl;
 
+/*
+ * This class models a ReaderController for reading Cities.json file.
+ */
 public class CityReaderController extends AbstractReaderController<List<City>> {
 
     private static final String CITY_FILE_PATH = "/configuration/EuropeConfiguration/Cities.json";
@@ -24,6 +27,9 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
     private final int mapWidth;
     private final List<City> cities;
 
+    /*
+     * Initializes the CityReaderController.
+     */
     public CityReaderController(){
         super(CITY_FILE_PATH);
         this.cities = new LinkedList<>();
@@ -32,7 +38,10 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
         this.mapHeight = controller.getMapHeight();
         this.mapWidth = controller.getMapWidth();
     }
-
+    
+    /*
+     * @return the result of the reading operation
+     */
     @Override
     public List<City> read() {
         final JSONParser parser = new JSONParser();

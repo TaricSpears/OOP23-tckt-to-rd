@@ -11,16 +11,25 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/*
+ * This class models a ReaderController for reading MapData.json file.
+ */
 public class MapReaderController extends AbstractReaderController<List<Integer>> {
 
     private static final String MAP_FILE_PATH = "/configuration/EuropeConfiguration/MapData.json";
     private final List<Integer> mapData;
 
+    /*
+     * Initializes the MapReaderController.
+     */
     public MapReaderController() {
         super(MAP_FILE_PATH);
         this.mapData = this.read();
     }
 
+    /*
+     * @return the result of the reading operation
+     */
     @Override
     public List<Integer> read() {
         final JSONParser parser = new JSONParser();
@@ -44,22 +53,37 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
         return retList;
     }
 
+    /*
+     * @return the map's width
+     */
     public int getMapWidth(){
         return this.mapData.get(0);
     }
 
+    /*
+     * @return the map's heigth
+     */
     public int getMapHeight(){
         return this.mapData.get(1);
     }
 
+    /*
+     * @return the map's city radius
+     */
     public int getCityRadius(){
         return this.mapData.get(2);
     }
 
+    /*
+     * @return the map's rail width
+     */
     public int getRailWidth(){
         return this.mapData.get(3);
     }
-    
+
+    /*
+     * @return the map's rail length
+     */
     public int getRailLength(){
         return this.mapData.get(4);
     }

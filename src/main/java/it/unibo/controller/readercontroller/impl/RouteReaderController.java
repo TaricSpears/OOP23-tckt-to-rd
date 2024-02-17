@@ -24,6 +24,9 @@ import org.json.simple.parser.ParseException;
 
 import java.awt.Color;
 
+/*
+ * This class models a ReaderController for reading Routes.json file.
+ */
 public class RouteReaderController extends AbstractReaderController<List<Route>>{
 
     private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
@@ -35,6 +38,9 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
     private final List<Route> routes;
     private final List<City> cities;
 
+    /*
+     * Initializes the RouteReaderController.
+     */
     public RouteReaderController() {
         super(ROUTE_FILE_PATH);
         this.routes = new LinkedList<>();
@@ -47,6 +53,9 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
         cities = cityReader.read();
     }
 
+    /*
+     * @return the result of the reading operation
+     */
     @Override
     public List<Route> read() {
         final JSONParser parser = new JSONParser();
