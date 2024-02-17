@@ -3,6 +3,9 @@ package it.unibo.controller.gamecontroller.api;
 import java.util.List;
 
 import it.unibo.commons.Pair;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 import it.unibo.view.MainView;
 
 /**
@@ -60,4 +63,14 @@ public interface GameController {
      * @param view the main view that controls the other ones
      */
     void addView(MainView view);
+
+    /**
+     * @return the drawn train card
+     */
+    TrainCard handleDrawTrainCard();
+
+    /**
+     * @return the drawn objective card
+     */
+    ObjectiveCard handleDrawObjectiveCard();
 }

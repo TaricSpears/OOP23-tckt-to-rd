@@ -26,7 +26,7 @@ public class PlayerInterface extends VBox {
 
         final Button drawTrain = new Button("Draw Train Card");
         drawTrain.setOnAction(event -> {
-            new DrawTrainCardPopUp(controller.handleDrawTrainCard());
+            new DrawTrainCardPopUp(controller.getGameController().handleDrawTrainCard());
         });
         final Button drawObjective = new Button("Draw new Objective");
 

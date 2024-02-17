@@ -6,8 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 import it.unibo.commons.Pair;
+import it.unibo.controller.drawcontroller.api.DrawController;
+import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
 import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 import it.unibo.view.MainView;
@@ -23,6 +27,8 @@ public class GameControllerImpl implements GameController {
 
     private MainView view;
 
+    private DrawController drawController = new DrawControllerImpl();
+
     /**
      * Simple constructor of the controller of the game logic
      * 
@@ -30,6 +36,32 @@ public class GameControllerImpl implements GameController {
      */
     public GameControllerImpl(final MainController mainController) {
         this.mainController = mainController;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public TrainCard handleDrawTrainCard() {
+        TrainCard card = drawController.drawTrainCard();
+        this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
+        return card;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ObjectiveCard handleDrawObjectiveCard() {
+        Boolean drawn = false;
+        ObjectiveCard card;
+
+        do {
+            card = drawController.drawObjectiveCard();
+            drawn = this.mainController.getTurnController().getCurrentPlayer().addObjectiveCard(card);
+        } while (!drawn);
+
+        return card;
     }
 
     /**
