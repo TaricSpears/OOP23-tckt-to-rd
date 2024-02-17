@@ -14,6 +14,8 @@ import it.unibo.controller.drawcontroller.api.DrawController;
 import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.phasecontroller.api.PhaseController;
+import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.card.api.ObjectiveCard;
@@ -35,6 +37,8 @@ public class GameControllerImpl implements GameController {
 
     private DrawController drawController = new DrawControllerImpl();
 
+    private PhaseController phaseController = new PhaseControllerImpl();
+
     /**
      * Simple constructor of the controller of the game logic
      * 
@@ -51,6 +55,7 @@ public class GameControllerImpl implements GameController {
     public TrainCard handleDrawTrainCard() {
         TrainCard card = drawController.drawTrainCard();
         this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
+        this.phaseController.switchPhase();
         return card;
     }
 
@@ -61,6 +66,8 @@ public class GameControllerImpl implements GameController {
     public ObjectiveCard handleDrawObjectiveCard() {
         Boolean drawn = false;
         ObjectiveCard card;
+
+        this.phaseController.switchPhase();
 
         do {
             card = drawController.drawObjectiveCard();
@@ -77,6 +84,7 @@ public class GameControllerImpl implements GameController {
     public void endTurn() {
         mainController.getTurnController().endTurn();
         view.refreshPlayerInterface();
+        this.phaseController = new PhaseControllerImpl();
     }
 
     /**
@@ -151,14 +159,14 @@ public class GameControllerImpl implements GameController {
         Route route;
         Iterator<Carriage> routeIterator;
         Carriage carriage;
-        for(int i=0; i<routeSet.size(); i++){
+        for (int i = 0; i < routeSet.size(); i++) {
             route = routeSet.get(i);
             routeIterator = route.getRailUnits().iterator();
-            while(routeIterator.hasNext()){
+            while (routeIterator.hasNext()) {
                 carriage = routeIterator.next();
                 regionSet.add(new Region(carriage.xCoord(), carriage.yCoord(),
-                     carriage.width(), carriage.length(), carriage.angle(),
-                     route.getId(), route.getColor()));
+                        carriage.width(), carriage.length(), carriage.angle(),
+                        route.getId(), route.getColor()));
             }
         }
         return regionSet;
