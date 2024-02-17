@@ -2,7 +2,7 @@ package it.unibo.view;
 
 import java.util.List;
 
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.route.api.Route;
@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class MainStage extends Stage {
 
-    public MainStage(final StartController controller) {
+    public MainStage(final MainController controller) {
 
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
@@ -73,19 +73,24 @@ public class MainStage extends Stage {
                 shape.setStrokeWidth(3.0);
                 shape.setFill(
                         Color.rgb(route.getColor().getRed(), route.getColor().getGreen(), route.getColor().getBlue()));
-                java.awt.Color playerColor = controller.getMainController().getCurrentPlayer().getColor();
-                shape.setOnMouseClicked(event -> shape
-                        .setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue())));
+
+                shape.setOnMouseClicked(event -> {
+                    java.awt.Color playerColor = controller.getMainController().getCurrentPlayer().getColor();
+                    shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
+                });
                 pane.getChildren().add(shape);
             }
         }
 
         final Button endTurn = new Button("End Turn");
+        endTurn.setOnAction(event -> {
+            controller.getMainController().endTurn();
+        });
 
         final Button drawTrain = new Button("Draw Train Card");
         final Button drawObjective = new Button("Draw new Objective");
 
-        vBox.getChildren().addAll(drawTrain, drawObjective, endTurn, new ObjectiveBox(null));
+        vBox.getChildren().addAll(drawTrain, drawObjective, endTurn, new ObjectiveBox(controller));
 
         vBox.setMinSize(scene.getWidth() - pane.getMaxWidth(), scene.getHeight() - pane.getMaxWidth());
 

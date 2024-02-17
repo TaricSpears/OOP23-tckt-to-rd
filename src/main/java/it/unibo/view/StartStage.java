@@ -1,7 +1,7 @@
 package it.unibo.view;
 
 import it.unibo.commons.Pair;
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -29,7 +29,7 @@ public final class StartStage extends Stage {
 
     private Set<Pair<String, Color>> players = new HashSet<>();
 
-    public StartStage(final StartController controller) {
+    public StartStage(final MainController controller) {
         final TextField nameField = new TextField();
         final Button submitButton = new Button("Submit");
         final ColorPicker colorPicker = new ColorPicker();

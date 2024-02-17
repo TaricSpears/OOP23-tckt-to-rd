@@ -2,14 +2,14 @@ package it.unibo.view;
 
 import java.util.Objects;
 
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
 
-    public static StartController controller = GameStart.controller;
+    public static MainController controller = GameStart.controller;
     private StartStage startStage;
     private MainStage mainStage;
 

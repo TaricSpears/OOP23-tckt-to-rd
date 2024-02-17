@@ -3,7 +3,7 @@ package it.unibo.view;
 import java.util.List;
 
 import it.unibo.commons.Pair;
-import it.unibo.controller.gamecontroller.api.StartController;
+import it.unibo.controller.gamecontroller.api.MainController;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 public class FinalScoreBoardView extends Stage {
 
-    public FinalScoreBoardView(final StartController controller) {
+    public FinalScoreBoardView(final MainController controller) {
         this.setTitle("Final Game Score Board");
 
         final Button endButton = new Button("Close");
