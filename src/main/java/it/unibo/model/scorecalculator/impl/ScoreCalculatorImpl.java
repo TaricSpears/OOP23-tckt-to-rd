@@ -17,7 +17,7 @@ public class ScoreCalculatorImpl implements ScoreCalculator {
     public List<Pair<String, Integer>> getScoreBoard(final List<Player> players) {
         return players.stream()
                 .map(p -> new Pair<String, Integer>(p.getName(), p.getObjectiveScore() + p.getRouteScore()))
-                .sorted((x, y) -> x.second() - y.second())
+                .sorted((x, y) -> y.second() - x.second())
                 .toList();
     }
 }

@@ -95,4 +95,6 @@ public interface Player {
      * @return true if the card was added, false otherwise.
      */
     boolean addObjectiveCard(ObjectiveCard card);
+
+    void addRouteAncCheckObjective(Route route);
 }

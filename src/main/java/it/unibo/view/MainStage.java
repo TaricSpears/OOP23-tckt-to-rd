@@ -71,7 +71,7 @@ public class MainStage extends Stage {
                         Color.rgb(route.getColor().getRed(), route.getColor().getGreen(), route.getColor().getBlue()));
 
                 shape.setOnMouseClicked(event -> {
-                    java.awt.Color playerColor = controller.getGameController().getCurrentPlayer().getColor();
+                    java.awt.Color playerColor = controller.getTurnController().getCurrentPlayer().getColor();
                     shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
                 });
                 pane.getChildren().add(shape);
