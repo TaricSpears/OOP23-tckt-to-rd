@@ -36,20 +36,21 @@ public class PlayerInterface extends VBox {
         });
 
         rules.setOnAction(event -> {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setResizable(false);
-            alert.getDialogPane().setMaxSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
-            alert.getDialogPane().setMinSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
 
-            alert.setTitle("Rules");
             String rulesText = "";
             try {
-                rulesText = Files.readString(Path.of("src\\main\\resources\\text\\Rules.txt"), StandardCharsets.UTF_8);
+                rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"), StandardCharsets.UTF_8);
+                Alert alert = new Alert(AlertType.INFORMATION, rulesText);
+                alert.setResizable(false);
+                alert.getDialogPane().setMaxSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
+                alert.getDialogPane().setMinSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
+
+                alert.setTitle("Rules");
+                alert.showAndWait();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            alert.setHeaderText(rulesText);
-            alert.showAndWait();
 
         });
 
