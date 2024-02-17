@@ -27,7 +27,7 @@ public interface Player {
     /**
      * @return the map of train cards of the player.
      */
-    Map<TrainCard, Integer> getTrainCards();
+    Map<Color, Integer> getTrainCards();
 
     /**
      * Removes a train card from the player's hand.

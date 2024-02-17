@@ -3,7 +3,6 @@ package it.unibo.model.player.impl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
-import it.unibo.model.card.impl.TrainCardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
@@ -27,7 +26,7 @@ public class PlayerImpl implements Player {
 
     private final String name;
     private final Color color;
-    private final Map<TrainCard, Integer> trainCards;
+    private final Map<Color, Integer> trainCards;
     private final Set<ObjectiveCard> objectiveCards;
     private final Set<Route> completedRoutes;
     private int carriageNum;
@@ -36,12 +35,12 @@ public class PlayerImpl implements Player {
 
     private final WeightedPseudograph<City, Route> playerGraph;
 
-    /*
+    /**
      * Constructor for the player.
      * 
-     * @param name the name of the player.
+     * @param name        the name of the player.
      * 
-     * @param color the color of the player.
+     * @param color       the color of the player.
      * 
      * @param carriageNum the number of carriages of the player.
      */
@@ -56,15 +55,15 @@ public class PlayerImpl implements Player {
         this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
 
         this.trainCards = new HashMap<>();
-        this.trainCards.put(new TrainCardImpl(Color.BLACK), 1);
-        this.trainCards.put(new TrainCardImpl(Color.BLUE), 1);
-        this.trainCards.put(new TrainCardImpl(Color.GREEN), 1);
-        this.trainCards.put(new TrainCardImpl(Color.RED), 1);
-        this.trainCards.put(new TrainCardImpl(Color.WHITE), 1);
-        this.trainCards.put(new TrainCardImpl(Color.YELLOW), 1);
-        this.trainCards.put(new TrainCardImpl(Color.ORANGE), 1);
-        this.trainCards.put(new TrainCardImpl(Color.PINK), 1);
-        this.trainCards.put(new TrainCardImpl(Color.DARK_GRAY), 0);
+        this.trainCards.put(Color.BLACK, 1);
+        this.trainCards.put(Color.BLUE, 1);
+        this.trainCards.put(Color.GREEN, 1);
+        this.trainCards.put(Color.RED, 1);
+        this.trainCards.put(Color.WHITE, 1);
+        this.trainCards.put(Color.YELLOW, 1);
+        this.trainCards.put(Color.ORANGE, 1);
+        this.trainCards.put(Color.PINK, 1);
+        this.trainCards.put(Color.DARK_GRAY, 0);
     }
 
     /**
@@ -98,8 +97,8 @@ public class PlayerImpl implements Player {
      * @return the map of train cards of the player.
      */
     @Override
-    public Map<TrainCard, Integer> getTrainCards() {
-        Map<TrainCard, Integer> trainCardList = new HashMap<>(trainCards);
+    public Map<Color, Integer> getTrainCards() {
+        Map<Color, Integer> trainCardList = new HashMap<>(trainCards);
         return Collections.unmodifiableMap(trainCardList);
     }
 
@@ -176,7 +175,7 @@ public class PlayerImpl implements Player {
      */
     @Override
     public void removeTrainCard(Color color, int num) {
-        this.trainCards.replace(new TrainCardImpl(color), this.trainCards.get(new TrainCardImpl(color)) - num);
+        this.trainCards.replace(color, this.trainCards.get(color) - num);
     }
 
     /**
@@ -186,7 +185,7 @@ public class PlayerImpl implements Player {
      */
     @Override
     public void addTrainCard(TrainCard card) {
-        this.trainCards.replace(card, this.trainCards.get(new TrainCardImpl(color)) + 1);
+        this.trainCards.replace(card.getColor(), this.trainCards.get(card.getColor()) + 1);
     }
 
     @Override
