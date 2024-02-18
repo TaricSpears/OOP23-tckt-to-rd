@@ -240,16 +240,5 @@ public class PlayerImpl implements Player {
         return this.objectiveCards.add(card);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<TrainCard> getListTrainCards() {
-        for (final Color color : trainCards.keySet()) {
-            for (int i = 0; i < trainCards.get(color); i++) {
-                listTrainCards.add(new TrainCardImpl(color));
-            }
-        }
-        return listTrainCards;
-    }
+   
 }

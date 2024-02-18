@@ -31,11 +31,6 @@ public interface Player {
     Map<Color, Integer> getTrainCards();
 
     /**
-     * @return the list of train cards of the player.
-     */
-    List<TrainCard> getListTrainCards();
-
-    /**
      * Removes a train card from the player's hand.
      * 
      * @param color the color of the card to remove.
