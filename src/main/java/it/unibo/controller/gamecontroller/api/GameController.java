@@ -83,4 +83,9 @@ public interface GameController {
      * @return the phase controller
      */
     PhaseController getPhaseController();
+
+    /**
+     * Refresh all the views
+     */
+    void refreshView();
 }

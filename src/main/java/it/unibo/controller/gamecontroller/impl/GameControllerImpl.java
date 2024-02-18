@@ -159,6 +159,9 @@ public class GameControllerImpl implements GameController {
         this.view = view;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Region> getRegions() {
         final List<Route> routeSet = mainController.getGameInstance().getRoutes();
@@ -179,18 +182,33 @@ public class GameControllerImpl implements GameController {
         return regionSet;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     private Optional<Color> getRouteClaimerColor(Route routeToFind) {
         final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
-        for(var player: playerList){
-            for(var route: player.getCompletedRoutes()){
-                if(routeToFind.equals(route))return Optional.of(player.getColor());
+        for (var player : playerList) {
+            for (var route : player.getCompletedRoutes()) {
+                if (routeToFind.equals(route))
+                    return Optional.of(player.getColor());
             }
         }
         return Optional.empty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PhaseController getPhaseController() {
         return this.phaseController;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void refreshView() {
+        this.view.refreshAll();
     }
 }
