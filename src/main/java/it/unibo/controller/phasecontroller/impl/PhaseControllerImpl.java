@@ -37,7 +37,7 @@ public class PhaseControllerImpl implements PhaseController {
             case MID:
                 return "Choose whether to draw another Train Card, a new Objective Card or claim a route.";
             case END:
-                return "Pass the turn to the next playe";
+                return "Pass the turn to the next player";
             default:
                 throw new IllegalStateException("Unknown phase");
         }
