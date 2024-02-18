@@ -68,7 +68,7 @@ public class PlayerImpl implements Player {
         this.trainCards.put(Color.WHITE, 1);
         this.trainCards.put(Color.YELLOW, 1);
         this.trainCards.put(Color.ORANGE, 1);
-        this.trainCards.put(Color.PINK, 1);
+        this.trainCards.put(Color.MAGENTA, 1);
         this.trainCards.put(Color.DARK_GRAY, 0);
     }
 
@@ -240,5 +240,4 @@ public class PlayerImpl implements Player {
         return this.objectiveCards.add(card);
     }
 
-   
 }

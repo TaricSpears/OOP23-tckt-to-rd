@@ -31,7 +31,7 @@ public class CardBox extends VBox {
         colorImageMap.put(Color.WHITE, "/img/Cards/WhiteCard.jpg");
         colorImageMap.put(Color.YELLOW, "/img/Cards/YellowCard.jpg");
         colorImageMap.put(Color.ORANGE, "/img/Cards/OrangeCard.jpg");
-        colorImageMap.put(Color.PINK, "/img/Cards/PurpleCard.jpg");
+        colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
         colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
 
         var temp = new ArrayList<>(this.colorImageMap.entrySet());
@@ -66,7 +66,7 @@ public class CardBox extends VBox {
         }
 
         this.setBorder(new Border(new BorderStroke(
-            javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
+                javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
     }
 
 }
