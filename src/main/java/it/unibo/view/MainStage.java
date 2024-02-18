@@ -1,6 +1,7 @@
 package it.unibo.view;
 
 import java.util.Set;
+import java.util.HashSet;
 
 import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
@@ -26,6 +27,7 @@ public class MainStage extends Stage {
     final private BorderPane root;
     final private Scene scene;
     final private Pane pane;
+    private Set<Shape> shapeSet = new HashSet<>();
 
     public MainStage(final MainController controller) {
         this.root = new BorderPane();
@@ -50,7 +52,7 @@ public class MainStage extends Stage {
         this.pane.setMinWidth(this.scene.getWidth() * 0.8);
         this.pane.setMinHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
 
-        final Set<Shape> shapeSet = new ShapeSetter(controller)
+        this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (var shape : shapeSet) {
             pane.getChildren().add(shape);
@@ -68,9 +70,10 @@ public class MainStage extends Stage {
     }
 
     public void refreshShapes(final MainController controller) {
-        final Set<Shape> shapeSet = new ShapeSetter(controller)
+        this.pane.getChildren().clear();
+        this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
-        for (var shape : shapeSet) {
+        for (var shape : this.shapeSet) {
             pane.getChildren().add(shape);
         }
 
