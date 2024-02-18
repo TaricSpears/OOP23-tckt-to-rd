@@ -85,33 +85,36 @@ public class FillRouteImpl implements FillRoute {
     @Override
     public boolean clickRoute() {
         if (isRouteValid()) {
-            if (route.getColor().equals(Color.GRAY)) {
+            if (this.route.getColor().equals(Color.GRAY)) {
                 openPopUp();
-                if (!chosenColor.equals(null)) {
-                    if (route.getScore() <= player.getTrainCards().get(chosenColor)) {
-                        player.removeTrainCard(chosenColor, route.getScore());
+                if (!this.chosenColor.equals(null)) {
+                    if (this.route.getScore() <= this.player.getTrainCards().get(this.chosenColor)) {
+                        this.player.removeTrainCard(this.chosenColor, this.route.getScore());
+                        this.player.setCarriageNum(this.player.getCarriageNum() - this.route.getScore());
                     } else {
-                        final int colorCardNum = player.getTrainCards().get(chosenColor);
-                        player.removeTrainCard(chosenColor, colorCardNum);
-                        player.removeTrainCard(Color.DARK_GRAY, route.getScore() - colorCardNum);
+                        final int colorCardNum = this.player.getTrainCards().get(this.chosenColor);
+                        this.player.removeTrainCard(chosenColor, colorCardNum);
+                        this.player.removeTrainCard(Color.DARK_GRAY, this.route.getScore() - colorCardNum);
+                        this.player.setCarriageNum(this.player.getCarriageNum() - this.route.getScore());
                     }
-                    player.addRoute(route);
-                    route.setFilled();
+                    this.player.addRoute(route);
+                    this.route.setFilled();
                     return true;
                 } else {
                     openAlert("You didn't choose a color.");
                     return false;
                 }
             } else {
-                if (route.getScore() <= player.getTrainCards().get(route.getColor())) {
-                    player.removeTrainCard(route.getColor(), route.getScore());
+                if (this.route.getScore() <= this.player.getTrainCards().get(this.route.getColor())) {
+                    this.player.removeTrainCard(this.route.getColor(), this.route.getScore());
                 } else {
-                    final int colorCardNum = player.getTrainCards().get(route.getColor());
-                    player.removeTrainCard(route.getColor(), colorCardNum);
-                    player.removeTrainCard(Color.DARK_GRAY, route.getScore() - colorCardNum);
+                    final int colorCardNum = this.player.getTrainCards().get(this.route.getColor());
+                    this.player.removeTrainCard(this.route.getColor(), colorCardNum);
+                    this.player.removeTrainCard(Color.DARK_GRAY, this.route.getScore() - colorCardNum);
                 }
-                player.addRoute(route);
-                route.setFilled();
+                this.player.setCarriageNum(this.player.getCarriageNum() - this.route.getScore());
+                this.player.addRoute(route);
+                this.route.setFilled();
             }
             return true;
         } else {
@@ -121,22 +124,27 @@ public class FillRouteImpl implements FillRoute {
     }
 
     /**
+     * @param color the color of the route.
+     * 
      * @return true if the cards of the player are enough to fill the route
      */
     @Override
     public boolean isColorEnough(Color color) {
-        return player.getTrainCards().get(color) + player.getTrainCards().get(Color.DARK_GRAY) >= route.getScore();
+        return this.player.getTrainCards().get(color) + this.player.getTrainCards().get(Color.DARK_GRAY) >= this.route
+                .getScore();
 
     }
 
     /**
+     * @param fillRoute the FillRoute object.
+     * 
      * @return the list of the Colors that can fill a GRAY route
      */
     @Override
     public ObservableList<String> getAvailableRoutes(FillRoute fillRoute) {
         final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
 
-        for (var color : colors) {
+        for (var color : this.colors) {
             if (fillRoute.isColorEnough(color)) {
                 if (color.equals(Color.RED)) {
                     availableRoutes.add("RED");

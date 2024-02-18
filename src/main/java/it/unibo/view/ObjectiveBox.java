@@ -29,6 +29,8 @@ public class ObjectiveBox extends VBox {
 
         this.getChildren()
                 .add(new Text("Current player: " + controller.getTurnController().getCurrentPlayer().getName()));
+        this.getChildren()
+                .add(new Text("Carriages left: " + controller.getTurnController().getCurrentPlayer().getCarriageNum()));
 
         final Button showButton = new Button("Reveal objectives");
         showButton.setOnAction(event -> {
@@ -63,10 +65,10 @@ public class ObjectiveBox extends VBox {
         placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
 
         this.setBorder(new Border(new BorderStroke(
-            Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
+                Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
-        
+
     }
 
     private void toggleShown() {
