@@ -33,7 +33,8 @@ public class ObjectiveBox extends VBox {
                         .addAll(controller.getTurnController().getCurrentPlayer().getObjectiveCards().stream()
                                 .map(x -> {
                                     final Text objective = new Text(
-                                            x.getCities().first().getName() + " - " + x.getCities().second().getName());
+                                            x.getCities().first().getName() + " - " + x.getCities().second().getName()
+                                                    + " (" + x.getScore() + ")");
                                     objective.setTextAlignment(TextAlignment.CENTER);
                                     objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 18));
                                     return objective;
