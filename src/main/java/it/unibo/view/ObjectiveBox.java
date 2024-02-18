@@ -15,7 +15,7 @@ public class ObjectiveBox extends VBox {
 
     private boolean isShown = false;
 
-    public ObjectiveBox(final MainController controller) {
+    public ObjectiveBox(final MainController controller, final PlayerInterface playerInterface) {
 
         this.setPadding(new Insets(5));
         this.setSpacing(5);
@@ -35,23 +35,26 @@ public class ObjectiveBox extends VBox {
                                     final Text objective = new Text(
                                             x.getCities().first().getName() + " - " + x.getCities().second().getName()
                                                     + " (" + x.getScore() + ")");
-                                    objective.setTextAlignment(TextAlignment.CENTER);
-                                    objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 18));
+                                    objective.setTextAlignment(TextAlignment.LEFT);
+                                    objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
+                                    objective.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
                                     return objective;
                                 })
                                 .toList());
             } else {
                 this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 1);
                 final Text placeholderText = new Text("The objectives are hidden");
-                placeholderText.setTextAlignment(TextAlignment.CENTER);
-                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 18));
+                placeholderText.setTextAlignment(TextAlignment.LEFT);
+                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
+                placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
                 this.getChildren().add(placeholderText);
             }
         });
 
         final Text placeholderText = new Text("The objectives are hidden");
-        placeholderText.setTextAlignment(TextAlignment.CENTER);
-        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 18));
+        placeholderText.setTextAlignment(TextAlignment.LEFT);
+        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
+        placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
 
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);

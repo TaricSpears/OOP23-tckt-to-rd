@@ -23,11 +23,11 @@ public class PlayerInterface extends VBox {
         final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getGameController().getPhaseController().toString());
+        final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
         phase.setWrapText(true);
         phase.setMaxWidth(bounds.getWidth() * 0.15);
-        final ObjectiveBox objectiveBox = new ObjectiveBox(controller);
 
         this.getChildren().add(phase);
         this.getChildren().add(endGame);
