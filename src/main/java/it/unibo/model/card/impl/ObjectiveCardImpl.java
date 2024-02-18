@@ -9,7 +9,7 @@ import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
 import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
 import it.unibo.model.route.api.Route;
 
-/*
+/**
  * Implementation of {@link ObjectiveCard}.
  * Represents an objective card in the game.
  */
@@ -19,11 +19,10 @@ public class ObjectiveCardImpl implements ObjectiveCard {
     private final double scoreValue;
     private boolean completed;
 
-    /*
+    /**
      * Constructor for the objective card.
      * 
-     * @param objective the pair of cities that the player has to connect.
-     * 
+     * @param objective  the pair of cities that the player has to connect.
      * @param scoreValue the score value of the objective card.
      */
     public ObjectiveCardImpl(final WeightedPseudograph<City, Route> graph) {
@@ -34,16 +33,16 @@ public class ObjectiveCardImpl implements ObjectiveCard {
         this.completed = false;
     }
 
-    /*
-     * @return the score value of the objective card;
+    /**
+     * {@inheritDoc}
      */
     @Override
     public double getScore() {
         return this.scoreValue;
     }
 
-    /*
-     * @return the type of the card
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Type getType() {
@@ -51,18 +50,24 @@ public class ObjectiveCardImpl implements ObjectiveCard {
     }
 
     /**
-     * @return the pair of the cities to be connceted as objective
+     * {@inheritDoc}
      */
     @Override
     public Pair<City, City> getCities() {
         return this.objective;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setCompleted() {
         this.completed = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isCompleted() {
         return this.completed;

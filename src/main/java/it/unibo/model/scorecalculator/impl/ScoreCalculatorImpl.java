@@ -6,12 +6,15 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
 import it.unibo.commons.Pair;
 
+/**
+ * Implementation of {@link ScoreCalculator}.
+ * 
+ * Calculates the score of the players.
+ */
 public class ScoreCalculatorImpl implements ScoreCalculator {
 
     /**
-     * @param players the set of all the players of the match
-     * @return a list of pairs of player and his final score, ordered by score
-     *         ascending
+     * {@inheritDoc}
      */
     @Override
     public List<Pair<String, Double>> getScoreBoard(final List<Player> players) {

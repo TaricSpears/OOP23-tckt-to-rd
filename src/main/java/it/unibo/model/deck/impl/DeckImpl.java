@@ -18,14 +18,14 @@ import it.unibo.model.route.api.Route;
 public class DeckImpl implements Deck {
 
     /**
-     * @return the drawn objectiveCard
+     * {@inheritDoc}
      */
     public ObjectiveCard drawObjectiveCard(final WeightedPseudograph<City, Route> graph) {
         return new ObjectiveCardImpl(graph);
     }
 
     /**
-     * @return the drawn trainCard
+     * {@inheritDoc}
      */
     public TrainCard drawTrainCard() {
 

@@ -10,6 +10,7 @@ import it.unibo.model.turnmanager.api.TurnManager;
 
 /**
  * Implementation of {@link TurnManager}.
+ * 
  * Manages the order of player turns.
  */
 public class TurnManagerImpl implements TurnManager {
@@ -35,7 +36,7 @@ public class TurnManagerImpl implements TurnManager {
     }
 
     /**
-     * @return the current player
+     * {@inheritDoc}
      */
     @Override
     public Player getCurrentPlayer() {
@@ -43,7 +44,7 @@ public class TurnManagerImpl implements TurnManager {
     }
 
     /**
-     * @return the list of players in playing order
+     * {@inheritDoc}
      */
     @Override
     public List<Player> getPlayers() {
@@ -51,7 +52,7 @@ public class TurnManagerImpl implements TurnManager {
     }
 
     /**
-     * @return the current turn
+     * {@inheritDoc}
      */
     @Override
     public int getCurrentTurn() {
@@ -59,7 +60,7 @@ public class TurnManagerImpl implements TurnManager {
     }
 
     /**
-     * Passes control to the next player
+     * {@inheritDoc}
      */
     @Override
     public void switchToNextPlayer() {
@@ -72,7 +73,7 @@ public class TurnManagerImpl implements TurnManager {
     }
 
     /**
-     * Restart the turn cycle
+     * {@inheritDoc}
      */
     private void resetTurns() {
         this.playersIterator = this.players.iterator();

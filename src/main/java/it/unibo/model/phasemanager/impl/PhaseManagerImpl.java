@@ -2,7 +2,7 @@ package it.unibo.model.phasemanager.impl;
 
 import it.unibo.model.phasemanager.api.PhaseManager;
 
-/*
+/**
  * Implementation of {@link PhaseManager}.
  * Manages the phases of the single turn.
  */
@@ -10,23 +10,23 @@ public class PhaseManagerImpl implements PhaseManager {
 
     private Phase currentPhase;
 
-    /*
+    /**
      * Initializes the phase manager with the start phase.
      */
     public PhaseManagerImpl() {
         this.currentPhase = Phase.START;
     }
 
-    /*
-     * Returns the current phase of the turn.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Phase getCurrentPhase() {
         return this.currentPhase;
     }
 
-    /*
-     * Switches the current phase of the turn.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void switchPhase() {

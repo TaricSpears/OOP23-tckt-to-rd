@@ -8,24 +8,55 @@ import it.unibo.model.carriage.impl.Carriage;
 
 import java.awt.Color;
 
+/**
+ * Represents a route in the game.
+ */
 public interface Route {
 
+    /**
+     * @return the two cities connected by the route.
+     */
     Pair<City, City> getConnectedCity();
 
+    /**
+     * @return true if the route is completed, false otherwise.
+     */
     boolean isCompleted();
 
+    /**
+     * sets the route as completed.
+     */
     void setFilled();
 
+    /**
+     * @return the score of the route.
+     */
     int getScore();
 
+    /**
+     * @return the color of the route.
+     */
     Color getColor();
 
+    /**
+     * @return the id of the route.
+     */
     int getId();
 
+    /**
+     * @return the rail units of the route.
+     */
     Set<Carriage> getRailUnits();
 
-    boolean equals (Route toCheck);
+    /**
+     * @param toCheck the route to compare.
+     * @return true if the routes are equal, false otherwise.
+     */
+    boolean equals(Route toCheck);
 
+    /**
+     * @return the string representation of the route.
+     */
     String toString();
 
 }

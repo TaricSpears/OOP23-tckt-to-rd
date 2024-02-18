@@ -14,12 +14,21 @@ import java.util.List;
 
 import org.jgrapht.graph.WeightedPseudograph;
 
+/**
+ * Prepares the game.
+ */
 public class GamePrep {
 
     private final static int CARRIAGE_DEFAULT_NUMBER = 45;
 
     private BoardImpl board = null;
 
+    /**
+     * Prepares the players.
+     * 
+     * @param playerData informations about the players.
+     * @return the list of players.
+     */
     private List<Player> prepPlayers(final List<Pair<String, Color>> playerData) {
         final List<Player> players = new LinkedList<>();
         for (final var player : playerData) {
@@ -28,6 +37,12 @@ public class GamePrep {
         return players;
     }
 
+    /**
+     * Prepares the graph of cities and routes.
+     * 
+     * @param routeData informations about the routes.
+     * @return the graph.
+     */
     private WeightedPseudograph<City, Route> prepGraph(List<Route> routeData) {
 
         final WeightedPseudograph<City, Route> graph = new WeightedPseudograph<>(
@@ -45,18 +60,33 @@ public class GamePrep {
         return graph;
     }
 
+    /**
+     * Prepares the game.
+     * 
+     * @param playerData informations about the players.
+     * @param routeData  informations about the routes.
+     */
     public void prepGame(final List<Pair<String, Color>> playerData, final List<Route> routeData) {
         board = new BoardImpl(prepPlayers(playerData), prepGraph(routeData), routeData);
     }
 
+    /**
+     * @return the players.
+     */
     public List<Player> getPlayers() {
         return board.getPlayers();
     }
 
+    /**
+     * @return the graph.
+     */
     public WeightedPseudograph<City, Route> getGraph() {
         return board.getGraph();
     }
 
+    /**
+     * @return the list of routes.
+     */
     public List<Route> getRoutes() {
         return this.board.getRouteData();
     }

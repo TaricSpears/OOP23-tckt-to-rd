@@ -15,10 +15,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.AllDirectedPaths;
 import org.jgrapht.graph.DirectedWeightedPseudograph;
 import org.jgrapht.graph.WeightedPseudograph;
@@ -86,7 +84,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the name of the player.
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -94,7 +92,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the color of the player.
+     * {@inheritDoc}
      */
     @Override
     public Color getColor() {
@@ -102,7 +100,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the map of train cards of the player.
+     * {@inheritDoc}
      */
     @Override
     public Map<Color, Integer> getTrainCards() {
@@ -111,7 +109,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the set of objective cards of the player.
+     * {@inheritDoc}
      */
     @Override
     public Set<ObjectiveCard> getObjectiveCards() {
@@ -119,7 +117,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the set of completed routes of the player.
+     * {@inheritDoc}
      */
     @Override
     public Set<Route> getCompletedRoutes() {
@@ -127,7 +125,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the number of carriages of the player.
+     * {@inheritDoc}
      */
     @Override
     public int getCarriageNum() {
@@ -135,9 +133,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Sets the number of carriages of the player.
-     * 
-     * @param number the number of carriages of the player.
+     * {@inheritDoc}
      */
     @Override
     public void setCarriageNum(final int number) {
@@ -145,7 +141,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the score of the objective cards.
+     * {@inheritDoc}
      */
     @Override
     public double getObjectiveScore() {
@@ -181,7 +177,7 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @return the score of the routes.
+     * {@inheritDoc}
      */
     @Override
     public int getRouteScore() {
@@ -189,18 +185,14 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * @param number the score of the routes.
+     * {@inheritDoc}
      */
     private void setRouteScore(final int number) {
         this.routeScore += number;
     }
 
     /**
-     * Removes a train card from the player's hand.
-     * 
-     * @param color the color of the card to remove.
-     * 
-     * @param num   the number of cards to remove.
+     * {@inheritDoc}
      */
     @Override
     public void removeTrainCard(Color color, int num) {
@@ -208,15 +200,16 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * Adds the drawn Train card to the player's hand.
-     * 
-     * @param card the drawn card.
+     * {@inheritDoc}
      */
     @Override
     public void addTrainCard(TrainCard card) {
         this.trainCards.replace(card.getColor(), this.trainCards.get(card.getColor()) + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addRoute(final Route route) {
         final City city1 = route.getConnectedCity().first();
@@ -239,11 +232,17 @@ public class PlayerImpl implements Player {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean addObjectiveCard(ObjectiveCard card) {
         return this.objectiveCards.add(card);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<TrainCard> getListTrainCards() {
         for (final Color color : trainCards.keySet()) {

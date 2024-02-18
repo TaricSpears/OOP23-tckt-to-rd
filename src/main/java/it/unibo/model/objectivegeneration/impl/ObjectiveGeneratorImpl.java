@@ -13,15 +13,28 @@ import it.unibo.model.city.api.City;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
 import it.unibo.model.route.api.Route;
 
+/**
+ * Implementation of {@link ObjectiveGenerator}.
+ *
+ * Generates the objective cards.
+ */
 public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
     final private static double MIN_DISTANCE = 5.0;
     final private WeightedPseudograph<City, Route> graph;
 
+    /**
+     * Constructor of the objective generator.
+     * 
+     * @param graph the graph of cities and routes.
+     */
     public ObjectiveGeneratorImpl(final WeightedPseudograph<City, Route> graph) {
         this.graph = graph;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Pair<City, City> generateObjective() {
         final Random random = new Random();
@@ -35,10 +48,20 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
         return new Pair<>(city1, city2);
     }
 
+    /**
+     * Returns a random city from the list.
+     * 
+     * @param cities the list of cities.
+     * @param random the random object.
+     * @return a random city from the list.
+     */
     private City getRandomCity(List<City> cities, Random random) {
         return cities.get(random.nextInt(cities.size()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double calculateScore(Pair<City, City> objective) {
         return new BellmanFordShortestPath<>(this.graph).getPathWeight(objective.first(), objective.second());
