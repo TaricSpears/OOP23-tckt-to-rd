@@ -98,7 +98,7 @@ public class FillRouteImpl implements FillRoute {
 
     // the main method of this class, it is called when the player clicks on a route
     @Override
-    public void clickRoute() {
+    public boolean clickRoute() {
         if (isRouteValid()) {
             if (route.getScore() < player.getListTrainCards().stream()
                     .filter(card -> card.getColor().equals(route.getColor())).count()) {
@@ -112,20 +112,23 @@ public class FillRouteImpl implements FillRoute {
                 }
                 player.addRoute(route);
                 route.setFilled();
+                return true;
             } else if (route.getColor().equals(Color.GRAY) && isRouteValid()) {
                 openPopUp();
                 if (chosenColor != null) {
                     player.removeTrainCard(chosenColor, route.getScore());
                     player.addRoute(route);
                     route.setFilled();
+                    return true;
                 } else {
                     openAlert("You didn't choose a color.");
+                    return false;
                 }
-
             }
-
+            return false;
         } else {
             openAlert("You don't have enough cards to fill this route.");
+            return false;
         }
     }
 

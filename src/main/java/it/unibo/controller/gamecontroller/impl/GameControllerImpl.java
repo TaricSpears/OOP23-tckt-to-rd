@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.commons.Pair;
@@ -17,6 +18,7 @@ import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.phasecontroller.api.PhaseController;
 import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.model.carriage.impl.Carriage;
+import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
@@ -171,10 +173,20 @@ public class GameControllerImpl implements GameController {
                 carriage = routeIterator.next();
                 regionSet.add(new Region(carriage.xCoord(), carriage.yCoord(),
                         carriage.width(), carriage.length(), carriage.angle(),
-                        route.getId(), route.getColor()));
+                        route.getId(), route.getColor(), this.getRouteClaimerColor(route)));
             }
         }
         return regionSet;
+    }
+
+    private Optional<Color> getRouteClaimerColor(Route routeToFind) {
+        final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
+        for(var player: playerList){
+            for(var route: player.getCompletedRoutes()){
+                if(routeToFind.equals(route))return Optional.of(player.getColor());
+            }
+        }
+        return Optional.empty();
     }
 
     @Override

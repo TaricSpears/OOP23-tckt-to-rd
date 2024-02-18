@@ -1,5 +1,7 @@
 package it.unibo.commons;
 
+import java.util.Optional;
+
 public class Region {
     private final double xCenter;
     private final double yCenter;
@@ -7,17 +9,20 @@ public class Region {
     private final double length;
     private final double angle;
     private final int id;
-    private final java.awt.Color color;
+    private final java.awt.Color defaultColor;
+    private final Optional<java.awt.Color> playerColor;
 
     public Region (final double xCenter, final double yCenter, final double width,
-        final double length, final double angle, final int id, final java.awt.Color color){
+        final double length, final double angle, final int id, final java.awt.Color defaultColor,
+        final Optional<java.awt.Color> playerColor){
         this.xCenter = xCenter;
         this.yCenter = yCenter;
         this.width = width;
         this.length = length;
         this.angle = angle;
         this.id = id;
-        this.color = color;
+        this.defaultColor = defaultColor;
+        this.playerColor = playerColor;
     }
 
     public double getXCenter(){
@@ -44,8 +49,12 @@ public class Region {
         return this.id;
     }
 
-    public java.awt.Color getColor(){
-        return this.color;
+    public java.awt.Color getDefaultColor(){
+        return this.defaultColor;
+    }
+
+    public Optional<java.awt.Color> getPlayerColor(){
+        return this.playerColor;
     }
 
 }

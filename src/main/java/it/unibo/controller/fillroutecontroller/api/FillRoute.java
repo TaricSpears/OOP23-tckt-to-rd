@@ -12,7 +12,7 @@ public interface FillRoute {
 
     boolean isColorEnough(Color color);
 
-    void clickRoute();
+    boolean clickRoute();
 
     /*
      * this function returns true if the player has enough train cards with the
