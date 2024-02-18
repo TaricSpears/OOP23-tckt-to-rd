@@ -38,7 +38,7 @@ public class DrawTrainCardPopUp {
         colorImageMap.put(Color.WHITE, "/img/Cards/WhiteCard.jpg");
         colorImageMap.put(Color.YELLOW, "/img/Cards/YellowCard.jpg");
         colorImageMap.put(Color.ORANGE, "/img/Cards/OrangeCard.jpg");
-        colorImageMap.put(Color.PINK, "/img/Cards/PurpleCard.jpg");
+        colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
         colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
 
         this.image = new Image(colorImageMap.get(this.color));

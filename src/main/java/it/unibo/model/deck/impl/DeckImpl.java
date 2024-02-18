@@ -30,7 +30,7 @@ public class DeckImpl implements Deck {
     public TrainCard drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
-                Color.ORANGE, Color.GREEN, Color.PINK, Color.BLUE,
+                Color.ORANGE, Color.GREEN, Color.MAGENTA, Color.BLUE,
                 Color.DARK_GRAY };
 
         final int[] probabilities = { 6, 6, 6, 6, 6, 6, 6, 6, 7 };
