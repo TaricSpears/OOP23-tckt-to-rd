@@ -33,7 +33,7 @@ public class FillRouteImpl implements FillRoute {
     private Color chosenColor;
 
     final List<Color> colors = new ArrayList<Color>(
-            List.of(Color.RED, Color.BLACK, Color.PINK, Color.ORANGE, Color.YELLOW,
+            List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
     public FillRouteImpl(Player player, Region region, MainController controller) {
@@ -142,8 +142,8 @@ public class FillRouteImpl implements FillRoute {
                     availableRoutes.add("RED");
                 } else if (color.equals(Color.BLACK)) {
                     availableRoutes.add("BLACK");
-                } else if (color.equals(Color.PINK)) {
-                    availableRoutes.add("PINK");
+                } else if (color.equals(Color.MAGENTA)) {
+                    availableRoutes.add("MAGENTA");
                 } else if (color.equals(Color.ORANGE)) {
                     availableRoutes.add("ORANGE");
                 } else if (color.equals(Color.YELLOW)) {

@@ -33,8 +33,8 @@ public final class FillRouteViewImpl extends Dialog<Color> {
                 return Color.RED;
             } else if (dialog.getResult().equals("BLACK")) {
                 return Color.BLACK;
-            } else if (dialog.getResult().equals("PINK")) {
-                return Color.PINK;
+            } else if (dialog.getResult().equals("MAGENTA")) {
+                return Color.MAGENTA;
             } else if (dialog.getResult().equals("ORANGE")) {
                 return Color.ORANGE;
             } else if (dialog.getResult().equals("YELLOW")) {
