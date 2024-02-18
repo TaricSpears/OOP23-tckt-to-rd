@@ -12,33 +12,36 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 
 public class PlayerInterface extends VBox {
 
     public PlayerInterface(final MainController controller, final double width, final double height) {
+        this.setMinSize(width, height);
+        this.setMaxSize(width, height);
         final Screen screen = Screen.getPrimary();
         final Rectangle2D bounds = screen.getVisualBounds();
-        final Button endGame = new Button("End Game");
+        //final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getGameController().getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
         phase.setWrapText(true);
-        phase.setMaxWidth(bounds.getWidth() * 0.15);
+        phase.setMaxWidth(this.getMinWidth()*0.8);
+        objectiveBox.setMaxWidth(this.getMinWidth()*0.8);
 
         this.getChildren().add(phase);
-        this.getChildren().add(endGame);
-        this.getChildren().add(rules);
+        //this.getChildren().add(endGame);
 
         this.setPadding(new Insets(20));
-        this.setSpacing(20);
+        this.setSpacing(10);
 
-        endGame.setOnAction(event -> {
+        /*endGame.setOnAction(event -> {
             controller.getGameController().endGame();
-        });
+        });*/
 
         rules.setOnAction(event -> {
 
@@ -77,8 +80,12 @@ public class PlayerInterface extends VBox {
         });
         drawObjective.setDisable(!controller.getGameController().getPhaseController().isMidPhase());
 
-        this.getChildren().addAll(drawTrain, drawObjective, endTurn, objectiveBox, cardBox);
+        final HBox controlBox = new HBox(endTurn, rules);
+        final HBox drawBox = new HBox(drawObjective, drawTrain);
+        controlBox.setSpacing(2.0);
+        drawBox.setSpacing(2.0);
 
-        this.setMinSize(width, height);
+        this.getChildren().addAll(drawBox, controlBox, objectiveBox, cardBox);
+
     }
 }

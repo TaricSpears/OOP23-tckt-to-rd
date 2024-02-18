@@ -2,10 +2,9 @@ package it.unibo.view;
 
 import java.util.Set;
 import java.util.HashSet;
-
-import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -30,6 +29,7 @@ public class MainStage extends Stage {
     private Set<Shape> shapeSet = new HashSet<>();
 
     public MainStage(final MainController controller) {
+
         this.root = new BorderPane();
         this.scene = new Scene(this.root, this.bounds.getWidth() * 0.9, this.bounds.getHeight() * 0.9);
         this.pane = new Pane();

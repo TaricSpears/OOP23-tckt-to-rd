@@ -1,9 +1,15 @@
 package it.unibo.view;
 
+import javafx.scene.paint.Color;
+
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -56,8 +62,11 @@ public class ObjectiveBox extends VBox {
         placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
         placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
 
+        this.setBorder(new Border(new BorderStroke(
+            Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
+        
     }
 
     private void toggleShown() {
