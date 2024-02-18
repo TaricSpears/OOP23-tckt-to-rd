@@ -18,14 +18,14 @@ import java.util.Set;
  * Represents the frame for the color selection phase in the case the route is
  * gray.
  */
-public class FillRouteViewImpl extends Dialog<Color> {
+public final class FillRouteViewImpl extends Dialog<Color> {
 
-    private FillRoute fillRoute;
-    private Dialog<Color> dialog = new ChoiceDialog<>(null, fillRoute.getAvailableRoutes(fillRoute));
-    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private final Dialog<Color> dialog;
+    private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     public FillRouteViewImpl(FillRoute fillRoute) {
-        this.fillRoute = fillRoute;
+
+        dialog = new ChoiceDialog<>(null, fillRoute.getAvailableRoutes(fillRoute));
     }
 
     public Color openPopUp() {
