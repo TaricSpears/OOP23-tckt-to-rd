@@ -25,25 +25,26 @@ public class ShapeSetter {
         for (var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
                     region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
-            final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region,
-                    controller);
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
-            if(region.getPlayerColor().isPresent()){
+            if (region.getPlayerColor().isPresent()) {
                 final java.awt.Color strokeColor = region.getPlayerColor().get();
                 shape.setStroke(Color.rgb(strokeColor.getRed(), strokeColor.getGreen(), strokeColor.getBlue()));
             }
             shape.setStrokeWidth(3.0);
             shape.setFill(
                     Color.rgb(region.getDefaultColor().getRed(), region.getDefaultColor().getGreen(),
-                        region.getDefaultColor().getBlue()));
+                            region.getDefaultColor().getBlue()));
             shape.setOnMouseClicked(event -> {
-                if(fillRoute.clickRoute()){
-                    java.awt.Color playerColor = controller.getTurnController().getCurrentPlayer().getColor();
-                    shape.setStroke(Color.rgb(playerColor.getRed(), playerColor.getGreen(), playerColor.getBlue()));
+                final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region,
+                        controller);
+                if (fillRoute.clickRoute()) {
+                    controller.getGameController().getPhaseController().switchPhase();
+                    controller.getGameController().refreshView();
                 }
             });
             shape.setDisable(disabled);
-            if(region.getPlayerColor().isPresent())shape.setDisable(true);
+            if (region.getPlayerColor().isPresent())
+                shape.setDisable(true);
             shapeSet.add(shape);
         }
 
