@@ -15,7 +15,7 @@ import java.awt.Color;
  */
 public final class FillRouteViewImpl extends Dialog<Color> {
 
-    private final Dialog<Color> dialog;
+    private final Dialog<String> dialog;
     private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     public FillRouteViewImpl(FillRoute fillRoute) {
@@ -29,7 +29,29 @@ public final class FillRouteViewImpl extends Dialog<Color> {
         dialog.setContentText("Choose your color:");
         dialog.showAndWait();
         if (dialog.getResult() != null) {
-            return dialog.getResult();
+            if (dialog.getResult().equals("RED")) {
+                return Color.RED;
+            } else if (dialog.getResult().equals("BLACK")) {
+                return Color.BLACK;
+            } else if (dialog.getResult().equals("PINK")) {
+                return Color.PINK;
+            } else if (dialog.getResult().equals("ORANGE")) {
+                return Color.ORANGE;
+            } else if (dialog.getResult().equals("YELLOW")) {
+                return Color.YELLOW;
+            } else if (dialog.getResult().equals("GREEN")) {
+                return Color.GREEN;
+            } else if (dialog.getResult().equals("BLUE")) {
+                return Color.BLUE;
+            } else if (dialog.getResult().equals("WHITE")) {
+                return Color.WHITE;
+            } else {
+                alert.setTitle("Error");
+                alert.setHeaderText("You have to choose a color.");
+                alert.showAndWait();
+                return null;
+
+            }
         } else {
             alert.setTitle("Error");
             alert.setHeaderText("You have to choose a color.");

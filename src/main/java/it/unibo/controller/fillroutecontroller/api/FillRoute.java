@@ -30,6 +30,6 @@ public interface FillRoute {
     /**
      * @return the list of the Colors that can fill a GRAY route
      */
-    ObservableList<Color> getAvailableRoutes(FillRoute fillRoute);
+    ObservableList<String> getAvailableRoutes(FillRoute fillRoute);
 
 }

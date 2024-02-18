@@ -133,12 +133,28 @@ public class FillRouteImpl implements FillRoute {
      * @return the list of the Colors that can fill a GRAY route
      */
     @Override
-    public ObservableList<Color> getAvailableRoutes(FillRoute fillRoute) {
-        final ObservableList<Color> availableRoutes = FXCollections.observableArrayList();
+    public ObservableList<String> getAvailableRoutes(FillRoute fillRoute) {
+        final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
 
         for (var color : colors) {
             if (fillRoute.isColorEnough(color)) {
-                availableRoutes.add(color);
+                if (color.equals(Color.RED)) {
+                    availableRoutes.add("RED");
+                } else if (color.equals(Color.BLACK)) {
+                    availableRoutes.add("BLACK");
+                } else if (color.equals(Color.PINK)) {
+                    availableRoutes.add("PINK");
+                } else if (color.equals(Color.ORANGE)) {
+                    availableRoutes.add("ORANGE");
+                } else if (color.equals(Color.YELLOW)) {
+                    availableRoutes.add("YELLOW");
+                } else if (color.equals(Color.GREEN)) {
+                    availableRoutes.add("GREEN");
+                } else if (color.equals(Color.BLUE)) {
+                    availableRoutes.add("BLUE");
+                } else if (color.equals(Color.WHITE)) {
+                    availableRoutes.add("WHITE");
+                }
             }
         }
         return availableRoutes;
