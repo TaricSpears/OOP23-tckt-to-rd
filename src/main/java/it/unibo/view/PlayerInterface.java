@@ -23,6 +23,7 @@ public class PlayerInterface extends VBox {
         final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getGameController().getPhaseController().toString());
+        final CardBox cardBox = new CardBox(controller, this);
 
         phase.setWrapText(true);
         phase.setMaxWidth(bounds.getWidth() * 0.15);
@@ -76,7 +77,7 @@ public class PlayerInterface extends VBox {
         });
         drawObjective.setDisable(!controller.getGameController().getPhaseController().isMidPhase());
 
-        this.getChildren().addAll(drawTrain, drawObjective, endTurn, objectiveBox);
+        this.getChildren().addAll(drawTrain, drawObjective, endTurn, objectiveBox, cardBox);
 
         this.setMinSize(width, height);
     }
