@@ -8,18 +8,12 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
 import it.unibo.view.FillRoute.impl.NotEnoughCardsAlert;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.util.converter.ShortStringConverter;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-
 import java.awt.Color;
 
 /**
@@ -50,6 +44,9 @@ public class FillRouteImpl implements FillRoute {
 
     }
 
+    /**
+     * @return true if the cards of the player are enough to fill the route
+     */
     @Override
     public boolean isRouteValid() {
 
@@ -82,6 +79,9 @@ public class FillRouteImpl implements FillRoute {
 
     }
 
+    /**
+     * @return true if the action of filling the route is successful
+     */
     @Override
     public boolean clickRoute() {
         if (isRouteValid()) {
@@ -120,12 +120,18 @@ public class FillRouteImpl implements FillRoute {
         }
     }
 
+    /**
+     * @return true if the cards of the player are enough to fill the route
+     */
     @Override
     public boolean isColorEnough(Color color) {
         return player.getTrainCards().get(color) + player.getTrainCards().get(Color.DARK_GRAY) >= route.getScore();
 
     }
 
+    /**
+     * @return the list of the Colors that can fill a GRAY route
+     */
     @Override
     public ObservableList<Color> getAvailableRoutes(FillRoute fillRoute) {
         final ObservableList<Color> availableRoutes = FXCollections.observableArrayList();
