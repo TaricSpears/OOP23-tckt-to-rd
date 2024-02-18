@@ -114,7 +114,7 @@ public final class StartStage extends Stage {
         @Override
         public void updateItem(final Pair<String, Color> item, final boolean empty) {
             super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(20, 20);
+            final Rectangle rect = new Rectangle(20, 20);
             if (item != null) {
                 rect.setFill(item.second());
                 final HBox entry = new HBox();

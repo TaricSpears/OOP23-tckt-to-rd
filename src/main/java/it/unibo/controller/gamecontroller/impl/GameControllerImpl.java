@@ -34,13 +34,7 @@ public class GameControllerImpl implements GameController {
 
     final private MainController mainController;
     final private List<Pair<String, Color>> tempPlayers = new ArrayList<>();
-
     private MainView view;
-
-    private DrawController drawController = new DrawControllerImpl();
-
-    private PhaseController phaseController = new PhaseControllerImpl();
-
     private boolean isLastTurn = false;
 
     /**
@@ -57,9 +51,9 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public TrainCard handleDrawTrainCard() {
-        TrainCard card = drawController.drawTrainCard();
+        TrainCard card = this.mainController.getDrawController().drawTrainCard();
         this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
-        this.phaseController.switchPhase();
+        this.mainController.getPhaseController().switchPhase();
         view.refreshAll();
 
         return card;
@@ -73,11 +67,12 @@ public class GameControllerImpl implements GameController {
         Boolean drawn = false;
         ObjectiveCard card;
 
-        this.phaseController.switchPhase();
+        this.mainController.getPhaseController().switchPhase();
         view.refreshAll();
 
         do {
-            card = drawController.drawObjectiveCard(mainController.getGameInstance().getGraph());
+            card = this.mainController.getDrawController()
+                    .drawObjectiveCard(mainController.getGameInstance().getGraph());
             drawn = this.mainController.getTurnController().getCurrentPlayer().addObjectiveCard(card);
         } while (!drawn);
 
@@ -95,7 +90,7 @@ public class GameControllerImpl implements GameController {
         }
         this.mainController.getTurnController().endTurn();
 
-        this.phaseController = new PhaseControllerImpl();
+        this.mainController.setPhaseController(new PhaseControllerImpl());
         this.view.refreshAll();
     }
 
@@ -204,10 +199,10 @@ public class GameControllerImpl implements GameController {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public PhaseController getPhaseController() {
-        return this.phaseController;
-    }
+    // @Override
+    // public PhaseController getPhaseController() {
+    // return this.phaseController;
+    // }
 
     /**
      * {@inheritDoc}

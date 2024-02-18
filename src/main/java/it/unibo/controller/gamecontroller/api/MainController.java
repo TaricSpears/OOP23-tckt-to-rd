@@ -1,5 +1,7 @@
 package it.unibo.controller.gamecontroller.api;
 
+import it.unibo.controller.drawcontroller.api.DrawController;
+import it.unibo.controller.phasecontroller.api.PhaseController;
 import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.model.gameprep.impl.GamePrep;
 import it.unibo.view.MainView;
@@ -42,5 +44,11 @@ public interface MainController {
      * @param app the main view
      */
     void setMainApp(MainView app);
+
+    DrawController getDrawController();
+
+    PhaseController getPhaseController();
+
+    void setPhaseController(PhaseController phaseController);
 
 }

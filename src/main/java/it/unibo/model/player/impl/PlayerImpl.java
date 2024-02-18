@@ -146,25 +146,29 @@ public class PlayerImpl implements Player {
     @Override
     public double getObjectiveScore() {
 
-        Set<City> startCities = objectiveCards.stream().filter(x -> x.isCompleted()).map(x -> x.getCities().first())
-                .collect(Collectors.toSet());
-        Set<City> targetCities = objectiveCards.stream().filter(x -> x.isCompleted()).map(x -> x.getCities().second())
-                .collect(Collectors.toSet());
+        // Set<City> startCities = objectiveCards.stream().filter(x ->
+        // x.isCompleted()).map(x -> x.getCities().first())
+        // .collect(Collectors.toSet());
+        // Set<City> targetCities = objectiveCards.stream().filter(x ->
+        // x.isCompleted()).map(x -> x.getCities().second())
+        // .collect(Collectors.toSet());
 
-        if (startCities.size() > 0 && targetCities.size() > 0) {
-            DirectedWeightedPseudograph<City, Route> tempGraph = new DirectedWeightedPseudograph<>(RouteImpl.class);
-            playerGraph.vertexSet().stream().map(x -> tempGraph.addVertex(x));
-            playerGraph.edgeSet().stream()
-                    .map(x -> tempGraph.addEdge(x.getConnectedCity().first(), x.getConnectedCity().second(), x));
+        // if (startCities.size() > 0 && targetCities.size() > 0) {
+        // DirectedWeightedPseudograph<City, Route> tempGraph = new
+        // DirectedWeightedPseudograph<>(RouteImpl.class);
+        // playerGraph.vertexSet().stream().map(x -> tempGraph.addVertex(x));
+        // playerGraph.edgeSet().stream()
+        // .map(x -> tempGraph.addEdge(x.getConnectedCity().first(),
+        // x.getConnectedCity().second(), x));
 
-            AllDirectedPaths<City, Route> allDirectedPaths = new AllDirectedPaths<>(tempGraph);
-            System.out.println(allDirectedPaths.getAllPaths(startCities, targetCities,
-                    true, null).stream()
-                    .map(x -> x.getLength()).reduce(Integer::max).get());
-        }
+        // AllDirectedPaths<City, Route> allDirectedPaths = new
+        // AllDirectedPaths<>(tempGraph);
+        // System.out.println(allDirectedPaths.getAllPaths(startCities, targetCities,
+        // true, null).stream()
+        // .map(x -> x.getLength()).reduce(Integer::max).get());
+        // }
 
         double objectiveScore = 0;
-
         for (final ObjectiveCard objective : objectiveCards) {
             if (objective.isCompleted()) {
                 objectiveScore += objective.getScore();

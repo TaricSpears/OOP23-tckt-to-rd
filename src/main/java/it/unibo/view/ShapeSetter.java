@@ -20,7 +20,7 @@ public class ShapeSetter {
     public Set<Shape> getShapes(final double paneWidth, final double paneHeight) {
         final Set<Region> regionSet = controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
-        final boolean disabled = !(this.controller.getGameController().getPhaseController().isMidPhase());
+        final boolean disabled = !(this.controller.getPhaseController().isMidPhase());
 
         for (var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
@@ -38,7 +38,7 @@ public class ShapeSetter {
                 final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region,
                         controller);
                 if (fillRoute.clickRoute()) {
-                    controller.getGameController().getPhaseController().switchPhase();
+                    controller.getPhaseController().switchPhase();
                     controller.getGameController().refreshView();
                 }
             });

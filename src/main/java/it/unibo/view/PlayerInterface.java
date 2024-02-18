@@ -25,7 +25,7 @@ public class PlayerInterface extends VBox {
         final Rectangle2D bounds = screen.getVisualBounds();
         // final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
-        final Label phase = new Label(controller.getGameController().getPhaseController().toString());
+        final Label phase = new Label(controller.getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
@@ -68,19 +68,19 @@ public class PlayerInterface extends VBox {
         endTurn.setOnAction(event -> {
             controller.getGameController().endTurn();
         });
-        endTurn.setDisable(!controller.getGameController().getPhaseController().isEndPhase(controller));
+        endTurn.setDisable(!controller.getPhaseController().isEndPhase(controller));
 
         final Button drawTrain = new Button("Draw Train Card");
         drawTrain.setOnAction(event -> {
             new DrawTrainCardPopUp(controller.getGameController().handleDrawTrainCard());
         });
-        drawTrain.setDisable(controller.getGameController().getPhaseController().isEndPhase(controller));
+        drawTrain.setDisable(controller.getPhaseController().isEndPhase(controller));
 
         final Button drawObjective = new Button("Draw new Objective");
         drawObjective.setOnAction(event -> {
             controller.getGameController().handleDrawObjectiveCard();
         });
-        drawObjective.setDisable(!controller.getGameController().getPhaseController().isMidPhase());
+        drawObjective.setDisable(!controller.getPhaseController().isMidPhase());
 
         final HBox controlBox = new HBox(endTurn, rules);
         final HBox drawBox = new HBox(drawObjective, drawTrain);

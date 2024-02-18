@@ -82,7 +82,7 @@ public interface GameController {
     /**
      * @return the phase controller
      */
-    PhaseController getPhaseController();
+    // PhaseController getPhaseController();
 
     /**
      * Refresh all the views

@@ -65,8 +65,9 @@ public class CardBox extends VBox {
             this.getChildren().add(cardBox);
         }
 
-        this.setBorder(new Border(new BorderStroke(
-                javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
+        // this.setBorder(new Border(new BorderStroke(
+        // javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, null,
+        // BorderWidths.DEFAULT)));
     }
 
 }

@@ -1,7 +1,7 @@
 package it.unibo.view;
 
 import javafx.scene.paint.Color;
-
+import javafx.scene.shape.Rectangle;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +10,7 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -27,8 +28,20 @@ public class ObjectiveBox extends VBox {
         this.setSpacing(5);
         this.setAlignment(Pos.TOP_LEFT);
 
-        this.getChildren()
-                .add(new Text("Current player: " + controller.getTurnController().getCurrentPlayer().getName()));
+        final Text currentPlayer = new Text(
+                "Current player: " + controller.getTurnController().getCurrentPlayer().getName());
+        final Rectangle currentPlayerColor = new Rectangle(10, 10);
+
+        currentPlayerColor.setFill(Color.rgb(
+                controller.getTurnController().getCurrentPlayer().getColor().getRed(),
+                controller.getTurnController().getCurrentPlayer().getColor().getGreen(),
+                controller.getTurnController().getCurrentPlayer().getColor().getBlue()));
+
+        final HBox playerInfo = new HBox(currentPlayer, currentPlayerColor);
+        playerInfo.setSpacing(5);
+        playerInfo.setAlignment(Pos.CENTER_LEFT);
+
+        this.getChildren().add(playerInfo);
         this.getChildren()
                 .add(new Text("Carriages left: " + controller.getTurnController().getCurrentPlayer().getCarriageNum()));
 
@@ -36,7 +49,7 @@ public class ObjectiveBox extends VBox {
         showButton.setOnAction(event -> {
             toggleShown();
             if (isShown) {
-                this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 1);
+                this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 2);
                 this.getChildren()
                         .addAll(controller.getTurnController().getCurrentPlayer().getObjectiveCards().stream()
                                 .map(x -> {
@@ -50,7 +63,7 @@ public class ObjectiveBox extends VBox {
                                 })
                                 .toList());
             } else {
-                this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 1);
+                this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 2);
                 final Text placeholderText = new Text("The objectives are hidden");
                 placeholderText.setTextAlignment(TextAlignment.LEFT);
                 placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
@@ -64,8 +77,8 @@ public class ObjectiveBox extends VBox {
         placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
         placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
 
-        this.setBorder(new Border(new BorderStroke(
-                Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
+        // this.setBorder(new Border(new BorderStroke(
+        // Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
 

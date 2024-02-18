@@ -1,11 +1,17 @@
 package it.unibo.controller.gamecontroller.impl;
 
+import it.unibo.controller.drawcontroller.api.DrawController;
+import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.phasecontroller.api.PhaseController;
+import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.controller.turncontroller.impl.TurnControllerImpl;
+import it.unibo.model.deck.impl.DeckImpl;
 import it.unibo.model.gameprep.impl.GamePrep;
+import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
 import it.unibo.view.MainView;
 
 import javafx.application.Application;
@@ -19,6 +25,8 @@ public class MainControllerImpl implements MainController {
     final private GamePrep gamePrep = new GamePrep();
     private MainView view;
     final private GameController gameController = new GameControllerImpl(this);
+    private DrawController drawController = new DrawControllerImpl();
+    private PhaseController phaseController = new PhaseControllerImpl();
     private TurnController turnController;
 
     /**
@@ -37,6 +45,8 @@ public class MainControllerImpl implements MainController {
         gamePrep.prepGame(gameController.getTempPlayers(), new RouteReaderController().read());
         turnController = new TurnControllerImpl(gamePrep.getPlayers());
         view.launchMainView();
+        gamePrep.getPlayers()
+                .forEach(player -> player.addObjectiveCard(drawController.drawObjectiveCard(gamePrep.getGraph())));
     }
 
     /**
@@ -70,5 +80,17 @@ public class MainControllerImpl implements MainController {
     @Override
     public TurnController getTurnController() {
         return this.turnController;
+    }
+
+    public DrawController getDrawController() {
+        return this.drawController;
+    }
+
+    public PhaseController getPhaseController() {
+        return this.phaseController;
+    }
+
+    public void setPhaseController(final PhaseController phaseController) {
+        this.phaseController = phaseController;
     }
 }
