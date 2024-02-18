@@ -8,17 +8,15 @@ import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.view.FillRoute.impl.FillRouteViewImpl;
 import it.unibo.view.FillRoute.impl.NotEnoughCardsAlert;
-import javafx.beans.Observable;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.util.converter.ShortStringConverter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import java.awt.Color;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * This class is used to fill the routes with the color of the player.
@@ -35,49 +33,38 @@ public class FillRouteImpl implements FillRoute {
     private Player player;
     private Route route;
     private Color chosenColor;
-    private MainController controller;
 
     public FillRouteImpl(Player player, Region region, MainController controller) {
-        this.controller = controller;
         this.player = player;
 
         this.route = controller.getGameInstance().getRoutes().get(region.getId());
 
     }
 
-    // this function returns true if the player has enough train cards with the
-    // color of the chosen route
+  
 
     @Override
     public boolean isRouteValid() {
         // controll jolly cards
-        if (route.getColor().equals(Color.GRAY) != true && route.getColor().equals(null) != true) {
+        if (!route.getColor().equals(Color.GRAY) && !route.getColor().equals(null)) {
+            System.out.println("the route is not gray");
             final long totCards = player.getListTrainCards().stream()
                     .filter(card -> card.getColor().equals(route.getColor()) || card.getColor().equals(Color.DARK_GRAY))
                     .count();
-
+            player.getTrainCards().entrySet()
+                    .forEach(card -> System.out.println(card.getKey() + " " + card.getValue()));
             if (totCards >= route.getScore() && !route.isCompleted()) {
                 return true;
             } else {
                 return false;
             }
-        } else if (isColorEnough(Color.RED) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.BLUE) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.WHITE) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.GREEN) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.YELLOW) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.BLACK) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.ORANGE) && !route.isCompleted()) {
-            return true;
-        } else if (isColorEnough(Color.PINK) && !route.isCompleted()) {
+        } else if ((isColorEnough(Color.RED) || isColorEnough(Color.BLACK) || isColorEnough(Color.PINK)
+                || isColorEnough(Color.ORANGE) || isColorEnough(Color.YELLOW) || isColorEnough(Color.GREEN)
+                || isColorEnough(Color.BLUE) || isColorEnough(Color.MAGENTA)) && !route.isCompleted()) {
+            System.out.println("the route is gray and valid");
             return true;
         } else {
+            System.out.println("the route is not valid");
             return false;
         }
     }
@@ -89,6 +76,7 @@ public class FillRouteImpl implements FillRoute {
         chosenColor = popUp.openPopUp();
 
     }
+    
 
     private void openAlert(String message) {
         this.alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
@@ -99,9 +87,12 @@ public class FillRouteImpl implements FillRoute {
     // the main method of this class, it is called when the player clicks on a route
     @Override
     public boolean clickRoute() {
+        System.out.println("is route valid()");
         if (isRouteValid()) {
+            System.out.println("the route is valid");
             if (route.getScore() < player.getListTrainCards().stream()
-                    .filter(card -> card.getColor().equals(route.getColor())).count()) {
+                    .filter(card -> card.getColor().equals(route.getColor())).count()
+                    && !route.getColor().equals(Color.GRAY)) {
                 for (int i = 0; i < route.getScore(); i++) {
                     if (player.getListTrainCards().stream().filter(card -> card.getColor().equals(route.getColor()))
                             .count() > 0) {
@@ -134,6 +125,7 @@ public class FillRouteImpl implements FillRoute {
 
     @Override
     public boolean isColorEnough(Color color) {
+        System.out.println(route.getScore() + " " + color);
         return player.getListTrainCards().stream()
                 .filter(card -> card.getColor().equals(color) || card.getColor().equals(Color.DARK_GRAY))
                 .count() >= route.getScore();
@@ -142,22 +134,14 @@ public class FillRouteImpl implements FillRoute {
     @Override
     public ObservableList<Color> getAvailableRoutes(FillRoute fillRoute) {
         final ObservableList<Color> availableRoutes = FXCollections.observableArrayList();
-        if (isColorEnough(Color.BLACK)) {
-            availableRoutes.add(Color.BLACK);
-        } else if (isColorEnough(Color.BLUE)) {
-            availableRoutes.add(Color.BLUE);
-        } else if (isColorEnough(Color.GREEN)) {
-            availableRoutes.add(Color.GREEN);
-        } else if (isColorEnough(Color.ORANGE)) {
-            availableRoutes.add(Color.ORANGE);
-        } else if (isColorEnough(Color.PINK)) {
-            availableRoutes.add(Color.PINK);
-        } else if (isColorEnough(Color.RED)) {
-            availableRoutes.add(Color.RED);
-        } else if (isColorEnough(Color.WHITE)) {
-            availableRoutes.add(Color.WHITE);
-        } else if (isColorEnough(Color.YELLOW)) {
-            availableRoutes.add(Color.YELLOW);
+        final List<Color> colors = new ArrayList<Color>(
+                List.of(Color.RED, Color.BLACK, Color.PINK, Color.ORANGE, Color.YELLOW,
+                        Color.GREEN, Color.BLUE, Color.MAGENTA));
+
+        for (var color : colors) {
+            if (fillRoute.isColorEnough(color)) {
+                availableRoutes.add(color);
+            }
         }
         return availableRoutes;
     }

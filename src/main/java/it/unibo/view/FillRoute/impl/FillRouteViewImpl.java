@@ -1,17 +1,12 @@
 package it.unibo.view.FillRoute.impl;
 
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
-import javafx.application.Application;
-import javafx.collections.ObservableList;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 
 import java.awt.Color;
-import javafx.stage.Stage;
-import it.unibo.model.route.api.Route;
-import java.util.Set;
 
 /**
  * Implementation of the {@link FillRoute} interface.
