@@ -1,14 +1,21 @@
-Uno dei punti di forza del gioco è sicuramente la semplicità delle regole, veramente alla portata di tutti. A inizio partita ogni giocatore riceve un set di quarantacinque vagoni treno del proprio colore, quattro carte Treno e tre carte Biglietti Destinazione (quest’ultimi da tenere segreti agli avversari). I giocatori saranno costretti a tenere almeno due Biglietti Destinazione ma potranno anche tenerli tutti e tre.
+Uno dei punti di forza del gioco è sicuramente la semplicità delle regole, veramente alla portata di tutti. A inizio partita ogni giocatore riceve un set di quarantacinque vagoni treno del proprio colore, otto carte Treno e una carta Destinazione (queste ultime da tenere segreti agli avversari).
 
 Obiettivo del gioco è essere il giocatore ad aver collezionato più punti a fine partita e i punti si guadagnano in tre modi differenti:
 
-prendendo il controllo delle linee ferroviarie che connettono le varie città sul tabellone
-completando gli obiettivi delle carte Biglietti Destinazione (sapendo però che quelli non completati faranno perdere punti a fine partita)
-Per raggiungere questo obiettivo, ad ogni turno un giocatore può compiere una di queste tre azioni:
+-prendendo il controllo delle linee ferroviarie che connettono le varie città sul tabellone;
+-completando gli obiettivi delle carte Biglietti Destinazione (sapendo però che quelli non completati faranno perdere punti a fine partita);
+-al termine della partita, il giocatore che avrà il controllo di più linee ferroviarie consecutive (ovvero chi otterrà la tratta più lunga) otterrà 10 punti bonus.
 
-Pescare due carte treno scegliendo tra le cinque a faccia in su oppure pescando alla cieca dalla cima del mazzo. Unico vincolo è che se si sceglie di pescare una locomotiva dalle carte visibili allora quella sarà l’unica carta che si potrà pescare in quel turno (se invece la locomotiva è stata pescata alla cieca dalla cima del mazzo si potrà pescare anche la seconda carta)
-Controllare una linea, giocando carte treno del numero e del colore giusto per la linea che si vuole occupare e posizionandoci sopra i relativi vagoni in plastica dalla propria riserva. Quindi, se si vuole controllare una linea composta da tre caselle rosse, si dovranno giocare tre carte rosse dalla propria mano.
-Pescare biglietti destinazione, per aumentare le possibilità di ottenere punti extra a fine partita (ma rischiando di perderne altrettanto). Si pescano tre carte dall’apposito mazzo e si è costretti a tenerne almeno una.
-Si prosegue così fino a quando ad uno dei giocatori non rimangono solo due vagoni (o meno) nella propria riserva. A questo punto, tutti hanno diritto ad un ultimo turno e si passa al calcolo del punteggio finale.
+Ad ogni turno un giocatore deve:
+
+-pescare una carta treno dal mazzo;
+-scegliere se pescare un'altra carta treno, una carta obiettivo oppure, se dispone delle carte necessarie, prendere il controllo di una linea ferroviaria che connette due città;
+-passare il turno al prossimo giocatore.
+
+Per controllare una linea, bisogna giocare il numero di carte Treno relativo alla tratta desiderata e del colore della stessa;quindi, se si vuole controllare una linea composta da tre caselle rosse, si dovranno giocare tre carte rosse dalla propria mano.
+Se la linea è di colore grigio allora potrà essere completata giocando le carte di un colore a scelta (purchè siano tutte dello stesso colore);
+Se non si posseggono abbastanza carte Treno di un determinato colore per completare una linea, si possono giocare anche uno o più Jolly (se a disposizione), i quali possono rappresentare ogni colore;
+
+Si prosegue così fino a quando ad uno dei giocatori non rimangono solo due vagoni (o meno) nella propria riserva. A questo punto, al termine del turno si passa al calcolo del punteggio finale.
 
 Ai punti fatti occupando le linee durante la partita si sommano e si sottraggono quelli dei biglietti destinazione e si assegna il bonus al giocatore che ha realizzato la tratta più lunga.
