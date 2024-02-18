@@ -10,24 +10,31 @@ import it.unibo.model.turnmanager.api.TurnManager;
  */
 public interface TurnController {
 
-    /*
+    /**
      * @return the turn manager.
      */
     TurnManager getTurnManager();
 
-    /*
+    /**
+     * Checks if the current player is the last one in the current turn.
+     * 
      * Ends the turn of the current player.
      */
     public void endTurn();
 
-    /*
+    /**
      * @return the list of players in the order of their turns.
      */
     List<Player> getOrderedPlayers();
 
-    /*
+    /**
      * @return the current player.
      */
     Player getCurrentPlayer();
+
+    /**
+     * @return the current turn.
+     */
+    boolean wasLastTurn();
 
 }

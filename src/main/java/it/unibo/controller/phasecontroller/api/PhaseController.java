@@ -1,5 +1,6 @@
 package it.unibo.controller.phasecontroller.api;
 
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.model.phasemanager.api.PhaseManager;
 
 /**
@@ -23,9 +24,11 @@ public interface PhaseController {
     void switchPhase();
 
     /**
+     * Checks if the current player has more than 2 carriages.
+     * 
      * @return if the current phase is the end phase.
      */
-    boolean isEndPhase();
+    boolean isEndPhase(MainController mainController);
 
     /**
      * @return if the current phase is the mid phase.

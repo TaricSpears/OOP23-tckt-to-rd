@@ -41,6 +41,8 @@ public class GameControllerImpl implements GameController {
 
     private PhaseController phaseController = new PhaseControllerImpl();
 
+    private boolean isLastTurn = false;
+
     /**
      * Simple constructor of the controller of the game logic
      * 
@@ -88,10 +90,13 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void endTurn() {
-        mainController.getTurnController().endTurn();
+        if (this.isLastTurn && this.mainController.getTurnController().wasLastTurn()) {
+            this.endGame();
+        }
+        this.mainController.getTurnController().endTurn();
 
         this.phaseController = new PhaseControllerImpl();
-        view.refreshAll();
+        this.view.refreshAll();
     }
 
     /**
@@ -211,4 +216,13 @@ public class GameControllerImpl implements GameController {
     public void refreshView() {
         this.view.refreshAll();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setLastTurn() {
+        this.isLastTurn = true;
+    }
+
 }

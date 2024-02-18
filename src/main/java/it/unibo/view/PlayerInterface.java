@@ -23,25 +23,27 @@ public class PlayerInterface extends VBox {
         this.setMaxSize(width, height);
         final Screen screen = Screen.getPrimary();
         final Rectangle2D bounds = screen.getVisualBounds();
-        //final Button endGame = new Button("End Game");
+        // final Button endGame = new Button("End Game");
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getGameController().getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
         phase.setWrapText(true);
-        phase.setMaxWidth(this.getMinWidth()*0.8);
-        objectiveBox.setMaxWidth(this.getMinWidth()*0.8);
+        phase.setMaxWidth(this.getMinWidth() * 0.8);
+        objectiveBox.setMaxWidth(this.getMinWidth() * 0.8);
 
         this.getChildren().add(phase);
-        //this.getChildren().add(endGame);
+        // this.getChildren().add(endGame);
 
         this.setPadding(new Insets(20));
         this.setSpacing(10);
 
-        /*endGame.setOnAction(event -> {
-            controller.getGameController().endGame();
-        });*/
+        /*
+         * endGame.setOnAction(event -> {
+         * controller.getGameController().endGame();
+         * });
+         */
 
         rules.setOnAction(event -> {
 
@@ -66,13 +68,13 @@ public class PlayerInterface extends VBox {
         endTurn.setOnAction(event -> {
             controller.getGameController().endTurn();
         });
-        endTurn.setDisable(!controller.getGameController().getPhaseController().isEndPhase());
+        endTurn.setDisable(!controller.getGameController().getPhaseController().isEndPhase(controller));
 
         final Button drawTrain = new Button("Draw Train Card");
         drawTrain.setOnAction(event -> {
             new DrawTrainCardPopUp(controller.getGameController().handleDrawTrainCard());
         });
-        drawTrain.setDisable(controller.getGameController().getPhaseController().isEndPhase());
+        drawTrain.setDisable(controller.getGameController().getPhaseController().isEndPhase(controller));
 
         final Button drawObjective = new Button("Draw new Objective");
         drawObjective.setOnAction(event -> {

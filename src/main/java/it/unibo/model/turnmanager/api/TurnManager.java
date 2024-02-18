@@ -29,4 +29,9 @@ public interface TurnManager {
      */
     void switchToNextPlayer();
 
+    /**
+     * @return if the current player is the last one in the current turn.
+     */
+    boolean isLastPlayer();
+
 }

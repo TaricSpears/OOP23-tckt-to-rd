@@ -88,4 +88,9 @@ public interface GameController {
      * Refresh all the views
      */
     void refreshView();
+
+    /**
+     * Set the last turn of the game.
+     */
+    void setLastTurn();
 }

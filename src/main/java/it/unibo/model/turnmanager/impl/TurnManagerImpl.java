@@ -64,12 +64,19 @@ public class TurnManagerImpl implements TurnManager {
      */
     @Override
     public void switchToNextPlayer() {
-        if (!this.playersIterator.hasNext()) {
+        if (isLastPlayer()) {
             this.currentTurn++;
             resetTurns();
         }
 
         this.currentPlayer = this.playersIterator.next();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isLastPlayer() {
+        return !this.playersIterator.hasNext();
     }
 
     /**

@@ -1,5 +1,6 @@
 package it.unibo.controller.phasecontroller.impl;
 
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.phasecontroller.api.PhaseController;
 import it.unibo.model.phasemanager.api.PhaseManager;
 import it.unibo.model.phasemanager.impl.PhaseManagerImpl;
@@ -43,8 +44,8 @@ public class PhaseControllerImpl implements PhaseController {
         }
     }
 
-    /*
-     * @return the current phase.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public PhaseManager.Phase getCurrentPhase() {
@@ -59,16 +60,29 @@ public class PhaseControllerImpl implements PhaseController {
         this.phaseManager.switchPhase();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean isEndPhase() {
+    public boolean isEndPhase(final MainController mainController) {
+        if (mainController.getTurnController().getCurrentPlayer().getCarriageNum() <= 2) {
+            mainController.getGameController().setLastTurn();
+        }
+
         return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.END;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isMidPhase() {
         return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.MID;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isStartPhase() {
         return this.phaseManager.getCurrentPhase() == PhaseManager.Phase.START;

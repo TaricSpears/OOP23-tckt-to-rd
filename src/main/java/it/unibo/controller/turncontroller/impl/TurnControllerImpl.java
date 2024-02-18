@@ -15,7 +15,7 @@ public class TurnControllerImpl implements TurnController {
 
     private final TurnManager turnManager;
 
-    /*
+    /**
      * Constructor for the turn controller.
      * 
      * @param players the list of players in the game.
@@ -24,32 +24,32 @@ public class TurnControllerImpl implements TurnController {
         this.turnManager = new TurnManagerImpl(players);
     }
 
-    /*
-     * @return the turn manager.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public TurnManager getTurnManager() {
         return this.turnManager;
     }
 
-    /*
-     * Ends the turn of the current player.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void endTurn() {
         this.turnManager.switchToNextPlayer();
     }
 
-    /*
-     * @return the list of players in the order of their turns.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public List<Player> getOrderedPlayers() {
         return this.turnManager.getPlayers();
     }
 
-    /*
-     * @return the string representation of the current turn.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -57,12 +57,19 @@ public class TurnControllerImpl implements TurnController {
                 + this.turnManager.getCurrentPlayer().getName();
     }
 
-    /*
-     * @return the current player.
+    /**
+     * {@inheritDoc}
      */
     @Override
     public Player getCurrentPlayer() {
         return this.turnManager.getCurrentPlayer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean wasLastTurn() {
+        return this.turnManager.isLastPlayer();
     }
 
 }
