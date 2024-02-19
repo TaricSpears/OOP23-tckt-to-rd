@@ -16,7 +16,7 @@ public class EndTurnPopUp {
      * 
      * @param controller the main controller of the game.
      */
-    public EndTurnPopUp(MainController controller) {
+    public EndTurnPopUp(final MainController controller) {
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());

@@ -22,7 +22,7 @@ public class ShapeSetter {
         final Set<Shape> shapeSet = new LinkedHashSet<>();
         final boolean disabled = !(this.controller.getPhaseController().isMidPhase());
 
-        for (var region : regionSet) {
+        for (final var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
                     region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
@@ -43,8 +43,9 @@ public class ShapeSetter {
                 }
             });
             shape.setDisable(disabled);
-            if (region.getPlayerColor().isPresent())
+            if (region.getPlayerColor().isPresent()) {
                 shape.setDisable(true);
+            }
             shapeSet.add(shape);
         }
 

@@ -32,11 +32,18 @@ public class FillRouteImpl implements FillRoute {
     private Route route;
     private Color chosenColor;
 
-    final private List<Color> colors = new ArrayList<Color>(
+    private final List<Color> colors = new ArrayList<Color>(
             List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
-    public FillRouteImpl(final Player player, final Region region, MainController controller) {
+    /**
+     * Constructor for the FillRouteImpl class.
+     * 
+     * @param player     the player that wants to fill the route
+     * @param region     the region where the route is
+     * @param controller the main controller of the game
+     */
+    public FillRouteImpl(final Player player, final Region region, final MainController controller) {
 
         this.player = player;
 
@@ -52,16 +59,10 @@ public class FillRouteImpl implements FillRoute {
 
         if (route.getColor().equals(Color.GRAY)) {
             for (final var color : colors) {
-                if (isColorEnough(color)) {
-                    return true;
-                }
+                isColorEnough(color);
             }
         } else {
-            if (isColorEnough(route.getColor())) {
-                return true;
-            } else {
-                return false;
-            }
+            isColorEnough(route.getColor());
         }
         return false;
 

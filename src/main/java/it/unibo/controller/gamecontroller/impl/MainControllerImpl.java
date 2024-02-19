@@ -16,13 +16,13 @@ import javafx.application.Application;
 
 /**
  * Implementation of {@link MainController}.
- * It models the main controller that allows access to other controllers
+ * It models the main controller that allows access to other controllers.
  */
 public class MainControllerImpl implements MainController {
 
+    private final GameController gameController = new GameControllerImpl(this);
     private GamePrep gamePrep;
     private MainView view;
-    final private GameController gameController = new GameControllerImpl(this);
     private DrawController drawController;
     private PhaseController phaseController;
     private TurnController turnController;

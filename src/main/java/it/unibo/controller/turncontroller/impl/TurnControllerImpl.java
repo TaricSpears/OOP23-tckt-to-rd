@@ -20,7 +20,7 @@ public class TurnControllerImpl implements TurnController {
      * 
      * @param players the list of players in the game.
      */
-    public TurnControllerImpl(List<Player> players) {
+    public TurnControllerImpl(final List<Player> players) {
         this.turnManager = new TurnManagerImpl(players);
     }
 

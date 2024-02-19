@@ -52,10 +52,10 @@ public class PlayerInterface extends VBox {
 
         rules.setOnAction(event -> {
 
-            String rulesText = "";
             try {
-                rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"), StandardCharsets.UTF_8);
-                Alert alert = new Alert(AlertType.INFORMATION, rulesText);
+                final String rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"),
+                        StandardCharsets.UTF_8);
+                final Alert alert = new Alert(AlertType.INFORMATION, rulesText);
                 alert.setResizable(false);
                 alert.getDialogPane().setMaxSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
                 alert.getDialogPane().setMinSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);

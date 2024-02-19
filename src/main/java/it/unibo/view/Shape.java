@@ -14,15 +14,15 @@ public class Shape extends Polygon {
         this.id = id;
     }
 
-    public void setFill(String color) {
+    public void setFill(final String color) {
         super.setFill(javafx.scene.paint.Color.web(color));
     }
 
-    public void setTilt(double angle) {
+    public void setTilt(final double angle) {
         super.setRotate(angle);
     }
 
-    public int getShapeId(){
+    public int getShapeId() {
         return this.id;
     }
 }

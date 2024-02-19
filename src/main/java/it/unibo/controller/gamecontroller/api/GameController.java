@@ -55,12 +55,12 @@ public interface GameController {
     List<Pair<String, java.awt.Color>> getTempPlayers();
 
     /**
-     * ends the game, close the main view and launches the final score board
+     * Ends the game, close the main view and launches the final score board.
      */
     void endGame();
 
     /**
-     * Adds a ref to the main view to the controller
+     * Adds a ref to the main view to the controller.
      * 
      * @param view the main view that controls the other ones
      */
@@ -83,7 +83,7 @@ public interface GameController {
     ObjectiveCard handleDrawObjectiveCard();
 
     /**
-     * Refresh all the views
+     * Refresh all the views.
      */
     void refreshView();
 

@@ -101,7 +101,7 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Route toCheck) {
+    public boolean equals(final Route toCheck) {
         return (this.id == toCheck.getId())
                 && (this.getConnectedCity().first().equals(toCheck.getConnectedCity().first()))
                 && (this.getConnectedCity().second().equals(toCheck.getConnectedCity().second()))

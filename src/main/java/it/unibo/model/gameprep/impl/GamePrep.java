@@ -19,9 +19,8 @@ import org.jgrapht.graph.WeightedPseudograph;
  */
 public class GamePrep {
 
-    private final static int CARRIAGE_DEFAULT_NUMBER = 45;
-
-    private BoardImpl board = null;
+    private static final int CARRIAGE_DEFAULT_NUMBER = 45;
+    private BoardImpl board;
 
     /**
      * Prepares the players.
@@ -43,7 +42,7 @@ public class GamePrep {
      * @param routeData informations about the routes.
      * @return the graph.
      */
-    private WeightedPseudograph<City, Route> prepGraph(List<Route> routeData) {
+    private WeightedPseudograph<City, Route> prepGraph(final List<Route> routeData) {
 
         final WeightedPseudograph<City, Route> graph = new WeightedPseudograph<>(
                 RouteImpl.class);

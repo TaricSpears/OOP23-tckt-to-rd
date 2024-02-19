@@ -26,7 +26,7 @@ public class DrawTrainCardPopUp {
      * 
      * @param color the color of the card drawn.
      */
-    public DrawTrainCardPopUp(Color color) {
+    public DrawTrainCardPopUp(final Color color) {
 
         Pane pane = new Pane();
         Image image;
