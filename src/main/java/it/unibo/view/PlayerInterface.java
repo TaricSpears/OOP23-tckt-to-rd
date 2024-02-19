@@ -67,12 +67,13 @@ public class PlayerInterface extends VBox {
         final Button endTurn = new Button("End Turn");
         endTurn.setOnAction(event -> {
             controller.getGameController().endTurn();
+            new EndTurnPopUp(controller);
         });
         endTurn.setDisable(!controller.getPhaseController().isEndPhase(controller));
 
         final Button drawTrain = new Button("Draw Train Card");
         drawTrain.setOnAction(event -> {
-            new DrawTrainCardPopUp(controller.getGameController().handleDrawTrainCard());
+            new DrawTrainCardPopUp(controller.getGameController().handleDrawTrainCard().getColor());
         });
         drawTrain.setDisable(controller.getPhaseController().isEndPhase(controller));
 

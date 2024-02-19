@@ -1,6 +1,5 @@
 package it.unibo.view;
 
-import it.unibo.model.card.api.TrainCard;
 import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -17,17 +16,20 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+/**
  * This class opens a pop-up that shows the card drawn.
  */
 public class DrawTrainCardPopUp {
 
-    private Pane pane = new Pane();
-    private Image image;
-    private Color color;
+    /**
+     * Constructor for the class.
+     * 
+     * @param color the color of the card drawn.
+     */
+    public DrawTrainCardPopUp(Color color) {
 
-    public DrawTrainCardPopUp(TrainCard card) {
-        this.color = card.getColor();
+        Pane pane = new Pane();
+        Image image;
 
         Map<Color, String> colorImageMap = new HashMap<>();
 
@@ -41,14 +43,15 @@ public class DrawTrainCardPopUp {
         colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
         colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
 
-        this.image = new Image(colorImageMap.get(this.color));
-        this.pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        image = new Image(colorImageMap.get(color));
+        pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
 
         Stage popupStage = new Stage();
-        popupStage.initOwner(null); // Imposta l'owner a null per rendere il popup un top-level stage
-        popupStage.setScene(new Scene(this.pane, 300, 200));
+        popupStage.initOwner(null);
+        popupStage.setScene(new Scene(pane, 300, 200));
+        popupStage.setResizable(false);
         popupStage.show();
 
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
