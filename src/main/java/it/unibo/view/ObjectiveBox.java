@@ -51,7 +51,8 @@ public class ObjectiveBox extends VBox {
                                 .map(x -> {
                                     final Text objective = new Text(
                                             x.getCities().first().getName() + " - " + x.getCities().second().getName()
-                                                    + " (" + x.getScore() + ")");
+                                                    + " (" + x.getScore() + " - " + (x.isCompleted() ? "Completed)"
+                                                            : "Not completed)"));
                                     objective.setTextAlignment(TextAlignment.LEFT);
                                     objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
                                     objective.setWrappingWidth(playerInterface.getMinWidth() * 0.8);

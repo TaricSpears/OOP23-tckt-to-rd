@@ -13,6 +13,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
 import org.jgrapht.graph.WeightedPseudograph;
 
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class PlayerImpl implements Player {
     private int routeScore;
 
     private final WeightedPseudograph<City, Route> playerGraph;
+    private final BellmanFordShortestPath<City, Route> shortestPath;
 
     /**
      * Constructor for the player.
@@ -62,6 +64,8 @@ public class PlayerImpl implements Player {
         this.trainCards.put(Color.ORANGE, 1);
         this.trainCards.put(Color.MAGENTA, 1);
         this.trainCards.put(Color.DARK_GRAY, 0);
+
+        this.shortestPath = new BellmanFordShortestPath<>(playerGraph);
     }
 
     /**
@@ -214,17 +218,20 @@ public class PlayerImpl implements Player {
         playerGraph.addVertex(city1);
         playerGraph.addVertex(city2);
         playerGraph.addEdge(city1, city2, route);
-        playerGraph.setEdgeWeight(city1, city2, route.getScore());
+        playerGraph.setEdgeWeight(route, route.getScore());
 
         this.completedRoutes.add(route);
         this.setRouteScore(route.getScore());
 
         for (final ObjectiveCard objective : objectiveCards) {
-            final Set<City> playersCities = playerGraph.vertexSet();
-            if (playersCities.contains(objective.getCities().first())
-                    && playersCities.contains(objective.getCities().second())) {
-                objective.setCompleted();
+            if (!objective.isCompleted() && playerGraph.vertexSet().contains(objective.getCities().first())
+                    && playerGraph.vertexSet().contains(objective.getCities().second())) {
+                if (this.shortestPath
+                        .getPath(objective.getCities().first(), objective.getCities().second()) != null) {
+                    objective.setCompleted();
+                }
             }
+
         }
     }
 
