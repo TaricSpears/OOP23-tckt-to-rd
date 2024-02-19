@@ -11,6 +11,7 @@ import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link ObjectiveCard}.
+ * 
  * Represents an objective card in the game.
  */
 public class ObjectiveCardImpl implements ObjectiveCard {

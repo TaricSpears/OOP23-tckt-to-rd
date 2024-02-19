@@ -85,8 +85,6 @@ public class ObjectiveBox extends VBox {
         placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
         placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
 
-        // this.setBorder(new Border(new BorderStroke(
-        // Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
 

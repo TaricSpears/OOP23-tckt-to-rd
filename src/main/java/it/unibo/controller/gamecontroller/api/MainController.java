@@ -51,7 +51,6 @@ public interface MainController {
     DrawController getDrawController();
 
     /**
-     * 
      * @return the phase controller
      */
     PhaseController getPhaseController();

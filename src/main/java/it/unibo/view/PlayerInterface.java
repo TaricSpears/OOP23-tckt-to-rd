@@ -18,6 +18,7 @@ import javafx.stage.Screen;
 
 /**
  * The class that represents the interface of the player, extends {@link VBox}.
+ * 
  * It contains all the buttons and information that the player needs to play the
  * game.
  */
@@ -35,7 +36,7 @@ public class PlayerInterface extends VBox {
         this.setMaxSize(width, height);
         final Screen screen = Screen.getPrimary();
         final Rectangle2D bounds = screen.getVisualBounds();
-        // final Button endGame = new Button("End Game");
+
         final Button rules = new Button("Rules");
         final Label phase = new Label(controller.getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);

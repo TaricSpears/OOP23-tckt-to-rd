@@ -13,6 +13,7 @@ import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link Deck}.
+ * 
  * Regulates the functioning of the decks.
  */
 public class DeckImpl implements Deck {

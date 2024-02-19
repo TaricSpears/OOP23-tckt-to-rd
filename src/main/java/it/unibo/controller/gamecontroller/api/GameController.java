@@ -33,7 +33,6 @@ public interface GameController {
     void newGame();
 
     /**
-     * 
      * @param pair a pair of the player name and his color
      * @return if the player can be added or not (if is already present, somone has
      *         the same color or name)
@@ -41,14 +40,12 @@ public interface GameController {
     boolean addPlayer(Pair<String, java.awt.Color> pair);
 
     /**
-     * 
      * @return if the main view can shown (player list and map graph are been
      *         created)
      */
     boolean canStart();
 
     /**
-     * 
      * @return a list of temporary players (bofore the gamePrep creates the Player
      *         object)
      */
@@ -67,7 +64,6 @@ public interface GameController {
     void addView(MainView view);
 
     /**
-     * 
      * @return the regions of the game
      */
     Set<Region> getRegions();

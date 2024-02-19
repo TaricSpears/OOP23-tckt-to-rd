@@ -23,7 +23,6 @@ import java.awt.Color;
  * set the color of a route with the player's color, and handle the click event
  * on a route.
  */
-
 public class FillRouteImpl implements FillRoute {
 
     private FillRouteViewImpl popUp;
@@ -36,6 +35,13 @@ public class FillRouteImpl implements FillRoute {
             List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
+    /**
+     * Constructor of the class.
+     * 
+     * @param player
+     * @param region
+     * @param controller
+     */
     public FillRouteImpl(final Player player, final Region region, MainController controller) {
 
         this.player = player;
@@ -118,7 +124,11 @@ public class FillRouteImpl implements FillRoute {
             }
             return true;
         } else {
-            openAlert("You don't have enough cards to fill this route.");
+            if (this.route.getScore() > this.player.getCarriageNum())
+                openAlert("You don't have enough carriages to fill this route.");
+            else {
+                openAlert("You don't have enough cards to fill this route.");
+            }
             return false;
         }
     }

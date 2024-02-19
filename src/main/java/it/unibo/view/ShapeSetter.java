@@ -9,14 +9,27 @@ import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.scene.paint.Color;
 
+/**
+ * This class is used to set the shapes of the regions in the map.
+ */
 public class ShapeSetter {
     private final MainController controller;
 
+    /**
+     * Constructor of the class.
+     * 
+     * @param controller the main controller of the game.
+     */
     public ShapeSetter(final MainController controller) {
         this.controller = controller;
 
     }
 
+    /**
+     * @param paneWidth  the width of the pane.
+     * @param paneHeight the height of the pane.
+     * @return a set of shapes representing the regions in the map.
+     */
     public Set<Shape> getShapes(final double paneWidth, final double paneHeight) {
         final Set<Region> regionSet = controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();

@@ -18,6 +18,10 @@ public class MainView extends Application {
 
     /**
      * The main method that starts the game.
+     * 
+     * @param primaryStage the primary stage.
+     * 
+     * @throws Exception if the stage cannot be started.
      */
     @Override
     public void start(Stage primaryStage) throws Exception {

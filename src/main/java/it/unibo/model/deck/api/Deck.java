@@ -17,6 +17,7 @@ public interface Deck {
     TrainCard drawTrainCard();
 
     /**
+     * @param graph the graph of the game
      * @return the drawn objectiveCard
      */
     ObjectiveCard drawObjectiveCard(WeightedPseudograph<City, Route> graph);

@@ -3,6 +3,9 @@ package it.unibo.view;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Class to create an alert in case of last turn.
+ */
 public class LastTurnPopUp {
 
     public LastTurnPopUp() {

@@ -9,9 +9,8 @@ import javafx.scene.control.Dialog;
 import java.awt.Color;
 
 /**
- * Implementation of the {@link FillRoute} interface.
  * Represents the frame for the color selection phase in the case the route is
- * gray.
+ * gray, extends {@link Dialog}.
  */
 public final class FillRouteViewImpl extends Dialog<Color> {
 

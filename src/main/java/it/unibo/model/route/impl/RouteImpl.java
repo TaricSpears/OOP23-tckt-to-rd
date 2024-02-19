@@ -14,8 +14,9 @@ import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 
 /**
- * It implements a {@link Route} and extends the {@link DefaultWeightedEdge}.
- * 
+ * Implementation of {@link Route}, extends{@link DefaultWeightedEdge}.
+ *
+ * Represents a route in the game.
  */
 public class RouteImpl extends DefaultWeightedEdge implements Route {
 

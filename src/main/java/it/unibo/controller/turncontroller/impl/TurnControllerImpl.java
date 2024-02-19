@@ -9,6 +9,7 @@ import it.unibo.model.turnmanager.impl.TurnManagerImpl;
 
 /**
  * Implementation of {@link TurnController}
+ * 
  * Class to control the turn of the game.
  */
 public class TurnControllerImpl implements TurnController {
