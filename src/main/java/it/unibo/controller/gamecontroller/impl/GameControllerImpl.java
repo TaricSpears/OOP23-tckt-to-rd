@@ -196,14 +196,6 @@ public class GameControllerImpl implements GameController {
     /**
      * {@inheritDoc}
      */
-    // @Override
-    // public PhaseController getPhaseController() {
-    // return this.phaseController;
-    // }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void refreshView() {
         this.view.refreshAll();

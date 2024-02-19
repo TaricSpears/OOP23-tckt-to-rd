@@ -14,10 +14,21 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The class that represents the box containing the objectives of the current
+ * player, extends {@link VBox}.
+ */
 public class ObjectiveBox extends VBox {
 
     private boolean isShown = false;
 
+    /**
+     * Constructor for the objective box.
+     * 
+     * @param controller      the main controller of the game
+     * @param playerInterface the interface containg all the current player's
+     *                        information
+     */
     public ObjectiveBox(final MainController controller, final PlayerInterface playerInterface) {
 
         this.setPadding(new Insets(5));
@@ -81,6 +92,9 @@ public class ObjectiveBox extends VBox {
 
     }
 
+    /**
+     * Toggles the visibility of the objectives.
+     */
     private void toggleShown() {
         this.isShown = !this.isShown;
     }

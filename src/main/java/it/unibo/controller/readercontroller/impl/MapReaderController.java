@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-/*
+/**
  * This class models a ReaderController for reading MapData.json file.
  */
 public class MapReaderController extends AbstractReaderController<List<Integer>> {
@@ -19,7 +19,7 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
     private static final String MAP_FILE_PATH = "/configuration/EuropeConfiguration/MapData.json";
     private final List<Integer> mapData;
 
-    /*
+    /**
      * Initializes the MapReaderController.
      */
     public MapReaderController() {
@@ -27,7 +27,7 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
         this.mapData = this.read();
     }
 
-    /*
+    /**
      * @return the result of the reading operation
      */
     @Override
@@ -36,7 +36,7 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
         final List<Integer> retList = new LinkedList<>();
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(MAP_FILE_PATH), 
+                    this.getClass().getResourceAsStream(MAP_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONObject obj = (JSONObject) parser.parse(inputStreamReader);
             retList.add(Integer.parseInt(obj.get("mapWidth").toString()));
@@ -53,39 +53,39 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
         return retList;
     }
 
-    /*
+    /**
      * @return the map's width
      */
-    public int getMapWidth(){
+    public int getMapWidth() {
         return this.mapData.get(0);
     }
 
-    /*
+    /**
      * @return the map's heigth
      */
-    public int getMapHeight(){
+    public int getMapHeight() {
         return this.mapData.get(1);
     }
 
-    /*
+    /**
      * @return the map's city radius
      */
-    public int getCityRadius(){
+    public int getCityRadius() {
         return this.mapData.get(2);
     }
 
-    /*
+    /**
      * @return the map's rail width
      */
-    public int getRailWidth(){
+    public int getRailWidth() {
         return this.mapData.get(3);
     }
 
-    /*
+    /**
      * @return the map's rail length
      */
-    public int getRailLength(){
+    public int getRailLength() {
         return this.mapData.get(4);
     }
-    
+
 }

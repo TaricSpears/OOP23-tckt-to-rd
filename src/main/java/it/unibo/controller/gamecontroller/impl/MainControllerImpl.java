@@ -80,14 +80,26 @@ public class MainControllerImpl implements MainController {
         return this.turnController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public DrawController getDrawController() {
         return this.drawController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public PhaseController getPhaseController() {
         return this.phaseController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setPhaseController(final PhaseController phaseController) {
         this.phaseController = phaseController;
     }

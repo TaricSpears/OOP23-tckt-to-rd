@@ -24,10 +24,10 @@ import org.json.simple.parser.ParseException;
 
 import java.awt.Color;
 
-/*
+/**
  * This class models a ReaderController for reading Routes.json file.
  */
-public class RouteReaderController extends AbstractReaderController<List<Route>>{
+public class RouteReaderController extends AbstractReaderController<List<Route>> {
 
     private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
 
@@ -38,7 +38,7 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
     private final List<Route> routes;
     private final List<City> cities;
 
-    /*
+    /**
      * Initializes the RouteReaderController.
      */
     public RouteReaderController() {
@@ -53,7 +53,7 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
         cities = cityReader.read();
     }
 
-    /*
+    /**
      * @return the result of the reading operation
      */
     @Override
@@ -62,7 +62,7 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
         JSONObject obj;
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(ROUTE_FILE_PATH), 
+                    this.getClass().getResourceAsStream(ROUTE_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONArray array = (JSONArray) parser.parse(inputStreamReader);
             for (final Object elem : array) {
@@ -72,25 +72,25 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
                 final int intColor = Integer.parseInt(obj.get("color").toString());
 
                 final Set<Carriage> railUnits = new LinkedHashSet<>();
-                final JSONArray xArray = (JSONArray)obj.get("x");
+                final JSONArray xArray = (JSONArray) obj.get("x");
                 final Iterator xArrayIterator = xArray.iterator();
-                final JSONArray yArray = (JSONArray)obj.get("y");
+                final JSONArray yArray = (JSONArray) obj.get("y");
                 final Iterator yArrayIterator = yArray.iterator();
-                final JSONArray angleArray = (JSONArray)obj.get("angle");
+                final JSONArray angleArray = (JSONArray) obj.get("angle");
                 final Iterator angleArrayIterator = angleArray.iterator();
-                while(xArrayIterator.hasNext()){
-                    int xCoord = Long.valueOf((Long)xArrayIterator.next()).intValue();
-                    int yCoord = Long.valueOf((Long)yArrayIterator.next()).intValue();
-                    double angle = (Double)angleArrayIterator.next();
-                    var carriage = new Carriage(((double)xCoord/this.mapWidth), ((double)yCoord/this.mapHeight),
-                        ((double)railLength/this.mapWidth), ((double)this.railWidth/this.mapWidth), angle);
+                while (xArrayIterator.hasNext()) {
+                    int xCoord = Long.valueOf((Long) xArrayIterator.next()).intValue();
+                    int yCoord = Long.valueOf((Long) yArrayIterator.next()).intValue();
+                    double angle = (Double) angleArrayIterator.next();
+                    var carriage = new Carriage(((double) xCoord / this.mapWidth), ((double) yCoord / this.mapHeight),
+                            ((double) railLength / this.mapWidth), ((double) this.railWidth / this.mapWidth), angle);
                     railUnits.add(carriage);
                 }
 
                 final int weight = railUnits.size();
-                final JSONArray routeExtremes = (JSONArray)obj.get("connectedCities");
-                final var city1 = this.cities.get(Long.valueOf((Long)routeExtremes.get(0)).intValue());
-                final var city2 = this.cities.get(Long.valueOf((Long)routeExtremes.get(1)).intValue());
+                final JSONArray routeExtremes = (JSONArray) obj.get("connectedCities");
+                final var city1 = this.cities.get(Long.valueOf((Long) routeExtremes.get(0)).intValue());
+                final var city2 = this.cities.get(Long.valueOf((Long) routeExtremes.get(1)).intValue());
                 final EdgeData connectedCity = new EdgeData(city1, city2, weight);
 
                 final Color color = new IntToColorConverter().apply(intColor);

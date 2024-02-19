@@ -7,50 +7,76 @@ import it.unibo.start.GameStart;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * The main view of the game, extends {@link Application}.
+ */
 public class MainView extends Application {
 
     public static MainController controller = GameStart.controller;
     private StartStage startStage;
     private MainStage mainStage;
 
+    /**
+     * The main method that starts the game.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         controller.setMainApp(this);
 
         launchPlayerSlect();
-        // launchMainView();
     }
 
+    /**
+     * Launches the player selection view.
+     */
     public void launchPlayerSlect() {
         startStage = new StartStage(controller);
         startStage.show();
     }
 
+    /**
+     * Launches the main view of the game.
+     */
     public void launchMainView() {
         mainStage = new MainStage(controller);
         mainStage.show();
     }
 
+    /**
+     * Launches the final score board view.
+     */
     public void launchScoreBoard() {
         final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
         scoreBoardView.show();
     }
 
+    /**
+     * Closes the main view of the game.
+     */
     public void closeMainView() {
         if (!Objects.isNull(mainStage)) {
             mainStage.close();
         }
     }
 
+    /**
+     * Refreshes the player interface and the shapes.
+     */
     public void refreshAll() {
         refreshPlayerInterface();
         refreshShapes();
     }
 
+    /**
+     * Refreshes the player interface.
+     */
     public void refreshPlayerInterface() {
         mainStage.refreshPlayerInterface(controller);
     }
 
+    /**
+     * Refreshes the shapes.
+     */
     public void refreshShapes() {
         mainStage.refreshShapes(controller);
     }

@@ -45,10 +45,22 @@ public interface MainController {
      */
     void setMainApp(MainView app);
 
+    /**
+     * @return the draw controller
+     */
     DrawController getDrawController();
 
+    /**
+     * 
+     * @return the phase controller
+     */
     PhaseController getPhaseController();
 
+    /**
+     * Sets the pahase controller to the new one
+     * 
+     * @param phaseController
+     */
     void setPhaseController(PhaseController phaseController);
 
 }

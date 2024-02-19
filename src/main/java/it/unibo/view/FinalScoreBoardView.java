@@ -21,8 +21,16 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * View for the final score board, extends {@link Stage}.
+ */
 public class FinalScoreBoardView extends Stage {
 
+    /**
+     * Constructor for the final score board view.
+     * 
+     * @param controller the main controller of the game
+     */
     public FinalScoreBoardView(final MainController controller) {
 
         final Screen screen = Screen.getPrimary();

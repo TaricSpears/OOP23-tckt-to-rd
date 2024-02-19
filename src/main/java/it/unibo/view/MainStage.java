@@ -16,6 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/**
+ * The main stage of the view, extends {@link Stage}.
+ */
 public class MainStage extends Stage {
 
     private PlayerInterface playerInterface;
@@ -26,6 +29,11 @@ public class MainStage extends Stage {
     final private Pane pane;
     private Set<Shape> shapeSet = new HashSet<>();
 
+    /**
+     * Constructor for the main stage.
+     * 
+     * @param controller the main controller of the game
+     */
     public MainStage(final MainController controller) {
 
         this.root = new BorderPane();
@@ -60,6 +68,11 @@ public class MainStage extends Stage {
         this.setResizable(false);
     }
 
+    /**
+     * A method to refresh the player interface.
+     * 
+     * @param controller the main controller of the game
+     */
     public void refreshPlayerInterface(final MainController controller) {
         this.playerInterface = new PlayerInterface(controller,
                 this.scene.getWidth() - this.pane.getMaxWidth(),
@@ -67,6 +80,11 @@ public class MainStage extends Stage {
         this.root.setRight(this.playerInterface);
     }
 
+    /**
+     * A method to refresh the shapes of the carriages on the map.
+     * 
+     * @param controller the main controller of the game
+     */
     public void refreshShapes(final MainController controller) {
         this.pane.getChildren().clear();
         this.shapeSet = new ShapeSetter(controller)

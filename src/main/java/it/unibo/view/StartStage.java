@@ -27,10 +27,19 @@ import javafx.scene.paint.Color;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * The class that represents the stage where the players are selected, extends
+ * {@link Stage}.
+ */
 public final class StartStage extends Stage {
 
     private Set<Pair<String, Color>> players = new HashSet<>();
 
+    /**
+     * Constructor for the start stage.
+     * 
+     * @param controller the main controller of the game
+     */
     public StartStage(final MainController controller) {
 
         final Screen screen = Screen.getPrimary();
@@ -110,6 +119,10 @@ public final class StartStage extends Stage {
         this.setMinHeight(bounds.getHeight() * 0.5);
     }
 
+    /**
+     * A nested static class that represents the cell of the list view, extends
+     * {@link ListCell}.
+     */
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
         @Override
         public void updateItem(final Pair<String, Color> item, final boolean empty) {

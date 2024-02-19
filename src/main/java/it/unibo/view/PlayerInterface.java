@@ -16,8 +16,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 
+/**
+ * The class that represents the interface of the player, extends {@link VBox}.
+ * It contains all the buttons and information that the player needs to play the
+ * game.
+ */
 public class PlayerInterface extends VBox {
 
+    /**
+     * Constructor for the player interface.
+     * 
+     * @param controller the main controller of the game
+     * @param width      the width of this view
+     * @param height     the height of this view
+     */
     public PlayerInterface(final MainController controller, final double width, final double height) {
         this.setMinSize(width, height);
         this.setMaxSize(width, height);
