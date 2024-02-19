@@ -15,7 +15,7 @@ public class IntToColorConverter implements Function<Integer, Color> {
      * @throws IllegalArgumentException if the integer is not in the range [0, 8].
      */
     @Override
-    public Color apply(Integer t) throws IllegalArgumentException {
+    public Color apply(final Integer t) throws IllegalArgumentException {
         switch (t) {
             case 0:
                 return Color.WHITE;

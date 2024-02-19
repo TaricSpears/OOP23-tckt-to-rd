@@ -84,7 +84,7 @@ public class FillRouteImpl implements FillRoute {
      */
     @Override
     public boolean clickRoute() {
-        if (isRouteValid()) {
+        if (isRouteValid() && this.route.getScore() <= this.player.getCarriageNum()) {
             if (this.route.getColor().equals(Color.GRAY)) {
                 openPopUp();
                 if (!this.chosenColor.equals(null)) {
