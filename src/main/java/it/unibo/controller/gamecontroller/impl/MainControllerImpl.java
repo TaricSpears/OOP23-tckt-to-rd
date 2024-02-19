@@ -9,9 +9,7 @@ import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.controller.readercontroller.impl.RouteReaderController;
 import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.controller.turncontroller.impl.TurnControllerImpl;
-import it.unibo.model.deck.impl.DeckImpl;
 import it.unibo.model.gameprep.impl.GamePrep;
-import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
 import it.unibo.view.MainView;
 
 import javafx.application.Application;

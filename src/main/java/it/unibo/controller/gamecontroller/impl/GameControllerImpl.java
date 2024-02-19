@@ -11,11 +11,8 @@ import java.util.Set;
 
 import it.unibo.commons.Pair;
 import it.unibo.commons.Region;
-import it.unibo.controller.drawcontroller.api.DrawController;
-import it.unibo.controller.drawcontroller.impl.DrawControllerImpl;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.controller.phasecontroller.api.PhaseController;
 import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.player.api.Player;

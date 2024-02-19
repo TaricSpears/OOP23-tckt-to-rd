@@ -3,22 +3,16 @@ package it.unibo.model.player.impl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
-import it.unibo.model.card.impl.TrainCardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.jgrapht.alg.shortestpath.AllDirectedPaths;
-import org.jgrapht.graph.DirectedWeightedPseudograph;
 import org.jgrapht.graph.WeightedPseudograph;
 
 import java.awt.Color;
@@ -37,7 +31,6 @@ public class PlayerImpl implements Player {
     private final Set<Route> completedRoutes;
     private int carriageNum;
     private int routeScore;
-    private final List<TrainCard> listTrainCards;
 
     private final WeightedPseudograph<City, Route> playerGraph;
 
@@ -58,7 +51,6 @@ public class PlayerImpl implements Player {
         this.carriageNum = carriageNum;
         this.routeScore = 0;
         this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
-        this.listTrainCards = new ArrayList<>();
 
         this.trainCards = new HashMap<>();
         this.trainCards.put(Color.BLACK, 1);

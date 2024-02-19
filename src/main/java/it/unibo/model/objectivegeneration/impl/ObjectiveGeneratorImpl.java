@@ -22,6 +22,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
     final private static double MIN_DISTANCE = 5.0;
     final private WeightedPseudograph<City, Route> graph;
+    final private BellmanFordShortestPath<City, Route> bellmanFordAlg;
 
     /**
      * Constructor of the objective generator.
@@ -30,6 +31,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      */
     public ObjectiveGeneratorImpl(final WeightedPseudograph<City, Route> graph) {
         this.graph = graph;
+        this.bellmanFordAlg = new BellmanFordShortestPath<>(this.graph);
     }
 
     /**
@@ -42,7 +44,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
         List<City> cities = vertexSet.stream().collect(Collectors.toList());
         City city1 = getRandomCity(cities, random);
         City city2 = getRandomCity(cities, random);
-        while (city1.equals(city2) || calculateScore(new Pair<City, City>(city1, city2)) <= MIN_DISTANCE) {
+        while (city1.equals(city2) || this.bellmanFordAlg.getPathWeight(city1, city2) < MIN_DISTANCE) {
             city2 = getRandomCity(cities, random);
         }
         return new Pair<>(city1, city2);
@@ -64,6 +66,8 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      */
     @Override
     public double calculateScore(Pair<City, City> objective) {
-        return new BellmanFordShortestPath<>(this.graph).getPathWeight(objective.first(), objective.second());
+        final double shortestpath = this.bellmanFordAlg.getPathWeight(objective.first(),
+                objective.second());
+        return shortestpath;
     }
 }

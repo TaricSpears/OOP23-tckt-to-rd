@@ -3,8 +3,6 @@ package it.unibo.view;
 import java.util.Set;
 import java.util.HashSet;
 import it.unibo.controller.gamecontroller.api.MainController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

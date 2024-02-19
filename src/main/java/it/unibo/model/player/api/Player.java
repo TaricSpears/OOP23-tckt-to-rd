@@ -6,7 +6,6 @@ import java.util.Map;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.route.api.Route;
-import java.util.List;
 
 import java.awt.Color;
 

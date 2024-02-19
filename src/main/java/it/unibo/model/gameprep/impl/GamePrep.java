@@ -2,7 +2,6 @@ package it.unibo.model.gameprep.impl;
 
 import it.unibo.model.board.impl.BoardImpl;
 import it.unibo.model.city.api.City;
-import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
@@ -55,7 +54,8 @@ public class GamePrep {
             graph.addVertex(city1);
             graph.addVertex(city2);
             graph.addEdge(city1, city2, route);
-            graph.setEdgeWeight(city1, city2, route.getScore());
+            graph.setEdgeWeight(route, route.getScore());
+
         }
 
         return graph;
