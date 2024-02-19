@@ -9,6 +9,9 @@ import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.scene.paint.Color;
 
+/*
+ * This class models a ShapeSetter, which returns the set of shapes to draw on map
+ */
 public class ShapeSetter {
     private final MainController controller;
 
