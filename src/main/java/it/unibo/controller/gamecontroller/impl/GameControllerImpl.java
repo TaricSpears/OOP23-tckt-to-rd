@@ -35,7 +35,7 @@ public class GameControllerImpl implements GameController {
     private boolean isLastTurn = false;
 
     /**
-     * Simple constructor of the controller of the game logic
+     * Simple constructor of the controller of the game logic.
      * 
      * @param mainController the main controller of the aplication
      */
@@ -113,7 +113,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public boolean addPlayer(Pair<String, Color> player) {
+    public boolean addPlayer(final Pair<String, Color> player) {
         if (tempPlayers.stream().anyMatch(
                 x -> x.first().equals(player.first()) || x.second().equals(player.second()))
                 || tempPlayers.size() >= 6 || player.first().isBlank()) {
@@ -152,7 +152,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void addView(MainView view) {
+    public void addView(final MainView view) {
         this.view = view;
     }
 
@@ -180,9 +180,12 @@ public class GameControllerImpl implements GameController {
     }
 
     /**
-     * {@inheritDoc}
+     * This method is used to get the color of the player that has claimed a route.
+     * 
+     * @param routeToFind the route to find
+     * @return the color of the player that has claimed the route
      */
-    private Optional<Color> getRouteClaimerColor(Route routeToFind) {
+    private Optional<Color> getRouteClaimerColor(final Route routeToFind) {
         final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
         for (var player : playerList) {
             for (var route : player.getCompletedRoutes()) {

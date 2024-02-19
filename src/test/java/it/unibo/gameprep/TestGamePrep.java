@@ -50,7 +50,7 @@ class TestGamePrep {
     @Test
     void testPrepPlayers() {
 
-        final private List<Player> players = gamePrep.getPlayers();
+        final List<Player> players = gamePrep.getPlayers();
 
         assertEquals(players.size(), 6);
         assertEquals(players.get(0).getName(), "Player1");

@@ -11,24 +11,24 @@ import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 import it.unibo.view.MainView;
 
 /**
- * It models the controller that allows to comunicate with the model
+ * It models the controller that allows to comunicate with the model.
  */
 public interface GameController {
 
     /**
-     * Ends the turn of the current player switching to the next one
+     * Ends the turn of the current player switching to the next one.
      */
     void endTurn();
 
     /**
-     * Calculates the score of each player via {@link ScoreCalculatorImpl}
+     * Calculates the score of each player via {@link ScoreCalculatorImpl}.
      * 
      * @return a list of the player name and his score
      */
     List<Pair<String, Double>> getScore();
 
     /**
-     * Starts a new game
+     * Starts a new game.
      */
     void newGame();
 
@@ -65,7 +65,10 @@ public interface GameController {
      * @param view the main view that controls the other ones
      */
     void addView(MainView view);
-
+    /**
+     * 
+     * @return the regions of the game
+     */
     Set<Region> getRegions();
 
     /**

@@ -32,11 +32,11 @@ public class FillRouteImpl implements FillRoute {
     private Route route;
     private Color chosenColor;
 
-    final List<Color> colors = new ArrayList<Color>(
+    final private List<Color> colors = new ArrayList<Color>(
             List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
-    public FillRouteImpl(Player player, Region region, MainController controller) {
+    public FillRouteImpl(final Player player, final Region region, MainController controller) {
 
         this.player = player;
 
@@ -73,7 +73,7 @@ public class FillRouteImpl implements FillRoute {
 
     }
 
-    private void openAlert(String message) {
+    private void openAlert(final String message) {
         this.alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
         alert.openAlert();
 
@@ -129,7 +129,7 @@ public class FillRouteImpl implements FillRoute {
      * @return true if the cards of the player are enough to fill the route
      */
     @Override
-    public boolean isColorEnough(Color color) {
+    public boolean isColorEnough(final Color color) {
         return this.player.getTrainCards().get(color) + this.player.getTrainCards().get(Color.DARK_GRAY) >= this.route
                 .getScore();
 
@@ -141,7 +141,7 @@ public class FillRouteImpl implements FillRoute {
      * @return the list of the Colors that can fill a GRAY route
      */
     @Override
-    public ObservableList<String> getAvailableRoutes(FillRoute fillRoute) {
+    public ObservableList<String> getAvailableRoutes(final FillRoute fillRoute) {
         final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
 
         for (var color : this.colors) {

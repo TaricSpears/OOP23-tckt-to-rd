@@ -8,7 +8,7 @@ import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 
 /**
- * Interface to control card drawing.
+ * This interface is used to draw cards from the deck.
  */
 public interface DrawController {
 
@@ -19,6 +19,7 @@ public interface DrawController {
 
     /**
      * @return an Objective card from the deck.
+     * @param graph the graph of the game.
      */
     ObjectiveCard drawObjectiveCard(WeightedPseudograph<City, Route> graph);
 }

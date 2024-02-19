@@ -13,6 +13,7 @@ import java.util.Optional;
  * @param id           the id of the region.
  * @param defaultColor the default color of the region.
  * @param playerColor  the color of the player that has the region, if any.
+ * 
  */
 public class Region {
     private final double xCenter;
@@ -37,34 +38,59 @@ public class Region {
         this.playerColor = playerColor;
     }
 
+    /**
+     * @return the x coordinate of the center of the region.
+     */
+
     public double getXCenter() {
         return this.xCenter;
     }
 
+    /**
+     * @return the y coordinate of the center of the region.
+     */
     public double getYCenter() {
         return this.yCenter;
     }
 
+    /**
+     * @return the width of the region.
+     */
     public double getWidth() {
         return this.width;
     }
 
+    /**
+     * @return the length of the region.
+     */
     public double getLength() {
         return this.length;
     }
 
+    /**
+     * @return the angle of the region.
+     */
     public double getAngle() {
         return this.angle;
     }
 
+    /**
+     * @return the id of the region.
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @return the default color of the region.
+     */
     public java.awt.Color getDefaultColor() {
         return this.defaultColor;
     }
 
+    /**
+     * @return the color of the player that has the region, if any.
+     */
     public Optional<java.awt.Color> getPlayerColor() {
         return this.playerColor;
     }

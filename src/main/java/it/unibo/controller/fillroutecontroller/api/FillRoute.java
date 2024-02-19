@@ -14,6 +14,7 @@ import java.awt.Color;
 public interface FillRoute {
     /**
      * @return true if the cards of the player are enough to fill the route
+     * @param color the color of the route
      */
     boolean isColorEnough(Color color);
 
@@ -29,6 +30,8 @@ public interface FillRoute {
 
     /**
      * @return the list of the Colors that can fill a GRAY route
+     * @param fillRoute the fillRoute object you want to know the available routes
+     *                  of
      */
     ObservableList<String> getAvailableRoutes(FillRoute fillRoute);
 
