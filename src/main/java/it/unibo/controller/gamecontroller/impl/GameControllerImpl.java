@@ -33,6 +33,7 @@ public class GameControllerImpl implements GameController {
     final private List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
     private boolean isLastTurn = false;
+    private boolean gameEnded = false;
 
     /**
      * Simple constructor of the controller of the game logic.
@@ -82,8 +83,9 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void endTurn() {
-        if (this.isLastTurn && this.mainController.getTurnController().wasLastTurn()) {
+        if (this.isLastTurn && this.mainController.getTurnController().wasLastPlayer()) {
             this.endGame();
+            this.gameEnded = true;
         }
         this.mainController.getTurnController().endTurn();
 
@@ -107,6 +109,8 @@ public class GameControllerImpl implements GameController {
     public void newGame() {
         view.launchPlayerSlect();
         tempPlayers.clear();
+        this.isLastTurn = false;
+        this.gameEnded = false;
     }
 
     /**
@@ -212,4 +216,19 @@ public class GameControllerImpl implements GameController {
         this.isLastTurn = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isLastTurn() {
+        return this.isLastTurn;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isGameEnded() {
+        return this.gameEnded;
+    }
 }

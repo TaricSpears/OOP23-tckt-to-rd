@@ -20,11 +20,11 @@ import javafx.application.Application;
  */
 public class MainControllerImpl implements MainController {
 
-    final private GamePrep gamePrep = new GamePrep();
+    private GamePrep gamePrep;
     private MainView view;
     final private GameController gameController = new GameControllerImpl(this);
-    private DrawController drawController = new DrawControllerImpl();
-    private PhaseController phaseController = new PhaseControllerImpl();
+    private DrawController drawController;
+    private PhaseController phaseController;
     private TurnController turnController;
 
     /**
@@ -40,11 +40,16 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void startGame() {
-        gamePrep.prepGame(gameController.getTempPlayers(), new RouteReaderController().read());
-        turnController = new TurnControllerImpl(gamePrep.getPlayers());
-        view.launchMainView();
-        gamePrep.getPlayers()
-                .forEach(player -> player.addObjectiveCard(drawController.drawObjectiveCard(gamePrep.getGraph())));
+        this.gamePrep = new GamePrep();
+        this.phaseController = new PhaseControllerImpl();
+        this.drawController = new DrawControllerImpl();
+        this.gamePrep.prepGame(this.gameController.getTempPlayers(), new RouteReaderController().read());
+        this.turnController = new TurnControllerImpl(this.gamePrep.getPlayers());
+
+        this.view.launchMainView();
+        this.gamePrep.getPlayers()
+                .forEach(player -> player.addObjectiveCard(this.drawController.drawObjectiveCard(
+                        this.gamePrep.getGraph())));
     }
 
     /**

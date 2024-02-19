@@ -46,16 +46,9 @@ public class PlayerInterface extends VBox {
         objectiveBox.setMaxWidth(this.getMinWidth() * 0.8);
 
         this.getChildren().add(phase);
-        // this.getChildren().add(endGame);
 
         this.setPadding(new Insets(20));
         this.setSpacing(10);
-
-        /*
-         * endGame.setOnAction(event -> {
-         * controller.getGameController().endGame();
-         * });
-         */
 
         rules.setOnAction(event -> {
 
@@ -77,9 +70,14 @@ public class PlayerInterface extends VBox {
         });
 
         final Button endTurn = new Button("End Turn");
-        endTurn.setOnAction(event -> {
+        endTurn.setOnAction(e -> {
             controller.getGameController().endTurn();
-            new EndTurnPopUp(controller);
+            if (!controller.getGameController().isGameEnded()) {
+                if (controller.getGameController().isLastTurn()) {
+                    new LastTurnPopUp();
+                }
+                new EndTurnPopUp(controller);
+            }
         });
         endTurn.setDisable(!controller.getPhaseController().isEndPhase(controller));
 

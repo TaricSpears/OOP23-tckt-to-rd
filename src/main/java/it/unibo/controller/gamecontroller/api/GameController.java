@@ -65,6 +65,7 @@ public interface GameController {
      * @param view the main view that controls the other ones
      */
     void addView(MainView view);
+
     /**
      * 
      * @return the regions of the game
@@ -82,11 +83,6 @@ public interface GameController {
     ObjectiveCard handleDrawObjectiveCard();
 
     /**
-     * @return the phase controller
-     */
-    // PhaseController getPhaseController();
-
-    /**
      * Refresh all the views
      */
     void refreshView();
@@ -95,4 +91,14 @@ public interface GameController {
      * Set the last turn of the game.
      */
     void setLastTurn();
+
+    /**
+     * @return true if the current turn is the last one, false otherwise.
+     */
+    boolean isLastTurn();
+
+    /**
+     * @return true if the game is ended, false otherwise.
+     */
+    boolean isGameEnded();
 }

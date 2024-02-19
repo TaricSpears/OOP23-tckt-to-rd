@@ -33,8 +33,8 @@ public interface TurnController {
     Player getCurrentPlayer();
 
     /**
-     * @return the current turn.
+     * @return true if the current player was the last one.
      */
-    boolean wasLastTurn();
+    boolean wasLastPlayer();
 
 }
