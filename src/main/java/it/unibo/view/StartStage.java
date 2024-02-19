@@ -33,7 +33,7 @@ import java.util.HashSet;
  */
 public final class StartStage extends Stage {
 
-    private Set<Pair<String, Color>> players = new HashSet<>();
+    final private Set<Pair<String, Color>> players = new HashSet<>();
 
     /**
      * Constructor for the start stage.
@@ -84,7 +84,7 @@ public final class StartStage extends Stage {
             playersList
                     .setCellFactory(new Callback<ListView<Pair<String, Color>>, ListCell<Pair<String, Color>>>() {
                         @Override
-                        public ListCell<Pair<String, Color>> call(ListView<Pair<String, Color>> param) {
+                        public ListCell<Pair<String, Color>> call(final ListView<Pair<String, Color>> param) {
                             return new ColorRectCell();
                         }
                     });

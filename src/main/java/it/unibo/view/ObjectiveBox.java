@@ -20,7 +20,7 @@ import javafx.scene.text.TextAlignment;
  */
 public class ObjectiveBox extends VBox {
 
-    private boolean isShown = false;
+    private boolean isShown;
 
     /**
      * Constructor for the objective box.

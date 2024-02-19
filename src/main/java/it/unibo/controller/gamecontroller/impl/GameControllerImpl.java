@@ -25,12 +25,12 @@ import it.unibo.view.MainView;
 
 /**
  * Implementation of {@link GameController}.
- * It models the game controller that allows the view comunicate with the model
+ * It models the game controller that allows the view comunicate with the model.
  */
 public class GameControllerImpl implements GameController {
 
-    final private MainController mainController;
-    final private List<Pair<String, Color>> tempPlayers = new ArrayList<>();
+    private final MainController mainController;
+    private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
     private boolean isLastTurn = false;
     private boolean gameEnded = false;
@@ -193,8 +193,9 @@ public class GameControllerImpl implements GameController {
         final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
         for (var player : playerList) {
             for (var route : player.getCompletedRoutes()) {
-                if (routeToFind.equals(route))
+                if (routeToFind.equals(route)) {
                     return Optional.of(player.getColor());
+                }
             }
         }
         return Optional.empty();

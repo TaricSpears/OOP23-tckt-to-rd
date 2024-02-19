@@ -48,9 +48,6 @@ public class Shape extends Polygon {
         super.setRotate(angle);
     }
 
-    /**
-     * @return the id of the shape.
-     */
     public int getShapeId() {
         return this.id;
     }

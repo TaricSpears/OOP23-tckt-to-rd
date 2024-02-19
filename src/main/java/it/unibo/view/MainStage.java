@@ -1,7 +1,6 @@
 package it.unibo.view;
 
 import java.util.Set;
-import java.util.HashSet;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -22,12 +21,12 @@ import javafx.stage.Stage;
 public class MainStage extends Stage {
 
     private PlayerInterface playerInterface;
-    final private Screen screen = Screen.getPrimary();
-    final private Rectangle2D bounds = screen.getVisualBounds();
-    final private BorderPane root;
-    final private Scene scene;
-    final private Pane pane;
-    private Set<Shape> shapeSet = new HashSet<>();
+    private final Screen screen = Screen.getPrimary();
+    private final Rectangle2D bounds = screen.getVisualBounds();
+    private final BorderPane root;
+    private final Scene scene;
+    private final Pane pane;
+    private Set<Shape> shapeSet;
 
     /**
      * Constructor for the main stage.
@@ -60,7 +59,7 @@ public class MainStage extends Stage {
 
         this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
-        for (var shape : shapeSet) {
+        for (final var shape : shapeSet) {
             pane.getChildren().add(shape);
         }
 
@@ -89,7 +88,7 @@ public class MainStage extends Stage {
         this.pane.getChildren().clear();
         this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
-        for (var shape : this.shapeSet) {
+        for (final var shape : this.shapeSet) {
             pane.getChildren().add(shape);
         }
 

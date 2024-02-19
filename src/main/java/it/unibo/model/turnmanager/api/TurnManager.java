@@ -25,7 +25,7 @@ public interface TurnManager {
     int getCurrentTurn();
 
     /**
-     * Passes control to the next player
+     * Passes control to the next player.
      */
     void switchToNextPlayer();
 

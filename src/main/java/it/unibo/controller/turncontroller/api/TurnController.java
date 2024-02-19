@@ -20,7 +20,7 @@ public interface TurnController {
      * 
      * Ends the turn of the current player.
      */
-    public void endTurn();
+    void endTurn();
 
     /**
      * @return the list of players in the order of their turns.
