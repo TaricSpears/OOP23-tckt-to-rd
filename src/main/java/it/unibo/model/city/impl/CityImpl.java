@@ -79,7 +79,8 @@ public class CityImpl implements City {
                 && this.name.equals(toCheck.getName())
                 && this.id == toCheck.getId()
                 && Double.compare(this.coordinates.first(), toCheck.getCoordinates().first()) == 0
-                && Double.compare(this.coordinates.second(), toCheck.getCoordinates().second()) == 0;
+                && Double.compare(this.coordinates.second(),
+                        toCheck.getCoordinates().second()) == 0;
     }
 
     /**

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class TestObjectiveGeneration {
 
     private static final double MIN_SCORE = 5.0;
-    private final GamePrep gamePrep = TestDataPreparation.testPrep();
+    private final GamePrep gamePrep = TestDataPreparation.gamePrep();
 
     @Test
     void testObjectiveGeneration() {

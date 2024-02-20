@@ -25,7 +25,7 @@ class TestGamePrep {
 
     @Test
     void testPrepPlayers() {
-        final GamePrep gamePrep = TestDataPreparation.testPrep();
+        final GamePrep gamePrep = TestDataPreparation.gamePrep();
         final List<Player> players = gamePrep.getPlayers();
 
         assertEquals(players.size(), PLAYER_NUMBER);
@@ -36,7 +36,7 @@ class TestGamePrep {
 
     @Test
     void testPrepGraph() {
-        final GamePrep gamePrep = TestDataPreparation.testPrep();
+        final GamePrep gamePrep = TestDataPreparation.gamePrep();
         final WeightedPseudograph<City, Route> graph = gamePrep.getGraph();
 
         assertEquals(graph.vertexSet().size(), 3);
