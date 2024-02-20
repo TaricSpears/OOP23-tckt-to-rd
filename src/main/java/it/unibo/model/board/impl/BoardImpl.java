@@ -49,7 +49,7 @@ public class BoardImpl {
      * {@inheritDoc}
      */
     public WeightedPseudograph<City, Route> getGraph() {
-        return this.graph;
+        return GraphCopier.copyGraph(graph);
     }
 
     /**

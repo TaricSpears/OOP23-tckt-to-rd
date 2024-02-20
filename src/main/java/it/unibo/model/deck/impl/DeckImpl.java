@@ -36,8 +36,6 @@ public class DeckImpl implements Deck {
      */
 
     public TrainCard drawTrainCard() {
-        final int jollyNumber = 7;
-        final int cardNumber = 6;
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.MAGENTA, Color.BLUE,

@@ -47,13 +47,12 @@ public class FinalScoreBoardView extends Stage {
 
         final Button endButton = new Button("Close");
         endButton.setOnAction(event -> {
-            this.close();
+            controller.getGameController().closeGame();
         });
 
         final Button newGame = new Button("New Game");
         newGame.setOnAction(event -> {
             controller.getGameController().newGame();
-            this.close();
         });
 
         final BorderPane root = new BorderPane();

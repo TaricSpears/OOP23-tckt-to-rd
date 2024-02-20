@@ -97,4 +97,9 @@ public interface GameController {
      * @return true if the game is ended, false otherwise.
      */
     boolean isGameEnded();
+
+    /**
+     * Closes the game views.
+     */
+    void closeGame();
 }

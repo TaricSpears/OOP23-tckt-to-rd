@@ -15,6 +15,7 @@ public class MainView extends Application {
     private static MainController controller = GameStart.CONTROLLER;
     private StartStage startStage;
     private MainStage mainStage;
+    private FinalScoreBoardView scoreBoardView;
 
     /**
      * The main method that starts the game.
@@ -50,7 +51,7 @@ public class MainView extends Application {
      * Launches the final score board view.
      */
     public void launchScoreBoard() {
-        final FinalScoreBoardView scoreBoardView = new FinalScoreBoardView(controller);
+        this.scoreBoardView = new FinalScoreBoardView(controller);
         scoreBoardView.show();
     }
 
@@ -83,5 +84,11 @@ public class MainView extends Application {
      */
     public void refreshShapes() {
         mainStage.refreshShapes(controller);
+    }
+
+    public void closeFinalScoreBoard() {
+        if (!Objects.isNull(scoreBoardView)) {
+            scoreBoardView.close();
+        }
     }
 }

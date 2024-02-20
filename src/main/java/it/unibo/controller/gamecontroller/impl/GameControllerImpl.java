@@ -233,4 +233,12 @@ public class GameControllerImpl implements GameController {
     public boolean isGameEnded() {
         return this.gameEnded;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void closeGame() {
+        this.view.closeFinalScoreBoard();
+    }
 }
