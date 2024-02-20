@@ -109,4 +109,11 @@ public class FinalScoreBoardView extends Stage {
         this.setMinWidth(bounds.getWidth() * SCENE_WIDTH_SCALE);
         this.setMinHeight(bounds.getHeight() * SCENE_HEIGHT_SCALE);
     }
+
+    /**
+     * A method to close the stage.
+     */
+    public void closeStage() {
+        this.close();
+    }
 }

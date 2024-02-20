@@ -73,6 +73,24 @@ public class MainStage extends Stage {
     }
 
     /**
+     * A method to close the stage.
+     */
+    public void closeStage() {
+        this.close();
+    }
+
+    /**
+     * A method to refresh all the elements of the stage.
+     * 
+     * @param controller the main controller of the game.
+     */
+    public void refreshAll(final MainController controller) {
+        this.refreshShapes(controller);
+        this.refreshHighLightedCities(controller);
+        this.refreshPlayerInterface(controller);
+    }
+
+    /**
      * A method to refresh the player interface.
      * 
      * @param controller the main controller of the game

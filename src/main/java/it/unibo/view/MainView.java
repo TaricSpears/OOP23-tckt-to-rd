@@ -1,7 +1,5 @@
 package it.unibo.view;
 
-import java.util.Objects;
-
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import javafx.application.Application;
@@ -31,6 +29,20 @@ public class MainView extends Application {
     }
 
     /**
+     * @return the main stage of the game.
+     */
+    public MainStage getMainStage() {
+        return this.mainStage;
+    }
+
+    /**
+     * @return the final score board view.
+     */
+    public FinalScoreBoardView getScoreBoardView() {
+        return this.scoreBoardView;
+    }
+
+    /**
      * Launches the player selection view.
      */
     public void launchPlayerSlect() {
@@ -54,43 +66,4 @@ public class MainView extends Application {
         scoreBoardView.show();
     }
 
-    /**
-     * Closes the main view of the game.
-     */
-    public void closeMainView() {
-        if (!Objects.isNull(mainStage)) {
-            mainStage.close();
-        }
-    }
-
-    /**
-     * Refreshes the player interface and the shapes.
-     */
-    public void refreshAll() {
-        refreshPlayerInterface();
-        refreshShapes();
-    }
-
-    /**
-     * Refreshes the player interface.
-     */
-    public void refreshPlayerInterface() {
-        mainStage.refreshPlayerInterface(controller);
-    }
-
-    /**
-     * Refreshes the shapes.
-     */
-    public void refreshShapes() {
-        mainStage.refreshShapes(controller);
-    }
-
-    /**
-     * Closes the final score board view.
-     */
-    public void closeFinalScoreBoard() {
-        if (!Objects.isNull(scoreBoardView)) {
-            scoreBoardView.close();
-        }
-    }
 }

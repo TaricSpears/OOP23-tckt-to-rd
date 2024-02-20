@@ -52,7 +52,7 @@ public class GameControllerImpl implements GameController {
         final TrainCard card = this.mainController.getDrawController().drawTrainCard();
         this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
         this.mainController.getPhaseController().switchPhase();
-        view.refreshAll();
+        view.getMainStage().refreshAll(mainController);
 
         return card;
     }
@@ -66,7 +66,7 @@ public class GameControllerImpl implements GameController {
         ObjectiveCard card;
 
         this.mainController.getPhaseController().switchPhase();
-        view.refreshAll();
+        view.getMainStage().refreshAll(mainController);
 
         do {
             card = this.mainController.getDrawController()
@@ -74,7 +74,7 @@ public class GameControllerImpl implements GameController {
             drawn = this.mainController.getTurnController().getCurrentPlayer().addObjectiveCard(card);
         } while (!drawn);
 
-        view.refreshPlayerInterface();
+        view.getMainStage().refreshPlayerInterface(this.mainController);
         return card;
     }
 
@@ -90,7 +90,7 @@ public class GameControllerImpl implements GameController {
         this.mainController.getTurnController().endTurn();
 
         this.mainController.setPhaseController(new PhaseControllerImpl());
-        this.view.refreshAll();
+        view.getMainStage().refreshAll(mainController);
     }
 
     /**
@@ -148,7 +148,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void endGame() {
-        view.closeMainView();
+        view.getMainStage().closeStage();
         view.launchScoreBoard();
     }
 
@@ -197,7 +197,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void refreshView() {
-        this.view.refreshAll();
+        view.getMainStage().refreshAll(mainController);
     }
 
     /**
@@ -260,6 +260,6 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void closeGame() {
-        this.view.closeFinalScoreBoard();
+        this.view.getScoreBoardView().close();
     }
 }
