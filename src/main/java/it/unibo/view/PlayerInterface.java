@@ -55,7 +55,6 @@ public class PlayerInterface extends VBox {
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
-        // phase.setWrapText(true);
         phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
         objectiveBox.setMaxWidth(this.getMinWidth() * BOX_SCALE);
 

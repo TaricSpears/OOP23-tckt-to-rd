@@ -32,7 +32,7 @@ public class CardBox extends VBox {
      * @param controller      the mainController of the game.
      * @param playerInterface the interface where this box will be fit.
      */
-    public CardBox(final MainController controller, final PlayerInterface playerInterface) {
+    public CardBox(final MainController controller) {
 
         colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
         colorImageMap.put(Color.BLUE, "/img/Cards/BlueCard.jpg");
@@ -44,7 +44,8 @@ public class CardBox extends VBox {
         colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
         colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
 
-        var temp = new ArrayList<>(this.colorImageMap.entrySet());
+        final var temp = new ArrayList<>(this.colorImageMap.entrySet());
+
         for (int i = 0; i < temp.size(); i += 2) {
             final HBox cardBox = new HBox();
 
@@ -74,7 +75,5 @@ public class CardBox extends VBox {
 
             this.getChildren().add(cardBox);
         }
-
     }
-
 }
