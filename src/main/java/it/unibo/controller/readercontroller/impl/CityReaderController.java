@@ -19,7 +19,7 @@ import it.unibo.model.city.impl.CityImpl;
 /**
  * This class models a ReaderController for reading Cities.json file.
  */
-public class CityReaderController extends AbstractReaderController<List<City>> {
+public final class CityReaderController extends AbstractReaderController<List<City>> {
 
     private static final String CITY_FILE_PATH = "/configuration/EuropeConfiguration/Cities.json";
 

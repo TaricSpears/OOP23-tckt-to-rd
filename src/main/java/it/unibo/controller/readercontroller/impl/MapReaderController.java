@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import org.json.simple.JSONObject;
@@ -15,7 +16,7 @@ import org.json.simple.parser.ParseException;
 /**
  * This class models a ReaderController for reading MapData.json file.
  */
-public class MapReaderController extends AbstractReaderController<List<Integer>> {
+public final class MapReaderController extends AbstractReaderController<List<Integer>> {
 
     private static final String MAP_FILE_PATH = "/configuration/EuropeConfiguration/MapData.json";
     private final List<Integer> mapData;
@@ -51,7 +52,7 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
      */
     @Override
     public List<Integer> read() {
-        return this.mapData;
+        return Collections.unmodifiableList(this.mapData);
     }
 
     /**

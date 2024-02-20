@@ -28,7 +28,7 @@ import java.awt.Color;
 /**
  * This class models a ReaderController for reading Routes.json file.
  */
-public class RouteReaderController extends AbstractReaderController<List<Route>> {
+public final class RouteReaderController extends AbstractReaderController<List<Route>> {
 
     private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
 
