@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import it.unibo.controller.gamecontroller.api.MainController;
-import it.unibo.controller.readercontroller.impl.MapReaderController;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
