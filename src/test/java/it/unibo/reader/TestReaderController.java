@@ -19,7 +19,7 @@ import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.city.api.City;
 import it.unibo.model.city.impl.CityImpl;
 import it.unibo.model.route.impl.RouteImpl;
-
+// CHECKSTYLE: MagicNumber OFF
 class TestReaderController {
     private static final int MAP_HEIGHT = 3640;
     private static final int MAP_WIDTH = 5421;

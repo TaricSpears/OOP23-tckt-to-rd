@@ -9,7 +9,7 @@ import it.unibo.model.route.impl.RouteImpl;
 /**
  * Utility class to copy a graph.
  */
-public class GraphCopier {
+public final class GraphCopier {
 
     /**
      * Private constructor to hide the implicit public one.

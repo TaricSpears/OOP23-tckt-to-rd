@@ -2,27 +2,33 @@ package it.unibo.turnandphase;
 
 import org.junit.jupiter.api.Test;
 
-import java.awt.Color;
+import static org.junit.Assert.assertEquals;
 
-import it.unibo.commons.EdgeData;
+import it.unibo.commons.Region;
+import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
+import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.gamecontroller.impl.MainControllerImpl;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
-import it.unibo.model.route.api.Route;
-import it.unibo.model.route.impl.RouteImpl;
 
+/**
+ * This class is used to test the FillRoute class.
+ * 
+ */
+
+// CHECKSTYLE: MagicNumber OFF
 public class FillRouteTest {
-
     /**
-     * 
+     * This method is used to test a fillRoute empty object.
      */
     @Test
     public void testFillRouteEmpty() {
         // Test code goes here
-        EdgeData edgeData = new EdgeData(null, null, 5);
+        MainController controller = new MainControllerImpl();
         Player player = new PlayerImpl(null, null, 0);
-        Route route = new RouteImpl(edgeData, Color.GRAY, 5, null);
-        //FillRouteImpl fillRouteImpl = new FillRouteImpl(player, route);
-        //assertEquals(false, fillRouteImpl.isRouteValid());
+        Region region = new Region(0, 0, 0, 0, 0, 0, null, null);
+        FillRouteImpl fillRouteImpl = new FillRouteImpl(player, region, controller);
+        assertEquals(false, fillRouteImpl.isRouteValid());
 
     }
 }

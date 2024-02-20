@@ -23,6 +23,13 @@ public class CardBox extends VBox {
 
     private final Map<Color, String> colorImageMap = new LinkedHashMap<>();
 
+    /**
+     * Constructor of the class.
+     * 
+     * @param controller      the main controller
+     * @param playerInterface the player interface
+     */
+
     public CardBox(final MainController controller, final PlayerInterface playerInterface) {
 
         colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
@@ -45,7 +52,7 @@ public class CardBox extends VBox {
                     new Text(controller.getTurnController().getCurrentPlayer().getTrainCards()
                             .get(temp.get(i).getKey())
                             .toString()));
-
+            // TODO: fix with bounds of the window
             card1.setFitHeight(50);
             card1.setFitWidth(50 * 1.56);
             cardBox.getChildren().add(cardBox1);

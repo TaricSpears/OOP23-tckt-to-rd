@@ -30,13 +30,17 @@ public class DeckImpl implements Deck {
     /**
      * {@inheritDoc}
      */
+
     public TrainCard drawTrainCard() {
+        final int jollyNumber = 7;
+        final int cardNumber = 6;
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.MAGENTA, Color.BLUE,
                 Color.DARK_GRAY };
 
-        final int[] probabilities = { 6, 6, 6, 6, 6, 6, 6, 6, 7 };
+        final int[] probabilities = { cardNumber, cardNumber, cardNumber, cardNumber, cardNumber, cardNumber,
+                cardNumber, cardNumber, jollyNumber };
 
         int temp = new Random().nextInt(55);
         int index = 0;

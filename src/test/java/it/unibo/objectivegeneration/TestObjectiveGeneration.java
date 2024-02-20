@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.awt.Color;
 
 import java.util.List;
-
+// CHECKSTYLE: MagicNumber OFF
 class TestObjectiveGeneration {
 
     private final List<Pair<String, Color>> playerData = List.of(new Pair<String, Color>("Player1", Color.RED),

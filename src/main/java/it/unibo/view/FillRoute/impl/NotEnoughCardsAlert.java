@@ -22,7 +22,7 @@ public class NotEnoughCardsAlert extends Alert {
      * @param contentText the text of the alert.
      * @param ok          the button type of the alert.
      */
-    public NotEnoughCardsAlert(AlertType alertType, String contentText, ButtonType ok) {
+    public NotEnoughCardsAlert(final AlertType alertType, final String contentText, final ButtonType ok) {
         super(alertType);
         this.alertType = alertType;
         this.contentText = contentText;

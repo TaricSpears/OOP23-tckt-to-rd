@@ -22,6 +22,7 @@ import java.awt.Color;
 /**
  * This class is used for testing the GamePrep class.
  */
+// CHECKSTYLE: MagicNumber OFF
 class TestGamePrep {
 
     private static final int CARRIAGE_DEFAULT_NUMBER = 45;
