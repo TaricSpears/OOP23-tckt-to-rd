@@ -20,11 +20,13 @@ import it.unibo.model.route.api.Route;
  */
 public class RouteImpl extends DefaultWeightedEdge implements Route {
 
+    private static final long serialVersionUID = 567742502623265945L;
+
     private final EdgeData connectedCity;
     private boolean filled;
     private final int id;
     private final Set<Carriage> railUnits;
-    private Color color;
+    private final Color color;
 
     /**
      * Constructor for the route.

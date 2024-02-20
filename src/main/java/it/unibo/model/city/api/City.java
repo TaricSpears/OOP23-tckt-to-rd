@@ -36,5 +36,6 @@ public interface City {
     /**
      * @return the string representation of the city.
      */
+    @Override
     String toString();
 }
