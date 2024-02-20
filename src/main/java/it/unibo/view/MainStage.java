@@ -45,6 +45,7 @@ public class MainStage extends Stage {
         this.playerInterface = new PlayerInterface(controller,
                 this.scene.getWidth() - this.pane.getMaxWidth(),
                 this.scene.getHeight() - this.pane.getMaxWidth());
+        this.playerInterface.initialize();
 
         final Image imageMap = new Image("/img/Maps/europeMapLabeled.jpg");
 
@@ -81,6 +82,7 @@ public class MainStage extends Stage {
                 this.scene.getWidth() - this.pane.getMaxWidth(),
                 this.scene.getHeight() - this.pane.getMaxWidth());
         this.root.setRight(this.playerInterface);
+        this.playerInterface.initialize();
     }
 
     /**

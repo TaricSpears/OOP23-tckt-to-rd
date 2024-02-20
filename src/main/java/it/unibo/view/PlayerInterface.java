@@ -38,6 +38,11 @@ public class PlayerInterface extends VBox {
     private static final double ALERT_WIDTH_SCALE = 0.6;
     private static final double ALERT_HEIGHT_SCALE = 0.5;
 
+    private final HBox controlBox;
+    private final HBox drawBox;
+    private final ObjectiveBox objectiveBox = new ObjectiveBox();
+    private final CardBox cardBox;
+
     /**
      * Constructor for the player interface.
      * 
@@ -53,9 +58,8 @@ public class PlayerInterface extends VBox {
 
         final Button rules = new Button("Rules");
         final Text phase = new Text(controller.getPhaseController().toString());
-        final ObjectiveBox objectiveBox = new ObjectiveBox();
         objectiveBox.initialize(controller, this);
-        final CardBox cardBox = new CardBox(controller);
+        cardBox = new CardBox(controller);
         cardBox.initialize();
 
         phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
@@ -117,12 +121,16 @@ public class PlayerInterface extends VBox {
         });
         drawObjective.setDisable(!controller.getPhaseController().isMidPhase());
 
-        final HBox controlBox = new HBox(endTurn, rules);
-        final HBox drawBox = new HBox(drawObjective, drawTrain);
+        controlBox = new HBox(endTurn, rules);
+        drawBox = new HBox(drawObjective, drawTrain);
         controlBox.setSpacing(SPACINGBOX_VALUE);
         drawBox.setSpacing(SPACINGBOX_VALUE);
+    }
 
+    /**
+     * A method to initialize the player interface.
+     */
+    public void initialize() {
         this.getChildren().addAll(drawBox, controlBox, objectiveBox, cardBox);
-
     }
 }
