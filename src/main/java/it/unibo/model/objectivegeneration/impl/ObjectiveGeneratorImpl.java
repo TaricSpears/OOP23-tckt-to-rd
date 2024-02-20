@@ -1,8 +1,6 @@
 package it.unibo.model.objectivegeneration.impl;
 
-import org.jgrapht.Graph;
 import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.WeightedPseudograph;
 
 import java.util.List;
