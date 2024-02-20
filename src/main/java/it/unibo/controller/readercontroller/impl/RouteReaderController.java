@@ -85,8 +85,8 @@ public final class RouteReaderController extends AbstractReaderController<List<R
 
                 final int weight = railUnits.size();
                 final JSONArray routeExtremes = (JSONArray) obj.get("connectedCities");
-                final var city1 = this.cities.get(Long.valueOf((Long) routeExtremes.get(0)).intValue());
-                final var city2 = this.cities.get(Long.valueOf((Long) routeExtremes.get(1)).intValue());
+                final var city1 = this.cities.get((Integer) Integer.parseInt(routeExtremes.get(0).toString()));
+                final var city2 = this.cities.get((Integer) Integer.parseInt(routeExtremes.get(1).toString()));
                 final EdgeData connectedCity = new EdgeData(city1, city2, weight);
 
                 final Color color = new IntToColorConverter().apply(intColor);
