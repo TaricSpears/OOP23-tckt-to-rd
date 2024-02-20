@@ -13,7 +13,10 @@ import java.awt.Color;
 /**
  * This class is used for preparing the test data.
  */
-public class TestDataPreparation {
+public final class TestDataPreparation {
+
+    private TestDataPreparation() {
+    }
 
     /**
      * Call this method to get an instance of GamePrep for testing.
