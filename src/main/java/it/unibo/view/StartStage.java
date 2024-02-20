@@ -94,7 +94,7 @@ public final class StartStage extends Stage {
         final VBox nameSelect = new VBox();
         final HBox nameInput = new HBox();
         final HBox startBox = new HBox();
-
+        // TODO: must do with bounds
         nameInput.setPadding(new Insets(15, 12, 15, 12));
         nameInput.setSpacing(10);
         nameInput.getChildren().addAll(colorPicker, nameField, submitButton);

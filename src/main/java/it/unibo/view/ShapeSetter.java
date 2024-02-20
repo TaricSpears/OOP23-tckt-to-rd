@@ -9,7 +9,7 @@ import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.scene.paint.Color;
 
-public class ShapeSetter {
+public final class ShapeSetter {
     private final MainController controller;
 
     public ShapeSetter(final MainController controller) {
