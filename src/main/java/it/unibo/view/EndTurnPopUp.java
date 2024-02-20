@@ -25,7 +25,7 @@ public class EndTurnPopUp {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
         alert.setContentText("Stands to:  " + controller.getTurnController().getCurrentPlayer().getName());
-        // TODO: fix with bounds of the window
+
         alert.setResizable(false);
         alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
         alert.getDialogPane().setMinSize(WIDTH, HEIGHT);

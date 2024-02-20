@@ -21,7 +21,7 @@ public class LastTurnPopUp {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Ultimo turno");
         alert.setContentText("Ultimo turno di gioco!");
-        // TODO: fix with bounds of the window
+
         alert.setResizable(false);
         alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
         alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
