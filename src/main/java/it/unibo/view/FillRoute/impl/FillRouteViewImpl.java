@@ -16,16 +16,21 @@ public final class FillRouteViewImpl extends Dialog<Color> {
 
     private final Dialog<String> dialog;
     private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
     /**
      * Constructor for the class.
-     * @param fillRoute the fillRoute object you want to know the available routes of
+     * 
+     * @param fillRoute the fillRoute object you want to know the available routes
+     *                  of
      */
     public FillRouteViewImpl(final FillRoute fillRoute) {
 
         dialog = new ChoiceDialog<>(null, fillRoute.getAvailableRoutes(fillRoute));
     }
+
     /**
      * Opens the pop-up for the color selection.
+     * 
      * @return the color chosen by the player
      */
     public Color openPopUp() {

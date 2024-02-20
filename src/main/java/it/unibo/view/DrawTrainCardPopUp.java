@@ -21,6 +21,10 @@ import java.util.Map;
  */
 public class DrawTrainCardPopUp {
 
+    private static final double WIDTH = 300;
+    private static final double HEIGHT = 200;
+    private static final double DURATION = 2;
+
     /**
      * Constructor for the class.
      * 
@@ -50,11 +54,11 @@ public class DrawTrainCardPopUp {
         // TODO: fix with bounds of the window
         Stage popupStage = new Stage();
         popupStage.initOwner(null);
-        popupStage.setScene(new Scene(pane, 300, 200));
+        popupStage.setScene(new Scene(pane, WIDTH, HEIGHT));
         popupStage.setResizable(false);
         popupStage.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> popupStage.close());
         delay.play();
     }

@@ -4,8 +4,6 @@ import java.util.Optional;
 
 /**
  * This class represents a region in the map.
- *
- * 
  */
 public class Region {
     private final double xCenter;

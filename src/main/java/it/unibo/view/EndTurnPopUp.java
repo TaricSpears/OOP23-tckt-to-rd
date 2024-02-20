@@ -11,6 +11,10 @@ import javafx.util.Duration;
  */
 public class EndTurnPopUp {
 
+    private static final double WIDTH = 300;
+    private static final double HEIGHT = 200;
+    private static final double DURATION = 2;
+
     /**
      * Constructor for the class.
      * 
@@ -23,11 +27,11 @@ public class EndTurnPopUp {
         alert.setContentText("Stands to:  " + controller.getTurnController().getCurrentPlayer().getName());
         // TODO: fix with bounds of the window
         alert.setResizable(false);
-        alert.getDialogPane().setMaxSize(300, 200);
-        alert.getDialogPane().setMinSize(300, 200);
+        alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
+        alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
         alert.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> alert.close());
         delay.play();
     }

@@ -20,6 +20,10 @@ import it.unibo.model.route.api.Route;
  */
 public class DeckImpl implements Deck {
 
+    private static final int JOLLY_PROBABILITY = 7;
+    private static final int OTHER_PROBABILITY = 6;
+    private static final int TOTAL_CARDS = 55;
+
     /**
      * {@inheritDoc}
      */
@@ -39,10 +43,10 @@ public class DeckImpl implements Deck {
                 Color.ORANGE, Color.GREEN, Color.MAGENTA, Color.BLUE,
                 Color.DARK_GRAY };
 
-        final int[] probabilities = { cardNumber, cardNumber, cardNumber, cardNumber, cardNumber, cardNumber,
-                cardNumber, cardNumber, jollyNumber };
+        final int[] probabilities = { OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY,
+                OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, JOLLY_PROBABILITY };
 
-        int temp = new Random().nextInt(55);
+        int temp = new Random().nextInt(TOTAL_CARDS);
         int index = 0;
 
         for (int i = 0; i < probabilities.length; i++) {

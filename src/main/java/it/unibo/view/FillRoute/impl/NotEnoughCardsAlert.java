@@ -9,11 +9,11 @@ import javafx.scene.control.ButtonType;
  */
 public class NotEnoughCardsAlert extends Alert {
 
-    private AlertType alertType;
-    private String contentText;
-    private ButtonType ok;
+    private final AlertType alertType;
+    private final String contentText;
+    private final ButtonType ok;
 
-    private Alert alert;
+    private final Alert alert;
 
     /**
      * Constructor for the alert.
