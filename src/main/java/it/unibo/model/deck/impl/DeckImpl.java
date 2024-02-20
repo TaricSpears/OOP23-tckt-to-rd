@@ -23,6 +23,7 @@ public class DeckImpl implements Deck {
     private static final int JOLLY_PROBABILITY = 7;
     private static final int OTHER_PROBABILITY = 6;
     private static final int TOTAL_CARDS = 55;
+    private static final Random RANDOM = new Random();
 
     /**
      * {@inheritDoc}
@@ -45,7 +46,7 @@ public class DeckImpl implements Deck {
         final int[] probabilities = { OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY,
                 OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, JOLLY_PROBABILITY };
 
-        int temp = new Random().nextInt(TOTAL_CARDS);
+        int temp = RANDOM.nextInt(TOTAL_CARDS);
         int index = 0;
 
         for (int i = 0; i < probabilities.length; i++) {
