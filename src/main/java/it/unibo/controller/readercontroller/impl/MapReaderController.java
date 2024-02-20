@@ -25,14 +25,6 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
      */
     public MapReaderController() {
         super(MAP_FILE_PATH);
-        this.mapData = this.read();
-    }
-
-    /**
-     * @return the result of the reading operation
-     */
-    @Override
-    public List<Integer> read() {
         final JSONParser parser = new JSONParser();
         final List<Integer> retList = new LinkedList<>();
         try {
@@ -51,7 +43,15 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
         } catch (ParseException e1) {
             Logger.getLogger(MapReaderController.class.getName()).fine("Exception in file parsing operations");
         }
-        return retList;
+        this.mapData = retList;
+    }
+
+    /**
+     * @return the result of the reading operation
+     */
+    @Override
+    public List<Integer> read() {
+        return this.mapData;
     }
 
     /**
