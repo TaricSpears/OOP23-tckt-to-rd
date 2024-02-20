@@ -1,9 +1,11 @@
 package it.unibo.view;
 
 import java.util.Set;
+import java.util.HashSet;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -24,12 +26,13 @@ public class MainStage extends Stage {
     private static final double PANE_SCALE = 0.8;
 
     private PlayerInterface playerInterface;
-    private final Screen screen = Screen.getPrimary();
-    private final Rectangle2D bounds = screen.getVisualBounds();
-    private final BorderPane root;
-    private final Scene scene;
-    private final Pane pane;
-    private Set<Shape> shapeSet;
+    final private Screen screen = Screen.getPrimary();
+    final private Rectangle2D bounds = screen.getVisualBounds();
+    final private BorderPane root;
+    final private Scene scene;
+    final private Pane pane;
+    private Set<Shape> shapeSet = new HashSet<>();
+    private Set<Button> highlightedCitySet = new HashSet<>();
 
     /**
      * Constructor for the main stage.
@@ -95,6 +98,16 @@ public class MainStage extends Stage {
             pane.getChildren().add(shape);
         }
 
+        this.refreshHighLightedCities(controller);
+
         this.root.setCenter(this.pane);
+    }
+
+    private void refreshHighLightedCities(final MainController controller) {
+        this.highlightedCitySet = new HighlightedCitySetter(controller)
+                .getCities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+        for (var city : this.highlightedCitySet) {
+            pane.getChildren().add(city);
+        }
     }
 }
