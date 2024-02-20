@@ -2,7 +2,7 @@ package it.unibo.model.scorecalculator.api;
 
 import java.util.List;
 
-import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.commons.Pair;
 
 /**
@@ -15,5 +15,5 @@ public interface ScoreCalculator {
      * @return a list of pairs of player and his final score, ordered by score
      *         ascending.
      */
-    List<Pair<String, Double>> getScoreBoard(List<Player> players);
+    List<Pair<String, Double>> getScoreBoard(List<PlayerImpl> players);
 }

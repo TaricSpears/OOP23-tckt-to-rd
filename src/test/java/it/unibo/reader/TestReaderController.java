@@ -89,6 +89,6 @@ class TestReaderController {
                 cityList.get(20), 3),
                 Color.RED, 34);
         newRoute.setRailUnits(carriageSet);
-        assertEquals(true, newRoute.equals(routeList.get(34)));
+        assertEquals(newRoute, routeList.get(34));
     }
 }

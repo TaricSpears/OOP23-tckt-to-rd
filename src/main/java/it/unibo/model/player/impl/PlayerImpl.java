@@ -23,7 +23,7 @@ import java.awt.Color;
  * 
  * Regulates the player's actions and attributes.
  */
-public class PlayerImpl implements Player {
+public class PlayerImpl implements Player, Cloneable {
 
     private final String name;
     private final Color color;
@@ -219,6 +219,18 @@ public class PlayerImpl implements Player {
     @Override
     public boolean addObjectiveCard(final ObjectiveCard card) {
         return this.objectiveCards.add(card);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PlayerImpl clone() {
+        try {
+            return (PlayerImpl) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 
 }

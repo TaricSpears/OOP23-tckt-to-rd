@@ -15,6 +15,7 @@ import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
@@ -26,7 +27,7 @@ import it.unibo.view.MainView;
  * Implementation of {@link GameController}.
  * It models the game controller that allows the view comunicate with the model.
  */
-public class GameControllerImpl implements GameController {
+public class GameControllerImpl implements GameController, Cloneable {
 
     private static final int NUM_MAX_PLAYER = 6;
     private final MainController mainController;
@@ -42,6 +43,18 @@ public class GameControllerImpl implements GameController {
      */
     public GameControllerImpl(final MainController mainController) {
         this.mainController = mainController;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GameControllerImpl clone() {
+        try {
+            return (GameControllerImpl) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 
     /**
@@ -181,7 +194,7 @@ public class GameControllerImpl implements GameController {
      * @return the color of the player that has claimed the route
      */
     private Optional<Color> getRouteClaimerColor(final Route routeToFind) {
-        final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
+        final List<PlayerImpl> playerList = this.mainController.getGameInstance().getPlayers();
         for (final var player : playerList) {
             for (final var route : player.getCompletedRoutes()) {
                 if (routeToFind.equals(route)) {

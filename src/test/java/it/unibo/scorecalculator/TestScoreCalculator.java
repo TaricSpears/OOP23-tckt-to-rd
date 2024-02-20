@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import it.unibo.commons.Pair;
 import it.unibo.commons.TestDataPreparation;
 import it.unibo.model.gameprep.impl.GamePrep;
-import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
 import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
@@ -24,7 +24,7 @@ class TestScoreCalculator {
     void testGetScoreBoard() {
         final GamePrep gamePrep = TestDataPreparation.gamePrep();
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
-        final List<Player> players = gamePrep.getPlayers();
+        final List<PlayerImpl> players = gamePrep.getPlayers();
 
         final Set<Route> routes = gamePrep.getGraph().edgeSet();
 

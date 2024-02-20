@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unibo.controller.turncontroller.api.TurnController;
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.turnmanager.api.TurnManager;
 import it.unibo.model.turnmanager.impl.TurnManagerImpl;
 
@@ -21,7 +22,7 @@ public class TurnControllerImpl implements TurnController {
      * 
      * @param players the list of players in the game.
      */
-    public TurnControllerImpl(final List<Player> players) {
+    public TurnControllerImpl(final List<PlayerImpl> players) {
         this.turnManager = new TurnManagerImpl(players);
     }
 

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.turnmanager.api.TurnManager;
 
 /**
@@ -15,10 +16,10 @@ import it.unibo.model.turnmanager.api.TurnManager;
  */
 public class TurnManagerImpl implements TurnManager {
 
-    private final List<Player> players;
+    private final List<PlayerImpl> players;
 
-    private Iterator<Player> playersIterator;
-    private Player currentPlayer;
+    private Iterator<PlayerImpl> playersIterator;
+    private PlayerImpl currentPlayer;
     private int currentTurn;
 
     /**
@@ -26,7 +27,7 @@ public class TurnManagerImpl implements TurnManager {
      * 
      * @param players the list of players.
      */
-    public TurnManagerImpl(final List<Player> players) {
+    public TurnManagerImpl(final List<PlayerImpl> players) {
         this.players = new ArrayList<>(players);
         Collections.shuffle(this.players);
 
@@ -40,7 +41,7 @@ public class TurnManagerImpl implements TurnManager {
      */
     @Override
     public Player getCurrentPlayer() {
-        return this.currentPlayer;
+        return this.currentPlayer.clone();
     }
 
     /**

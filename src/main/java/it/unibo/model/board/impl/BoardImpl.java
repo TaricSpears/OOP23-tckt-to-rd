@@ -9,7 +9,7 @@ import org.jgrapht.graph.WeightedPseudograph;
 import it.unibo.commons.GraphCopier;
 import it.unibo.model.board.api.Board;
 import it.unibo.model.city.api.City;
-import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 
 /**
@@ -19,7 +19,7 @@ import it.unibo.model.route.api.Route;
  */
 public class BoardImpl {
 
-    private final List<Player> players;
+    private final List<PlayerImpl> players;
     private final WeightedPseudograph<City, Route> graph;
     private final List<Route> routeData;
 
@@ -31,7 +31,7 @@ public class BoardImpl {
      * @param routeData the informations about the routes.
      * 
      */
-    public BoardImpl(final List<Player> players, final WeightedPseudograph<City, Route> graph,
+    public BoardImpl(final List<PlayerImpl> players, final WeightedPseudograph<City, Route> graph,
             final List<Route> routeData) {
         this.players = new ArrayList<>(players);
         this.graph = GraphCopier.copyGraph(graph);
@@ -41,7 +41,7 @@ public class BoardImpl {
     /**
      * {@inheritDoc}
      */
-    public List<Player> getPlayers() {
+    public List<PlayerImpl> getPlayers() {
         return Collections.unmodifiableList(players);
     }
 

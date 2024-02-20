@@ -2,7 +2,6 @@ package it.unibo.model.gameprep.impl;
 
 import it.unibo.model.board.impl.BoardImpl;
 import it.unibo.model.city.api.City;
-import it.unibo.model.player.api.Player;
 import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.route.impl.RouteImpl;
@@ -35,8 +34,8 @@ public class GamePrep {
      * @param playerData informations about the players.
      * @return the list of players.
      */
-    private List<Player> prepPlayers(final List<Pair<String, Color>> playerData) {
-        final List<Player> players = new LinkedList<>();
+    private List<PlayerImpl> prepPlayers(final List<Pair<String, Color>> playerData) {
+        final List<PlayerImpl> players = new LinkedList<>();
         for (final var player : playerData) {
             players.add(new PlayerImpl(player.first(), player.second(), CARRIAGE_DEFAULT_NUMBER));
         }
@@ -80,7 +79,7 @@ public class GamePrep {
     /**
      * @return the players.
      */
-    public List<Player> getPlayers() {
+    public List<PlayerImpl> getPlayers() {
         return board.getPlayers();
     }
 

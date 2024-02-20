@@ -20,7 +20,7 @@ import javafx.application.Application;
  */
 public class MainControllerImpl implements MainController {
 
-    private final GameController gameController = new GameControllerImpl(this);
+    private final GameControllerImpl gameController = new GameControllerImpl(this);
     private GamePrep gamePrep;
     private MainView view;
     private DrawController drawController;
@@ -66,7 +66,7 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public GameController getGameController() {
-        return this.gameController;
+        return this.gameController.clone();
     }
 
     /**

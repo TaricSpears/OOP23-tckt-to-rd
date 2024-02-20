@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import it.unibo.commons.TestDataPreparation;
 import it.unibo.model.city.api.City;
 import it.unibo.model.gameprep.impl.GamePrep;
-import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 
 import java.awt.Color;
@@ -26,7 +26,7 @@ class TestGamePrep {
     @Test
     void testPrepPlayers() {
         final GamePrep gamePrep = TestDataPreparation.gamePrep();
-        final List<Player> players = gamePrep.getPlayers();
+        final List<PlayerImpl> players = gamePrep.getPlayers();
 
         assertEquals(players.size(), PLAYER_NUMBER);
         assertEquals(players.get(0).getName(), "Player1");
