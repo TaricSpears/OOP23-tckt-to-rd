@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,7 +34,7 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
     public CityReaderController() {
         super(CITY_FILE_PATH);
         this.cities = new LinkedList<>();
-        var controller = new MapReaderController();
+        final var controller = new MapReaderController();
         this.cityRadius = controller.getCityRadius();
         this.mapHeight = controller.getMapHeight();
         this.mapWidth = controller.getMapWidth();
@@ -54,18 +55,18 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
             for (final Object elem : array) {
                 obj = (JSONObject) elem;
                 final int id = Integer.parseInt(obj.get("id").toString());
-                final double x = ((double) Integer.parseInt(obj.get("x").toString()) / this.mapWidth);
-                final double y = ((double) Integer.parseInt(obj.get("y").toString()) / this.mapHeight);
+                final double x = (double) Integer.parseInt(obj.get("x").toString()) / this.mapWidth;
+                final double y = (double) Integer.parseInt(obj.get("y").toString()) / this.mapHeight;
                 final String name = obj.get("name").toString();
                 final var city = new CityImpl(name, id, new Pair<Double, Double>(x, y),
-                        ((double) this.cityRadius / this.mapWidth));
+                        (double) this.cityRadius / this.mapWidth);
                 cities.add(city);
             }
             inputStreamReader.close();
         } catch (IOException e) {
-            System.out.println("Exception in file path operations");
+            Logger.getLogger(CityReaderController.class.getName()).fine("Exception in file path operations");
         } catch (ParseException e1) {
-            System.out.println("Exception in file parsing operations");
+            Logger.getLogger(CityReaderController.class.getName()).fine("Exception in file parsing operations");
         }
         return List.copyOf(this.cities);
     }

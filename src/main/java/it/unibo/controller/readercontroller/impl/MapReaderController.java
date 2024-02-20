@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.LinkedList;
 
 import org.json.simple.JSONObject;
@@ -46,9 +47,9 @@ public class MapReaderController extends AbstractReaderController<List<Integer>>
             retList.add(Integer.parseInt(obj.get("railLength").toString()));
             inputStreamReader.close();
         } catch (IOException e) {
-            System.out.println("Exception in file path operations");
+            Logger.getLogger(MapReaderController.class.getName()).fine("Exception in file path operations");
         } catch (ParseException e1) {
-            System.out.println("Exception in file parsing operations");
+            Logger.getLogger(MapReaderController.class.getName()).fine("Exception in file parsing operations");
         }
         return retList;
     }
