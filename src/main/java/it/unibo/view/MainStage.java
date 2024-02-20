@@ -1,7 +1,6 @@
 package it.unibo.view;
 
 import java.util.Set;
-import java.util.HashSet;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -31,8 +30,7 @@ public class MainStage extends Stage {
     final private BorderPane root;
     final private Scene scene;
     final private Pane pane;
-    private Set<Shape> shapeSet = new HashSet<>();
-    private Set<Button> highlightedCitySet = new HashSet<>();
+    private Set<Shape> shapeSet;
 
     /**
      * Constructor for the main stage.
@@ -104,9 +102,9 @@ public class MainStage extends Stage {
     }
 
     private void refreshHighLightedCities(final MainController controller) {
-        this.highlightedCitySet = new HighlightedCitySetter(controller)
+        final Set<Button> highlightedCitySet = new HighlightedCitySetter(controller)
                 .getCities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
-        for (var city : this.highlightedCitySet) {
+        for (final var city : highlightedCitySet) {
             pane.getChildren().add(city);
         }
     }
