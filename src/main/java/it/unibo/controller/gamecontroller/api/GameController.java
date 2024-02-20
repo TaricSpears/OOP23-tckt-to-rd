@@ -7,6 +7,7 @@ import it.unibo.commons.Pair;
 import it.unibo.commons.Region;
 import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.player.api.Player;
 import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 import it.unibo.view.MainView;
 
@@ -92,4 +93,8 @@ public interface GameController {
      * Set the last turn of the game.
      */
     void setLastTurn();
+
+    Set<Pair<Double, Double>> getPlayerCities(Player currentPlayer);
+
+    Double getCityRadius();
 }

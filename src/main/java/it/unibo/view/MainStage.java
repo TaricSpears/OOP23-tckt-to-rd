@@ -5,6 +5,7 @@ import java.util.HashSet;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -25,6 +26,7 @@ public class MainStage extends Stage {
     final private Scene scene;
     final private Pane pane;
     private Set<Shape> shapeSet = new HashSet<>();
+    private Set<Button> highlightedCitySet = new HashSet<>();
 
     public MainStage(final MainController controller) {
 
@@ -75,6 +77,16 @@ public class MainStage extends Stage {
             pane.getChildren().add(shape);
         }
 
+        this.refreshHighLightedCities(controller);
+
         this.root.setCenter(this.pane);
+    }
+
+    private void refreshHighLightedCities(final MainController controller) {
+        this.highlightedCitySet = new HighlightedCitySetter(controller)
+                .getCities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+        for (var city : this.highlightedCitySet) {
+            pane.getChildren().add(city);
+        }
     }
 }

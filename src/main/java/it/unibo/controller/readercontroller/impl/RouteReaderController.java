@@ -73,7 +73,7 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
 
                 final Set<Carriage> railUnits = new LinkedHashSet<>();
                 final JSONArray xArray = (JSONArray)obj.get("x");
-                final Iterator xArrayIterator = xArray.iterator();
+                final Iterator<Object> xArrayIterator = xArray.iterator();
                 final JSONArray yArray = (JSONArray)obj.get("y");
                 final Iterator yArrayIterator = yArray.iterator();
                 final JSONArray angleArray = (JSONArray)obj.get("angle");

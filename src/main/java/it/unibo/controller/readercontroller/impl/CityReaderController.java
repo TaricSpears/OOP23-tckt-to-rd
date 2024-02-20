@@ -30,7 +30,7 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
     /*
      * Initializes the CityReaderController.
      */
-    public CityReaderController(){
+    public CityReaderController() {
         super(CITY_FILE_PATH);
         this.cities = new LinkedList<>();
         var controller = new MapReaderController();
@@ -38,7 +38,7 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
         this.mapHeight = controller.getMapHeight();
         this.mapWidth = controller.getMapWidth();
     }
-    
+
     /*
      * @return the result of the reading operation
      */
@@ -48,16 +48,17 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
         JSONObject obj;
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(CITY_FILE_PATH), 
+                    this.getClass().getResourceAsStream(CITY_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONArray array = (JSONArray) parser.parse(inputStreamReader);
             for (final Object elem : array) {
                 obj = (JSONObject) elem;
                 final int id = Integer.parseInt(obj.get("id").toString());
-                final double x = ((double)Integer.parseInt(obj.get("x").toString())/this.mapWidth);
-                final double y = ((double)Integer.parseInt(obj.get("y").toString())/this.mapHeight);
+                final double x = ((double) Integer.parseInt(obj.get("x").toString()) / this.mapWidth);
+                final double y = ((double) Integer.parseInt(obj.get("y").toString()) / this.mapHeight);
                 final String name = obj.get("name").toString();
-                final var city = new CityImpl(name, id, new Pair<Double,Double>(x, y), ((double)this.cityRadius/this.mapWidth));
+                final var city = new CityImpl(name, id, new Pair<Double, Double>(x, y),
+                        ((double) this.cityRadius / this.mapWidth));
                 cities.add(city);
             }
             inputStreamReader.close();
@@ -68,5 +69,5 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
         }
         return List.copyOf(this.cities);
     }
-    
+
 }

@@ -15,6 +15,7 @@ import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
 import it.unibo.model.carriage.impl.Carriage;
+import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
 import it.unibo.model.card.api.ObjectiveCard;
@@ -215,6 +216,31 @@ public class GameControllerImpl implements GameController {
     @Override
     public void setLastTurn() {
         this.isLastTurn = true;
+    }
+
+    @Override
+    public Set<Pair<Double, Double>> getPlayerCities(Player currentPlayer) {
+        final Set<Pair<Double, Double>> retSet = new LinkedHashSet<>();
+        final Set<Route> routeSet = currentPlayer.getCompletedRoutes();
+
+        for (var route : routeSet) {
+            final Pair<City, City> cities = route.getConnectedCity();
+            Pair<Double, Double> cityCoords;
+            final double cityRadius = this.getCityRadius();
+            cityCoords = new Pair<Double, Double>(cities.first().getCoordinates().first() - cityRadius,
+                    cities.first().getCoordinates().second() - cityRadius);
+            retSet.add(cityCoords);
+            cityCoords = new Pair<Double, Double>(cities.second().getCoordinates().first() - cityRadius,
+                    cities.second().getCoordinates().second() - cityRadius);
+            retSet.add(cityCoords);
+        }
+
+        return retSet;
+    }
+
+    @Override
+    public Double getCityRadius() {
+        return mainController.getGameInstance().getRoutes().get(0).getConnectedCity().first().getRadius();
     }
 
 }
