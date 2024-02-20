@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,14 +22,15 @@ import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
 class TestScoreCalculator {
     @Test
     void testGetScoreBoard() {
-        final GamePrep gamePrep = TestDataPreparation.testPrep();
+        final GamePrep gamePrep = TestDataPreparation.gamePrep();
         final ScoreCalculator scoreCalculator = new ScoreCalculatorImpl();
         final List<Player> players = gamePrep.getPlayers();
 
         final Set<Route> routes = gamePrep.getGraph().edgeSet();
 
+        final Iterator<Route> routesIterator = routes.iterator();
         for (int i = 0; i < routes.size(); i++) {
-            players.get(i).addRoute((Route) routes.toArray()[i]);
+            players.get(i).addRoute(routesIterator.next());
         }
 
         final List<Pair<String, Double>> score = scoreCalculator.getScoreBoard(gamePrep.getPlayers());

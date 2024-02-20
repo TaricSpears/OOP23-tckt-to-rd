@@ -15,6 +15,9 @@ import java.awt.Color;
  */
 public final class TestDataPreparation {
 
+    /**
+     * 
+     */
     private TestDataPreparation() {
     }
 
@@ -23,7 +26,7 @@ public final class TestDataPreparation {
      * 
      * @return an instance of GamePrep.
      */
-    public static GamePrep testPrep() {
+    public static GamePrep gamePrep() {
         final List<Pair<String, Color>> playerData = List.of(new Pair<String, Color>("Player1", Color.RED),
                 new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
                 new Pair<String, Color>("Player4", Color.YELLOW), new Pair<String, Color>("Player5", Color.BLACK),
