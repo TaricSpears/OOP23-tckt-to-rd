@@ -101,7 +101,7 @@ public class PlayerInterface extends VBox {
             controller.getGameController().endTurn();
             if (!controller.getGameController().isGameEnded()) {
                 if (controller.getGameController().isLastTurn()) {
-                    new LastTurnPopUp();
+                    new LastTurnPopUp().display();
                 }
                 new EndTurnPopUp(controller);
             }
