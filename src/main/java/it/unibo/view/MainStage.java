@@ -25,11 +25,11 @@ public class MainStage extends Stage {
     private static final double PANE_SCALE = 0.815;
 
     private PlayerInterface playerInterface;
-    final private Screen screen = Screen.getPrimary();
-    final private Rectangle2D bounds = screen.getVisualBounds();
-    final private BorderPane root;
-    final private Scene scene;
-    final private Pane pane;
+    private final Screen screen = Screen.getPrimary();
+    private final Rectangle2D bounds = screen.getVisualBounds();
+    private final BorderPane root;
+    private final Scene scene;
+    private final Pane pane;
     private Set<Shape> shapeSet;
 
     /**
