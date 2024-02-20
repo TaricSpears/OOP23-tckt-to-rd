@@ -33,7 +33,9 @@ import java.util.HashSet;
  */
 public final class StartStage extends Stage {
 
-    private Set<Pair<String, Color>> players = new HashSet<>();
+    private static final int TOP_BOTTOM_PADDING = 15;
+    private static final int LEFT_RIGHT_PADDING = 12;
+    private final Set<Pair<String, Color>> players = new HashSet<>();
 
     /**
      * Constructor for the start stage.
@@ -84,7 +86,7 @@ public final class StartStage extends Stage {
             playersList
                     .setCellFactory(new Callback<ListView<Pair<String, Color>>, ListCell<Pair<String, Color>>>() {
                         @Override
-                        public ListCell<Pair<String, Color>> call(ListView<Pair<String, Color>> param) {
+                        public ListCell<Pair<String, Color>> call(final ListView<Pair<String, Color>> param) {
                             return new ColorRectCell();
                         }
                     });
@@ -94,8 +96,9 @@ public final class StartStage extends Stage {
         final VBox nameSelect = new VBox();
         final HBox nameInput = new HBox();
         final HBox startBox = new HBox();
-        // TODO: must do with bounds
-        nameInput.setPadding(new Insets(15, 12, 15, 12));
+
+        nameInput.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING,
+                LEFT_RIGHT_PADDING));
         nameInput.setSpacing(10);
         nameInput.getChildren().addAll(colorPicker, nameField, submitButton);
         nameInput.setAlignment(Pos.CENTER);
@@ -106,7 +109,7 @@ public final class StartStage extends Stage {
         root.setCenter(nameSelect);
 
         startBox.getChildren().add(startButton);
-        startBox.setPadding(new Insets(15, 12, 15, 12));
+        startBox.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
         startBox.setAlignment(Pos.CENTER);
 
         root.setBottom(startBox);
@@ -126,12 +129,15 @@ public final class StartStage extends Stage {
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
         @Override
         public void updateItem(final Pair<String, Color> item, final boolean empty) {
+            final int LEFT_RIGHT_PADDING = 2;
+            final int TOP_BOTTOM_PADDING = 5;
             super.updateItem(item, empty);
             final Rectangle rect = new Rectangle(20, 20);
             if (item != null) {
                 rect.setFill(item.second());
                 final HBox entry = new HBox();
-                entry.setPadding(new Insets(5, 2, 5, 2));
+                entry.setPadding(
+                        new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
                 entry.setSpacing(10);
                 entry.getChildren().addAll(rect, new Label(item.first()));
                 setGraphic(entry);

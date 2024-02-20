@@ -12,15 +12,19 @@ import javafx.stage.Stage;
  */
 public class MainView extends Application {
 
-    public static MainController controller = GameStart.controller;
+    private static MainController controller = GameStart.CONTROLLER;
     private StartStage startStage;
     private MainStage mainStage;
 
     /**
      * The main method that starts the game.
+     * 
+     * @param unusedStage the primary stage.
+     * 
+     * @throws Exception if the stage cannot be started.
      */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage unusedStage) throws Exception {
         controller.setMainApp(this);
 
         launchPlayerSlect();

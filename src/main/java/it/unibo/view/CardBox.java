@@ -13,9 +13,15 @@ import javafx.scene.layout.VBox;
 import java.awt.Color;
 import javafx.scene.text.Text;
 
+/**
+ * The class that represents the box of the cards of the player, extends
+ * {@link VBox}.
+ * 
+ * It contains all the cards of the player.
+ */
 public class CardBox extends VBox {
 
-    final private Map<Color, String> colorImageMap = new LinkedHashMap<>();
+    private final Map<Color, String> colorImageMap = new LinkedHashMap<>();
 
     public CardBox(final MainController controller, final PlayerInterface playerInterface) {
 

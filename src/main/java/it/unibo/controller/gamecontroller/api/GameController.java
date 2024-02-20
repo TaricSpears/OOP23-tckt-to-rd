@@ -33,7 +33,6 @@ public interface GameController {
     void newGame();
 
     /**
-     * 
      * @param pair a pair of the player name and his color
      * @return if the player can be added or not (if is already present, somone has
      *         the same color or name)
@@ -41,32 +40,30 @@ public interface GameController {
     boolean addPlayer(Pair<String, java.awt.Color> pair);
 
     /**
-     * 
      * @return if the main view can shown (player list and map graph are been
      *         created)
      */
     boolean canStart();
 
     /**
-     * 
      * @return a list of temporary players (bofore the gamePrep creates the Player
      *         object)
      */
     List<Pair<String, java.awt.Color>> getTempPlayers();
 
     /**
-     * ends the game, close the main view and launches the final score board
+     * Ends the game, close the main view and launches the final score board.
      */
     void endGame();
 
     /**
-     * Adds a ref to the main view to the controller
+     * Adds a ref to the main view to the controller.
      * 
      * @param view the main view that controls the other ones
      */
     void addView(MainView view);
+
     /**
-     * 
      * @return the regions of the game
      */
     Set<Region> getRegions();
@@ -82,12 +79,7 @@ public interface GameController {
     ObjectiveCard handleDrawObjectiveCard();
 
     /**
-     * @return the phase controller
-     */
-    // PhaseController getPhaseController();
-
-    /**
-     * Refresh all the views
+     * Refresh all the views.
      */
     void refreshView();
 
@@ -95,4 +87,14 @@ public interface GameController {
      * Set the last turn of the game.
      */
     void setLastTurn();
+
+    /**
+     * @return true if the current turn is the last one, false otherwise.
+     */
+    boolean isLastTurn();
+
+    /**
+     * @return true if the game is ended, false otherwise.
+     */
+    boolean isGameEnded();
 }

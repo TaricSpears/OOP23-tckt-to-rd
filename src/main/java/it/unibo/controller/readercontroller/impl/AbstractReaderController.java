@@ -5,13 +5,15 @@ import it.unibo.controller.readercontroller.api.ReaderController;
 /**
  * abstract implementation of {@link ReaderController}, a generic
  * reader controller.
+ * 
+ * @param <T> the type of the result of the reading operation
  */
 public abstract class AbstractReaderController<T> implements ReaderController<T> {
 
     private final String path;
 
     /**
-     * Initalizes the new AbstractReaderController
+     * Initalizes the new AbstractReaderController.
      * 
      * @param filePath the path of file to be read
      */

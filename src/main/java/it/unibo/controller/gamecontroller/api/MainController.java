@@ -8,18 +8,18 @@ import it.unibo.view.MainView;
 
 /**
  * It models the main controller that allows to comunicate with other
- * controllers
+ * controllers.
  */
 public interface MainController {
 
     /**
-     * Launches the application
+     * Launches the application.
      */
     void startView();
 
     /**
      * Starts the game, calls the {@link GamePrep} creates a new turn manager
-     * controller and launches the main view
+     * controller and launches the main view.
      */
     void startGame();
 
@@ -39,7 +39,7 @@ public interface MainController {
     GamePrep getGameInstance();
 
     /**
-     * Sets the view ref to the current main view
+     * Sets the view ref to the current main view.
      * 
      * @param app the main view
      */
@@ -51,15 +51,14 @@ public interface MainController {
     DrawController getDrawController();
 
     /**
-     * 
      * @return the phase controller
      */
     PhaseController getPhaseController();
 
     /**
-     * Sets the pahase controller to the new one
+     * Sets the pahase controller to the new one.
      * 
-     * @param phaseController
+     * @param phaseController the new phase controller
      */
     void setPhaseController(PhaseController phaseController);
 

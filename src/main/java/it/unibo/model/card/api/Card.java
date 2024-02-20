@@ -9,7 +9,6 @@ public interface Card {
      * Enumerates the types of cards.
      */
     enum Type {
-        
         /**
          * Represents an objective card.
          */

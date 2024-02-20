@@ -16,16 +16,16 @@ public class EndTurnPopUp {
      * 
      * @param controller the main controller of the game.
      */
-    public EndTurnPopUp(MainController controller) {
+    public EndTurnPopUp(final MainController controller) {
 
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Turno:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
-        alert.setContentText("Tocca a:  " + controller.getTurnController().getCurrentPlayer().getName());
+        alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
+        alert.setContentText("Stands to:  " + controller.getTurnController().getCurrentPlayer().getName());
 
         alert.setResizable(false);
         alert.getDialogPane().setMaxSize(300, 200);
         alert.getDialogPane().setMinSize(300, 200);
-        alert.showAndWait();
+        alert.show();
 
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
         delay.setOnFinished(event -> alert.close());

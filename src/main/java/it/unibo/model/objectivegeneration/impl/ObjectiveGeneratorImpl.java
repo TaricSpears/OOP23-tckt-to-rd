@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.commons.GraphCopier;
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
@@ -20,9 +21,9 @@ import it.unibo.model.route.api.Route;
  */
 public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
 
-    final private static double MIN_DISTANCE = 5.0;
-    final private WeightedPseudograph<City, Route> graph;
-    final private BellmanFordShortestPath<City, Route> bellmanFordAlg;
+    private static final double MIN_DISTANCE = 5.0;
+    private final WeightedPseudograph<City, Route> graph;
+    private final BellmanFordShortestPath<City, Route> bellmanFordAlg;
 
     /**
      * Constructor of the objective generator.
@@ -30,7 +31,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      * @param graph the graph of cities and routes.
      */
     public ObjectiveGeneratorImpl(final WeightedPseudograph<City, Route> graph) {
-        this.graph = graph;
+        this.graph = GraphCopier.copyGraph(graph);
         this.bellmanFordAlg = new BellmanFordShortestPath<>(this.graph);
     }
 
@@ -41,8 +42,8 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
     public Pair<City, City> generateObjective() {
         final Random random = new Random();
         final Set<City> vertexSet = graph.vertexSet();
-        List<City> cities = vertexSet.stream().collect(Collectors.toList());
-        City city1 = getRandomCity(cities, random);
+        final List<City> cities = vertexSet.stream().collect(Collectors.toList());
+        final City city1 = getRandomCity(cities, random);
         City city2 = getRandomCity(cities, random);
         while (city1.equals(city2) || this.bellmanFordAlg.getPathWeight(city1, city2) < MIN_DISTANCE) {
             city2 = getRandomCity(cities, random);
@@ -57,7 +58,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      * @param random the random object.
      * @return a random city from the list.
      */
-    private City getRandomCity(List<City> cities, Random random) {
+    private City getRandomCity(final List<City> cities, final Random random) {
         return cities.get(random.nextInt(cities.size()));
     }
 
@@ -65,9 +66,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      * {@inheritDoc}
      */
     @Override
-    public double calculateScore(Pair<City, City> objective) {
-        final double shortestpath = this.bellmanFordAlg.getPathWeight(objective.first(),
-                objective.second());
-        return shortestpath;
+    public double calculateScore(final Pair<City, City> objective) {
+        return this.bellmanFordAlg.getPathWeight(objective.first(), objective.second());
     }
 }

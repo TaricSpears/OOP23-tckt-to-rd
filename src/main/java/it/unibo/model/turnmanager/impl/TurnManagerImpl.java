@@ -77,6 +77,9 @@ public class TurnManagerImpl implements TurnManager {
         return !this.playersIterator.hasNext();
     }
 
+    /**
+     * Resets the player iterator to the first player.
+     */
     private void resetTurns() {
         this.playersIterator = this.players.iterator();
     }

@@ -9,20 +9,33 @@ import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import javafx.scene.paint.Color;
 
-public final class ShapeSetter {
+/**
+ * This class is used to set the shapes of the regions in the map.
+ */
+public class ShapeSetter {
     private final MainController controller;
 
+    /**
+     * Constructor of the class.
+     * 
+     * @param controller the main controller of the game.
+     */
     public ShapeSetter(final MainController controller) {
         this.controller = controller;
 
     }
 
+    /**
+     * @param paneWidth  the width of the pane.
+     * @param paneHeight the height of the pane.
+     * @return a set of shapes representing the regions in the map.
+     */
     public Set<Shape> getShapes(final double paneWidth, final double paneHeight) {
         final Set<Region> regionSet = controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
         final boolean disabled = !(this.controller.getPhaseController().isMidPhase());
 
-        for (var region : regionSet) {
+        for (final var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
                     region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
@@ -43,8 +56,9 @@ public final class ShapeSetter {
                 }
             });
             shape.setDisable(disabled);
-            if (region.getPlayerColor().isPresent())
+            if (region.getPlayerColor().isPresent()) {
                 shape.setDisable(true);
+            }
             shapeSet.add(shape);
         }
 

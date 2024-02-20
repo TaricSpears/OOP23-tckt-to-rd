@@ -1,7 +1,9 @@
 package it.unibo.controller.readercontroller.api;
 
 /**
- * This interface models a generic reader
+ * This interface models a generic reader.
+ * 
+ * @param <T> the type of the result of the reading operation
  */
 public interface ReaderController<T> {
 

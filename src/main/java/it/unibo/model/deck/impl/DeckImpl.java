@@ -5,14 +5,17 @@ import java.util.Random;
 
 import org.jgrapht.graph.WeightedPseudograph;
 
-import it.unibo.model.card.api.*;
-import it.unibo.model.card.impl.*;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.card.impl.ObjectiveCardImpl;
+import it.unibo.model.card.impl.TrainCardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.deck.api.Deck;
 import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link Deck}.
+ * 
  * Regulates the functioning of the decks.
  */
 public class DeckImpl implements Deck {

@@ -14,8 +14,9 @@ import it.unibo.model.city.api.City;
 import it.unibo.model.route.api.Route;
 
 /**
- * It implements a {@link Route} and extends the {@link DefaultWeightedEdge}.
- * 
+ * Implementation of {@link Route}, extends{@link DefaultWeightedEdge}.
+ *
+ * Represents a route in the game.
  */
 public class RouteImpl extends DefaultWeightedEdge implements Route {
 
@@ -101,7 +102,7 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Route toCheck) {
+    public boolean equals(final Route toCheck) {
         return (this.id == toCheck.getId())
                 && (this.getConnectedCity().first().equals(toCheck.getConnectedCity().first()))
                 && (this.getConnectedCity().second().equals(toCheck.getConnectedCity().second()))
