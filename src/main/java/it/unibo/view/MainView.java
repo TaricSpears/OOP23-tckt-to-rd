@@ -86,6 +86,9 @@ public class MainView extends Application {
         mainStage.refreshShapes(controller);
     }
 
+    /**
+     * Closes the final score board view.
+     */
     public void closeFinalScoreBoard() {
         if (!Objects.isNull(scoreBoardView)) {
             scoreBoardView.close();

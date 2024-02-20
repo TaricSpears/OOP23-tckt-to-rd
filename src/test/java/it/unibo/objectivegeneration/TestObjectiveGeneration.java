@@ -18,8 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.awt.Color;
 
 import java.util.List;
+
 // CHECKSTYLE: MagicNumber OFF
 class TestObjectiveGeneration {
+
+    private final List<String> players = List.of("Player1", "Player2", "Player3", "Player4", "Player5", "Player6");
+    private final List<Color> colors = List.of(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK,
+            Color.ORANGE);
 
     private final List<Pair<String, Color>> playerData = List.of(new Pair<String, Color>("Player1", Color.RED),
             new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
@@ -39,6 +44,7 @@ class TestObjectiveGeneration {
     private final GamePrep gamePrep = new GamePrep();
 
     TestObjectiveGeneration() {
+
         gamePrep.prepGame(playerData, routeData);
     }
 

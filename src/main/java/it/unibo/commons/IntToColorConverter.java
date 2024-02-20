@@ -14,9 +14,8 @@ public class IntToColorConverter implements Function<Integer, Color> {
      * @return the color corresponding to the integer.
      * @throws IllegalArgumentException if the integer is not in the range [0, 8].
      */
-    // CHECKSTYLE: MagicNumber OFF
     @Override
-    public Color apply(final Integer t) throws IllegalArgumentException {
+    public Color apply(final Integer t) {
         switch (t) {
             case 0:
                 return Color.WHITE;
