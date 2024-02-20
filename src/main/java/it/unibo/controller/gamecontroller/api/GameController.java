@@ -89,8 +89,17 @@ public interface GameController {
      */
     void setLastTurn();
 
+    /**
+     * Returns the coordinates cities of the player.
+     * 
+     * @param currentPlayer the current player
+     * @return a pair containing the coordinates of the cities
+     */
     Set<Pair<Double, Double>> getPlayerCities(Player currentPlayer);
 
+    /**
+     * @return the radius of the city
+     */
     Double getCityRadius();
 
     /**

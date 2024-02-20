@@ -208,19 +208,22 @@ public class GameControllerImpl implements GameController {
         this.isLastTurn = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Set<Pair<Double, Double>> getPlayerCities(Player currentPlayer) {
+    public Set<Pair<Double, Double>> getPlayerCities(final Player currentPlayer) {
         final Set<Pair<Double, Double>> retSet = new LinkedHashSet<>();
         final Set<Route> routeSet = currentPlayer.getCompletedRoutes();
 
-        for (var route : routeSet) {
+        for (final var route : routeSet) {
             final Pair<City, City> cities = route.getConnectedCity();
             Pair<Double, Double> cityCoords;
             final double cityRadius = this.getCityRadius();
-            cityCoords = new Pair<Double, Double>(cities.first().getCoordinates().first() - cityRadius,
+            cityCoords = new Pair<>(cities.first().getCoordinates().first() - cityRadius,
                     cities.first().getCoordinates().second() - cityRadius);
             retSet.add(cityCoords);
-            cityCoords = new Pair<Double, Double>(cities.second().getCoordinates().first() - cityRadius,
+            cityCoords = new Pair<>(cities.second().getCoordinates().first() - cityRadius,
                     cities.second().getCoordinates().second() - cityRadius);
             retSet.add(cityCoords);
         }
@@ -228,6 +231,9 @@ public class GameControllerImpl implements GameController {
         return retSet;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Double getCityRadius() {
         return mainController.getGameInstance().getRoutes().get(0).getConnectedCity().first().getRadius();
