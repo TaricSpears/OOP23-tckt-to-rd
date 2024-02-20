@@ -22,6 +22,9 @@ public class GamePrep {
     private static final int CARRIAGE_DEFAULT_NUMBER = 45;
     private BoardImpl board;
 
+    /**
+     * Constructor for the game preparation.
+     */
     public GamePrep() {
         this.board = null;
     }

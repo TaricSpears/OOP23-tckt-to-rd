@@ -42,6 +42,7 @@ public class PlayerInterface extends VBox {
     private final HBox drawBox;
     private final ObjectiveBox objectiveBox = new ObjectiveBox();
     private final CardBox cardBox;
+    private final Text phase;
 
     /**
      * Constructor for the player interface.
@@ -57,8 +58,7 @@ public class PlayerInterface extends VBox {
         final Rectangle2D bounds = screen.getVisualBounds();
 
         final Button rules = new Button("Rules");
-        final Text phase = new Text(controller.getPhaseController().toString());
-        objectiveBox.initialize(controller, this);
+        phase = new Text(controller.getPhaseController().toString());
         cardBox = new CardBox(controller);
         cardBox.initialize();
 
@@ -71,7 +71,6 @@ public class PlayerInterface extends VBox {
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
         this.setBackground(new Background(imageView));
-        this.getChildren().add(phase);
 
         this.setPadding(new Insets(PADDING_VALUE));
         this.setSpacing(SPACING_VALUE);
@@ -129,8 +128,11 @@ public class PlayerInterface extends VBox {
 
     /**
      * A method to initialize the player interface.
+     * 
+     * @param controller the main controller of the game
      */
-    public void initialize() {
-        this.getChildren().addAll(drawBox, controlBox, objectiveBox, cardBox);
+    public void initialize(final MainController controller) {
+        objectiveBox.initialize(controller, this);
+        this.getChildren().addAll(phase, drawBox, controlBox, objectiveBox, cardBox);
     }
 }
