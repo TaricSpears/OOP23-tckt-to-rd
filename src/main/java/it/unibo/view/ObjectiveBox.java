@@ -20,6 +20,11 @@ import javafx.scene.text.TextAlignment;
  */
 public class ObjectiveBox extends VBox {
 
+    private static final int PADDING_VALUE = 5;
+    private static final int SPACING_VALUE = 5;
+    private static final int FONT_SIZE = 12;
+    private static final double WIDTH_SCALE = 0.8;
+
     private boolean isShown;
 
     /**
@@ -31,8 +36,8 @@ public class ObjectiveBox extends VBox {
      */
     public ObjectiveBox(final MainController controller, final PlayerInterface playerInterface) {
 
-        this.setPadding(new Insets(5));
-        this.setSpacing(5);
+        this.setPadding(new Insets(PADDING_VALUE));
+        this.setSpacing(SPACING_VALUE);
         this.setAlignment(Pos.TOP_LEFT);
 
         final Text currentPlayer = new Text(
@@ -45,7 +50,7 @@ public class ObjectiveBox extends VBox {
                 controller.getTurnController().getCurrentPlayer().getColor().getBlue()));
 
         final HBox playerInfo = new HBox(currentPlayer, currentPlayerColor);
-        playerInfo.setSpacing(5);
+        playerInfo.setSpacing(SPACING_VALUE);
         playerInfo.setAlignment(Pos.CENTER_LEFT);
 
         this.getChildren().add(playerInfo);
@@ -65,7 +70,8 @@ public class ObjectiveBox extends VBox {
                                                     + " (" + x.getScore() + " - " + (x.isCompleted() ? "Completed)"
                                                             : "Not completed)"));
                                     objective.setTextAlignment(TextAlignment.LEFT);
-                                    objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
+                                    objective.setFont(
+                                            Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
                                     objective.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
                                     return objective;
                                 })
@@ -75,15 +81,15 @@ public class ObjectiveBox extends VBox {
                 final Text placeholderText = new Text("The objectives are hidden");
                 placeholderText.setTextAlignment(TextAlignment.LEFT);
                 placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
-                placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+                placeholderText.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
                 this.getChildren().add(placeholderText);
             }
         });
 
         final Text placeholderText = new Text("The objectives are hidden");
         placeholderText.setTextAlignment(TextAlignment.LEFT);
-        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
-        placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
+        placeholderText.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
 
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);

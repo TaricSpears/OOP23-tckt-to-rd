@@ -42,7 +42,7 @@ public class FillRouteImpl implements FillRoute {
      * @param region
      * @param controller
      */
-    public FillRouteImpl(final Player player, final Region region, MainController controller) {
+    public FillRouteImpl(final Player player, final Region region, final MainController controller) {
 
         this.player = player;
 
@@ -58,10 +58,17 @@ public class FillRouteImpl implements FillRoute {
 
         if (route.getColor().equals(Color.GRAY)) {
             for (final var color : colors) {
-                isColorEnough(color);
+                if (isColorEnough(color)) {
+                    return true;
+                }
             }
         } else {
-            isColorEnough(route.getColor());
+            return isColorEnough(route.getColor());
+            // if (isColorEnough(route.getColor())) {
+            // return true;
+            // } else {
+            // return false;
+            // }
         }
         return false;
 

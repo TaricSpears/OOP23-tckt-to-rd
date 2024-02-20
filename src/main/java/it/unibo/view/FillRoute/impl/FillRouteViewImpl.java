@@ -17,7 +17,7 @@ public final class FillRouteViewImpl extends Dialog<Color> {
     private final Dialog<String> dialog;
     private final Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-    public FillRouteViewImpl(FillRoute fillRoute) {
+    public FillRouteViewImpl(final FillRoute fillRoute) {
 
         dialog = new ChoiceDialog<>(null, fillRoute.getAvailableRoutes(fillRoute));
     }

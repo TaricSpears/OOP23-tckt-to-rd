@@ -29,6 +29,7 @@ import it.unibo.view.MainView;
  */
 public class GameControllerImpl implements GameController {
 
+    private static final int NUM_MAX_PLAYER = 6;
     private final MainController mainController;
     private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
@@ -120,7 +121,7 @@ public class GameControllerImpl implements GameController {
     public boolean addPlayer(final Pair<String, Color> player) {
         if (tempPlayers.stream().anyMatch(
                 x -> x.first().equals(player.first()) || x.second().equals(player.second()))
-                || tempPlayers.size() >= 6 || player.first().isBlank()) {
+                || tempPlayers.size() >= NUM_MAX_PLAYER || player.first().isBlank()) {
             return false;
         }
         tempPlayers.add(player);

@@ -20,6 +20,9 @@ import javafx.stage.Stage;
  */
 public class MainStage extends Stage {
 
+    private static final double SCENE_SCALE = 0.9;
+    private static final double PANE_SCALE = 0.8;
+
     private PlayerInterface playerInterface;
     private final Screen screen = Screen.getPrimary();
     private final Rectangle2D bounds = screen.getVisualBounds();
@@ -36,7 +39,7 @@ public class MainStage extends Stage {
     public MainStage(final MainController controller) {
 
         this.root = new BorderPane();
-        this.scene = new Scene(this.root, this.bounds.getWidth() * 0.9, this.bounds.getHeight() * 0.9);
+        this.scene = new Scene(this.root, this.bounds.getWidth() * SCENE_SCALE, this.bounds.getHeight() * SCENE_SCALE);
         this.pane = new Pane();
         this.playerInterface = new PlayerInterface(controller,
                 this.scene.getWidth() - this.pane.getMaxWidth(),
@@ -52,10 +55,10 @@ public class MainStage extends Stage {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
 
-        this.pane.setMaxWidth(this.scene.getWidth() * 0.8);
-        this.pane.setMaxHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
-        this.pane.setMinWidth(this.scene.getWidth() * 0.8);
-        this.pane.setMinHeight(this.scene.getWidth() * 0.8 * (image.getHeight() / image.getWidth()));
+        this.pane.setMaxWidth(this.scene.getWidth() * PANE_SCALE);
+        this.pane.setMaxHeight(this.scene.getWidth() * PANE_SCALE * (image.getHeight() / image.getWidth()));
+        this.pane.setMinWidth(this.scene.getWidth() * PANE_SCALE);
+        this.pane.setMinHeight(this.scene.getWidth() * PANE_SCALE * (image.getHeight() / image.getWidth()));
 
         this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());

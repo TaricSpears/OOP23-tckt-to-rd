@@ -30,7 +30,7 @@ public class NotEnoughCardsAlert extends Alert {
         this.alert = new Alert(alertType);
     }
 
-    /*
+    /**
      * Method to open the alert.
      */
     public void openAlert() {

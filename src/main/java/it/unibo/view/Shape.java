@@ -35,7 +35,7 @@ public class Shape extends Polygon {
      * 
      * @param color the color to set.
      */
-    public void setFill(String color) {
+    public void setFill(final String color) {
         super.setFill(javafx.scene.paint.Color.web(color));
     }
 
@@ -44,10 +44,15 @@ public class Shape extends Polygon {
      * 
      * @param angle the angle to tilt the shape.
      */
-    public void setTilt(double angle) {
+    public void setTilt(final double angle) {
         super.setRotate(angle);
     }
 
+    /**
+     * Method to get the id of the shape.
+     * 
+     * @return the id of the shape.
+     */
     public int getShapeId() {
         return this.id;
     }

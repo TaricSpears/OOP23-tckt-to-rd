@@ -1,6 +1,8 @@
 package it.unibo.model.objectivegeneration.impl;
 
+import org.jgrapht.Graph;
 import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
+import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.WeightedPseudograph;
 
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.commons.GraphCopier;
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
@@ -30,7 +33,7 @@ public class ObjectiveGeneratorImpl implements ObjectiveGenerator {
      * @param graph the graph of cities and routes.
      */
     public ObjectiveGeneratorImpl(final WeightedPseudograph<City, Route> graph) {
-        this.graph = graph;
+        this.graph = GraphCopier.copyGraph(graph);
         this.bellmanFordAlg = new BellmanFordShortestPath<>(this.graph);
     }
 

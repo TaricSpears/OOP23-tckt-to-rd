@@ -26,6 +26,13 @@ import javafx.stage.Stage;
  */
 public class FinalScoreBoardView extends Stage {
 
+    private static final double SCENE_WIDTH_SCALE = 0.2;
+    private static final double SCENE_HEIGHT_SCALE = 0.5;
+    private static final int FONT_SIZE = 25;
+    private static final int TOP_BOTTOM_PADDING = 15;
+    private static final int LEFT_RIGHT_PADDING = 12;
+    private static final int SPACING_VALUE = 30;
+
     /**
      * Constructor for the final score board view.
      * 
@@ -54,8 +61,9 @@ public class FinalScoreBoardView extends Stage {
         final HBox gameControls = new HBox();
 
         gameControls.getChildren().addAll(newGame, endButton);
-        gameControls.setPadding(new Insets(15, 12, 15, 12));
-        gameControls.setSpacing(30);
+        gameControls
+                .setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
+        gameControls.setSpacing(SPACING_VALUE);
         gameControls.setAlignment(Pos.CENTER);
 
         final List<Pair<String, Double>> players = controller.getGameController().getScore();
@@ -64,19 +72,20 @@ public class FinalScoreBoardView extends Stage {
             final Text playerEntry = new Text(player.first() + " - " + player.second());
 
             playerEntry.setTextAlignment(TextAlignment.CENTER);
-            playerEntry.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 25));
+            playerEntry.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
 
             playersList.getChildren().add(playerEntry);
         }
 
-        playersList.setPadding(new Insets(15, 12, 15, 12));
+        playersList
+                .setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
         playersList.setAlignment(Pos.CENTER);
 
         root.setCenter(playersList);
         root.setBottom(gameControls);
 
-        this.setScene(new Scene(root, bounds.getWidth() * 0.2, bounds.getHeight() * 0.5));
-        this.setMinWidth(bounds.getWidth() * 0.2);
-        this.setMinHeight(bounds.getHeight() * 0.5);
+        this.setScene(new Scene(root, bounds.getWidth() * SCENE_WIDTH_SCALE, bounds.getHeight() * SCENE_HEIGHT_SCALE));
+        this.setMinWidth(bounds.getWidth() * SCENE_WIDTH_SCALE);
+        this.setMinHeight(bounds.getHeight() * SCENE_HEIGHT_SCALE);
     }
 }

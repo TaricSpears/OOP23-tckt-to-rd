@@ -10,10 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
 /**
@@ -23,6 +23,12 @@ import javafx.stage.Screen;
  * game.
  */
 public class PlayerInterface extends VBox {
+
+    private static final int SPACING_VALUE = 10;
+    private static final int PADDING_VALUE = 20;
+    private static final double BOX_SCALE = 0.8;
+    private static final double ALERT_WIDTH_SCALE = 0.6;
+    private static final double ALERT_HEIGHT_SCALE = 0.5;
 
     /**
      * Constructor for the player interface.
@@ -38,18 +44,18 @@ public class PlayerInterface extends VBox {
         final Rectangle2D bounds = screen.getVisualBounds();
 
         final Button rules = new Button("Rules");
-        final Label phase = new Label(controller.getPhaseController().toString());
+        final Text phase = new Text(controller.getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
-        phase.setWrapText(true);
-        phase.setMaxWidth(this.getMinWidth() * 0.8);
-        objectiveBox.setMaxWidth(this.getMinWidth() * 0.8);
+        // phase.setWrapText(true);
+        phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
+        objectiveBox.setMaxWidth(this.getMinWidth() * BOX_SCALE);
 
         this.getChildren().add(phase);
 
-        this.setPadding(new Insets(20));
-        this.setSpacing(10);
+        this.setPadding(new Insets(PADDING_VALUE));
+        this.setSpacing(SPACING_VALUE);
 
         rules.setOnAction(event -> {
 
@@ -58,8 +64,10 @@ public class PlayerInterface extends VBox {
                         StandardCharsets.UTF_8);
                 final Alert alert = new Alert(AlertType.INFORMATION, rulesText);
                 alert.setResizable(false);
-                alert.getDialogPane().setMaxSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
-                alert.getDialogPane().setMinSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
+                alert.getDialogPane().setMaxSize(bounds.getWidth() * ALERT_WIDTH_SCALE,
+                        bounds.getHeight() * ALERT_WIDTH_SCALE);
+                alert.getDialogPane().setMinSize(bounds.getWidth() * ALERT_WIDTH_SCALE,
+                        bounds.getHeight() * ALERT_HEIGHT_SCALE);
 
                 alert.setTitle("Rules");
                 alert.showAndWait();

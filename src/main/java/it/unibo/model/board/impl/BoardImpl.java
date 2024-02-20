@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import org.jgrapht.graph.WeightedPseudograph;
 
+import it.unibo.commons.GraphCopier;
 import it.unibo.model.board.api.Board;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
@@ -33,7 +34,7 @@ public class BoardImpl {
     public BoardImpl(final List<Player> players, final WeightedPseudograph<City, Route> graph,
             final List<Route> routeData) {
         this.players = new ArrayList<>(players);
-        this.graph = graph;
+        this.graph = GraphCopier.copyGraph(graph);
         this.routeData = new ArrayList<>(routeData);
     }
 
