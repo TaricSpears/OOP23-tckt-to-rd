@@ -3,7 +3,6 @@ package it.unibo.controller.gamecontroller.impl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +13,6 @@ import it.unibo.commons.Region;
 import it.unibo.controller.gamecontroller.api.GameController;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.controller.phasecontroller.impl.PhaseControllerImpl;
-import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.city.api.City;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
@@ -34,8 +32,8 @@ public class GameControllerImpl implements GameController {
     private final MainController mainController;
     private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
-    private boolean isLastTurn = false;
-    private boolean gameEnded = false;
+    private boolean isLastTurn;
+    private boolean gameEnded;
 
     /**
      * Simple constructor of the controller of the game logic.
@@ -51,7 +49,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public TrainCard handleDrawTrainCard() {
-        TrainCard card = this.mainController.getDrawController().drawTrainCard();
+        final TrainCard card = this.mainController.getDrawController().drawTrainCard();
         this.mainController.getTurnController().getCurrentPlayer().addTrainCard(card);
         this.mainController.getPhaseController().switchPhase();
         view.refreshAll();
@@ -64,7 +62,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public ObjectiveCard handleDrawObjectiveCard() {
-        Boolean drawn = false;
+        Boolean drawn;
         ObjectiveCard card;
 
         this.mainController.getPhaseController().switchPhase();
@@ -169,19 +167,10 @@ public class GameControllerImpl implements GameController {
     public Set<Region> getRegions() {
         final List<Route> routeSet = mainController.getGameInstance().getRoutes();
         final Set<Region> regionSet = new LinkedHashSet<>();
-        Route route;
-        Iterator<Carriage> routeIterator;
-        Carriage carriage;
-        for (int i = 0; i < routeSet.size(); i++) {
-            route = routeSet.get(i);
-            routeIterator = route.getRailUnits().iterator();
-            while (routeIterator.hasNext()) {
-                carriage = routeIterator.next();
-                regionSet.add(new Region(carriage.xCoord(), carriage.yCoord(),
-                        carriage.width(), carriage.length(), carriage.angle(),
-                        route.getId(), route.getColor(), this.getRouteClaimerColor(route)));
-            }
-        }
+
+        routeSet.forEach(x -> x.getRailUnits().forEach(y -> regionSet.add(new Region(y.xCoord(), y.yCoord(), y.width(),
+                y.length(), y.angle(), x.getId(), x.getColor(), this.getRouteClaimerColor(x)))));
+
         return regionSet;
     }
 
@@ -193,8 +182,8 @@ public class GameControllerImpl implements GameController {
      */
     private Optional<Color> getRouteClaimerColor(final Route routeToFind) {
         final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
-        for (var player : playerList) {
-            for (var route : player.getCompletedRoutes()) {
+        for (final var player : playerList) {
+            for (final var route : player.getCompletedRoutes()) {
                 if (routeToFind.equals(route)) {
                     return Optional.of(player.getColor());
                 }

@@ -25,13 +25,11 @@ import java.awt.Color;
  */
 public class FillRouteImpl implements FillRoute {
 
-    private FillRouteViewImpl popUp;
-    private NotEnoughCardsAlert alert;
-    private Player player;
-    private Route route;
+    private final Player player;
+    private final Route route;
     private Color chosenColor;
 
-    private final List<Color> colors = new ArrayList<Color>(
+    private final List<Color> colors = new ArrayList<>(
             List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
@@ -75,13 +73,13 @@ public class FillRouteImpl implements FillRoute {
     }
 
     private void openPopUp() {
-        this.popUp = new FillRouteViewImpl(this);
+        final FillRouteViewImpl popUp = new FillRouteViewImpl(this);
         chosenColor = popUp.openPopUp();
 
     }
 
     private void openAlert(final String message) {
-        this.alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        final NotEnoughCardsAlert alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
         alert.openAlert();
 
     }
@@ -94,7 +92,7 @@ public class FillRouteImpl implements FillRoute {
         if (isRouteValid() && this.route.getScore() <= this.player.getCarriageNum()) {
             if (this.route.getColor().equals(Color.GRAY)) {
                 openPopUp();
-                if (!this.chosenColor.equals(null)) {
+                if (this.chosenColor != null) {
                     if (this.route.getScore() <= this.player.getTrainCards().get(this.chosenColor)) {
                         this.player.removeTrainCard(this.chosenColor, this.route.getScore());
                         this.player.setCarriageNum(this.player.getCarriageNum() - this.route.getScore());
@@ -155,7 +153,7 @@ public class FillRouteImpl implements FillRoute {
     public ObservableList<String> getAvailableRoutes(final FillRoute fillRoute) {
         final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
 
-        for (var color : this.colors) {
+        for (final var color : this.colors) {
             if (fillRoute.isColorEnough(color)) {
                 if (color.equals(Color.RED)) {
                     availableRoutes.add("RED");
