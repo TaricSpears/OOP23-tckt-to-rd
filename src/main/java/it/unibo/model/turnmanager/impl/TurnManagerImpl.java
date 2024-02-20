@@ -48,7 +48,7 @@ public class TurnManagerImpl implements TurnManager {
      */
     @Override
     public List<Player> getPlayers() {
-        return this.players;
+        return Collections.unmodifiableList(this.players);
     }
 
     /**
