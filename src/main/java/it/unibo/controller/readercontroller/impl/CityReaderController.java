@@ -40,7 +40,7 @@ public class CityReaderController extends AbstractReaderController<List<City>> {
         this.mapWidth = controller.getMapWidth();
     }
 
-    /*
+    /**
      * @return the result of the reading operation
      */
     @Override
