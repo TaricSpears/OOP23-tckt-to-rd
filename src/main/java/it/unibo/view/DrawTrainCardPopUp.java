@@ -32,10 +32,10 @@ public class DrawTrainCardPopUp {
      */
     public DrawTrainCardPopUp(final Color color) {
 
-        Pane pane = new Pane();
-        Image image;
+        final Pane pane = new Pane();
+        final Image image;
 
-        Map<Color, String> colorImageMap = new HashMap<>();
+        final Map<Color, String> colorImageMap = new HashMap<>();
 
         colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
         colorImageMap.put(Color.BLUE, "/img/Cards/BlueCard.jpg");
@@ -51,13 +51,13 @@ public class DrawTrainCardPopUp {
         pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
-        Stage popupStage = new Stage();
+        final Stage popupStage = new Stage();
         popupStage.initOwner(null);
         popupStage.setScene(new Scene(pane, WIDTH, HEIGHT));
         popupStage.setResizable(false);
         popupStage.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
+        final PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> popupStage.close());
         delay.play();
     }

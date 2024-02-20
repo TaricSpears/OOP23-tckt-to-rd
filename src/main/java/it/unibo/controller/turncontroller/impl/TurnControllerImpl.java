@@ -69,6 +69,7 @@ public class TurnControllerImpl implements TurnController {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean wasLastPlayer() {
         return this.turnManager.isLastPlayer();
     }

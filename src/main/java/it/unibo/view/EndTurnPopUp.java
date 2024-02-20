@@ -22,7 +22,7 @@ public class EndTurnPopUp {
      */
     public EndTurnPopUp(final MainController controller) {
 
-        Alert alert = new Alert(AlertType.INFORMATION);
+        final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
         alert.setContentText("Stands to:  " + controller.getTurnController().getCurrentPlayer().getName());
 
@@ -31,7 +31,7 @@ public class EndTurnPopUp {
         alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
         alert.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
+        final PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> alert.close());
         delay.play();
     }

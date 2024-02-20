@@ -103,12 +103,11 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      */
     @Override
     public boolean equals(final Route toCheck) {
-        return (this.id == toCheck.getId())
-                && (this.getConnectedCity().first().equals(toCheck.getConnectedCity().first()))
-                && (this.getConnectedCity().second().equals(toCheck.getConnectedCity().second()))
-                && (this.getScore() == toCheck.getScore())
-                /* && (railUnits.equals(toCheck.getRailUnits())) */
-                && (Objects.equals(this.color, toCheck.getColor()));
+        return this.id == toCheck.getId()
+                && this.getConnectedCity().first().equals(toCheck.getConnectedCity().first())
+                && this.getConnectedCity().second().equals(toCheck.getConnectedCity().second())
+                && this.getScore() == toCheck.getScore()
+                && Objects.equals(this.color, toCheck.getColor());
     }
 
     /**
@@ -120,7 +119,6 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
                 + "\nCITY1: " + this.connectedCity.city1()
                 + "\nCITY2:  " + this.connectedCity.city2()
                 + "\nWEIGHT = " + this.connectedCity.weight()
-                /* + "\nRAILUNITS = " + this.railUnits */
                 + "\nCOLOR = " + this.color;
     }
 }

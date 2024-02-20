@@ -18,7 +18,7 @@ public class LastTurnPopUp {
      */
     public LastTurnPopUp() {
 
-        Alert alert = new Alert(AlertType.INFORMATION);
+        final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Ultimo turno");
         alert.setContentText("Ultimo turno di gioco!");
 

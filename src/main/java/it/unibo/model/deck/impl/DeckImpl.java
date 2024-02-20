@@ -27,6 +27,7 @@ public class DeckImpl implements Deck {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ObjectiveCard drawObjectiveCard(final WeightedPseudograph<City, Route> graph) {
         return new ObjectiveCardImpl(graph);
     }
@@ -34,7 +35,7 @@ public class DeckImpl implements Deck {
     /**
      * {@inheritDoc}
      */
-
+    @Override
     public TrainCard drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
