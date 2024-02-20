@@ -73,13 +73,14 @@ public final class RouteReaderController extends AbstractReaderController<List<R
 
                 final Set<Carriage> railUnits = new LinkedHashSet<>();
                 final JSONArray xArray = (JSONArray) obj.get("x");
-                final JSONArray yArray = (JSONArray) obj.get("y"); 
+                final JSONArray yArray = (JSONArray) obj.get("y");
                 final JSONArray angleArray = (JSONArray) obj.get("angle");
-                for(int i=0; i<xArray.size(); i++){
+                for (int i = 0; i < xArray.size(); i++) {
                     final double xCoord = (double) Integer.parseInt(xArray.get(i).toString()) / this.mapWidth;
                     final double yCoord = (double) Integer.parseInt(yArray.get(i).toString()) / this.mapHeight;
                     final double angle = (double) Double.parseDouble(angleArray.get(i).toString());
-                    final var carriage = new Carriage(xCoord, yCoord, (double) railLength / this.mapWidth, (double) this.railWidth / this.mapWidth, angle);
+                    final var carriage = new Carriage(xCoord, yCoord, (double) railLength / this.mapWidth,
+                            (double) this.railWidth / this.mapWidth, angle);
                     railUnits.add(carriage);
                 }
 
