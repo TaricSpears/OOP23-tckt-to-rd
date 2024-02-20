@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Logger;
 
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.controller.readercontroller.impl.MapReaderController;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
@@ -85,7 +87,7 @@ public class PlayerInterface extends VBox {
                 alert.showAndWait();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.getLogger(PlayerInterface.class.getName()).fine("Exception in file path operations");
             }
 
         });
