@@ -3,6 +3,8 @@ package it.unibo.model.city.impl;
 import it.unibo.commons.Pair;
 import it.unibo.model.city.api.City;
 
+import java.util.Objects;
+
 /**
  * Implementation of {@link City}.
  * 
@@ -74,13 +76,25 @@ public class CityImpl implements City {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final City toCheck) {
-        return Double.compare(radius, toCheck.getRadius()) == 0
-                && this.name.equals(toCheck.getName())
-                && this.id == toCheck.getId()
-                && Double.compare(this.coordinates.first(), toCheck.getCoordinates().first()) == 0
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final CityImpl city = (CityImpl) obj;
+        return Double.compare(radius, city.getRadius()) == 0
+                && this.name.equals(city.getName())
+                && this.id == city.getId()
+                && Double.compare(this.coordinates.first(), city.getCoordinates().first()) == 0
                 && Double.compare(this.coordinates.second(),
-                        toCheck.getCoordinates().second()) == 0;
+                        city.getCoordinates().second()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 
     /**

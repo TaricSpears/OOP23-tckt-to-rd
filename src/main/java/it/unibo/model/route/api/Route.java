@@ -49,12 +49,6 @@ public interface Route {
     Set<Carriage> getRailUnits();
 
     /**
-     * @param toCheck the route to compare.
-     * @return true if the routes are equal, false otherwise.
-     */
-    boolean equals(Route toCheck);
-
-    /**
      * @return the string representation of the route.
      */
     @Override

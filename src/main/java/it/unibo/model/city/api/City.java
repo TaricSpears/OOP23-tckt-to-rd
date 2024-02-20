@@ -28,12 +28,6 @@ public interface City {
     Double getRadius();
 
     /**
-     * @param toCheck the city to compare
-     * @return true if the cities are equal, false otherwise
-     */
-    boolean equals(City toCheck);
-
-    /**
      * @return the string representation of the city.
      */
     @Override

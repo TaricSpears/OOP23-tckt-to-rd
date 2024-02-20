@@ -104,12 +104,27 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Route toCheck) {
-        return this.id == toCheck.getId()
-                && this.getConnectedCity().first().equals(toCheck.getConnectedCity().first())
-                && this.getConnectedCity().second().equals(toCheck.getConnectedCity().second())
-                && this.getScore() == toCheck.getScore()
-                && Objects.equals(this.color, toCheck.getColor());
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final RouteImpl route = (RouteImpl) obj;
+        return this.id == route.getId()
+                && this.getConnectedCity().first().equals(route.getConnectedCity().first())
+                && this.getConnectedCity().second().equals(route.getConnectedCity().second())
+                && this.getScore() == route.getScore()
+                && Objects.equals(this.color, route.getColor());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 
     /**

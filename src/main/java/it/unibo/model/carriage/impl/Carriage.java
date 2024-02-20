@@ -1,5 +1,7 @@
 package it.unibo.model.carriage.impl;
 
+import java.util.Objects;
+
 /**
  * This class represents a carriage in the game.
  * 
@@ -15,11 +17,27 @@ public record Carriage(double xCoord, double yCoord, double width, double length
      * @param toCheck the carriage to compare
      * @return true if the carriages are equal, false otherwise
      */
-    public boolean equals(final Carriage toCheck) {
-        return Double.compare(xCoord, toCheck.xCoord) == 1
-                && Double.compare(yCoord, toCheck.yCoord) == 1
-                && Double.compare(width, toCheck.width) == 1
-                && Double.compare(length, toCheck.length) == 1
-                && Double.compare(angle, toCheck.angle) == 1;
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Carriage carriage = (Carriage) obj;
+        return Double.compare(xCoord,
+                carriage.xCoord) == 1
+                && Double.compare(yCoord,
+                        carriage.yCoord) == 1
+                && Double.compare(width, carriage.width) == 1
+                && Double.compare(length,
+                        carriage.length) == 1
+                && Double.compare(angle, carriage.angle) == 1;
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(xCoord, yCoord, width, length, angle);
     }
 }
