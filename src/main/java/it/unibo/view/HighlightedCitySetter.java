@@ -25,7 +25,7 @@ public class HighlightedCitySetter {
         final Set<Button> buttonSet = new LinkedHashSet<>();
         final Double buttonRadius = controller.getGameController().getCityRadius() * paneWidth;
 
-        for (var city : citySet) {
+        for (final var city : citySet) {
             final Button button = new Button();
             final Circle circle = new Circle(buttonRadius);
             button.setShape(circle);

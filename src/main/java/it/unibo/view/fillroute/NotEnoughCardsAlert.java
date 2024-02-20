@@ -1,4 +1,4 @@
-package it.unibo.view.FillRoute.impl;
+package it.unibo.view.fillroute;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

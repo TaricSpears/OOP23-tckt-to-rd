@@ -1,4 +1,4 @@
-package it.unibo.view.FillRoute.impl;
+package it.unibo.view.fillroute;
 
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 
