@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.LinkedHashSet;
@@ -44,12 +45,12 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
     public RouteReaderController() {
         super(ROUTE_FILE_PATH);
         this.routes = new LinkedList<>();
-        var mapReader = new MapReaderController();
+        final var mapReader = new MapReaderController();
         this.mapWidth = mapReader.getMapWidth();
         this.mapHeight = mapReader.getMapHeight();
         this.railWidth = mapReader.getRailWidth();
         this.railLength = mapReader.getRailLength();
-        var cityReader = new CityReaderController();
+        final var cityReader = new CityReaderController();
         cities = cityReader.read();
     }
 
@@ -79,11 +80,12 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
                 final JSONArray angleArray = (JSONArray) obj.get("angle");
                 final Iterator angleArrayIterator = angleArray.iterator();
                 while (xArrayIterator.hasNext()) {
-                    int xCoord = Long.valueOf((Long) xArrayIterator.next()).intValue();
-                    int yCoord = Long.valueOf((Long) yArrayIterator.next()).intValue();
-                    double angle = (Double) angleArrayIterator.next();
-                    var carriage = new Carriage(((double) xCoord / this.mapWidth), ((double) yCoord / this.mapHeight),
-                            ((double) railLength / this.mapWidth), ((double) this.railWidth / this.mapWidth), angle);
+                    final int xCoord = Long.valueOf((Long) xArrayIterator.next()).intValue();
+                    final int yCoord = Long.valueOf((Long) yArrayIterator.next()).intValue();
+                    final double angle = (Double) angleArrayIterator.next();
+                    final var carriage = new Carriage((double) xCoord / this.mapWidth,
+                            (double) yCoord / this.mapHeight,
+                            (double) railLength / this.mapWidth, (double) this.railWidth / this.mapWidth, angle);
                     railUnits.add(carriage);
                 }
 
@@ -99,9 +101,9 @@ public class RouteReaderController extends AbstractReaderController<List<Route>>
             }
             inputStreamReader.close();
         } catch (IOException e) {
-            System.out.println("Exception in file path operations");
+            Logger.getLogger(MapReaderController.class.getName()).fine("Exception in file path operations");
         } catch (ParseException e1) {
-            System.out.println("Exception in file parsing operations");
+            Logger.getLogger(MapReaderController.class.getName()).fine("Exception in file parsing operations");
         }
         return List.copyOf(this.routes);
     }
