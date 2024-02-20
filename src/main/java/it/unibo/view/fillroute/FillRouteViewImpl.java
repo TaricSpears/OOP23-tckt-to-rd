@@ -39,21 +39,21 @@ public final class FillRouteViewImpl extends Dialog<Color> {
         dialog.setContentText("Choose your color:");
         dialog.showAndWait();
         if (dialog.getResult() != null) {
-            if (dialog.getResult().equals("RED")) {
+            if ("RED".equals(dialog.getResult())) {
                 return Color.RED;
-            } else if (dialog.getResult().equals("BLACK")) {
+            } else if ("BLACK".equals(dialog.getResult())) {
                 return Color.BLACK;
-            } else if (dialog.getResult().equals("MAGENTA")) {
+            } else if ("MAGENTA".equals(dialog.getResult())) {
                 return Color.MAGENTA;
-            } else if (dialog.getResult().equals("ORANGE")) {
+            } else if ("ORANGE".equals(dialog.getResult())) {
                 return Color.ORANGE;
-            } else if (dialog.getResult().equals("YELLOW")) {
+            } else if ("YELLOW".equals(dialog.getResult())) {
                 return Color.YELLOW;
-            } else if (dialog.getResult().equals("GREEN")) {
+            } else if ("GREEN".equals(dialog.getResult())) {
                 return Color.GREEN;
-            } else if (dialog.getResult().equals("BLUE")) {
+            } else if ("BLUE".equals(dialog.getResult())) {
                 return Color.BLUE;
-            } else if (dialog.getResult().equals("WHITE")) {
+            } else if ("WHITE".equals(dialog.getResult())) {
                 return Color.WHITE;
             } else {
                 alert.setTitle("Error");
