@@ -53,7 +53,7 @@ public class PlayerInterface extends VBox {
         final Button rules = new Button("Rules");
         final Text phase = new Text(controller.getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
-        final CardBox cardBox = new CardBox(controller, this);
+        final CardBox cardBox = new CardBox(controller);
 
         phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
         objectiveBox.setMaxWidth(this.getMinWidth() * BOX_SCALE);
