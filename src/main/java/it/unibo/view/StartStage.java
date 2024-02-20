@@ -14,7 +14,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -95,6 +101,11 @@ public final class StartStage extends Stage {
                     });
         });
 
+        final Image image = new Image("/img/Wallpapers/Wallpaper2.jpg");
+        final BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                new BackgroundSize(1, 1, true, true, false, false));
+
         final BorderPane root = new BorderPane();
         final VBox nameSelect = new VBox();
         final HBox nameInput = new HBox();
@@ -110,6 +121,7 @@ public final class StartStage extends Stage {
         nameSelect.setAlignment(Pos.CENTER);
 
         root.setCenter(nameSelect);
+        root.setBackground(new Background(backgroundImage));
 
         startBox.getChildren().add(startButton);
         startBox.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));

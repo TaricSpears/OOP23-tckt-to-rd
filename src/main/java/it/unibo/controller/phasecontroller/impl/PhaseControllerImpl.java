@@ -11,7 +11,7 @@ import it.unibo.model.phasemanager.impl.PhaseManagerImpl;
  */
 public class PhaseControllerImpl implements PhaseController {
 
-    private PhaseManager phaseManager;
+    private final PhaseManager phaseManager;
 
     /**
      * Constructor of the class.
@@ -23,6 +23,7 @@ public class PhaseControllerImpl implements PhaseController {
     /**
      * {@inheritDoc}
      */
+    @Override
     public PhaseManager getPhaseManager() {
         return this.phaseManager;
     }
