@@ -28,6 +28,15 @@ public class MainControllerImpl implements MainController {
     private TurnController turnController;
 
     /**
+     * Constructor for the main controller.
+     */
+    public MainControllerImpl() {
+        this.gamePrep = new GamePrep();
+        this.drawController = new DrawControllerImpl();
+        this.view = null;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
