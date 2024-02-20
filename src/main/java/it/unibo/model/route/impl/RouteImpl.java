@@ -37,13 +37,13 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * @param id
      * @param railUnits
      */
-
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need to expose the railUnits")
     public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Carriage> railUnits) {
         this.connectedCity = connectedCity;
         this.filled = false;
         this.color = color;
         this.id = id;
-        this.railUnits = new java.util.HashSet<>(railUnits);
+        this.railUnits = railUnits;
     }
 
     /**
