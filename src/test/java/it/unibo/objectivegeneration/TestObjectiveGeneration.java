@@ -2,51 +2,20 @@ package it.unibo.objectivegeneration;
 
 import org.junit.jupiter.api.Test;
 
-import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
+import it.unibo.commons.TestDataPreparation;
 import it.unibo.model.city.api.City;
-import it.unibo.model.city.impl.CityImpl;
 import it.unibo.model.gameprep.impl.GamePrep;
 import it.unibo.model.objectivegeneration.api.ObjectiveGenerator;
 import it.unibo.model.objectivegeneration.impl.ObjectiveGeneratorImpl;
-import it.unibo.model.route.api.Route;
-import it.unibo.model.route.impl.RouteImpl;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.awt.Color;
-
-import java.util.List;
-
-// CHECKSTYLE: MagicNumber OFF
 class TestObjectiveGeneration {
 
-    private final List<String> players = List.of("Player1", "Player2", "Player3", "Player4", "Player5", "Player6");
-    private final List<Color> colors = List.of(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK,
-            Color.ORANGE);
-
-    private final List<Pair<String, Color>> playerData = List.of(new Pair<String, Color>("Player1", Color.RED),
-            new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
-            new Pair<String, Color>("Player4", Color.YELLOW), new Pair<String, Color>("Player5", Color.BLACK),
-            new Pair<String, Color>("Player6", Color.ORANGE));
-
-    private final City city1 = new CityImpl("Rome");
-    private final City city2 = new CityImpl("Milan");
-    private final City city3 = new CityImpl("Naples");
-
-    private final Route route1 = new RouteImpl(new EdgeData(city1, city2, 5), Color.RED, 0, null);
-    private final Route route2 = new RouteImpl(new EdgeData(city1, city3, 3), Color.BLACK, 1, null);
-    private final Route route3 = new RouteImpl(new EdgeData(city2, city3, 7), Color.GREEN, 2, null);
-
-    private final List<Route> routeData = List.of(route1, route2, route3);
-
-    private final GamePrep gamePrep = new GamePrep();
-
-    TestObjectiveGeneration() {
-
-        gamePrep.prepGame(playerData, routeData);
-    }
+    private static final double MIN_SCORE = 5.0;
+    private final GamePrep gamePrep = TestDataPreparation.testPrep();
 
     @Test
     void testObjectiveGeneration() {
@@ -54,10 +23,10 @@ class TestObjectiveGeneration {
 
         final Pair<City, City> obj1 = objectiveGenerator.generateObjective();
         assertNotEquals(obj1.first(), obj1.second());
-        assertTrue(objectiveGenerator.calculateScore(obj1) >= 5.0);
+        assertTrue(objectiveGenerator.calculateScore(obj1) >= MIN_SCORE);
 
         final Pair<City, City> obj2 = objectiveGenerator.generateObjective();
         assertNotEquals(obj2.first(), obj2.second());
-        assertTrue(objectiveGenerator.calculateScore(obj2) >= 5.0);
+        assertTrue(objectiveGenerator.calculateScore(obj2) >= MIN_SCORE);
     }
 }

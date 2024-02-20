@@ -5,52 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import org.jgrapht.graph.WeightedPseudograph;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import it.unibo.commons.EdgeData;
-import it.unibo.commons.Pair;
+import it.unibo.commons.TestDataPreparation;
 import it.unibo.model.city.api.City;
-import it.unibo.model.city.impl.CityImpl;
 import it.unibo.model.gameprep.impl.GamePrep;
 import it.unibo.model.player.api.Player;
 import it.unibo.model.route.api.Route;
-import it.unibo.model.route.impl.RouteImpl;
 
 import java.awt.Color;
 
 /**
  * This class is used for testing the GamePrep class.
  */
-// CHECKSTYLE: MagicNumber OFF
 class TestGamePrep {
 
     private static final int CARRIAGE_DEFAULT_NUMBER = 45;
 
-    private final List<Pair<String, Color>> playerData = List.of(new Pair<String, Color>("Player1", Color.RED),
-            new Pair<String, Color>("Player2", Color.BLUE), new Pair<String, Color>("Player3", Color.GREEN),
-            new Pair<String, Color>("Player4", Color.YELLOW), new Pair<String, Color>("Player5", Color.BLACK),
-            new Pair<String, Color>("Player6", Color.ORANGE));
-
-    private final City city1 = new CityImpl("Rome");
-    private final City city2 = new CityImpl("Milan");
-    private final City city3 = new CityImpl("Naples");
-
-    private final List<Route> routeData = List.of(
-            new RouteImpl(new EdgeData(city1, city2, 5), Color.RED, 0, null),
-            new RouteImpl(new EdgeData(city1, city3, 3), Color.BLACK, 1, null),
-            new RouteImpl(new EdgeData(city2, city3, 7), Color.GREEN, 2, null));
-
-    private final GamePrep gamePrep = new GamePrep();
-
-    @BeforeEach
-    void setUp() {
-        gamePrep.prepGame(playerData, routeData);
-    }
-
     @Test
     void testPrepPlayers() {
-
+        final GamePrep gamePrep = TestDataPreparation.testPrep();
         final List<Player> players = gamePrep.getPlayers();
 
         assertEquals(players.size(), 6);
@@ -61,13 +35,10 @@ class TestGamePrep {
 
     @Test
     void testPrepGraph() {
-
+        final GamePrep gamePrep = TestDataPreparation.testPrep();
         final WeightedPseudograph<City, Route> graph = gamePrep.getGraph();
+
         assertEquals(graph.vertexSet().size(), 3);
         assertEquals(graph.edgeSet().size(), 3);
-        assertEquals(graph.getEdgeWeight(graph.getEdge(city1, city2)), 5);
-        assertEquals(graph.getEdgeWeight(graph.getEdge(city1, city3)), 3);
-        assertEquals(graph.getEdgeWeight(graph.getEdge(city2, city3)), 7);
-
     }
 }

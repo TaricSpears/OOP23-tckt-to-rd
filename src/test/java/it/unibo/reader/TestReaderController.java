@@ -1,7 +1,6 @@
 package it.unibo.reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +18,7 @@ import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.city.api.City;
 import it.unibo.model.city.impl.CityImpl;
 import it.unibo.model.route.impl.RouteImpl;
+
 // CHECKSTYLE: MagicNumber OFF
 class TestReaderController {
     private static final int MAP_HEIGHT = 3640;
@@ -56,7 +56,7 @@ class TestReaderController {
          */
         final City testCity = cityReaderController.read().get(25);
         assertEquals(zagrab.getId(), testCity.getId());
-        assertTrue(zagrab.getName().equals(testCity.getName()));
+        assertEquals(zagrab.getName(), testCity.getName());
         assertEquals(0, Double.compare(zagrab.getCoordinates().first(), testCity.getCoordinates().first()));
         assertEquals(0, Double.compare(zagrab.getCoordinates().second(), testCity.getCoordinates().second()));
         assertEquals(0, Double.compare(zagrab.getRadius(), testCity.getRadius()));
@@ -68,11 +68,14 @@ class TestReaderController {
         final var routeList = routeReaderController.read();
         final var cityReaderController = new CityReaderController();
         final var cityList = cityReaderController.read();
-        Carriage c1 = new Carriage((float) 2207 / MAP_WIDTH, (float) 1499 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+        final Carriage c1 = new Carriage((float) 2207 / MAP_WIDTH, (float) 1499 / MAP_HEIGHT,
+                (float) RAIL_LENGTH / MAP_WIDTH,
                 (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
-        Carriage c2 = new Carriage((float) 2381 / MAP_WIDTH, (float) 1415 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+        final Carriage c2 = new Carriage((float) 2381 / MAP_WIDTH, (float) 1415 / MAP_HEIGHT,
+                (float) RAIL_LENGTH / MAP_WIDTH,
                 (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
-        Carriage c3 = new Carriage((float) 2558 / MAP_WIDTH, (float) 1332 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+        final Carriage c3 = new Carriage((float) 2558 / MAP_WIDTH, (float) 1332 / MAP_HEIGHT,
+                (float) RAIL_LENGTH / MAP_WIDTH,
                 (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
         final Set<Carriage> carriageSet = new HashSet<>();
         carriageSet.add(c1);
