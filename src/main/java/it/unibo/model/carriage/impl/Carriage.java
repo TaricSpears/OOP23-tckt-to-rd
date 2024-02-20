@@ -36,6 +36,9 @@ public record Carriage(double xCoord, double yCoord, double width, double length
                 && Double.compare(angle, carriage.angle) == 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final int hashCode() {
         return Objects.hash(xCoord, yCoord, width, length, angle);

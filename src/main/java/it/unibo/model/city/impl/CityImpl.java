@@ -92,6 +92,9 @@ public class CityImpl implements City {
                         city.getCoordinates().second()) == 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
