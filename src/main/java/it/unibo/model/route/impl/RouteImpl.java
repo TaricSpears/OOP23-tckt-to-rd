@@ -7,6 +7,7 @@ import java.awt.Color;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
 import it.unibo.model.carriage.impl.Carriage;
@@ -22,10 +23,10 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
 
     private static final long serialVersionUID = 567742502623265945L;
 
-    private final EdgeData connectedCity;
+    private final transient EdgeData connectedCity;
     private boolean filled;
     private final int id;
-    private final Set<Carriage> railUnits;
+    private final transient Set<Carriage> railUnits;
     private final Color color;
 
     /**
@@ -36,12 +37,13 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * @param id
      * @param railUnits
      */
+
     public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Carriage> railUnits) {
         this.connectedCity = connectedCity;
         this.filled = false;
         this.color = color;
         this.id = id;
-        this.railUnits = railUnits;
+        this.railUnits = new java.util.HashSet<>(railUnits);
     }
 
     /**
