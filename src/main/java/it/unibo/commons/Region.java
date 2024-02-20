@@ -4,16 +4,6 @@ import java.util.Optional;
 
 /**
  * This class represents a region in the map.
- * 
- * @param xCenter      the x coordinate of the center of the region.
- * @param yCenter      the y coordinate of the center of the region.
- * @param width        the width of the region.
- * @param length       the length of the region.
- * @param angle        the angle of the region.
- * @param id           the id of the region.
- * @param defaultColor the default color of the region.
- * @param playerColor  the color of the player that has the region, if any.
- * 
  */
 public class Region {
     private final double xCenter;

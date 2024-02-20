@@ -25,6 +25,7 @@ import javafx.stage.Screen;
 public class PlayerInterface extends VBox {
 
     private static final int SPACING_VALUE = 10;
+    private static final int SPACINGBOX_VALUE = 2;
     private static final int PADDING_VALUE = 20;
     private static final double BOX_SCALE = 0.8;
     private static final double ALERT_WIDTH_SCALE = 0.6;
@@ -104,8 +105,8 @@ public class PlayerInterface extends VBox {
 
         final HBox controlBox = new HBox(endTurn, rules);
         final HBox drawBox = new HBox(drawObjective, drawTrain);
-        controlBox.setSpacing(2.0);
-        drawBox.setSpacing(2.0);
+        controlBox.setSpacing(SPACINGBOX_VALUE);
+        drawBox.setSpacing(SPACINGBOX_VALUE);
 
         this.getChildren().addAll(drawBox, controlBox, objectiveBox, cardBox);
 

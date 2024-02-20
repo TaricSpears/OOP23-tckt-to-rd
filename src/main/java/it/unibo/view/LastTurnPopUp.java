@@ -8,6 +8,12 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class LastTurnPopUp {
 
+    private static final double WIDTH = 300;
+    private static final double HEIGHT = 200;
+
+    /**
+     * Opens the popUp.
+     */
     public LastTurnPopUp() {
 
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -15,8 +21,8 @@ public class LastTurnPopUp {
         alert.setContentText("Ultimo turno di gioco!");
 
         alert.setResizable(false);
-        alert.getDialogPane().setMaxSize(300, 200);
-        alert.getDialogPane().setMinSize(300, 200);
+        alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
+        alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
         alert.showAndWait();
     }
 }

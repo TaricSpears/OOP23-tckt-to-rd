@@ -125,9 +125,9 @@ public class FillRouteImpl implements FillRoute {
             }
             return true;
         } else {
-            if (this.route.getScore() > this.player.getCarriageNum())
+            if (this.route.getScore() > this.player.getCarriageNum()) {
                 openAlert("You don't have enough carriages to fill this route.");
-            else {
+            } else {
                 openAlert("You don't have enough cards to fill this route.");
             }
             return false;

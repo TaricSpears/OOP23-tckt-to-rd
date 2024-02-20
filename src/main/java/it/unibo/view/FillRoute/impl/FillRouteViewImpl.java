@@ -22,6 +22,11 @@ public final class FillRouteViewImpl extends Dialog<Color> {
         dialog = new ChoiceDialog<>(null, fillRoute.getAvailableRoutes(fillRoute));
     }
 
+    /**
+     * Opens the popUp.
+     * 
+     * @return the chosen color.
+     */
     public Color openPopUp() {
         dialog.setTitle("Fill Route");
         dialog.setHeaderText("Choose the color of cards you want to use to fill the route.");

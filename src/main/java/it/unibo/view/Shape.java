@@ -14,6 +14,7 @@ import javafx.scene.shape.Polygon;
  */
 public class Shape extends Polygon {
     private final int id;
+    private static final double SCALE = 0.5;
 
     /**
      * Constructor for the shape.
@@ -25,8 +26,10 @@ public class Shape extends Polygon {
      * @param id     the id of the shape.
      */
     public Shape(final double x, final double y, final double width, final double height, final int id) {
-        super(x - (width / 2), y - (height / 2), x + (width / 2), y - (height / 2), x + (width / 2), y + (height / 2),
-                x - (width / 2), y + (height / 2));
+        super(x - (width * SCALE), y - (height * SCALE), x + (width * SCALE), y - (height * SCALE),
+                x + (width * SCALE),
+                y + (height * SCALE),
+                x - (width * SCALE), y + (height * SCALE));
         this.id = id;
     }
 

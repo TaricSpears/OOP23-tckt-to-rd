@@ -35,6 +35,9 @@ public final class StartStage extends Stage {
 
     private static final int TOP_BOTTOM_PADDING = 15;
     private static final int LEFT_RIGHT_PADDING = 12;
+    private static final int SPACING_VALUE = 10;
+    private static final double WIDTH_SCALE = 0.3;
+    private static final double HEIGHT_SCALE = 0.5;
     private final Set<Pair<String, Color>> players = new HashSet<>();
 
     /**
@@ -99,7 +102,7 @@ public final class StartStage extends Stage {
 
         nameInput.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING,
                 LEFT_RIGHT_PADDING));
-        nameInput.setSpacing(10);
+        nameInput.setSpacing(SPACING_VALUE);
         nameInput.getChildren().addAll(colorPicker, nameField, submitButton);
         nameInput.setAlignment(Pos.CENTER);
 
@@ -114,12 +117,12 @@ public final class StartStage extends Stage {
 
         root.setBottom(startBox);
 
-        final Scene scene = new Scene(root, bounds.getWidth() * 0.3, bounds.getHeight() * 0.5);
+        final Scene scene = new Scene(root, bounds.getWidth() * WIDTH_SCALE, bounds.getHeight() * HEIGHT_SCALE);
         this.setScene(scene);
 
-        playersList.setMaxSize(scene.getWidth() * 0.5, scene.getHeight() * 0.5);
-        this.setMinWidth(bounds.getWidth() * 0.3);
-        this.setMinHeight(bounds.getHeight() * 0.5);
+        playersList.setMaxSize(scene.getWidth() * WIDTH_SCALE, scene.getHeight() * HEIGHT_SCALE);
+        this.setMinWidth(bounds.getWidth() * WIDTH_SCALE);
+        this.setMinHeight(bounds.getHeight() * HEIGHT_SCALE);
     }
 
     /**
@@ -127,18 +130,20 @@ public final class StartStage extends Stage {
      * {@link ListCell}.
      */
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
+        private static final int LEFT_RIGHT_PADDING = 2;
+        private static final int TOP_BOTTOM_PADDING = 5;
+        private static final int WIDTH_AND_HEIGHT = 20;
+
         @Override
         public void updateItem(final Pair<String, Color> item, final boolean empty) {
-            final int LEFT_RIGHT_PADDING = 2;
-            final int TOP_BOTTOM_PADDING = 5;
             super.updateItem(item, empty);
-            final Rectangle rect = new Rectangle(20, 20);
+            final Rectangle rect = new Rectangle(WIDTH_AND_HEIGHT, WIDTH_AND_HEIGHT);
             if (item != null) {
                 rect.setFill(item.second());
                 final HBox entry = new HBox();
                 entry.setPadding(
                         new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
-                entry.setSpacing(10);
+                entry.setSpacing(SPACING_VALUE);
                 entry.getChildren().addAll(rect, new Label(item.first()));
                 setGraphic(entry);
             } else {

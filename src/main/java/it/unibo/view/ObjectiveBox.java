@@ -24,7 +24,7 @@ public class ObjectiveBox extends VBox {
     private static final int SPACING_VALUE = 5;
     private static final int FONT_SIZE = 12;
     private static final double WIDTH_SCALE = 0.8;
-
+    private static final int RECTANGLE_DIMENSION = 10;
     private boolean isShown;
 
     /**
@@ -42,7 +42,8 @@ public class ObjectiveBox extends VBox {
 
         final Text currentPlayer = new Text(
                 "Current player: " + controller.getTurnController().getCurrentPlayer().getName());
-        final Rectangle currentPlayerColor = new Rectangle(10, 10);
+
+        final Rectangle currentPlayerColor = new Rectangle(RECTANGLE_DIMENSION, RECTANGLE_DIMENSION);
 
         currentPlayerColor.setFill(Color.rgb(
                 controller.getTurnController().getCurrentPlayer().getColor().getRed(),
@@ -72,7 +73,7 @@ public class ObjectiveBox extends VBox {
                                     objective.setTextAlignment(TextAlignment.LEFT);
                                     objective.setFont(
                                             Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
-                                    objective.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+                                    objective.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
                                     return objective;
                                 })
                                 .toList());
@@ -80,7 +81,7 @@ public class ObjectiveBox extends VBox {
                 this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 2);
                 final Text placeholderText = new Text("The objectives are hidden");
                 placeholderText.setTextAlignment(TextAlignment.LEFT);
-                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
+                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
                 placeholderText.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
                 this.getChildren().add(placeholderText);
             }
