@@ -29,8 +29,7 @@ public class CardBox extends VBox {
     /**
      * Creates the box of player's card.
      * 
-     * @param controller      the mainController of the game.
-     * @param playerInterface the interface where this box will be fit.
+     * @param controller the mainController of the game.
      */
     public CardBox(final MainController controller) {
 
