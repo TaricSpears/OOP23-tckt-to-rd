@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 public class MainView extends Application {
 
     private static MainController controller = GameStart.CONTROLLER;
-    private StartStage startStage;
     private MainStage mainStage;
     private FinalScoreBoardView scoreBoardView;
 
@@ -35,7 +34,7 @@ public class MainView extends Application {
      * Launches the player selection view.
      */
     public void launchPlayerSlect() {
-        startStage = new StartStage(controller);
+        final StartStage startStage = new StartStage(controller);
         startStage.show();
     }
 

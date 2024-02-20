@@ -21,13 +21,14 @@ import java.awt.Color;
 class TestGamePrep {
 
     private static final int CARRIAGE_DEFAULT_NUMBER = 45;
+    private static final int PLAYER_NUMBER = 6;
 
     @Test
     void testPrepPlayers() {
         final GamePrep gamePrep = TestDataPreparation.testPrep();
         final List<Player> players = gamePrep.getPlayers();
 
-        assertEquals(players.size(), 6);
+        assertEquals(players.size(), PLAYER_NUMBER);
         assertEquals(players.get(0).getName(), "Player1");
         assertEquals(players.get(0).getColor(), Color.RED);
         assertEquals(players.get(0).getCarriageNum(), CARRIAGE_DEFAULT_NUMBER);
