@@ -100,7 +100,7 @@ public class PlayerImpl implements Player {
      */
     @Override
     public Map<Color, Integer> getTrainCards() {
-        Map<Color, Integer> trainCardList = new HashMap<>(trainCards);
+        final Map<Color, Integer> trainCardList = new HashMap<>(trainCards);
         return Collections.unmodifiableMap(trainCardList);
     }
 
@@ -141,29 +141,6 @@ public class PlayerImpl implements Player {
      */
     @Override
     public double getObjectiveScore() {
-
-        // Set<City> startCities = objectiveCards.stream().filter(x ->
-        // x.isCompleted()).map(x -> x.getCities().first())
-        // .collect(Collectors.toSet());
-        // Set<City> targetCities = objectiveCards.stream().filter(x ->
-        // x.isCompleted()).map(x -> x.getCities().second())
-        // .collect(Collectors.toSet());
-
-        // if (startCities.size() > 0 && targetCities.size() > 0) {
-        // DirectedWeightedPseudograph<City, Route> tempGraph = new
-        // DirectedWeightedPseudograph<>(RouteImpl.class);
-        // playerGraph.vertexSet().stream().map(x -> tempGraph.addVertex(x));
-        // playerGraph.edgeSet().stream()
-        // .map(x -> tempGraph.addEdge(x.getConnectedCity().first(),
-        // x.getConnectedCity().second(), x));
-
-        // AllDirectedPaths<City, Route> allDirectedPaths = new
-        // AllDirectedPaths<>(tempGraph);
-        // System.out.println(allDirectedPaths.getAllPaths(startCities, targetCities,
-        // true, null).stream()
-        // .map(x -> x.getLength()).reduce(Integer::max).get());
-        // }
-
         double objectiveScore = 0;
         for (final ObjectiveCard objective : objectiveCards) {
             if (objective.isCompleted()) {
@@ -185,7 +162,9 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * {@inheritDoc}
+     * Adds the passed number to the score of the routes.
+     * 
+     * @param number
      */
     private void setRouteScore(final int number) {
         this.routeScore += number;
@@ -195,7 +174,7 @@ public class PlayerImpl implements Player {
      * {@inheritDoc}
      */
     @Override
-    public void removeTrainCard(Color color, int num) {
+    public void removeTrainCard(final Color color, final int num) {
         this.trainCards.replace(color, this.trainCards.get(color) - num);
     }
 
@@ -203,7 +182,7 @@ public class PlayerImpl implements Player {
      * {@inheritDoc}
      */
     @Override
-    public void addTrainCard(TrainCard card) {
+    public void addTrainCard(final TrainCard card) {
         this.trainCards.replace(card.getColor(), this.trainCards.get(card.getColor()) + 1);
     }
 
@@ -225,11 +204,10 @@ public class PlayerImpl implements Player {
 
         for (final ObjectiveCard objective : objectiveCards) {
             if (!objective.isCompleted() && playerGraph.vertexSet().contains(objective.getCities().first())
-                    && playerGraph.vertexSet().contains(objective.getCities().second())) {
-                if (this.shortestPath
-                        .getPath(objective.getCities().first(), objective.getCities().second()) != null) {
-                    objective.setCompleted();
-                }
+                    && playerGraph.vertexSet().contains(objective.getCities().second())
+                    && this.shortestPath.getPath(objective.getCities().first(),
+                            objective.getCities().second()) != null) {
+                objective.setCompleted();
             }
 
         }
@@ -239,7 +217,7 @@ public class PlayerImpl implements Player {
      * {@inheritDoc}
      */
     @Override
-    public boolean addObjectiveCard(ObjectiveCard card) {
+    public boolean addObjectiveCard(final ObjectiveCard card) {
         return this.objectiveCards.add(card);
     }
 

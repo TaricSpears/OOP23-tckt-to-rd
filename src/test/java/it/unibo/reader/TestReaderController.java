@@ -19,7 +19,7 @@ import it.unibo.model.carriage.impl.Carriage;
 import it.unibo.model.city.api.City;
 import it.unibo.model.city.impl.CityImpl;
 import it.unibo.model.route.impl.RouteImpl;
-
+// CHECKSTYLE: MagicNumber OFF
 class TestReaderController {
     private static final int MAP_HEIGHT = 3640;
     private static final int MAP_WIDTH = 5421;
@@ -28,7 +28,7 @@ class TestReaderController {
     private static final int RAIL_LENGTH = 180;
 
     @Test
-    void testMapReaderController(){
+    void testMapReaderController() {
         final var mapReader = new MapReaderController();
         assertEquals(MAP_WIDTH, mapReader.getMapWidth());
         assertEquals(MAP_HEIGHT, mapReader.getMapHeight());
@@ -38,20 +38,22 @@ class TestReaderController {
     }
 
     @Test
-    void testCityReaderController(){
+    void testCityReaderController() {
         final var cityReaderController = new CityReaderController();
-        final Double xCoord = (Double)(2891.0/MAP_WIDTH);
-        final Double yCoord = (Double)(2308.0/MAP_HEIGHT);
+        final Double xCoord = (Double) (2891.0 / MAP_WIDTH);
+        final Double yCoord = (Double) (2308.0 / MAP_HEIGHT);
         final var coords = new Pair<Double, Double>(xCoord, yCoord);
-        final City zagrab = new CityImpl("ZAGRAB", 25, coords, (double)CITY_RADIUS/MAP_WIDTH);
-        /*final List<City> cityList = cityReaderController.read();
-        for(int i=0; i<cityList.size(); i++){
-            System.out.println("CITY " + i + ":");
-            System.out.println("NAME: " + cityList.get(i).getName());
-            System.out.println("ID: " + cityList.get(i).getId());
-            System.out.println("RADIUS: " + cityList.get(i).getRadius());
-            System.out.println("COORDS: " + cityList.get(i).getCoordinates());
-        }*/
+        final City zagrab = new CityImpl("ZAGRAB", 25, coords, (double) CITY_RADIUS / MAP_WIDTH);
+        /*
+         * final List<City> cityList = cityReaderController.read();
+         * for(int i=0; i<cityList.size(); i++){
+         * System.out.println("CITY " + i + ":");
+         * System.out.println("NAME: " + cityList.get(i).getName());
+         * System.out.println("ID: " + cityList.get(i).getId());
+         * System.out.println("RADIUS: " + cityList.get(i).getRadius());
+         * System.out.println("COORDS: " + cityList.get(i).getCoordinates());
+         * }
+         */
         final City testCity = cityReaderController.read().get(25);
         assertEquals(zagrab.getId(), testCity.getId());
         assertTrue(zagrab.getName().equals(testCity.getName()));
@@ -61,20 +63,23 @@ class TestReaderController {
     }
 
     @Test
-    void testRouteReaderController(){
+    void testRouteReaderController() {
         final var routeReaderController = new RouteReaderController();
         final var routeList = routeReaderController.read();
         final var cityReaderController = new CityReaderController();
         final var cityList = cityReaderController.read();
-        Carriage c1 = new Carriage((float)2207/MAP_WIDTH, (float)1499/MAP_HEIGHT, (float)RAIL_LENGTH/MAP_WIDTH, (float)RAIL_WIDTH/MAP_WIDTH, 0.5);
-        Carriage c2 = new Carriage((float)2381/MAP_WIDTH, (float)1415/MAP_HEIGHT, (float)RAIL_LENGTH/MAP_WIDTH, (float)RAIL_WIDTH/MAP_WIDTH, 0.5);
-        Carriage c3 = new Carriage((float)2558/MAP_WIDTH, (float)1332/MAP_HEIGHT, (float)RAIL_LENGTH/MAP_WIDTH, (float)RAIL_WIDTH/MAP_WIDTH, 0.5);
+        Carriage c1 = new Carriage((float) 2207 / MAP_WIDTH, (float) 1499 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+                (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
+        Carriage c2 = new Carriage((float) 2381 / MAP_WIDTH, (float) 1415 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+                (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
+        Carriage c3 = new Carriage((float) 2558 / MAP_WIDTH, (float) 1332 / MAP_HEIGHT, (float) RAIL_LENGTH / MAP_WIDTH,
+                (float) RAIL_WIDTH / MAP_WIDTH, 0.5);
         final Set<Carriage> carriageSet = new HashSet<>();
         carriageSet.add(c1);
         carriageSet.add(c2);
         carriageSet.add(c3);
         final var route = new RouteImpl(new EdgeData(cityList.get(19), cityList.get(20), 3),
-             Color.RED, 34, carriageSet);
+                Color.RED, 34, carriageSet);
         assertEquals(true, route.equals(routeList.get(34)));
     }
 }

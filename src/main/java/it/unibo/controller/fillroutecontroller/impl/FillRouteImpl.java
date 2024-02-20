@@ -23,7 +23,6 @@ import java.awt.Color;
  * set the color of a route with the player's color, and handle the click event
  * on a route.
  */
-
 public class FillRouteImpl implements FillRoute {
 
     private FillRouteViewImpl popUp;
@@ -32,11 +31,18 @@ public class FillRouteImpl implements FillRoute {
     private Route route;
     private Color chosenColor;
 
-    final List<Color> colors = new ArrayList<Color>(
+    private final List<Color> colors = new ArrayList<Color>(
             List.of(Color.RED, Color.BLACK, Color.MAGENTA, Color.ORANGE, Color.YELLOW,
                     Color.GREEN, Color.BLUE, Color.WHITE));
 
-    public FillRouteImpl(Player player, Region region, MainController controller) {
+    /**
+     * Constructor of the class.
+     * 
+     * @param player
+     * @param region
+     * @param controller
+     */
+    public FillRouteImpl(final Player player, final Region region, final MainController controller) {
 
         this.player = player;
 
@@ -57,11 +63,12 @@ public class FillRouteImpl implements FillRoute {
                 }
             }
         } else {
-            if (isColorEnough(route.getColor())) {
-                return true;
-            } else {
-                return false;
-            }
+            return isColorEnough(route.getColor());
+            // if (isColorEnough(route.getColor())) {
+            // return true;
+            // } else {
+            // return false;
+            // }
         }
         return false;
 
@@ -73,7 +80,7 @@ public class FillRouteImpl implements FillRoute {
 
     }
 
-    private void openAlert(String message) {
+    private void openAlert(final String message) {
         this.alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
         alert.openAlert();
 
@@ -84,7 +91,7 @@ public class FillRouteImpl implements FillRoute {
      */
     @Override
     public boolean clickRoute() {
-        if (isRouteValid()) {
+        if (isRouteValid() && this.route.getScore() <= this.player.getCarriageNum()) {
             if (this.route.getColor().equals(Color.GRAY)) {
                 openPopUp();
                 if (!this.chosenColor.equals(null)) {
@@ -118,7 +125,11 @@ public class FillRouteImpl implements FillRoute {
             }
             return true;
         } else {
-            openAlert("You don't have enough cards to fill this route.");
+            if (this.route.getScore() > this.player.getCarriageNum()) {
+                openAlert("You don't have enough carriages to fill this route.");
+            } else {
+                openAlert("You don't have enough cards to fill this route.");
+            }
             return false;
         }
     }
@@ -129,7 +140,7 @@ public class FillRouteImpl implements FillRoute {
      * @return true if the cards of the player are enough to fill the route
      */
     @Override
-    public boolean isColorEnough(Color color) {
+    public boolean isColorEnough(final Color color) {
         return this.player.getTrainCards().get(color) + this.player.getTrainCards().get(Color.DARK_GRAY) >= this.route
                 .getScore();
 
@@ -141,7 +152,7 @@ public class FillRouteImpl implements FillRoute {
      * @return the list of the Colors that can fill a GRAY route
      */
     @Override
-    public ObservableList<String> getAvailableRoutes(FillRoute fillRoute) {
+    public ObservableList<String> getAvailableRoutes(final FillRoute fillRoute) {
         final ObservableList<String> availableRoutes = FXCollections.observableArrayList();
 
         for (var color : this.colors) {

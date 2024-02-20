@@ -26,6 +26,7 @@ public interface PhaseController {
     /**
      * Checks if the current player has more than 2 carriages.
      * 
+     * @param mainController the main controller of the game.
      * @return if the current phase is the end phase.
      */
     boolean isEndPhase(MainController mainController);

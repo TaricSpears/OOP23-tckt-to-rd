@@ -10,50 +10,65 @@ import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 
+/**
+ * The class that represents the interface of the player, extends {@link VBox}.
+ * 
+ * It contains all the buttons and information that the player needs to play the
+ * game.
+ */
 public class PlayerInterface extends VBox {
 
+    private static final int SPACING_VALUE = 10;
+    private static final int SPACINGBOX_VALUE = 2;
+    private static final int PADDING_VALUE = 20;
+    private static final double BOX_SCALE = 0.8;
+    private static final double ALERT_WIDTH_SCALE = 0.6;
+    private static final double ALERT_HEIGHT_SCALE = 0.5;
+
+    /**
+     * Constructor for the player interface.
+     * 
+     * @param controller the main controller of the game
+     * @param width      the width of this view
+     * @param height     the height of this view
+     */
     public PlayerInterface(final MainController controller, final double width, final double height) {
         this.setMinSize(width, height);
         this.setMaxSize(width, height);
         final Screen screen = Screen.getPrimary();
         final Rectangle2D bounds = screen.getVisualBounds();
-        // final Button endGame = new Button("End Game");
+
         final Button rules = new Button("Rules");
-        final Label phase = new Label(controller.getPhaseController().toString());
+        final Text phase = new Text(controller.getPhaseController().toString());
         final ObjectiveBox objectiveBox = new ObjectiveBox(controller, this);
         final CardBox cardBox = new CardBox(controller, this);
 
-        phase.setWrapText(true);
-        phase.setMaxWidth(this.getMinWidth() * 0.8);
-        objectiveBox.setMaxWidth(this.getMinWidth() * 0.8);
+        // phase.setWrapText(true);
+        phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
+        objectiveBox.setMaxWidth(this.getMinWidth() * BOX_SCALE);
 
         this.getChildren().add(phase);
-        // this.getChildren().add(endGame);
 
-        this.setPadding(new Insets(20));
-        this.setSpacing(10);
-
-        /*
-         * endGame.setOnAction(event -> {
-         * controller.getGameController().endGame();
-         * });
-         */
+        this.setPadding(new Insets(PADDING_VALUE));
+        this.setSpacing(SPACING_VALUE);
 
         rules.setOnAction(event -> {
 
-            String rulesText = "";
             try {
-                rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"), StandardCharsets.UTF_8);
-                Alert alert = new Alert(AlertType.INFORMATION, rulesText);
+                final String rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"),
+                        StandardCharsets.UTF_8);
+                final Alert alert = new Alert(AlertType.INFORMATION, rulesText);
                 alert.setResizable(false);
-                alert.getDialogPane().setMaxSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
-                alert.getDialogPane().setMinSize(bounds.getWidth() * 0.6, bounds.getHeight() * 0.5);
+                alert.getDialogPane().setMaxSize(bounds.getWidth() * ALERT_WIDTH_SCALE,
+                        bounds.getHeight() * ALERT_WIDTH_SCALE);
+                alert.getDialogPane().setMinSize(bounds.getWidth() * ALERT_WIDTH_SCALE,
+                        bounds.getHeight() * ALERT_HEIGHT_SCALE);
 
                 alert.setTitle("Rules");
                 alert.showAndWait();
@@ -65,9 +80,14 @@ public class PlayerInterface extends VBox {
         });
 
         final Button endTurn = new Button("End Turn");
-        endTurn.setOnAction(event -> {
+        endTurn.setOnAction(e -> {
             controller.getGameController().endTurn();
-            new EndTurnPopUp(controller);
+            if (!controller.getGameController().isGameEnded()) {
+                if (controller.getGameController().isLastTurn()) {
+                    new LastTurnPopUp();
+                }
+                new EndTurnPopUp(controller);
+            }
         });
         endTurn.setDisable(!controller.getPhaseController().isEndPhase(controller));
 
@@ -85,8 +105,8 @@ public class PlayerInterface extends VBox {
 
         final HBox controlBox = new HBox(endTurn, rules);
         final HBox drawBox = new HBox(drawObjective, drawTrain);
-        controlBox.setSpacing(2.0);
-        drawBox.setSpacing(2.0);
+        controlBox.setSpacing(SPACINGBOX_VALUE);
+        drawBox.setSpacing(SPACINGBOX_VALUE);
 
         this.getChildren().addAll(drawBox, controlBox, objectiveBox, cardBox);
 

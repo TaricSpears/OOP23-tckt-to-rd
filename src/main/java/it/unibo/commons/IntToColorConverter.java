@@ -3,10 +3,20 @@ package it.unibo.commons;
 import java.awt.Color;
 import java.util.function.Function;
 
-public class IntToColorConverter implements Function<Integer, Color>{
-
+/**
+ * This class is a converter from an integer to a color.
+ */
+public class IntToColorConverter implements Function<Integer, Color> {
+    /**
+     * This method converts an integer to a color.
+     * 
+     * @param t the integer to convert.
+     * @return the color corresponding to the integer.
+     * @throws IllegalArgumentException if the integer is not in the range [0, 8].
+     */
+    // CHECKSTYLE: MagicNumber OFF
     @Override
-    public Color apply(Integer t) throws IllegalArgumentException {
+    public Color apply(final Integer t) throws IllegalArgumentException {
         switch (t) {
             case 0:
                 return Color.WHITE;
@@ -30,5 +40,5 @@ public class IntToColorConverter implements Function<Integer, Color>{
                 throw new IllegalArgumentException();
         }
     }
-    
+
 }

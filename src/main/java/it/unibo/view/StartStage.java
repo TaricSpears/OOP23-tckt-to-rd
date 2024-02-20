@@ -27,10 +27,24 @@ import javafx.scene.paint.Color;
 import java.util.Set;
 import java.util.HashSet;
 
+/**
+ * The class that represents the stage where the players are selected, extends
+ * {@link Stage}.
+ */
 public final class StartStage extends Stage {
 
-    private Set<Pair<String, Color>> players = new HashSet<>();
+    private static final int TOP_BOTTOM_PADDING = 15;
+    private static final int LEFT_RIGHT_PADDING = 12;
+    private static final int SPACING_VALUE = 10;
+    private static final double WIDTH_SCALE = 0.3;
+    private static final double HEIGHT_SCALE = 0.5;
+    private final Set<Pair<String, Color>> players = new HashSet<>();
 
+    /**
+     * Constructor for the start stage.
+     * 
+     * @param controller the main controller of the game
+     */
     public StartStage(final MainController controller) {
 
         final Screen screen = Screen.getPrimary();
@@ -75,7 +89,7 @@ public final class StartStage extends Stage {
             playersList
                     .setCellFactory(new Callback<ListView<Pair<String, Color>>, ListCell<Pair<String, Color>>>() {
                         @Override
-                        public ListCell<Pair<String, Color>> call(ListView<Pair<String, Color>> param) {
+                        public ListCell<Pair<String, Color>> call(final ListView<Pair<String, Color>> param) {
                             return new ColorRectCell();
                         }
                     });
@@ -86,8 +100,9 @@ public final class StartStage extends Stage {
         final HBox nameInput = new HBox();
         final HBox startBox = new HBox();
 
-        nameInput.setPadding(new Insets(15, 12, 15, 12));
-        nameInput.setSpacing(10);
+        nameInput.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING,
+                LEFT_RIGHT_PADDING));
+        nameInput.setSpacing(SPACING_VALUE);
         nameInput.getChildren().addAll(colorPicker, nameField, submitButton);
         nameInput.setAlignment(Pos.CENTER);
 
@@ -97,29 +112,38 @@ public final class StartStage extends Stage {
         root.setCenter(nameSelect);
 
         startBox.getChildren().add(startButton);
-        startBox.setPadding(new Insets(15, 12, 15, 12));
+        startBox.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
         startBox.setAlignment(Pos.CENTER);
 
         root.setBottom(startBox);
 
-        final Scene scene = new Scene(root, bounds.getWidth() * 0.3, bounds.getHeight() * 0.5);
+        final Scene scene = new Scene(root, bounds.getWidth() * WIDTH_SCALE, bounds.getHeight() * HEIGHT_SCALE);
         this.setScene(scene);
 
-        playersList.setMaxSize(scene.getWidth() * 0.5, scene.getHeight() * 0.5);
-        this.setMinWidth(bounds.getWidth() * 0.3);
-        this.setMinHeight(bounds.getHeight() * 0.5);
+        playersList.setMaxSize(scene.getWidth() * WIDTH_SCALE, scene.getHeight() * HEIGHT_SCALE);
+        this.setMinWidth(bounds.getWidth() * WIDTH_SCALE);
+        this.setMinHeight(bounds.getHeight() * HEIGHT_SCALE);
     }
 
+    /**
+     * A nested static class that represents the cell of the list view, extends
+     * {@link ListCell}.
+     */
     static class ColorRectCell extends ListCell<Pair<String, Color>> {
+        private static final int LEFT_RIGHT_PADDING = 2;
+        private static final int TOP_BOTTOM_PADDING = 5;
+        private static final int WIDTH_AND_HEIGHT = 20;
+
         @Override
         public void updateItem(final Pair<String, Color> item, final boolean empty) {
             super.updateItem(item, empty);
-            final Rectangle rect = new Rectangle(20, 20);
+            final Rectangle rect = new Rectangle(WIDTH_AND_HEIGHT, WIDTH_AND_HEIGHT);
             if (item != null) {
                 rect.setFill(item.second());
                 final HBox entry = new HBox();
-                entry.setPadding(new Insets(5, 2, 5, 2));
-                entry.setSpacing(10);
+                entry.setPadding(
+                        new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));
+                entry.setSpacing(SPACING_VALUE);
                 entry.getChildren().addAll(rect, new Label(item.first()));
                 setGraphic(entry);
             } else {

@@ -14,19 +14,36 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The class that represents the box containing the objectives of the current
+ * player, extends {@link VBox}.
+ */
 public class ObjectiveBox extends VBox {
 
-    private boolean isShown = false;
+    private static final int PADDING_VALUE = 5;
+    private static final int SPACING_VALUE = 5;
+    private static final int FONT_SIZE = 12;
+    private static final double WIDTH_SCALE = 0.8;
+    private static final int RECTANGLE_DIMENSION = 10;
+    private boolean isShown;
 
+    /**
+     * Constructor for the objective box.
+     * 
+     * @param controller      the main controller of the game
+     * @param playerInterface the interface containg all the current player's
+     *                        information
+     */
     public ObjectiveBox(final MainController controller, final PlayerInterface playerInterface) {
 
-        this.setPadding(new Insets(5));
-        this.setSpacing(5);
+        this.setPadding(new Insets(PADDING_VALUE));
+        this.setSpacing(SPACING_VALUE);
         this.setAlignment(Pos.TOP_LEFT);
 
         final Text currentPlayer = new Text(
                 "Current player: " + controller.getTurnController().getCurrentPlayer().getName());
-        final Rectangle currentPlayerColor = new Rectangle(10, 10);
+
+        final Rectangle currentPlayerColor = new Rectangle(RECTANGLE_DIMENSION, RECTANGLE_DIMENSION);
 
         currentPlayerColor.setFill(Color.rgb(
                 controller.getTurnController().getCurrentPlayer().getColor().getRed(),
@@ -34,7 +51,7 @@ public class ObjectiveBox extends VBox {
                 controller.getTurnController().getCurrentPlayer().getColor().getBlue()));
 
         final HBox playerInfo = new HBox(currentPlayer, currentPlayerColor);
-        playerInfo.setSpacing(5);
+        playerInfo.setSpacing(SPACING_VALUE);
         playerInfo.setAlignment(Pos.CENTER_LEFT);
 
         this.getChildren().add(playerInfo);
@@ -54,8 +71,9 @@ public class ObjectiveBox extends VBox {
                                                     + " (" + x.getScore() + " - " + (x.isCompleted() ? "Completed)"
                                                             : "Not completed)"));
                                     objective.setTextAlignment(TextAlignment.LEFT);
-                                    objective.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
-                                    objective.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+                                    objective.setFont(
+                                            Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
+                                    objective.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
                                     return objective;
                                 })
                                 .toList());
@@ -63,24 +81,25 @@ public class ObjectiveBox extends VBox {
                 this.getChildren().removeIf(x -> this.getChildren().indexOf(x) > 2);
                 final Text placeholderText = new Text("The objectives are hidden");
                 placeholderText.setTextAlignment(TextAlignment.LEFT);
-                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
-                placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+                placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
+                placeholderText.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
                 this.getChildren().add(placeholderText);
             }
         });
 
         final Text placeholderText = new Text("The objectives are hidden");
         placeholderText.setTextAlignment(TextAlignment.LEFT);
-        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, 12));
-        placeholderText.setWrappingWidth(playerInterface.getMinWidth() * 0.8);
+        placeholderText.setFont(Font.font("helvetica", FontWeight.BOLD, FontPosture.REGULAR, FONT_SIZE));
+        placeholderText.setWrappingWidth(playerInterface.getMinWidth() * WIDTH_SCALE);
 
-        // this.setBorder(new Border(new BorderStroke(
-        // Color.BLACK, BorderStrokeStyle.SOLID, null, BorderWidths.DEFAULT)));
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
 
     }
 
+    /**
+     * Toggles the visibility of the objectives.
+     */
     private void toggleShown() {
         this.isShown = !this.isShown;
     }

@@ -11,6 +11,7 @@ import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link ObjectiveCard}.
+ * 
  * Represents an objective card in the game.
  */
 public class ObjectiveCardImpl implements ObjectiveCard {
@@ -20,10 +21,9 @@ public class ObjectiveCardImpl implements ObjectiveCard {
     private boolean completed;
 
     /**
-     * Constructor for the objective card.
+     * Constructor of the objective card.
      * 
-     * @param objective  the pair of cities that the player has to connect.
-     * @param scoreValue the score value of the objective card.
+     * @param graph the graph of cities and routes.
      */
     public ObjectiveCardImpl(final WeightedPseudograph<City, Route> graph) {
         final ObjectiveGenerator objectiveGenerator = new ObjectiveGeneratorImpl(graph);

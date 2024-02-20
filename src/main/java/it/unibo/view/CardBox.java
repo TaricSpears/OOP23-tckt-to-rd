@@ -13,10 +13,25 @@ import javafx.scene.layout.VBox;
 import java.awt.Color;
 import javafx.scene.text.Text;
 
+/**
+ * The class that represents the box of the cards of the player, extends
+ * {@link VBox}.
+ * 
+ * It contains all the cards of the player.
+ */
 public class CardBox extends VBox {
 
-    final private Map<Color, String> colorImageMap = new LinkedHashMap<>();
+    private static final double FITHEIGHT = 50;
+    private static final double FITWIDTH = 50 * 1.56;
 
+    private final Map<Color, String> colorImageMap = new LinkedHashMap<>();
+
+    /**
+     * Creates the box of player's card.
+     * 
+     * @param controller      the mainController of the game.
+     * @param playerInterface the interface where this box will be fit.
+     */
     public CardBox(final MainController controller, final PlayerInterface playerInterface) {
 
         colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
@@ -40,8 +55,8 @@ public class CardBox extends VBox {
                             .get(temp.get(i).getKey())
                             .toString()));
 
-            card1.setFitHeight(50);
-            card1.setFitWidth(50 * 1.56);
+            card1.setFitHeight(FITHEIGHT);
+            card1.setFitWidth(FITWIDTH);
             cardBox.getChildren().add(cardBox1);
 
             if (i != temp.size() - 1) {
@@ -50,8 +65,8 @@ public class CardBox extends VBox {
                         new Text(controller.getTurnController().getCurrentPlayer().getTrainCards()
                                 .get(temp.get(i + 1).getKey())
                                 .toString()));
-                card2.setFitHeight(50);
-                card2.setFitWidth(50 * 1.56);
+                card2.setFitHeight(FITHEIGHT);
+                card2.setFitWidth(FITWIDTH);
                 cardBox.getChildren().add(cardBox2);
             }
             cardBox.setSpacing(1);
@@ -60,9 +75,6 @@ public class CardBox extends VBox {
             this.getChildren().add(cardBox);
         }
 
-        // this.setBorder(new Border(new BorderStroke(
-        // javafx.scene.paint.Color.BLACK, BorderStrokeStyle.SOLID, null,
-        // BorderWidths.DEFAULT)));
     }
 
 }

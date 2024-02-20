@@ -9,6 +9,7 @@ import it.unibo.model.turnmanager.impl.TurnManagerImpl;
 
 /**
  * Implementation of {@link TurnController}
+ * 
  * Class to control the turn of the game.
  */
 public class TurnControllerImpl implements TurnController {
@@ -20,7 +21,7 @@ public class TurnControllerImpl implements TurnController {
      * 
      * @param players the list of players in the game.
      */
-    public TurnControllerImpl(List<Player> players) {
+    public TurnControllerImpl(final List<Player> players) {
         this.turnManager = new TurnManagerImpl(players);
     }
 
@@ -68,7 +69,7 @@ public class TurnControllerImpl implements TurnController {
     /**
      * {@inheritDoc}
      */
-    public boolean wasLastTurn() {
+    public boolean wasLastPlayer() {
         return this.turnManager.isLastPlayer();
     }
 

@@ -20,7 +20,7 @@ public interface TurnController {
      * 
      * Ends the turn of the current player.
      */
-    public void endTurn();
+    void endTurn();
 
     /**
      * @return the list of players in the order of their turns.
@@ -33,8 +33,8 @@ public interface TurnController {
     Player getCurrentPlayer();
 
     /**
-     * @return the current turn.
+     * @return true if the current player was the last one.
      */
-    boolean wasLastTurn();
+    boolean wasLastPlayer();
 
 }

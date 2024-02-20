@@ -75,12 +75,13 @@ public class TurnManagerImpl implements TurnManager {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean isLastPlayer() {
         return !this.playersIterator.hasNext();
     }
 
     /**
-     * {@inheritDoc}
+     * Resets the player iterator to the first player.
      */
     private void resetTurns() {
         this.playersIterator = this.players.iterator();

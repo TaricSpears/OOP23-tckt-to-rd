@@ -21,12 +21,16 @@ import java.util.Map;
  */
 public class DrawTrainCardPopUp {
 
+    private static final double WIDTH = 300;
+    private static final double HEIGHT = 200;
+    private static final double DURATION = 2;
+
     /**
      * Constructor for the class.
      * 
      * @param color the color of the card drawn.
      */
-    public DrawTrainCardPopUp(Color color) {
+    public DrawTrainCardPopUp(final Color color) {
 
         Pane pane = new Pane();
         Image image;
@@ -47,14 +51,13 @@ public class DrawTrainCardPopUp {
         pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
-
         Stage popupStage = new Stage();
         popupStage.initOwner(null);
-        popupStage.setScene(new Scene(pane, 300, 200));
+        popupStage.setScene(new Scene(pane, WIDTH, HEIGHT));
         popupStage.setResizable(false);
         popupStage.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> popupStage.close());
         delay.play();
     }

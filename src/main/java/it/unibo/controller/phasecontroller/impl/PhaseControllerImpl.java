@@ -14,7 +14,7 @@ public class PhaseControllerImpl implements PhaseController {
     private PhaseManager phaseManager;
 
     /**
-     * {@inheritDoc}
+     * Constructor of the class.
      */
     public PhaseControllerImpl() {
         this.phaseManager = new PhaseManagerImpl();

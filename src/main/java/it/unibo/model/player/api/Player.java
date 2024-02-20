@@ -88,7 +88,7 @@ public interface Player {
 
     /**
      * Adds the route to the current player (the list and the player's graph) and
-     * checks if the objective is been completed
+     * checks if the objective is been completed.
      * 
      * @param route the route to be added to the player
      */

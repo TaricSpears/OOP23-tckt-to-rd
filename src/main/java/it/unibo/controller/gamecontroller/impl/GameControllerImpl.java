@@ -25,17 +25,19 @@ import it.unibo.view.MainView;
 
 /**
  * Implementation of {@link GameController}.
- * It models the game controller that allows the view comunicate with the model
+ * It models the game controller that allows the view comunicate with the model.
  */
 public class GameControllerImpl implements GameController {
 
-    final private MainController mainController;
-    final private List<Pair<String, Color>> tempPlayers = new ArrayList<>();
+    private static final int NUM_MAX_PLAYER = 6;
+    private final MainController mainController;
+    private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
     private boolean isLastTurn = false;
+    private boolean gameEnded = false;
 
     /**
-     * Simple constructor of the controller of the game logic
+     * Simple constructor of the controller of the game logic.
      * 
      * @param mainController the main controller of the aplication
      */
@@ -82,8 +84,9 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void endTurn() {
-        if (this.isLastTurn && this.mainController.getTurnController().wasLastTurn()) {
+        if (this.isLastTurn && this.mainController.getTurnController().wasLastPlayer()) {
             this.endGame();
+            this.gameEnded = true;
         }
         this.mainController.getTurnController().endTurn();
 
@@ -107,16 +110,18 @@ public class GameControllerImpl implements GameController {
     public void newGame() {
         view.launchPlayerSlect();
         tempPlayers.clear();
+        this.isLastTurn = false;
+        this.gameEnded = false;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean addPlayer(Pair<String, Color> player) {
+    public boolean addPlayer(final Pair<String, Color> player) {
         if (tempPlayers.stream().anyMatch(
                 x -> x.first().equals(player.first()) || x.second().equals(player.second()))
-                || tempPlayers.size() >= 6 || player.first().isBlank()) {
+                || tempPlayers.size() >= NUM_MAX_PLAYER || player.first().isBlank()) {
             return false;
         }
         tempPlayers.add(player);
@@ -152,7 +157,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void addView(MainView view) {
+    public void addView(final MainView view) {
         this.view = view;
     }
 
@@ -180,26 +185,22 @@ public class GameControllerImpl implements GameController {
     }
 
     /**
-     * {@inheritDoc}
+     * This method is used to get the color of the player that has claimed a route.
+     * 
+     * @param routeToFind the route to find
+     * @return the color of the player that has claimed the route
      */
-    private Optional<Color> getRouteClaimerColor(Route routeToFind) {
+    private Optional<Color> getRouteClaimerColor(final Route routeToFind) {
         final List<Player> playerList = this.mainController.getGameInstance().getPlayers();
         for (var player : playerList) {
             for (var route : player.getCompletedRoutes()) {
-                if (routeToFind.equals(route))
+                if (routeToFind.equals(route)) {
                     return Optional.of(player.getColor());
+                }
             }
         }
         return Optional.empty();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    // @Override
-    // public PhaseController getPhaseController() {
-    // return this.phaseController;
-    // }
 
     /**
      * {@inheritDoc}
@@ -217,4 +218,27 @@ public class GameControllerImpl implements GameController {
         this.isLastTurn = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isLastTurn() {
+        return this.isLastTurn;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isGameEnded() {
+        return this.gameEnded;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void closeGame() {
+        this.view.closeFinalScoreBoard();
+    }
 }

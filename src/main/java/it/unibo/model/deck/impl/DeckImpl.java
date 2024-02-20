@@ -5,17 +5,24 @@ import java.util.Random;
 
 import org.jgrapht.graph.WeightedPseudograph;
 
-import it.unibo.model.card.api.*;
-import it.unibo.model.card.impl.*;
+import it.unibo.model.card.api.ObjectiveCard;
+import it.unibo.model.card.api.TrainCard;
+import it.unibo.model.card.impl.ObjectiveCardImpl;
+import it.unibo.model.card.impl.TrainCardImpl;
 import it.unibo.model.city.api.City;
 import it.unibo.model.deck.api.Deck;
 import it.unibo.model.route.api.Route;
 
 /**
  * Implementation of {@link Deck}.
+ * 
  * Regulates the functioning of the decks.
  */
 public class DeckImpl implements Deck {
+
+    private static final int JOLLY_PROBABILITY = 7;
+    private static final int OTHER_PROBABILITY = 6;
+    private static final int TOTAL_CARDS = 55;
 
     /**
      * {@inheritDoc}
@@ -27,15 +34,17 @@ public class DeckImpl implements Deck {
     /**
      * {@inheritDoc}
      */
+
     public TrainCard drawTrainCard() {
 
         final Color[] colors = { Color.BLACK, Color.WHITE, Color.RED, Color.YELLOW,
                 Color.ORANGE, Color.GREEN, Color.MAGENTA, Color.BLUE,
                 Color.DARK_GRAY };
 
-        final int[] probabilities = { 6, 6, 6, 6, 6, 6, 6, 6, 7 };
+        final int[] probabilities = { OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY,
+                OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, OTHER_PROBABILITY, JOLLY_PROBABILITY };
 
-        int temp = new Random().nextInt(55);
+        int temp = new Random().nextInt(TOTAL_CARDS);
         int index = 0;
 
         for (int i = 0; i < probabilities.length; i++) {

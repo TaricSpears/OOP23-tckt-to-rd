@@ -11,23 +11,27 @@ import javafx.util.Duration;
  */
 public class EndTurnPopUp {
 
+    private static final double WIDTH = 300;
+    private static final double HEIGHT = 200;
+    private static final double DURATION = 2;
+
     /**
      * Constructor for the class.
      * 
      * @param controller the main controller of the game.
      */
-    public EndTurnPopUp(MainController controller) {
+    public EndTurnPopUp(final MainController controller) {
 
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Turno:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
-        alert.setContentText("Tocca a:  " + controller.getTurnController().getCurrentPlayer().getName());
+        alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
+        alert.setContentText("Stands to:  " + controller.getTurnController().getCurrentPlayer().getName());
 
         alert.setResizable(false);
-        alert.getDialogPane().setMaxSize(300, 200);
-        alert.getDialogPane().setMinSize(300, 200);
-        alert.showAndWait();
+        alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
+        alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
+        alert.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(DURATION));
         delay.setOnFinished(event -> alert.close());
         delay.play();
     }
