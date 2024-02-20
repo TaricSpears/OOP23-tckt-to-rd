@@ -5,6 +5,8 @@ import it.unibo.start.GameStart;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 /**
  * The main view of the game, extends {@link Application}.
  */
@@ -13,6 +15,14 @@ public class MainView extends Application {
     private static MainController controller = GameStart.CONTROLLER;
     private MainStage mainStage;
     private FinalScoreBoardView scoreBoardView;
+
+    /**
+     * Simple constructor of the main view.
+     */
+    public MainView() {
+        this.mainStage = null;
+        this.scoreBoardView = null;
+    }
 
     /**
      * The main method that starts the game.
@@ -29,17 +39,30 @@ public class MainView extends Application {
     }
 
     /**
-     * @return the main stage of the game.
+     * Refreshes the main stage of the game.
      */
-    public MainStage getMainStage() {
-        return this.mainStage;
+    public void refreshAllMainStage() {
+        if (Objects.nonNull(mainStage)) {
+            mainStage.refreshAll(controller);
+        }
     }
 
     /**
-     * @return the final score board view.
+     * Refreshes the player interface.
      */
-    public FinalScoreBoardView getScoreBoardView() {
-        return this.scoreBoardView;
+    public void refreshPlayerInterface() {
+        if (Objects.nonNull(mainStage)) {
+            mainStage.refreshPlayerInterface(controller);
+        }
+    }
+
+    /**
+     * Closes the main stage of the game.
+     */
+    public void closeMainStage() {
+        if (Objects.nonNull(mainStage)) {
+            mainStage.closeStage();
+        }
     }
 
     /**
@@ -64,6 +87,15 @@ public class MainView extends Application {
     public void launchScoreBoard() {
         this.scoreBoardView = new FinalScoreBoardView(controller);
         scoreBoardView.show();
+    }
+
+    /**
+     * Closes the final scoreboard of the game.
+     */
+    public void closeScoreBoard() {
+        if (Objects.isNull(scoreBoardView)) {
+            this.scoreBoardView.closeStage();
+        }
     }
 
 }
