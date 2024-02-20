@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 public class MainStage extends Stage {
 
     private static final double SCENE_SCALE = 0.9;
-    private static final double PANE_SCALE = 0.8;
+    private static final double PANE_SCALE = 0.815;
 
     private PlayerInterface playerInterface;
     final private Screen screen = Screen.getPrimary();
@@ -48,20 +48,20 @@ public class MainStage extends Stage {
                 this.scene.getWidth() - this.pane.getMaxWidth(),
                 this.scene.getHeight() - this.pane.getMaxWidth());
 
-        final Image image = new Image("/img/Maps/europeMapLabeled.jpg");
+        final Image imageMap = new Image("/img/Maps/europeMapLabeled.jpg");
 
         this.root.setCenter(this.pane);
 
         this.root.setRight(this.playerInterface);
 
-        this.pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+        this.pane.setBackground(new Background(new BackgroundImage(imageMap, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));
 
         this.pane.setMaxWidth(this.scene.getWidth() * PANE_SCALE);
-        this.pane.setMaxHeight(this.scene.getWidth() * PANE_SCALE * (image.getHeight() / image.getWidth()));
+        this.pane.setMaxHeight(this.scene.getWidth() * PANE_SCALE * (imageMap.getHeight() / imageMap.getWidth()));
         this.pane.setMinWidth(this.scene.getWidth() * PANE_SCALE);
-        this.pane.setMinHeight(this.scene.getWidth() * PANE_SCALE * (image.getHeight() / image.getWidth()));
+        this.pane.setMinHeight(this.scene.getWidth() * PANE_SCALE * (imageMap.getHeight() / imageMap.getWidth()));
 
         this.shapeSet = new ShapeSetter(controller)
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
