@@ -29,13 +29,25 @@ public class ObjectiveBox extends VBox {
 
     /**
      * Constructor for the objective box.
+     */
+    public ObjectiveBox() {
+
+    }
+
+    /**
+     * Toggles the visibility of the objectives.
+     */
+    private void toggleShown() {
+        this.isShown = !this.isShown;
+    }
+
+    /**
+     * Initializes the objective box.
      * 
      * @param controller      the main controller of the game
      * @param playerInterface the interface containg all the current player's
-     *                        information
      */
-    public ObjectiveBox(final MainController controller, final PlayerInterface playerInterface) {
-
+    public void initialize(final MainController controller, final PlayerInterface playerInterface) {
         this.setPadding(new Insets(PADDING_VALUE));
         this.setSpacing(SPACING_VALUE);
         this.setAlignment(Pos.TOP_LEFT);
@@ -94,13 +106,5 @@ public class ObjectiveBox extends VBox {
 
         this.getChildren().add(showButton);
         this.getChildren().add(placeholderText);
-
-    }
-
-    /**
-     * Toggles the visibility of the objectives.
-     */
-    private void toggleShown() {
-        this.isShown = !this.isShown;
     }
 }
