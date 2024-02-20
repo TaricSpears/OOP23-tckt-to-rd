@@ -28,13 +28,6 @@ public class ObjectiveBox extends VBox {
     private boolean isShown;
 
     /**
-     * Constructor for the objective box.
-     */
-    public ObjectiveBox() {
-
-    }
-
-    /**
      * Toggles the visibility of the objectives.
      */
     private void toggleShown() {
