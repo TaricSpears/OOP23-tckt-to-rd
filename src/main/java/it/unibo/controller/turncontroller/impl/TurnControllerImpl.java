@@ -63,7 +63,7 @@ public class TurnControllerImpl implements TurnController {
      * {@inheritDoc}
      */
     @Override
-    public Player getCurrentPlayer() {
+    public PlayerImpl getCurrentPlayer() {
         return this.turnManager.getCurrentPlayer();
     }
 

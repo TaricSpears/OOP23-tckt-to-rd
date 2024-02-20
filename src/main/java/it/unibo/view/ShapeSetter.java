@@ -7,6 +7,7 @@ import it.unibo.commons.Region;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.start.GameStart;
 import javafx.scene.paint.Color;
 
 /**
@@ -19,11 +20,9 @@ public class ShapeSetter {
 
     /**
      * Constructor of the class.
-     * 
-     * @param controller the main controller of the game.
      */
-    public ShapeSetter(final MainController controller) {
-        this.controller = controller;
+    public ShapeSetter() {
+        this.controller = GameStart.CONTROLLER;
 
     }
 

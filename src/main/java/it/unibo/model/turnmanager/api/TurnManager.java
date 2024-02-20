@@ -3,6 +3,7 @@ package it.unibo.model.turnmanager.api;
 import java.util.List;
 
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 
 /**
  * Manages the order of player turns.
@@ -12,7 +13,7 @@ public interface TurnManager {
     /**
      * @return the current player.
      */
-    Player getCurrentPlayer();
+    PlayerImpl getCurrentPlayer();
 
     /**
      * @return the list of players in playing order.

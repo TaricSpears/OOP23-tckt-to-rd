@@ -40,7 +40,7 @@ public class TurnManagerImpl implements TurnManager {
      * {@inheritDoc}
      */
     @Override
-    public Player getCurrentPlayer() {
+    public PlayerImpl getCurrentPlayer() {
         return this.currentPlayer.clone();
     }
 

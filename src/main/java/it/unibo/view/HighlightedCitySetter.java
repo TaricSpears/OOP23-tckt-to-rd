@@ -5,6 +5,7 @@ import java.util.Set;
 
 import it.unibo.commons.Pair;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.start.GameStart;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 
@@ -17,11 +18,9 @@ public class HighlightedCitySetter {
 
     /**
      * Constructor of the class.
-     * 
-     * @param controller the main controller of the game
      */
-    public HighlightedCitySetter(final MainController controller) {
-        this.controller = controller;
+    public HighlightedCitySetter() {
+        this.controller = GameStart.CONTROLLER;
     }
 
     /**

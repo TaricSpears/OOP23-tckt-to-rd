@@ -3,6 +3,7 @@ package it.unibo.controller.turncontroller.api;
 import java.util.List;
 
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.turnmanager.api.TurnManager;
 
 /**
@@ -30,7 +31,7 @@ public interface TurnController {
     /**
      * @return the current player.
      */
-    Player getCurrentPlayer();
+    PlayerImpl getCurrentPlayer();
 
     /**
      * @return true if the current player was the last one.

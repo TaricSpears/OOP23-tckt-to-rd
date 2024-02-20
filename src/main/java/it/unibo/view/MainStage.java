@@ -62,7 +62,7 @@ public class MainStage extends Stage {
         this.pane.setMinWidth(this.scene.getWidth() * PANE_SCALE);
         this.pane.setMinHeight(this.scene.getWidth() * PANE_SCALE * (imageMap.getHeight() / imageMap.getWidth()));
 
-        this.shapeSet = new ShapeSetter(controller)
+        this.shapeSet = new ShapeSetter()
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var shape : shapeSet) {
             pane.getChildren().add(shape);
@@ -86,7 +86,7 @@ public class MainStage extends Stage {
      */
     public void refreshAll(final MainController controller) {
         this.refreshShapes(controller);
-        this.refreshHighLightedCities(controller);
+        this.refreshHighLightedCities();
         this.refreshPlayerInterface(controller);
     }
 
@@ -110,19 +110,19 @@ public class MainStage extends Stage {
      */
     public void refreshShapes(final MainController controller) {
         this.pane.getChildren().clear();
-        this.shapeSet = new ShapeSetter(controller)
+        this.shapeSet = new ShapeSetter()
                 .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var shape : this.shapeSet) {
             pane.getChildren().add(shape);
         }
 
-        this.refreshHighLightedCities(controller);
+        this.refreshHighLightedCities();
 
         this.root.setCenter(this.pane);
     }
 
-    private void refreshHighLightedCities(final MainController controller) {
-        final Set<Button> highlightedCitySet = new HighlightedCitySetter(controller)
+    private void refreshHighLightedCities() {
+        final Set<Button> highlightedCitySet = new HighlightedCitySetter()
                 .getCities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var city : highlightedCitySet) {
             pane.getChildren().add(city);

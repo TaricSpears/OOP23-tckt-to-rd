@@ -21,6 +21,7 @@ import it.unibo.model.card.api.ObjectiveCard;
 import it.unibo.model.card.api.TrainCard;
 import it.unibo.model.scorecalculator.api.ScoreCalculator;
 import it.unibo.model.scorecalculator.impl.ScoreCalculatorImpl;
+import it.unibo.start.GameStart;
 import it.unibo.view.MainView;
 
 /**
@@ -38,11 +39,9 @@ public class GameControllerImpl implements GameController, Cloneable {
 
     /**
      * Simple constructor of the controller of the game logic.
-     * 
-     * @param mainController the main controller of the aplication
      */
-    public GameControllerImpl(final MainController mainController) {
-        this.mainController = mainController;
+    public GameControllerImpl() {
+        this.mainController = GameStart.CONTROLLER;
     }
 
     /**

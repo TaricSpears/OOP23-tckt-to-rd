@@ -5,6 +5,7 @@ import it.unibo.commons.Region;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.model.player.api.Player;
+import it.unibo.model.player.impl.PlayerImpl;
 import it.unibo.model.route.api.Route;
 import it.unibo.view.fillroute.FillRouteViewImpl;
 import it.unibo.view.fillroute.NotEnoughCardsAlert;
@@ -40,10 +41,8 @@ public class FillRouteImpl implements FillRoute {
      * @param region
      * @param controller
      */
-    public FillRouteImpl(final Player player, final Region region, final MainController controller) {
-
-        this.player = player;
-
+    public FillRouteImpl(final PlayerImpl player, final Region region, final MainController controller) {
+        this.player = player.clone();
         this.route = controller.getGameInstance().getRoutes().get(region.getId());
 
     }

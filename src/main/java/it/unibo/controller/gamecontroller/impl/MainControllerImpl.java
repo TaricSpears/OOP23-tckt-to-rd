@@ -20,7 +20,7 @@ import javafx.application.Application;
  */
 public class MainControllerImpl implements MainController {
 
-    private final GameControllerImpl gameController = new GameControllerImpl(this);
+    private GameControllerImpl gameController;
     private GamePrep gamePrep;
     private MainView view;
     private DrawController drawController;
@@ -34,6 +34,7 @@ public class MainControllerImpl implements MainController {
         this.gamePrep = new GamePrep();
         this.drawController = new DrawControllerImpl();
         this.view = null;
+        this.gameController = null;
     }
 
     /**
@@ -41,6 +42,7 @@ public class MainControllerImpl implements MainController {
      */
     @Override
     public void startView() {
+        this.gameController = new GameControllerImpl();
         Application.launch(MainView.class);
     }
 
