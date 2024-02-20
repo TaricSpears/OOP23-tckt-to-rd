@@ -92,7 +92,10 @@ public final class RouteReaderController extends AbstractReaderController<List<R
 
                 final Color color = new IntToColorConverter().apply(intColor);
 
-                this.routes.add(new RouteImpl(connectedCity, color, id, railUnits));
+                final Route newRoute = new RouteImpl(connectedCity, color, id);
+                newRoute.setRailUnits(railUnits);
+                this.routes.add(newRoute);
+
             }
             inputStreamReader.close();
         } catch (IOException e) {

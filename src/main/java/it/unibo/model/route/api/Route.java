@@ -54,4 +54,11 @@ public interface Route {
     @Override
     String toString();
 
+    /**
+     * sets the rail units of the route.
+     * 
+     * @param carriages the rail units of the route.
+     */
+    void setRailUnits(Set<Carriage> carriages);
+
 }

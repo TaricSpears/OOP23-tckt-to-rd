@@ -36,10 +36,11 @@ public final class TestDataPreparation {
         final City city2 = new CityImpl("Milan");
         final City city3 = new CityImpl("Naples");
 
-        final List<Route> routeData = List.of(
-                new RouteImpl(new EdgeData(city1, city2, 5), Color.RED, 0, null),
-                new RouteImpl(new EdgeData(city1, city3, 3), Color.BLACK, 1, null),
-                new RouteImpl(new EdgeData(city2, city3, 7), Color.GREEN, 2, null));
+        final Route route1 = new RouteImpl(new EdgeData(city1, city2, 5), Color.RED, 0);
+        final Route route2 = new RouteImpl(new EdgeData(city1, city3, 3), Color.BLACK, 1);
+        final Route route3 = new RouteImpl(new EdgeData(city2, city3, 7), Color.GREEN, 2);
+
+        final List<Route> routeData = List.of(route1, route2, route3);
 
         final GamePrep gamePrep = new GamePrep();
         gamePrep.prepGame(playerData, routeData);

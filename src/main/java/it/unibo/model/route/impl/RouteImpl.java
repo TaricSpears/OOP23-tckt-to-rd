@@ -2,12 +2,14 @@ package it.unibo.model.route.impl;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.LinkedHashSet;
+import java.io.ObjectInputStream;
+import java.io.IOException;
 
 import java.awt.Color;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.commons.EdgeData;
 import it.unibo.commons.Pair;
 import it.unibo.model.carriage.impl.Carriage;
@@ -35,15 +37,13 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
      * @param connectedCity
      * @param color
      * @param id
-     * @param railUnits
      */
-    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need to expose the railUnits")
-    public RouteImpl(final EdgeData connectedCity, final Color color, final int id, final Set<Carriage> railUnits) {
+    public RouteImpl(final EdgeData connectedCity, final Color color, final int id) {
         this.connectedCity = connectedCity;
         this.filled = false;
         this.color = color;
         this.id = id;
-        this.railUnits = railUnits;
+        this.railUnits = new LinkedHashSet<>();
     }
 
     /**
@@ -139,5 +139,25 @@ public class RouteImpl extends DefaultWeightedEdge implements Route {
                 + "\nCITY2:  " + this.connectedCity.city2()
                 + "\nWEIGHT = " + this.connectedCity.weight()
                 + "\nCOLOR = " + this.color;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setRailUnits(final Set<Carriage> carriages) {
+        this.railUnits.addAll(carriages);
+    }
+
+    /**
+     * Custom serialization.
+     * 
+     * @param in the input stream
+     * @throws IOException            if an I/O error occurs
+     * @throws ClassNotFoundException if the class of a serialized object cannot be
+     *                                found
+     */
+    private void readObject(final ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
     }
 }
