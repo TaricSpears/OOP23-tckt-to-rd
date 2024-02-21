@@ -18,7 +18,7 @@ import org.jgrapht.graph.WeightedPseudograph;
  */
 public class GamePrep {
 
-    private static final int CARRIAGE_DEFAULT_NUMBER = 45;
+    private static final int CARRIAGE_DEFAULT_NUMBER = 4;
     private BoardImpl board;
 
     /**
