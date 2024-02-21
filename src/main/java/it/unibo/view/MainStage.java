@@ -2,6 +2,8 @@ package it.unibo.view;
 
 import java.util.Set;
 import it.unibo.controller.gamecontroller.api.MainController;
+import it.unibo.view.entitysetter.impl.HighlightedCitySetter;
+import it.unibo.view.entitysetter.impl.ShapeSetter;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -63,7 +65,7 @@ public class MainStage extends Stage {
         this.pane.setMinHeight(this.scene.getWidth() * PANE_SCALE * (imageMap.getHeight() / imageMap.getWidth()));
 
         this.shapeSet = new ShapeSetter()
-                .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+                .getEntities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var shape : shapeSet) {
             pane.getChildren().add(shape);
         }
@@ -111,7 +113,7 @@ public class MainStage extends Stage {
     public void refreshShapes(final MainController controller) {
         this.pane.getChildren().clear();
         this.shapeSet = new ShapeSetter()
-                .getShapes(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+                .getEntities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var shape : this.shapeSet) {
             pane.getChildren().add(shape);
         }
@@ -123,7 +125,7 @@ public class MainStage extends Stage {
 
     private void refreshHighLightedCities() {
         final Set<Button> highlightedCitySet = new HighlightedCitySetter()
-                .getCities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
+                .getEntities(this.pane.getMaxWidth(), this.pane.getMaxHeight());
         for (final var city : highlightedCitySet) {
             pane.getChildren().add(city);
         }

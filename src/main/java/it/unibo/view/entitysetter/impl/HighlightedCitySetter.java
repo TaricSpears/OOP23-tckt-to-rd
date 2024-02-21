@@ -1,4 +1,4 @@
-package it.unibo.view;
+package it.unibo.view.entitysetter.impl;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import javafx.scene.shape.Circle;
  * This class models a CitySetter, which returns the set of buttons
  * highlighting completed cities to draw on map.
  */
-public class HighlightedCitySetter {
+public class HighlightedCitySetter extends AbstractEntitySetter<Button> {
     private final MainController controller;
 
     /**
@@ -30,11 +30,12 @@ public class HighlightedCitySetter {
      * @param paneHeight the height of the pane.
      * @return a set of buttons representing the cities in the map.
      */
-    public Set<Button> getCities(final double paneWidth, final double paneHeight) {
-        final Set<Pair<Double, Double>> citySet = controller.getGameController()
-                .getPlayerCities(controller.getTurnController().getCurrentPlayer());
+    @Override
+    public Set<Button> getEntities(final double paneWidth, final double paneHeight) {
+        final Set<Pair<Double, Double>> citySet = this.controller.getGameController()
+                .getPlayerCities(this.controller.getTurnController().getCurrentPlayer());
         final Set<Button> buttonSet = new LinkedHashSet<>();
-        final Double buttonRadius = controller.getGameController().getCityRadius() * paneWidth;
+        final Double buttonRadius = this.controller.getGameController().getCityRadius() * paneWidth;
 
         for (final var city : citySet) {
             final Button button = new Button();

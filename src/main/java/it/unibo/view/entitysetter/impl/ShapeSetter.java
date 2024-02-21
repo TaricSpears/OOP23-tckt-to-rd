@@ -1,4 +1,4 @@
-package it.unibo.view;
+package it.unibo.view.entitysetter.impl;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -8,13 +8,14 @@ import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
+import it.unibo.view.Shape;
 import javafx.scene.paint.Color;
 
 /**
  * This class models a ShapeSetter, which returns the set of shapes to draw on
  * map.
  */
-public class ShapeSetter {
+public class ShapeSetter extends AbstractEntitySetter<Shape> {
     private static final int WIDTH = 3;
     private final MainController controller;
 
@@ -23,23 +24,25 @@ public class ShapeSetter {
      */
     public ShapeSetter() {
         this.controller = GameStart.CONTROLLER;
-
     }
 
     /**
-     * @param paneWidth  the width of the pane.
-     * @param paneHeight the height of the pane.
+     * Get the shapes to draw.
+     * 
+     * @param width  the width of the pane.
+     * @param height the height of the pane.
      * @return a set of shapes representing the regions in the map.
      */
-    public Set<Shape> getShapes(final double paneWidth, final double paneHeight) {
+    @Override
+    public Set<Shape> getEntities(final double width, final double height) {
 
-        final Set<Region> regionSet = controller.getGameController().getRegions();
+        final Set<Region> regionSet = this.controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
         final boolean disabled = !(this.controller.getPhaseController().isMidPhase());
 
         for (final var region : regionSet) {
-            final Shape shape = new Shape(region.getXCenter() * paneWidth, region.getYCenter() * paneHeight,
-                    region.getWidth() * paneWidth, region.getLength() * paneHeight, region.getId());
+            final Shape shape = new Shape(region.getXCenter() * width, region.getYCenter() * height,
+                    region.getWidth() * width, region.getLength() * height, region.getId());
             shape.setTilt(360.0 - Math.toDegrees(region.getAngle()));
             if (region.getPlayerColor().isPresent()) {
                 final java.awt.Color strokeColor = region.getPlayerColor().get();
@@ -50,11 +53,12 @@ public class ShapeSetter {
                     Color.rgb(region.getDefaultColor().getRed(), region.getDefaultColor().getGreen(),
                             region.getDefaultColor().getBlue()));
             shape.setOnMouseClicked(event -> {
-                final FillRoute fillRoute = new FillRouteImpl(controller.getTurnController().getCurrentPlayer(), region,
-                        controller);
+                final FillRoute fillRoute = new FillRouteImpl(
+                        this.controller.getTurnController().getCurrentPlayer(), region,
+                        this.controller);
                 if (fillRoute.clickRoute()) {
-                    controller.getPhaseController().switchPhase();
-                    controller.getGameController().refreshView();
+                    this.controller.getPhaseController().switchPhase();
+                    this.controller.getGameController().refreshView();
                 }
             });
             shape.setDisable(disabled);
