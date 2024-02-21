@@ -7,13 +7,14 @@ import it.unibo.commons.Pair;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import javafx.scene.control.Button;
+import it.unibo.view.entitysetter.api.EntitySetter;
 import javafx.scene.shape.Circle;
 
 /**
  * This class models a CitySetter, which returns the set of buttons
  * highlighting completed cities to draw on map.
  */
-public class HighlightedCitySetter extends AbstractEntitySetter<Button> {
+public class HighlightedCitySetter implements EntitySetter<Button> {
     private final MainController controller;
 
     /**
