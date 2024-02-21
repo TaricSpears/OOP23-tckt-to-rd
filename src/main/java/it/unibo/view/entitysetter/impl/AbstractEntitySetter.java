@@ -32,7 +32,7 @@ public abstract class AbstractEntitySetter<T> implements EntitySetter<T> {
      * @inheritDoc
      */
     @Override
-    public MainController getController(){
+    public MainController getController() {
         return this.controller;
     }
 }
