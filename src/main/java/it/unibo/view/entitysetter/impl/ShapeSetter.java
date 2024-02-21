@@ -6,6 +6,7 @@ import java.util.Set;
 import it.unibo.commons.Region;
 import it.unibo.controller.fillroutecontroller.api.FillRoute;
 import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
+import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import it.unibo.view.Shape;
 import javafx.scene.paint.Color;
@@ -16,12 +17,13 @@ import javafx.scene.paint.Color;
  */
 public class ShapeSetter extends AbstractEntitySetter<Shape> {
     private static final int WIDTH = 3;
+    private final MainController controller;
 
     /**
      * Constructor of the class.
      */
     public ShapeSetter() {
-        super(GameStart.CONTROLLER);
+        this.controller = GameStart.CONTROLLER;
     }
 
     /**
@@ -31,11 +33,12 @@ public class ShapeSetter extends AbstractEntitySetter<Shape> {
      * @param height the height of the pane.
      * @return a set of shapes representing the regions in the map.
      */
+    @Override
     public Set<Shape> getEntities(final double width, final double height) {
 
-        final Set<Region> regionSet = super.getController().getGameController().getRegions();
+        final Set<Region> regionSet = this.controller.getGameController().getRegions();
         final Set<Shape> shapeSet = new LinkedHashSet<>();
-        final boolean disabled = !(super.getController().getPhaseController().isMidPhase());
+        final boolean disabled = !(this.controller.getPhaseController().isMidPhase());
 
         for (final var region : regionSet) {
             final Shape shape = new Shape(region.getXCenter() * width, region.getYCenter() * height,
@@ -51,11 +54,11 @@ public class ShapeSetter extends AbstractEntitySetter<Shape> {
                             region.getDefaultColor().getBlue()));
             shape.setOnMouseClicked(event -> {
                 final FillRoute fillRoute = new FillRouteImpl(
-                        super.getController().getTurnController().getCurrentPlayer(), region,
-                        super.getController());
+                        this.controller.getTurnController().getCurrentPlayer(), region,
+                        this.controller);
                 if (fillRoute.clickRoute()) {
-                    super.getController().getPhaseController().switchPhase();
-                    super.getController().getGameController().refreshView();
+                    this.controller.getPhaseController().switchPhase();
+                    this.controller.getGameController().refreshView();
                 }
             });
             shape.setDisable(disabled);
