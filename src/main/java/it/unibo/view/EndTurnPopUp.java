@@ -24,7 +24,7 @@ public class EndTurnPopUp {
 
         final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Turn:  " + controller.getTurnController().getTurnManager().getCurrentTurn());
-        alert.setContentText("It's " + controller.getTurnController().getCurrentPlayer().getName() + "turn.");
+        alert.setContentText("It's " + controller.getTurnController().getCurrentPlayer().getName() + " turn.");
 
         alert.setResizable(false);
         alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
