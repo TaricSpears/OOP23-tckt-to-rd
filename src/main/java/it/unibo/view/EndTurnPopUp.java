@@ -13,7 +13,7 @@ public class EndTurnPopUp {
 
     private static final double WIDTH = 300;
     private static final double HEIGHT = 200;
-    private static final double DURATION = 2;
+    private static final double DURATION = 1.5;
 
     /**
      * Constructor for the class.
