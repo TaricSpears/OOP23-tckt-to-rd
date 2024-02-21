@@ -26,7 +26,6 @@ public class LastTurnPopUp {
         alert.setResizable(false);
         alert.getDialogPane().setMaxSize(WIDTH, HEIGHT);
         alert.getDialogPane().setMinSize(WIDTH, HEIGHT);
-        alert.showAndWait();
     }
 
     /**
