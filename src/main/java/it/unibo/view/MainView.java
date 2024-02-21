@@ -93,7 +93,6 @@ public class MainView extends Application {
      * Closes the final scoreboard of the game.
      */
     public void closeScoreBoard() {
-        System.out.println("Close ScoreBoard");
         if (!Objects.isNull(scoreBoardView)) {
             this.scoreBoardView.closeStage();
         }

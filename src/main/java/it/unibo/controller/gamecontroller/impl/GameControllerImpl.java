@@ -34,8 +34,8 @@ public class GameControllerImpl implements GameController, Cloneable {
     private final MainController mainController;
     private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
-    private BooleanWrapper isLastTurn = new BooleanWrapper(false);
-    private BooleanWrapper gameEnded = new BooleanWrapper(false);
+    private final BooleanWrapper lastTurn = new BooleanWrapper(false);
+    private final BooleanWrapper gameEnded = new BooleanWrapper(false);
 
     /**
      * Simple constructor of the controller of the game logic.
@@ -95,7 +95,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public void endTurn() {
-        if (this.isLastTurn.getValue() && this.mainController.getTurnController().wasLastPlayer()) {
+        if (this.lastTurn.isTrue() && this.mainController.getTurnController().wasLastPlayer()) {
             this.endGame();
             this.gameEnded.setValue(true);
         }
@@ -121,7 +121,7 @@ public class GameControllerImpl implements GameController, Cloneable {
     public void newGame() {
         view.launchPlayerSlect();
         tempPlayers.clear();
-        this.isLastTurn.setValue(false);
+        this.lastTurn.setValue(false);
         this.gameEnded.setValue(false);
     }
 
@@ -217,7 +217,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public void setLastTurn() {
-        this.isLastTurn.setValue(true);
+        this.lastTurn.setValue(true);
     }
 
     /**
@@ -256,7 +256,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public boolean isLastTurn() {
-        return this.isLastTurn.getValue();
+        return this.lastTurn.isTrue();
     }
 
     /**
@@ -264,7 +264,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public boolean isGameEnded() {
-        return this.gameEnded.getValue();
+        return this.gameEnded.isTrue();
     }
 
     /**
@@ -294,7 +294,7 @@ public class GameControllerImpl implements GameController, Cloneable {
         /**
          * @return the value of the wrapper.
          */
-        public boolean getValue() {
+        public boolean isTrue() {
             return value;
         }
 
