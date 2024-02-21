@@ -24,10 +24,10 @@ public class ShapeSetter extends AbstractEntitySetter<Shape> {
     }
 
     /**
-     * Get the shapes to draw
+     * Get the shapes to draw.
      * 
-     * @param paneWidth  the width of the pane.
-     * @param paneHeight the height of the pane.
+     * @param width  the width of the pane.
+     * @param height the height of the pane.
      * @return a set of shapes representing the regions in the map.
      */
     public Set<Shape> getEntities(final double width, final double height) {

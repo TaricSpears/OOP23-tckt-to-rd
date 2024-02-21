@@ -7,13 +7,13 @@ import it.unibo.start.GameStart;
 import it.unibo.view.entitysetter.api.EntitySetter;
 
 /**
- * Abstract implementation of {@link EntitySetter}
+ * Abstract implementation of {@link EntitySetter}.
  */
 public abstract class AbstractEntitySetter<T> implements EntitySetter<T> {
     protected final MainController controller;
 
     /**
-     * Constructor of the class
+     * Constructor of the class.
      */
     public AbstractEntitySetter() {
         this.controller = GameStart.CONTROLLER;
@@ -23,5 +23,5 @@ public abstract class AbstractEntitySetter<T> implements EntitySetter<T> {
      * @inheritDoc
      */
     @Override
-    public abstract Set<T> getEntities(final double width, final double height);
+    public abstract Set<T> getEntities(double width, double height);
 }
