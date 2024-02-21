@@ -12,12 +12,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -64,13 +58,6 @@ public class PlayerInterface extends VBox {
 
         phase.setWrappingWidth(this.getMinWidth() * BOX_SCALE);
         objectiveBox.setMaxWidth(this.getMinWidth() * BOX_SCALE);
-
-        final Image image = new Image("/img/Wallpapers/WallPaper3.jpg");
-        final BackgroundImage imageView = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-
-        this.setBackground(new Background(imageView));
 
         this.setPadding(new Insets(PADDING_VALUE));
         this.setSpacing(SPACING_VALUE);

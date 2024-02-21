@@ -36,7 +36,7 @@ public interface Player {
      * 
      * @param num   the number of cards to remove.
      */
-    void removeTrainCard(Color color, int num);
+    void removeTrainCard(Color color, Integer num);
 
     /**
      * @return the set of objective cards of the player.
@@ -51,14 +51,14 @@ public interface Player {
     /**
      * @return the number of carriages of the player.
      */
-    int getCarriageNum();
+    Integer getCarriageNum();
 
     /**
      * Sets the number of carriages of the player.
      * 
      * @param number the number of carriages of the player.
      */
-    void setCarriageNum(int number);
+    void setCarriageNum(Integer number);
 
     /**
      * @return the score of the objective cards.
@@ -68,7 +68,7 @@ public interface Player {
     /**
      * @return the score of the routes.
      */
-    int getRouteScore();
+    Integer getRouteScore();
 
     /**
      * Adds the drawn Train card to the player's hand.

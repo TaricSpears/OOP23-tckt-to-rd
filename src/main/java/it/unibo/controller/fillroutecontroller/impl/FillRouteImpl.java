@@ -61,22 +61,25 @@ public class FillRouteImpl implements FillRoute {
             }
         } else {
             return isColorEnough(route.getColor());
-            // if (isColorEnough(route.getColor())) {
-            // return true;
-            // } else {
-            // return false;
-            // }
         }
         return false;
 
     }
 
+    /**
+     * Opens a pop-up for the player to choose the color of the route.
+     */
     private void openPopUp() {
         final FillRouteViewImpl popUp = new FillRouteViewImpl(this);
         chosenColor = popUp.openPopUp();
 
     }
 
+    /**
+     * Opens an alert with a message.
+     * 
+     * @param message the masse to display in the alert
+     */
     private void openAlert(final String message) {
         final NotEnoughCardsAlert alert = new NotEnoughCardsAlert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
         alert.openAlert();

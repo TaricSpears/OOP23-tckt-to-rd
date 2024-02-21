@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.jgrapht.alg.shortestpath.BellmanFordShortestPath;
@@ -30,8 +31,8 @@ public class PlayerImpl implements Player, Cloneable {
     private final Map<Color, Integer> trainCards;
     private final Set<ObjectiveCard> objectiveCards;
     private final Set<Route> completedRoutes;
-    private int carriageNum;
-    private int routeScore;
+    private IntegerWrapper carriageNum;
+    private IntegerWrapper routeScore;
 
     private final WeightedPseudograph<City, Route> playerGraph;
     private final BellmanFordShortestPath<City, Route> shortestPath;
@@ -45,13 +46,13 @@ public class PlayerImpl implements Player, Cloneable {
      * 
      * @param carriageNum the number of carriages of the player.
      */
-    public PlayerImpl(final String name, final Color color, final int carriageNum) {
+    public PlayerImpl(final String name, final Color color, final Integer carriageNum) {
         this.name = name;
         this.color = color;
         this.objectiveCards = new LinkedHashSet<>();
         this.completedRoutes = new LinkedHashSet<>();
-        this.carriageNum = carriageNum;
-        this.routeScore = 0;
+        this.carriageNum = new IntegerWrapper(carriageNum);
+        this.routeScore = new IntegerWrapper(0);
         this.playerGraph = new WeightedPseudograph<>(RouteImpl.class);
 
         this.trainCards = new HashMap<>();
@@ -75,7 +76,7 @@ public class PlayerImpl implements Player, Cloneable {
      * 
      * @param carriageNum the number of carriages of the player.
      */
-    public PlayerImpl(final String name, final int carriageNum) {
+    public PlayerImpl(final String name, final Integer carriageNum) {
         this(name, Color.BLACK, carriageNum);
     }
 
@@ -124,16 +125,16 @@ public class PlayerImpl implements Player, Cloneable {
      * {@inheritDoc}
      */
     @Override
-    public int getCarriageNum() {
-        return this.carriageNum;
+    public Integer getCarriageNum() {
+        return this.carriageNum.getValue();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setCarriageNum(final int number) {
-        this.carriageNum = number;
+    public void setCarriageNum(final Integer number) {
+        this.carriageNum.setValue(number);
     }
 
     /**
@@ -157,8 +158,8 @@ public class PlayerImpl implements Player, Cloneable {
      * {@inheritDoc}
      */
     @Override
-    public int getRouteScore() {
-        return this.routeScore;
+    public Integer getRouteScore() {
+        return this.routeScore.getValue();
     }
 
     /**
@@ -166,15 +167,15 @@ public class PlayerImpl implements Player, Cloneable {
      * 
      * @param number
      */
-    private void setRouteScore(final int number) {
-        this.routeScore += number;
+    private void setRouteScore(final Integer number) {
+        this.routeScore.setValue(this.routeScore.getValue() + number);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeTrainCard(final Color color, final int num) {
+    public void removeTrainCard(final Color color, final Integer num) {
         this.trainCards.replace(color, this.trainCards.get(color) - num);
     }
 
@@ -233,4 +234,56 @@ public class PlayerImpl implements Player, Cloneable {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (!(obj instanceof Player)) {
+            return false;
+        }
+        final Player player = (Player) obj;
+        return this.name.equals(player.getName());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name, this.color);
+    }
+
+    /**
+     * Wrapper for Integer.
+     */
+    public static class IntegerWrapper {
+
+        private int value;
+
+        /**
+         * Constructor for the wrapper.
+         * 
+         * @param value the int value to wrap.
+         */
+        public IntegerWrapper(final int value) {
+            this.value = value;
+        }
+
+        /**
+         * @return the value of the wrapper.
+         */
+        public int getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the wrapper.
+         * 
+         * @param value the value to set.
+         */
+        public void setValue(final int value) {
+            this.value = value;
+        }
+    }
 }
