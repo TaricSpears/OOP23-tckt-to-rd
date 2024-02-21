@@ -2,6 +2,8 @@ package it.unibo.view.entitysetter.api;
 
 import java.util.Set;
 
+import it.unibo.controller.gamecontroller.api.MainController;
+
 /**
  * This interface models a generic entity setter for a GUI.
  * 
@@ -14,4 +16,9 @@ public interface EntitySetter<T> {
      * @return returns the set of initialized entities
      */
     Set<T> getEntities(double width, double height);
+
+    /**
+     * @return the controller
+     */
+    MainController getController();
 }
