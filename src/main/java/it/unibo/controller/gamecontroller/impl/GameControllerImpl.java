@@ -34,8 +34,8 @@ public class GameControllerImpl implements GameController, Cloneable {
     private final MainController mainController;
     private final List<Pair<String, Color>> tempPlayers = new ArrayList<>();
     private MainView view;
-    private boolean isLastTurn;
-    private boolean gameEnded;
+    private BooleanWrapper isLastTurn = new BooleanWrapper(false);
+    private BooleanWrapper gameEnded = new BooleanWrapper(false);
 
     /**
      * Simple constructor of the controller of the game logic.
@@ -95,9 +95,9 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public void endTurn() {
-        if (this.isLastTurn && this.mainController.getTurnController().wasLastPlayer()) {
+        if (this.isLastTurn.getValue() && this.mainController.getTurnController().wasLastPlayer()) {
             this.endGame();
-            this.gameEnded = true;
+            this.gameEnded.setValue(true);
         }
         this.mainController.getTurnController().endTurn();
 
@@ -121,8 +121,8 @@ public class GameControllerImpl implements GameController, Cloneable {
     public void newGame() {
         view.launchPlayerSlect();
         tempPlayers.clear();
-        this.isLastTurn = false;
-        this.gameEnded = false;
+        this.isLastTurn.setValue(false);
+        this.gameEnded.setValue(false);
     }
 
     /**
@@ -217,7 +217,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public void setLastTurn() {
-        this.isLastTurn = true;
+        this.isLastTurn.setValue(true);
     }
 
     /**
@@ -256,7 +256,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public boolean isLastTurn() {
-        return this.isLastTurn;
+        return this.isLastTurn.getValue();
     }
 
     /**
@@ -264,7 +264,7 @@ public class GameControllerImpl implements GameController, Cloneable {
      */
     @Override
     public boolean isGameEnded() {
-        return this.gameEnded;
+        return this.gameEnded.getValue();
     }
 
     /**
@@ -273,5 +273,38 @@ public class GameControllerImpl implements GameController, Cloneable {
     @Override
     public void closeGame() {
         this.view.closeScoreBoard();
+    }
+
+    /**
+     * Wrapper for Integer.
+     */
+    public static class BooleanWrapper {
+
+        private boolean value;
+
+        /**
+         * Constructor for the wrapper.
+         * 
+         * @param value the int value to wrap.
+         */
+        public BooleanWrapper(final boolean value) {
+            this.value = value;
+        }
+
+        /**
+         * @return the value of the wrapper.
+         */
+        public boolean getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the wrapper.
+         * 
+         * @param value the value to set.
+         */
+        public void setValue(final boolean value) {
+            this.value = value;
+        }
     }
 }
