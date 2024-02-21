@@ -9,13 +9,14 @@ import it.unibo.controller.fillroutecontroller.impl.FillRouteImpl;
 import it.unibo.controller.gamecontroller.api.MainController;
 import it.unibo.start.GameStart;
 import it.unibo.view.Shape;
+import it.unibo.view.entitysetter.api.EntitySetter;
 import javafx.scene.paint.Color;
 
 /**
  * This class models a ShapeSetter, which returns the set of shapes to draw on
  * map.
  */
-public class ShapeSetter extends AbstractEntitySetter<Shape> {
+public class ShapeSetter implements EntitySetter<Shape> {
     private static final int WIDTH = 3;
     private final MainController controller;
 
