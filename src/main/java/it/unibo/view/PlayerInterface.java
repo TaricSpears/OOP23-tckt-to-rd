@@ -29,8 +29,8 @@ public class PlayerInterface extends VBox {
     private static final int SPACINGBOX_VALUE = 2;
     private static final int PADDING_VALUE = 20;
     private static final double BOX_SCALE = 0.8;
-    private static final double ALERT_WIDTH_SCALE = 0.6;
-    private static final double ALERT_HEIGHT_SCALE = 0.5;
+    private static final double ALERT_WIDTH_SCALE = 0.8;
+    private static final double ALERT_HEIGHT_SCALE = 0.7;
 
     private final HBox controlBox;
     private final HBox drawBox;
