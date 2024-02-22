@@ -70,7 +70,7 @@ public class FinalScoreBoardView extends Stage {
         final HBox gameControls = new HBox();
         final BorderPane pane = new BorderPane();
 
-        final Image image = new Image(ClassLoader.getSystemResourceAsStream("img/Wallpapers/WallPaper1.jpeg"));
+        final Image image = new Image(ClassLoader.getSystemResourceAsStream("img/Wallpapers/WallPaper1.png"));
         final BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false));

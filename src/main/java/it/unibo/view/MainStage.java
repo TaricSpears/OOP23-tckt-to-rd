@@ -49,7 +49,7 @@ public class MainStage extends Stage {
                 this.scene.getHeight() - this.pane.getMaxWidth());
         this.playerInterface.initialize(controller);
 
-        final Image imageMap = new Image(ClassLoader.getSystemResourceAsStream("img/Maps/europeMapLabeled.jpeg"));
+        final Image imageMap = new Image(ClassLoader.getSystemResourceAsStream("img/Maps/europeMapLabeled.png"));
 
         this.root.setCenter(this.pane);
 

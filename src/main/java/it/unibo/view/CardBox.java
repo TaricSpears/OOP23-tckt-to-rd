@@ -35,15 +35,15 @@ public class CardBox extends VBox {
      */
     public CardBox(final MainController controller) {
 
-        colorImageMap.put(Color.BLACK, "img/Cards/BlackCard.jpeg");
-        colorImageMap.put(Color.BLUE, "img/Cards/BlueCard.jpeg");
-        colorImageMap.put(Color.GREEN, "img/Cards/GreenCard.jpeg");
-        colorImageMap.put(Color.RED, "img/Cards/RedCard.jpeg");
-        colorImageMap.put(Color.WHITE, "img/Cards/WhiteCard.jpeg");
-        colorImageMap.put(Color.YELLOW, "img/Cards/YellowCard.jpeg");
-        colorImageMap.put(Color.ORANGE, "img/Cards/OrangeCard.jpeg");
-        colorImageMap.put(Color.MAGENTA, "img/Cards/PurpleCard.jpeg");
-        colorImageMap.put(Color.DARK_GRAY, "img/Cards/JollyCard.jpeg");
+        colorImageMap.put(Color.BLACK, "img/Cards/BlackCard.png");
+        colorImageMap.put(Color.BLUE, "img/Cards/BlueCard.png");
+        colorImageMap.put(Color.GREEN, "img/Cards/GreenCard.png");
+        colorImageMap.put(Color.RED, "img/Cards/RedCard.png");
+        colorImageMap.put(Color.WHITE, "img/Cards/WhiteCard.png");
+        colorImageMap.put(Color.YELLOW, "img/Cards/YellowCard.png");
+        colorImageMap.put(Color.ORANGE, "img/Cards/OrangeCard.png");
+        colorImageMap.put(Color.MAGENTA, "img/Cards/PurpleCard.png");
+        colorImageMap.put(Color.DARK_GRAY, "img/Cards/JollyCard.png");
 
         final var temp = new ArrayList<>(this.colorImageMap.entrySet());
 
