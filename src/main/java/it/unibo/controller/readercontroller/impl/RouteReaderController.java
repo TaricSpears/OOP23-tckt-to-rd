@@ -29,7 +29,7 @@ import java.awt.Color;
  */
 public final class RouteReaderController extends AbstractReaderController<List<Route>> {
 
-    private static final String ROUTE_FILE_PATH = "/configuration/EuropeConfiguration/Routes.json";
+    private static final String ROUTE_FILE_PATH = "configuration/EuropeConfiguration/Routes.json";
 
     private final int mapWidth;
     private final int mapHeight;
@@ -62,7 +62,7 @@ public final class RouteReaderController extends AbstractReaderController<List<R
         JSONObject obj;
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(ROUTE_FILE_PATH),
+                    ClassLoader.getSystemResourceAsStream(ROUTE_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONArray array = (JSONArray) parser.parse(inputStreamReader);
             for (final Object elem : array) {

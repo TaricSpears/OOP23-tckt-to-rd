@@ -37,17 +37,17 @@ public class DrawTrainCardPopUp {
 
         final Map<Color, String> colorImageMap = new HashMap<>();
 
-        colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
-        colorImageMap.put(Color.BLUE, "/img/Cards/BlueCard.jpg");
-        colorImageMap.put(Color.GREEN, "/img/Cards/GreenCard.jpg");
-        colorImageMap.put(Color.RED, "/img/Cards/RedCard.jpg");
-        colorImageMap.put(Color.WHITE, "/img/Cards/WhiteCard.jpg");
-        colorImageMap.put(Color.YELLOW, "/img/Cards/YellowCard.jpg");
-        colorImageMap.put(Color.ORANGE, "/img/Cards/OrangeCard.jpg");
-        colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
-        colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
+        colorImageMap.put(Color.BLACK, "img/Cards/BlackCard.jpeg");
+        colorImageMap.put(Color.BLUE, "img/Cards/BlueCard.jpeg");
+        colorImageMap.put(Color.GREEN, "img/Cards/GreenCard.jpeg");
+        colorImageMap.put(Color.RED, "img/Cards/RedCard.jpeg");
+        colorImageMap.put(Color.WHITE, "img/Cards/WhiteCard.jpeg");
+        colorImageMap.put(Color.YELLOW, "img/Cards/YellowCard.jpeg");
+        colorImageMap.put(Color.ORANGE, "img/Cards/OrangeCard.jpeg");
+        colorImageMap.put(Color.MAGENTA, "img/Cards/PurpleCard.jpeg");
+        colorImageMap.put(Color.DARK_GRAY, "img/Cards/JollyCard.jpeg");
 
-        image = new Image(colorImageMap.get(color));
+        image = new Image(ClassLoader.getSystemResourceAsStream(colorImageMap.get(color)));
         pane.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(1, 1, true, true, false, false))));

@@ -21,7 +21,7 @@ import it.unibo.model.city.impl.CityImpl;
  */
 public final class CityReaderController extends AbstractReaderController<List<City>> {
 
-    private static final String CITY_FILE_PATH = "/configuration/EuropeConfiguration/Cities.json";
+    private static final String CITY_FILE_PATH = "configuration/EuropeConfiguration/Cities.json";
 
     private final int cityRadius;
     private final int mapHeight;
@@ -49,7 +49,7 @@ public final class CityReaderController extends AbstractReaderController<List<Ci
         JSONObject obj;
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(CITY_FILE_PATH),
+                    ClassLoader.getSystemResourceAsStream(CITY_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONArray array = (JSONArray) parser.parse(inputStreamReader);
             for (final Object elem : array) {

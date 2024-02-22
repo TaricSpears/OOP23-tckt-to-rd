@@ -18,7 +18,7 @@ import org.json.simple.parser.ParseException;
  */
 public final class MapReaderController extends AbstractReaderController<List<Integer>> {
 
-    private static final String MAP_FILE_PATH = "/configuration/EuropeConfiguration/MapData.json";
+    private static final String MAP_FILE_PATH = "configuration/EuropeConfiguration/MapData.json";
     private final List<Integer> mapData;
 
     /**
@@ -30,7 +30,7 @@ public final class MapReaderController extends AbstractReaderController<List<Int
         final List<Integer> retList = new LinkedList<>();
         try {
             final InputStreamReader inputStreamReader = new InputStreamReader(
-                    this.getClass().getResourceAsStream(MAP_FILE_PATH),
+                    ClassLoader.getSystemResourceAsStream(MAP_FILE_PATH),
                     StandardCharsets.UTF_8);
             final JSONObject obj = (JSONObject) parser.parse(inputStreamReader);
             retList.add(Integer.parseInt(obj.get("mapWidth").toString()));

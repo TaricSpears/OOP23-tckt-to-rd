@@ -65,7 +65,7 @@ public class PlayerInterface extends VBox {
         rules.setOnAction(event -> {
 
             try {
-                final String rulesText = Files.readString(Path.of("src/main/resources/text/Rules.txt"),
+                final String rulesText = Files.readString(Path.of("text/Rules.txt"),
                         StandardCharsets.UTF_8);
                 final Alert alert = new Alert(AlertType.INFORMATION, rulesText);
                 alert.setResizable(false);

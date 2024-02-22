@@ -101,10 +101,12 @@ public final class StartStage extends Stage {
                     });
         });
 
-        final Image image = new Image("/img/Wallpapers/Wallpaper2.jpg");
+        final Image image = new Image(ClassLoader
+                .getSystemResourceAsStream("img/Wallpapers/WallPaper1.png"));
+        final BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, true);
         final BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-                new BackgroundSize(1, 1, true, true, false, false));
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        final Background background = new Background(backgroundImage);
 
         final BorderPane root = new BorderPane();
         final VBox nameSelect = new VBox();
@@ -120,8 +122,8 @@ public final class StartStage extends Stage {
         nameSelect.getChildren().addAll(playersList, nameInput);
         nameSelect.setAlignment(Pos.CENTER);
 
+        root.setBackground(background);
         root.setCenter(nameSelect);
-        root.setBackground(new Background(backgroundImage));
 
         startBox.getChildren().add(startButton);
         startBox.setPadding(new Insets(TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING, TOP_BOTTOM_PADDING, LEFT_RIGHT_PADDING));

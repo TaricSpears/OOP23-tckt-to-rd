@@ -35,21 +35,22 @@ public class CardBox extends VBox {
      */
     public CardBox(final MainController controller) {
 
-        colorImageMap.put(Color.BLACK, "/img/Cards/BlackCard.jpg");
-        colorImageMap.put(Color.BLUE, "/img/Cards/BlueCard.jpg");
-        colorImageMap.put(Color.GREEN, "/img/Cards/GreenCard.jpg");
-        colorImageMap.put(Color.RED, "/img/Cards/RedCard.jpg");
-        colorImageMap.put(Color.WHITE, "/img/Cards/WhiteCard.jpg");
-        colorImageMap.put(Color.YELLOW, "/img/Cards/YellowCard.jpg");
-        colorImageMap.put(Color.ORANGE, "/img/Cards/OrangeCard.jpg");
-        colorImageMap.put(Color.MAGENTA, "/img/Cards/PurpleCard.jpg");
-        colorImageMap.put(Color.DARK_GRAY, "/img/Cards/JollyCard.jpg");
+        colorImageMap.put(Color.BLACK, "img/Cards/BlackCard.jpeg");
+        colorImageMap.put(Color.BLUE, "img/Cards/BlueCard.jpeg");
+        colorImageMap.put(Color.GREEN, "img/Cards/GreenCard.jpeg");
+        colorImageMap.put(Color.RED, "img/Cards/RedCard.jpeg");
+        colorImageMap.put(Color.WHITE, "img/Cards/WhiteCard.jpeg");
+        colorImageMap.put(Color.YELLOW, "img/Cards/YellowCard.jpeg");
+        colorImageMap.put(Color.ORANGE, "img/Cards/OrangeCard.jpeg");
+        colorImageMap.put(Color.MAGENTA, "img/Cards/PurpleCard.jpeg");
+        colorImageMap.put(Color.DARK_GRAY, "img/Cards/JollyCard.jpeg");
 
         final var temp = new ArrayList<>(this.colorImageMap.entrySet());
 
         for (int i = 0; i < temp.size(); i += 2) {
             final HBox cardBox = new HBox();
-            final ImageView card1 = new ImageView(new Image(temp.get(i).getValue()));
+            final ImageView card1 = new ImageView(
+                    new Image(ClassLoader.getSystemResourceAsStream(temp.get(i).getValue())));
 
             final VBox cardBox1 = new VBox(card1,
                     new Text(controller.getTurnController().getCurrentPlayer().getTrainCards()
@@ -61,7 +62,8 @@ public class CardBox extends VBox {
             cardBox.getChildren().add(cardBox1);
 
             if (i != temp.size() - 1) {
-                final ImageView card2 = new ImageView(new Image(temp.get(i + 1).getValue()));
+                final ImageView card2 = new ImageView(
+                        new Image(ClassLoader.getSystemResourceAsStream(temp.get(i + 1).getValue())));
                 final VBox cardBox2 = new VBox(card2,
                         new Text(controller.getTurnController().getCurrentPlayer().getTrainCards()
                                 .get(temp.get(i + 1).getKey())
