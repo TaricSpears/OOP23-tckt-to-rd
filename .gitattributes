@@ -2,3 +2,4 @@
 *.[cC][mM][dD] text eol=crlf
 *.[bB][aA][tT] text eol=crlf
 *.[pP][sS]1 text eol=crlf
+OOP23-tckt-to-rd-all.jar.psd filter=lfs diff=lfs merge=lfs -text
