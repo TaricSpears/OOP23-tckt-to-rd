@@ -21,38 +21,38 @@ class TestTurnAndPhase {
 
     @Test
     void testTurnManager() {
-    
-    List<PlayerImpl> players = new ArrayList<>();
-    final int carriageNum = 45;
-    players.add(new PlayerImpl("Player 1", carriageNum));
-    players.add(new PlayerImpl("Player 2", carriageNum));
-    players.add(new PlayerImpl("Player 3", carriageNum));
-    players.add(new PlayerImpl("Player 4", carriageNum));
-    
-    final TurnManager turnManager = new TurnManagerImpl(players);
-    List<Player> players2 = new ArrayList<>(turnManager.getPlayers());
-    
-    assertEquals(1, turnManager.getCurrentTurn());
-    assertEquals(players2.get(0), turnManager.getCurrentPlayer());
-    
-    turnManager.switchToNextPlayer();
-    assertEquals(1, turnManager.getCurrentTurn());
-    assertEquals(players2.get(1), turnManager.getCurrentPlayer());
-    
-    turnManager.switchToNextPlayer();
-    assertEquals(1, turnManager.getCurrentTurn());
-    assertEquals(players2.get(2), turnManager.getCurrentPlayer());
-    
-    turnManager.switchToNextPlayer();
-    assertEquals(1, turnManager.getCurrentTurn());
-    assertEquals(players2.get(3), turnManager.getCurrentPlayer());
-    
-    turnManager.switchToNextPlayer();
-    assertEquals(2, turnManager.getCurrentTurn());
-    assertEquals(players2.get(0), turnManager.getCurrentPlayer());
-    
+
+        final List<PlayerImpl> players = new ArrayList<>();
+        final int carriageNum = 45;
+        players.add(new PlayerImpl("Player 1", carriageNum));
+        players.add(new PlayerImpl("Player 2", carriageNum));
+        players.add(new PlayerImpl("Player 3", carriageNum));
+        players.add(new PlayerImpl("Player 4", carriageNum));
+
+        final TurnManager turnManager = new TurnManagerImpl(players);
+        final List<Player> players2 = new ArrayList<>(turnManager.getPlayers());
+
+        assertEquals(1, turnManager.getCurrentTurn());
+        assertEquals(players2.get(0), turnManager.getCurrentPlayer());
+
+        turnManager.switchToNextPlayer();
+        assertEquals(1, turnManager.getCurrentTurn());
+        assertEquals(players2.get(1), turnManager.getCurrentPlayer());
+
+        turnManager.switchToNextPlayer();
+        assertEquals(1, turnManager.getCurrentTurn());
+        assertEquals(players2.get(2), turnManager.getCurrentPlayer());
+
+        turnManager.switchToNextPlayer();
+        assertEquals(1, turnManager.getCurrentTurn());
+        assertEquals(players2.get(3), turnManager.getCurrentPlayer());
+
+        turnManager.switchToNextPlayer();
+        assertEquals(2, turnManager.getCurrentTurn());
+        assertEquals(players2.get(0), turnManager.getCurrentPlayer());
+
     }
-    
+
     @Test
     void testPhaseManager() {
 
